@@ -1,0 +1,83 @@
+{
+  "name": "@commercetools-demo/ct-agent-toolkit",
+  "version": "1.14.0",
+  "homepage": "https://github.com/commercetools-demo/ct-agent-toolkit",
+  "scripts": {
+    "build": "tsup",
+    "clean": "rm -rf langchain ai-sdk modelcontextprotocol openai",
+    "lint": "eslint \"./**/*.ts*\"",
+    "prettier": "prettier './**/*.{js,ts,md,html,css}' --write",
+    "prettier-check": "prettier './**/*.{js,ts,md,html,css}' --check",
+    "validate": "pnpm run lint --fix && pnpm run prettier && pnpm run test",
+    "test": "jest"
+  },
+  "exports": {
+    "./ai-sdk": {
+      "types": "./ai-sdk/index.d.ts",
+      "require": "./ai-sdk/index.js",
+      "import": "./ai-sdk/index.mjs"
+    },
+    "./openai": {
+      "types": "./openai/index.d.ts",
+      "require": "./openai/index.js",
+      "import": "./openai/index.mjs"
+    },
+    "./modelcontextprotocol": {
+      "types": "./modelcontextprotocol/index.d.ts",
+      "require": "./modelcontextprotocol/index.js",
+      "import": "./modelcontextprotocol/index.mjs"
+    }
+  },
+  "packageManager": "pnpm@9.11.0",
+  "engines": {
+    "node": ">=18"
+  },
+  "author": "Luciano Giavedoni <lgiavedoni@gmail.com> (https://github.com/lgiavedoni)",
+  "contributors": [
+    "Luciano Giavedoni <lgiavedoni@gmail.com>",
+    "Behnam Tehrani <behnam.tehrani@commercetools.com>"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@eslint/compat": "^1.2.4",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^22.10.5",
+    "@typescript-eslint/eslint-plugin": "^8.19.1",
+    "eslint": "^9.17.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-jest": "^28.10.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "globals": "^15.14.0",
+    "jest": "^29.7.0",
+    "prettier": "^3.4.2",
+    "ts-jest": "^29.2.5",
+    "ts-node": "^10.9.2",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2"
+  },
+  "dependencies": {
+    "@commercetools/platform-sdk": "^8.5.0",
+    "@commercetools/ts-client": "^3.2.0",
+    "zod": "^3.24.2",
+    "zod-to-json-schema": "^3.24.3"
+  },
+  "peerDependencies": {
+    "@langchain/core": "^0.3.6",
+    "@modelcontextprotocol/sdk": "^1.10.2",
+    "ai": "^4.1.54",
+    "openai": "^4.86.1"
+  },
+  "workspaces": [
+    "."
+  ],
+  "files": [
+    "ai-sdk/**/*",
+    "langchain/**/*",
+    "modelcontextprotocol/**/*",
+    "LICENSE",
+    "README.md",
+    "VERSION",
+    "package.json"
+  ]
+}

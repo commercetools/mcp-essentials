@@ -1,0 +1,3341 @@
+  console.log
+    tools >>>>  [
+      {
+        method: 'read_cart',
+        name: 'Read Cart',
+        description: '\n' +
+          'This tool will fetch information about a commercetools cart.\n' +
+          '\n' +
+          'It can be used in three ways:\n' +
+          '1. To fetch a single cart by its ID\n' +
+          '2. To fetch a single cart by its key\n' +
+          '3. To fetch a single cart by customer ID\n' +
+          '4. To query multiple carts based on criteria\n' +
+          '\n' +
+          'It takes these parameters:\n' +
+          '- id (string, optional): The ID of the cart to fetch\n' +
+          '- key (string, optional): The key of the cart to fetch\n' +
+          '- customerId (string, optional): The customer ID to fetch the cart for\n' +
+          '- where (string array, optional): Query predicates for filtering carts. Example: ["customerId=\\"1001\\""]\n' +
+          '- limit (int, optional): The number of carts to return (default: 10, range: 1-500)\n' +
+          '- offset (int, optional): The number of items to skip before starting to collect the result set\n' +
+          '- sort (string array, optional): Sort criteria for the results. Example: ["createdAt desc"]\n' +
+          '- expand (string array, optional): An array of field paths to expand. Example: ["customer", "lineItems[*].variant"]\n' +
+          '- storeKey (string, optional): Key of the store to read carts from\n' +
+          '\n' +
+          'At least one of id, key, customerId, or where must be provided.\n',
+        parameters: ZodObject {
+          spa: [Function: bound safeParseAsync] AsyncFunction,
+          _def: [Object],
+          parse: [Function: bound parse],
+          safeParse: [Function: bound safeParse],
+          parseAsync: [Function: bound parseAsync] AsyncFunction,
+          safeParseAsync: [Function: bound safeParseAsync] AsyncFunction,
+          refine: [Function: bound refine],
+          refinement: [Function: bound refinement],
+          superRefine: [Function: bound superRefine],
+          optional: [Function: bound optional],
+          nullable: [Function: bound nullable],
+          nullish: [Function: bound nullish],
+          array: [Function: bound array],
+          promise: [Function: bound promise],
+          or: [Function: bound or],
+          and: [Function: bound and],
+          transform: [Function: bound transform],
+          brand: [Function: bound brand],
+          default: [Function: bound default],
+          catch: [Function: bound catch],
+          describe: [Function: bound describe],
+          pipe: [Function: bound pipe],
+          readonly: [Function: bound readonly],
+          isNullable: [Function: bound isNullable],
+          isOptional: [Function: bound isOptional],
+          '~standard': [Object],
+          _cached: null,
+          nonstrict: [Function: passthrough],
+          augment: [Function: extend]
+        },
+        actions: { cart: [Object] }
+      },
+      {
+        method: 'create_cart',
+        name: 'Create Cart',
+        description: '\n' +
+          'This tool will create a new Cart in commercetools.\n' +
+          '\n' +
+          'It takes these required arguments:\n' +
+          '- currency (string): The currency code for the cart.\n' +
+          '\n' +
+          'It takes these optional arguments:\n' +
+          '- customerEmail (string, optional): Email address of the Customer.\n' +
+          '- customerId (string, optional): ID of the customer that the Cart belongs to.\n' +
+          '- customerGroup (object, optional): Reference to a Customer Group.\n' +
+          '- anonymousId (string, optional): Anonymous session ID.\n' +
+          '- country (string, optional): Country for the cart.\n' +
+          '- inventoryMode (enum, optional): The inventory mode of the cart. Values: "None", "TrackOnly", "ReserveOnOrder".\n' +
+          '- taxMode (enum, optional): The tax mode of the cart. Values: "Platform", "External", "ExternalAmount", "Disabled".\n' +
+          '- taxRoundingMode (enum, optional): The tax rounding mode of the cart. Values: "HalfEven", "HalfUp", "HalfDown".\n' +
+          '- taxCalculationMode (enum, optional): The tax calculation mode of the cart. Values: "LineItemLevel", "UnitPriceLevel".\n' +
+          '- store (object, optional): Reference to a Store.\n' +
+          '- billingAddress (object, optional): Billing address for the cart.\n' +
+          '- shippingAddress (object, optional): Shipping address for the cart.\n' +
+          '- shippingMethod (object, optional): Reference to a Shipping Method.\n' +
+          '- shippingMode (enum, optional): The shipping mode of the cart. Values: "Single", "Multiple".\n' +
+          '- lineItems (array, optional): Line items to be added to the cart.\n' +
+          '- customLineItems (array, optional): Custom line items to be added to the cart.\n' +
+          '- discountCodes (array, optional): Array of discount codes to apply to the cart.\n' +
+          '- key (string, optional): User-defined unique identifier of the Cart.\n' +
+          '- locale (string, optional): Locale for the cart.\n' +
+          '- origin (enum, optional): Origin of the cart. Values: "Customer", "Merchant".\n' +
+          '- custom (object, optional): Custom fields for the cart.\n' +
+          '\n' +
+          'Only one of customerId or anonymousId should be provided.\n',
+        parameters: ZodObject {
+          spa: [Function: bound safeParseAsync] AsyncFunction,
+          _def: [Object],
+          parse: [Function: bound parse],
+          safeParse: [Function: bound safeParse],
+          parseAsync: [Function: bound parseAsync] AsyncFunction,
+          safeParseAsync: [Function: bound safeParseAsync] AsyncFunction,
+          refine: [Function: bound refine],
+          refinement: [Function: bound refinement],
+          superRefine: [Function: bound superRefine],
+          optional: [Function: bound optional],
+          nullable: [Function: bound nullable],
+          nullish: [Function: bound nullish],
+          array: [Function: bound array],
+          promise: [Function: bound promise],
+          or: [Function: bound or],
+          and: [Function: bound and],
+          transform: [Function: bound transform],
+          brand: [Function: bound brand],
+          default: [Function: bound default],
+          catch: [Function: bound catch],
+          describe: [Function: bound describe],
+          pipe: [Function: bound pipe],
+          readonly: [Function: bound readonly],
+          isNullable: [Function: bound isNullable],
+          isOptional: [Function: bound isOptional],
+          '~standard': [Object],
+          _cached: null,
+          nonstrict: [Function: passthrough],
+          augment: [Function: extend]
+        },
+        actions: { cart: [Object] }
+      },
+      {
+        method: 'replicate_cart',
+        name: 'Replicate Cart',
+        description: '\n' +
+          'This tool will replicate an existing Cart in commercetools to create a new one.\n' +
+          '\n' +
+          'It takes these required arguments:\n' +
+          '- reference (object): Reference to the cart to replicate containing id and typeId.\n' +
+          '\n' +
+          'It takes these optional arguments:\n' +
+          '- key (string, optional): User-defined unique identifier for the new Cart.\n' +
+          '- storeKey (string, optional): Key of the store to create the cart in.\n' +
+          '\n' +
+          'The replicated cart will be a copy of the referenced cart with a new ID.\n',
+        parameters: ZodObject {
+          spa: [Function: bound safeParseAsync] AsyncFunction,
+          _def: [Object],
+          parse: [Function: bound parse],
+          safeParse: [Function: bound safeParse],
+          parseAsync: [Function: bound parseAsync] AsyncFunction,
+          safeParseAsync: [Function: bound safeParseAsync] AsyncFunction,
+          refine: [Function: bound refine],
+          refinement: [Function: bound refinement],
+          superRefine: [Function: bound superRefine],
+          optional: [Function: bound optional],
+          nullable: [Function: bound nullable],
+          nullish: [Function: bound nullish],
+          array: [Function: bound array],
+          promise: [Function: bound promise],
+          or: [Function: bound or],
+          and: [Function: bound and],
+          transform: [Function: bound transform],
+          brand: [Function: bound brand],
+          default: [Function: bound default],
+          catch: [Function: bound catch],
+          describe: [Function: bound describe],
+          pipe: [Function: bound pipe],
+          readonly: [Function: bound readonly],
+          isNullable: [Function: bound isNullable],
+          isOptional: [Function: bound isOptional],
+          '~standard': [Object],
+          _cached: null,
+          nonstrict: [Function: passthrough],
+          augment: [Function: extend]
+        },
+        actions: { cart: [Object] }
+      },
+      {
+        method: 'update_cart',
+        name: 'Update Cart',
+        description: '\n' +
+          'This tool will update a Cart in commercetools using update actions from the commercetools API.\n' +
+          '\n' +
+          'It takes these required arguments:\n' +
+          '- version (integer): The current version of the cart.\n' +
+          '- actions (array): An array of update actions to perform on the cart. Each action should have an "action" field indicating the action type.\n' +
+          '\n' +
+          'It also requires ONE of these identifiers:\n' +
+          '- id (string, optional): The ID of the cart to update\n' +
+          '- key (string, optional): The key of the cart to update\n' +
+          '\n' +
+          'It takes these optional arguments:\n' +
+          '- storeKey (string, optional): Key of the store the cart belongs to\n' +
+          '\n' +
+          'Example actions from commercetools API include:\n' +
+          '- addCustomLineItem: Add a custom line item to the cart\n' +
+          '- addDiscountCode: Add a discount code to the cart\n' +
+          '- addLineItem: Add a line item to the cart\n' +
+          '- addPayment: Add a payment to the cart\n' +
+          '- addShoppingList: Add all line items from a shopping list to the cart\n' +
+          '- applyDeltaToCustomLineItemShippingDetailsTargets: Apply delta to custom line item shipping details targets\n' +
+          '- applyDeltaToLineItemShippingDetailsTargets: Apply delta to line item shipping details targets\n' +
+          '- changeCustomLineItemMoney: Change the money of a custom line item\n' +
+          '- changeCustomLineItemQuantity: Change the quantity of a custom line item\n' +
+          '- changeLineItemQuantity: Change the quantity of a line item\n' +
+          '- changeTaxCalculationMode: Change the tax calculation mode of the cart\n' +
+          '- changeTaxMode: Change the tax mode of the cart\n' +
+          '- changeTaxRoundingMode: Change the tax rounding mode of the cart\n' +
+          '- recalculate: Force recalculation of the cart\n' +
+          '- removeCustomLineItem: Remove a custom line item from the cart\n' +
+          '- removeDiscountCode: Remove a discount code from the cart\n' +
+          '- removeLineItem: Remove a line item from the cart\n' +
+          '- removePayment: Remove a payment from the cart\n' +
+          '- setAnonymousId: Set the anonymous ID of the cart\n' +
+          '- setBillingAddress: Set the billing address of the cart\n' +
+          '- setCartTotalTax: Set the total tax amount of the cart\n' +
+          '- setCountry: Set the country of the cart\n' +
+          '- setCustomField: Set a custom field on the cart\n' +
+          '- setCustomLineItemCustomField: Set a custom field on a custom line item\n' +
+          '- setCustomLineItemCustomType: Set a custom type on a custom line item\n' +
+          '- setCustomLineItemShippingDetails: Set shipping details on a custom line item\n' +
+          '- setCustomLineItemTaxAmount: Set tax amount on a custom line item\n' +
+          '- setCustomLineItemTaxRate: Set tax rate on a custom line item\n' +
+          '- setCustomShippingMethod: Set a custom shipping method on the cart\n' +
+          '- setCustomType: Set a custom type on the cart\n' +
+          '- setCustomerEmail: Set the customer email on the cart\n' +
+          '- setCustomerId: Set the customer ID on the cart\n' +
+          '- setCustomerGroup: Set the customer group on the cart\n' +
+          '- setDeleteDaysAfterLastModification: Set the number of days after which the cart will be deleted\n' +
+          '- setDirectDiscounts: Set direct discounts on the cart\n' +
+          '- setKey: Set the key of the cart\n' +
+          '- setLineItemCustomField: Set a custom field on a line item\n' +
+          '- setLineItemCustomType: Set a custom type on a line item\n' +
+          '- setLineItemDistributionChannel: Set the distribution channel of a line item\n' +
+          '- setLineItemPrice: Set the price of a line item\n' +
+          '- setLineItemShippingDetails: Set shipping details on a line item\n' +
+          '- setLineItemSupplyChannel: Set the supply channel of a line item\n' +
+          '- setLineItemTaxAmount: Set tax amount on a line item\n' +
+          '- setLineItemTaxRate: Set tax rate on a line item\n' +
+          '- setLineItemTotalPrice: Set the total price of a line item\n' +
+          '- setLocale: Set the locale of the cart\n' +
+          '- setShippingAddress: Set the shipping address of the cart\n' +
+          '- setShippingMethod: Set the shipping method of the cart\n' +
+          '- setShippingMethodTaxAmount: Set tax amount on the shipping method\n' +
+          '- setShippingMethodTaxRate: Set tax rate on the shipping method\n' +
+          '- setShippingRateInput: Set the shipping rate input of the cart\n' +
+          '\n' +
+          'Each action type requires specific fields according to the commercetools API.\n',
+        parameters: ZodObject {
+          spa: [Function: bound safeParseAsync] AsyncFunction,
+          _def: [Object],
+          parse: [Function: bound parse],
+          safeParse: [Function: bound safeParse],
+          parseAsync: [Function: bound parseAsync] AsyncFunction,
+          safeParseAsync: [Function: bound safeParseAsync] AsyncFunction,
+          refine: [Function: bound refine],
+          refinement: [Function: bound refinement],
+          superRefine: [Function: bound superRefine],
+          optional: [Function: bound optional],
+          nullable: [Function: bound nullable],
+          nullish: [Function: bound nullish],
+          array: [Function: bound array],
+          promise: [Function: bound promise],
+          or: [Function: bound or],
+          and: [Function: bound and],
+          transform: [Function: bound transform],
+          brand: [Function: bound brand],
+          default: [Function: bound default],
+          catch: [Function: bound catch],
+          describe: [Function: bound describe],
+          pipe: [Function: bound pipe],
+          readonly: [Function: bound readonly],
+          isNullable: [Function: bound isNullable],
+          isOptional: [Function: bound isOptional],
+          '~standard': [Object],
+          _cached: null,
+          nonstrict: [Function: passthrough],
+          augment: [Function: extend]
+        },
+        actions: { cart: [Object] }
+      },
+      {
+        method: 'read_cart_discount',
+        name: 'Read Cart Discount',
+        description: '\n' +
+          'This tool will fetch Cart Discounts from commercetools.\n' +
+          '\n' +
+          'It takes these optional arguments:\n' +
+          '- id (string, optional): The ID of the cart discount to fetch.\n' +
+          '- key (string, optional): The key of the cart discount to fetch.\n' +
+          '- where (string array, optional): Query predicates specified as strings for filtering cart discounts. Example: ["name(en = \\"Black Friday Sale\\")"]\n' +
+          '- limit (int, optional): The number of cart discounts to return (default: 10, range: 1-500).\n' +
+          '- offset (int, optional): The number of items to skip before starting to collect the result set.\n' +
+          '- sort (string array, optional): Sort criteria for the results. Example: ["name.en asc", "createdAt desc"]\n' +
+          '- expand (string array, optional): An array of field paths to expand. Example: ["references[*]"]\n' +
+          '- storeKey (string, optional): Key of the store to read the cart discount from.\n' +
+          '\n' +
+          'If both id and key are omitted, this tool will return a list of cart discounts based on the other query parameters.\n' +
+          'If either id or key is provided, this tool will return a single cart discount.\n',
+        parameters: ZodObject {
+          spa: [Function: bound safeParseAsync] AsyncFunction,
+          _def: [Object],
+          parse: [Function: bound parse],
+          safeParse: [Function: bound safeParse],
+          parseAsync: [Function: bound parseAsync] AsyncFunction,
+          safeParseAsync: [Function: bound safeParseAsync] AsyncFunction,
+          refine: [Function: bound refine],
+          refinement: [Function: bound refinement],
+          superRefine: [Function: bound superRefine],
+          optional: [Function: bound optional],
+          nullable: [Function: bound nullable],
+          nullish: [Function: bound nullish],
+          array: [Function: bound array],
+          promise: [Function: bound promise],
+          or: [Function: bound or],
+          and: [Function: bound and],
+          transform: [Function: bound transform],
+          brand: [Function: bound brand],
+          default: [Function: bound default],
+          catch: [Function: bound catch],
+          describe: [Function: bound describe],
+          pipe: [Function: bound pipe],
+          readonly: [Function: bound readonly],
+          isNullable: [Function: bound isNullable],
+          isOptional: [Function: bound isOptional],
+          '~standard': [Object],
+          _cached: null,
+          nonstrict: [Function: passthrough],
+          augment: [Function: extend]
+        },
+        actions: { 'cart-discount': [Object] }
+      },
+      {
+        method: 'create_cart_discount',
+        name: 'Create Cart Discount',
+        description: '\n' +
+          'This tool will create a new Cart Discount in commercetools.\n' +
+          '\n' +
+          'It takes these required arguments:\n' +
+          '- name (localized-string): The name of the cart discount. Example: { "en": "Summer Sale", "de": "Sommer Verkauf" }\n' +
+          '- cartPredicate (string): Valid Cart predicate to determine which carts will be discounted.\n' +
+          '- value (object): Type of discount and its corresponding value.\n' +
+          '- sortOrder (string): Unique decimal value between 0 and 1 defining the order of Cart Discounts to apply.\n' +
+          '\n' +
+          'It takes these optional arguments:\n' +
+          '- key (string, optional): User-defined unique identifier of the CartDiscount. Pattern: ^[A-Za-z0-9_-]+$, Min length: 2, Max length: 256\n' +
+          '- description (localized-string, optional): The description of the cart discount. Example: { "en": "10% off all orders over $100", "de": "10% Rabatt auf alle Bestellungen über 100€" }\n' +
+          '- target (object, optional): Segment of the Cart that is discounted. Empty if the value is giftLineItem.\n' +
+          '- isActive (boolean, optional): If true the Cart Discount is applied to Carts matching the cartPredicate. Default: true\n' +
+          '- validFrom (string, optional): Date and time (UTC) from which the Discount is effective. ISO 8601 format.\n' +
+          '- validUntil (string, optional): Date and time (UTC) until which the Discount is effective. ISO 8601 format.\n' +
+          '- requiresDiscountCode (boolean, optional): When true the discount can only be applied if a valid Discount Code is provided during checkout. Default: false\n' +
+          '- stackingMode (enum, optional): Specifies whether the application of this discount causes the following discounts to be ignored. Values: "Stacking", "StopAfterThisDiscount". Default: "Stacking"\n' +
+          '- stores (array, optional): The stores that this discount applies to. If empty, the discount applies to all stores. Maximum: 500 stores.\n' +
+          '- custom (object, optional): Custom fields for the Cart Discount.\n' +
+          '- storeKey (string, optional): Key of the store to create the cart discount in.\n' +
+          '\n' +
+          'The value object must be one of these types:\n' +
+          '1. Absolute discount:\n' +
+          '   {\n' +
+          '     "type": "absolute",\n' +
+          '     "money": [\n' +
+          '       {\n' +
+          '         "type": "centPrecision",\n' +
+          '         "currencyCode": "USD",\n' +
+          '         "centAmount": 1000,\n' +
+          '         "fractionDigits": 2\n' +
+          '       }\n' +
+          '     ]\n' +
+          '   }\n' +
+          '\n' +
+          '2. Relative discount (percentage):\n' +
+          '   {\n' +
+          '     "type": "relative",\n' +
+          '     "permyriad": 1000  // 10% (1000 out of 10000)\n' +
+          '   }\n' +
+          '\n' +
+          '3. Fixed discount (fixed amount regardless of original price):\n' +
+          '   {\n' +
+          '     "type": "fixed",\n' +
+          '     "money": [\n' +
+          '       {\n' +
+          '         "type": "centPrecision",\n' +
+          '         "currencyCode": "USD",\n' +
+          '         "centAmount": 2500,\n' +
+          '         "fractionDigits": 2\n' +
+          '       }\n' +
+          '     ]\n' +
+          '   }\n' +
+          '\n' +
+          '4. Gift line item discount (adds a free product):\n' +
+          '   {\n' +
+          '     "type": "giftLineItem",\n' +
+          '     "product": {\n' +
+          '       "typeId": "product",\n' +
+          '       "id": "{{product-id}}"\n' +
+          '     },\n' +
+          '     "variantId": 1,\n' +
+          '     "distributionChannel": {\n' +
+          '       "typeId": "channel",\n' +
+          '       "id": "{{channel-id}}"\n' +
+          '     }\n' +
+          '   }\n' +
+          '\n' +
+          'The target object must be one of these types:\n' +
+          '1. Line items target:\n' +
+          '   {\n' +
+          '     "type": "lineItems",\n' +
+          '     "predicate": "categories.id = \\"{{category-id}}\\""\n' +
+          '   }\n' +
+          '\n' +
+          '2. Custom line items target:\n' +
+          '   {\n' +
+          '     "type": "customLineItems",\n' +
+          '     "predicate": "slug = \\"gift-wrapping\\""\n' +
+          '   }\n' +
+          '\n' +
+          '3. Shipping cost target:\n' +
+          '   {\n' +
+          '     "type": "shipping"\n' +
+          '   }\n' +
+          '\n' +
+          '4. Total price target:\n' +
+          '   {\n' +
+          '     "type": "totalPrice"\n' +
+          '   }\n' +
+          '\n' +
+          '5. Multi-buy line items target:\n' +
+          '   {\n' +
+          '     "type": "multiBuyLineItems",\n' +
+          '     "predicate": "variant.sku = \\"SKU123\\"",\n' +
+          '     "triggerQuantity": 3,\n' +
+          '     "discountedQuantity": 1,\n' +
+          '     "maxOccurrence": 2,\n' +
+          '     "selectionMode": "Cheapest"\n' +
+          '   }\n' +
+          '\n' +
+          '6. Multi-buy custom line items target:\n' +
+          '   {\n' +
+          '     "type": "multiBuyCustomLineItems",\n' +
+          '     "predicate": "slug = \\"premium-service\\"",\n' +
+          '     "triggerQuantity": 3,\n' +
+          '     "discountedQuantity": 1,\n' +
+          '     "maxOccurrence": 1,\n' +
+          '     "selectionMode": "MostExpensive"\n' +
+          '   }\n' +
+          '\n' +
+          '7. Pattern target:\n' +
+          '   {\n' +
+          '     "type": "pattern",\n' +
+          '     "components": [\n' +
+          '       {\n' +
+          '         "type": "countOnLineItemUnits",\n' +
+          '         "predicate": "variant.sku = \\"SHIRT\\"",\n' +
+          '         "count": 2\n' +
+          '       },\n' +
+          '       {\n' +
+          '         "type": "countOnLineItemUnits",\n' +
+          '         "predicate": "variant.sku = \\"PANTS\\"",\n' +
+          '         "count": 1\n' +
+          '       }\n' +
+          '     ]\n' +
+          '   }\n' +
+          '\n' +
+          'Cart predicate examples:\n' +
+          '\n' +
+          '1. Basic predicates:\n' +
+          '   - "totalPrice > \\"100 USD\\""                       // Carts with total price greater than $100\n' +
+          '   - "totalPrice < \\"50 EUR\\""                        // Carts with total price less than €50\n' +
+          '   - "lineItemCount > 5"                              // Carts with more than 5 line items\n' +
+          '   - "lineItemCount <= 2"                             // Carts with 2 or fewer line items\n' +
+          '   - "customerGroup.id = \\"{{customer-group-id}}\\""    // Carts for customers in a specific group\n' +
+          '\n' +
+          '2. Line item predicates:\n' +
+          '   - "lineItems(variant.sku = \\"SKU123\\")"            // Carts containing a specific SKU\n' +
+          '   - "lineItems(price.centAmount > 5000)"             // Carts containing products priced above $50\n' +
+          '   - "lineItems(quantity >= 3)"                       // Carts containing items with quantity 3 or more\n' +
+          '   - "lineItems(discountedPrice is defined)"          // Carts with items that already have a discount\n' +
+          '   - "not(lineItems(price.centAmount < 1000))"        // Carts with no items under $10\n' +
+          '\n' +
+          '3. Combined predicates:\n' +
+          '   - "totalPrice > \\"100 USD\\" and lineItemCount > 2" // Carts over $100 with more than 2 items\n' +
+          '   - "lineItems(variant.sku = \\"SHIRT\\") and lineItems(variant.sku = \\"TIE\\")" // Carts with both shirt and tie\n' +
+          '   - "custom.specialCustomer = true or customerGroup.id = \\"VIP\\""      // Special or VIP customers\n' +
+          '\n' +
+          '4. Working with dates and times:\n' +
+          '   - "createdAt > \\"2023-01-01T00:00:00.000Z\\""          // Carts created after January 1, 2023\n' +
+          '   - "custom.orderPlacedAt < \\"2023-12-25T23:59:59.999Z\\""  // Orders placed before Christmas\n' +
+          '\n' +
+          '5. Using math functions:\n' +
+          '   - "lineItemTotal(price.centAmount > 2000) > 1"      // Carts with more than 1 item costing over $20\n' +
+          '   - "lineItemTotal(quantity > 1) = 0"                 // Carts with no items having quantity greater than 1\n' +
+          '   - "sum(lineItems(quantity)) >= 10"                  // Carts with at least 10 items in total\n',
+        parameters: ZodObject {
+          spa: [Function: bound safeParseAsync] AsyncFunction,
+          _def: [Object],
+          parse: [Function: bound parse],
+          safeParse: [Function: bound safeParse],
+          parseAsync: [Function: bound parseAsync] AsyncFunction,
+          safeParseAsync: [Function: bound safeParseAsync] AsyncFunction,
+          refine: [Function: bound refine],
+          refinement: [Function: bound refinement],
+          superRefine: [Function: bound superRefine],
+          optional: [Function: bound optional],
+          nullable: [Function: bound nullable],
+          nullish: [Function: bound nullish],
+          array: [Function: bound array],
+          promise: [Function: bound promise],
+          or: [Function: bound or],
+          and: [Function: bound and],
+          transform: [Function: bound transform],
+          brand: [Function: bound brand],
+          default: [Function: bound default],
+          catch: [Function: bound catch],
+          describe: [Function: bound describe],
+          pipe: [Function: bound pipe],
+          readonly: [Function: bound readonly],
+          isNullable: [Function: bound isNullable],
+          isOptional: [Function: bound isOptional],
+          '~standard': [Object],
+          _cached: null,
+          nonstrict: [Function: passthrough],
+          augment: [Function: extend]
+        },
+        actions: { 'cart-discount': [Object] }
+      },
+      {
+        method: 'update_cart_discount',
+        name: 'Update Cart Discount',
+        description: '\n' +
+          'This tool will update a Cart Discount in commercetools using update actions from the commercetools API.\n' +
+          '\n' +
+          'It takes these required arguments:\n' +
+          '- version (integer): The current version of the cart discount.\n' +
+          '- actions (array): An array of update actions to perform on the cart discount.\n' +
+          '\n' +
+          'It takes one of these required identifier arguments:\n' +
+          '- id (string): The ID of the cart discount to update.\n' +
+          '- key (string): The key of the cart discount to update.\n' +
+          '\n' +
+          'It takes this optional argument:\n' +
+          '- storeKey (string, optional): Key of the store to update the cart discount in.\n' +
+          '\n' +
+          'Example actions from commercetools API include:\n' +
+          '\n' +
+          '1. Change name:\n' +
+          '   {\n' +
+          '     "action": "changeName",\n' +
+          '     "name": {\n' +
+          '       "en": "New Cart Discount Name",\n' +
+          '       "de": "Neuer Warenkorb-Rabattname"\n' +
+          '     }\n' +
+          '   }\n' +
+          '\n' +
+          '2. Change description:\n' +
+          '   {\n' +
+          '     "action": "setDescription",\n' +
+          '     "description": {\n' +
+          '       "en": "New description",\n' +
+          '       "de": "Neue Beschreibung"\n' +
+          '     }\n' +
+          '   }\n' +
+          '\n' +
+          '3. Change value:\n' +
+          '   {\n' +
+          '     "action": "changeValue",\n' +
+          '     "value": {\n' +
+          '       "type": "relative",\n' +
+          '       "permyriad": 2000\n' +
+          '     }\n' +
+          '   }\n' +
+          '\n' +
+          '4. Change cart predicate:\n' +
+          '   {\n' +
+          '     "action": "changeCartPredicate",\n' +
+          '     "cartPredicate": "totalPrice > \\"200 USD\\""\n' +
+          '   }\n' +
+          '\n' +
+          '5. Change target:\n' +
+          '   {\n' +
+          '     "action": "changeTarget",\n' +
+          '     "target": {\n' +
+          '       "type": "lineItems",\n' +
+          '       "predicate": "variant.sku = \\"NEW-SKU\\""\n' +
+          '     }\n' +
+          '   }\n' +
+          '\n' +
+          '6. Change whether the discount is active:\n' +
+          '   {\n' +
+          '     "action": "changeIsActive",\n' +
+          '     "isActive": true\n' +
+          '   }\n' +
+          '\n' +
+          '7. Change the sort order:\n' +
+          '   {\n' +
+          '     "action": "changeSortOrder",\n' +
+          '     "sortOrder": "0.5"\n' +
+          '   }\n' +
+          '\n' +
+          '8. Set valid timeframe:\n' +
+          '   {\n' +
+          '     "action": "setValidFromAndUntil",\n' +
+          '     "validFrom": "2023-01-01T00:00:00.000Z",\n' +
+          '     "validUntil": "2023-12-31T23:59:59.999Z"\n' +
+          '   }\n' +
+          '\n' +
+          '9. Set a single validity date:\n' +
+          '   {\n' +
+          '     "action": "setValidFrom",\n' +
+          '     "validFrom": "2023-06-01T00:00:00.000Z"\n' +
+          '   }\n' +
+          '   \n' +
+          '   {\n' +
+          '     "action": "setValidUntil",\n' +
+          '     "validUntil": "2023-12-31T23:59:59.999Z"\n' +
+          '   }\n' +
+          '\n' +
+          '10. Change whether a discount code is required:\n' +
+          '    {\n' +
+          '      "action": "changeRequiresDiscountCode",\n' +
+          '      "requiresDiscountCode": true\n' +
+          '    }\n' +
+          '\n' +
+          '11. Change stacking mode:\n' +
+          '    {\n' +
+          '      "action": "changeStackingMode",\n' +
+          '      "stackingMode": "StopAfterThisDiscount"\n' +
+          '    }\n' +
+          '\n' +
+          '12. Manage store associations:\n' +
+          '    {\n' +
+          '      "action": "addStore",\n' +
+          '      "store": {\n' +
+          '        "typeId": "store",\n' +
+          '        "key": "berlin-store"\n' +
+          '      }\n' +
+          '    }\n' +
+          '    \n' +
+          '    {\n' +
+          '      "action": "removeStore",\n' +
+          '      "store": {\n' +
+          '        "typeId": "store",\n' +
+          '        "key": "old-store"\n' +
+          '      }\n' +
+          '    }\n' +
+          '    \n' +
+          '    {\n' +
+          '      "action": "setStores",\n' +
+          '      "stores": [\n' +
+          '        {\n' +
+          '          "typeId": "store",\n' +
+          '          "key": "store-1"\n' +
+          '        },\n' +
+          '        {\n' +
+          '          "typeId": "store",\n' +
+          '          "key": "store-2"\n' +
+          '        }\n' +
+          '      ]\n' +
+          '    }\n' +
+          '\n' +
+          '13. Set custom fields:\n' +
+          '    {\n' +
+          '      "action": "setCustomField",\n' +
+          '      "name": "promotionId",\n' +
+          '      "value": "holiday-special-2023"\n' +
+          '    }\n' +
+          '    \n' +
+          '    {\n' +
+          '      "action": "setCustomType",\n' +
+          '      "type": {\n' +
+          '        "typeId": "type",\n' +
+          '        "id": "{{custom-type-id}}"\n' +
+          '      },\n' +
+          '      "fields": {\n' +
+          '        "promotionId": "holiday-special-2023",\n' +
+          '        "internalNotes": "Special discount for holiday season"\n' +
+          '      }\n' +
+          '    }\n',
+        parameters: ZodObject {
+          spa: [Function: bound safeParseAsync] AsyncFunction,
+          _def: [Object],
+          parse: [Function: bound parse],
+          safeParse: [Function: bound safeParse],
+          parseAsync: [Function: bound parseAsync] AsyncFunction,
+          safeParseAsync: [Function: bound safeParseAsync] AsyncFunction,
+          refine: [Function: bound refine],
+          refinement: [Function: bound refinement],
+          superRefine: [Function: bound superRefine],
+          optional: [Function: bound optional],
+          nullable: [Function: bound nullable],
+          nullish: [Function: bound nullish],
+          array: [Function: bound array],
+          promise: [Function: bound promise],
+          or: [Function: bound or],
+          and: [Function: bound and],
+          transform: [Function: bound transform],
+          brand: [Function: bound brand],
+          default: [Function: bound default],
+          catch: [Function: bound catch],
+          describe: [Function: bound describe],
+          pipe: [Function: bound pipe],
+          readonly: [Function: bound readonly],
+          isNullable: [Function: bound isNullable],
+          isOptional: [Function: bound isOptional],
+          '~standard': [Object],
+          _cached: null,
+          nonstrict: [Function: passthrough],
+          augment: [Function: extend]
+        },
+        actions: { 'cart-discount': [Object] }
+      },
+      {
+        method: 'read_category',
+        name: 'Read Category',
+        description: '\n' +
+          'This tool will fetch Categories from commercetools.\n' +
+          '\n' +
+          'It can be used in three ways:\n' +
+          '1. To fetch a single category by its ID\n' +
+          '2. To fetch a single category by its key\n' +
+          '3. To query multiple categories based on criteria\n' +
+          '\n' +
+          'It takes these parameters:\n' +
+          '- id (string, optional): The ID of the category to fetch\n' +
+          '- key (string, optional): The key of the category to fetch\n' +
+          '- where (string array, optional): Query predicates for filtering categories. Example: ["name(en = \\"Clothes\\")"]\n' +
+          '- limit (int, optional): The number of categories to return (default: 10, range: 1-500)\n' +
+          '- offset (int, optional): The number of items to skip before starting to collect the result set\n' +
+          '- sort (string array, optional): Sort criteria for the results. Example: ["name.en asc", "createdAt desc"]\n' +
+          '- expand (string array, optional): An array of field paths to expand. Example: ["parent", "ancestors[*]"]\n' +
+          '\n' +
+          'If both id and key are not provided, it will fetch a list of categories using query parameters.\n',
+        parameters: ZodObject {
+          spa: [Function: bound safeParseAsync] AsyncFunction,
+          _def: [Object],
+          parse: [Function: bound parse],
+          safeParse: [Function: bound safeParse],
+          parseAsync: [Function: bound parseAsync] AsyncFunction,
+          safeParseAsync: [Function: bound safeParseAsync] AsyncFunction,
+          refine: [Function: bound refine],
+          refinement: [Function: bound refinement],
+          superRefine: [Function: bound superRefine],
+          optional: [Function: bound optional],
+          nullable: [Function: bound nullable],
+          nullish: [Function: bound nullish],
+          array: [Function: bound array],
+          promise: [Function: bound promise],
+          or: [Function: bound or],
+          and: [Function: bound and],
+          transform: [Function: bound transform],
+          brand: [Function: bound brand],
+          default: [Function: bound default],
+          catch: [Function: bound catch],
+          describe: [Function: bound describe],
+          pipe: [Function: bound pipe],
+          readonly: [Function: bound readonly],
+          isNullable: [Function: bound isNullable],
+          isOptional: [Function: bound isOptional],
+          '~standard': [Object],
+          _cached: null,
+          nonstrict: [Function: passthrough],
+          augment: [Function: extend]
+        },
+        actions: { category: [Object] }
+      },
+      {
+        method: 'create_category',
+        name: 'Create Category',
+        description: '\n' +
+          'This tool will create a new Category in commercetools.\n' +
+          '\n' +
+          'It takes these required arguments:\n' +
+          '- name (localized-string): The name of the category in different languages. Example: {"en": "Shoes", "de": "Schuhe"}\n' +
+          '- slug (localized-string): The URL slug of the category in different languages. Example: {"en": "shoes", "de": "schuhe"}\n' +
+          '  Must match pattern ^[A-Za-z0-9_-]{2,256}+$ and be unique across the project.\n' +
+          '\n' +
+          'It takes these optional arguments:\n' +
+          '- description (localized-string, optional): The description of the category\n' +
+          '- key (string, optional): User-defined unique identifier for the category. Pattern: ^[A-Za-z0-9_-]+$\n' +
+          '- externalId (string, optional): Additional identifier for external systems like CRM or ERP\n' +
+          '- parent (object, optional): Reference to the parent category. Example: {"id": "parent-id", "typeId": "category"}\n' +
+          '- orderHint (string, optional): Decimal value between 0 and 1 for ordering categories at the same level\n' +
+          '- metaTitle (localized-string, optional): SEO meta title\n' +
+          '- metaDescription (localized-string, optional): SEO meta description\n' +
+          '- metaKeywords (localized-string, optional): SEO meta keywords\n' +
+          '- assets (array, optional): Media related to the category\n' +
+          '- custom (object, optional): Custom fields for the category\n' +
+          '\n' +
+          'Use project settings to get the language code.\n',
+        parameters: ZodObject {
+          spa: [Function: bound safeParseAsync] AsyncFunction,
+          _def: [Object],
+          parse: [Function: bound parse],
+          safeParse: [Function: bound safeParse],
+          parseAsync: [Function: bound parseAsync] AsyncFunction,
+          safeParseAsync: [Function: bound safeParseAsync] AsyncFunction,
+          refine: [Function: bound refine],
+          refinement: [Function: bound refinement],
+          superRefine: [Function: bound superRefine],
+          optional: [Function: bound optional],
+          nullable: [Function: bound nullable],
+          nullish: [Function: bound nullish],
+          array: [Function: bound array],
+          promise: [Function: bound promise],
+          or: [Function: bound or],
+          and: [Function: bound and],
+          transform: [Function: bound transform],
+          brand: [Function: bound brand],
+          default: [Function: bound default],
+          catch: [Function: bound catch],
+          describe: [Function: bound describe],
+          pipe: [Function: bound pipe],
+          readonly: [Function: bound readonly],
+          isNullable: [Function: bound isNullable],
+          isOptional: [Function: bound isOptional],
+          '~standard': [Object],
+          _cached: null,
+          nonstrict: [Function: passthrough],
+          augment: [Function: extend]
+        },
+        actions: { category: [Object] }
+      },
+      {
+        method: 'update_category',
+        name: 'Update Category',
+        description: '\n' +
+          'This tool will update a Category in commercetools using update actions from the commercetools API.\n' +
+          '\n' +
+          'It takes these required arguments:\n' +
+          '- version (integer): The current version of the category\n' +
+          '- actions (array): An array of update actions to perform on the category\n' +
+          '\n' +
+          'It also requires ONE of these identifiers:\n' +
+          '- id (string, optional): The ID of the category to update\n' +
+          '- key (string, optional): The key of the category to update\n' +
+          '\n' +
+          'Example actions from commercetools API include:\n' +
+          '- changeName: Update the name of the category\n' +
+          '- changeSlug: Update the slug of the category\n' +
+          '- setDescription: Set or remove the description of the category\n' +
+          '- changeParent: Move the category to a new parent\n' +
+          '- setExternalId: Set or remove the external ID of the category\n' +
+          '- setMetaTitle: Set or remove the meta title of the category\n' +
+          '- setMetaDescription: Set or remove the meta description of the category\n' +
+          '- setMetaKeywords: Set or remove the meta keywords of the category\n' +
+          '- setOrderHint: Update the order hint of the category\n' +
+          '- setKey: Set or remove the key of the category\n' +
+          '- addAsset: Add a new asset to the category\n' +
+          '- removeAsset: Remove an asset from the category\n' +
+          '- changeAssetName: Change the name of an asset in the category\n' +
+          '- setAssetDescription: Set or remove the description of an asset in the category\n' +
+          '- changeAssetOrder: Change the order of assets in the category\n' +
+          '- setAssetTags: Update the tags of an asset in the category\n' +
+          '- setAssetSources: Update the sources of an asset in the category\n' +
+          '- setAssetKey: Set or remove the key of an asset in the category\n' +
+          '- setCustomType: Set or remove the custom type of the category\n' +
+          '- setCustomField: Set or remove a custom field of the category\n' +
+          '\n' +
+          'Each action type requires specific fields according to the commercetools API.\n',
+        parameters: ZodObject {
+          spa: [Function: bound safeParseAsync] AsyncFunction,
+          _def: [Object],
+          parse: [Function: bound parse],
+          safeParse: [Function: bound safeParse],
+          parseAsync: [Function: bound parseAsync] AsyncFunction,
+          safeParseAsync: [Function: bound safeParseAsync] AsyncFunction,
+          refine: [Function: bound refine],
+          refinement: [Function: bound refinement],
+          superRefine: [Function: bound superRefine],
+          optional: [Function: bound optional],
+          nullable: [Function: bound nullable],
+          nullish: [Function: bound nullish],
+          array: [Function: bound array],
+          promise: [Function: bound promise],
+          or: [Function: bound or],
+          and: [Function: bound and],
+          transform: [Function: bound transform],
+          brand: [Function: bound brand],
+          default: [Function: bound default],
+          catch: [Function: bound catch],
+          describe: [Function: bound describe],
+          pipe: [Function: bound pipe],
+          readonly: [Function: bound readonly],
+          isNullable: [Function: bound isNullable],
+          isOptional: [Function: bound isOptional],
+          '~standard': [Object],
+          _cached: null,
+          nonstrict: [Function: passthrough],
+          augment: [Function: extend]
+        },
+        actions: { category: [Object] }
+      },
+      {
+        method: 'read_channel',
+        name: 'Read Channel',
+        description: '\n' +
+          'This tool will fetch information about commercetools channels.\n' +
+          '\n' +
+          'It can be used in three ways:\n' +
+          '1. To fetch a single channel by its ID\n' +
+          '2. To fetch a single channel by its key\n' +
+          '3. To query multiple channels based on criteria\n' +
+          '\n' +
+          'It takes these parameters:\n' +
+          '- id (string, optional): The ID of the channel to fetch\n' +
+          '- key (string, optional): The key of the channel to fetch\n' +
+          '- where (string array, optional): Query predicates for filtering channels. Example: ["roles contains any \\"InventorySupply\\",\\"ProductDistribution\\""]\n' +
+          '- limit (int, optional): The number of channels to return (default: 20, range: 1-500)\n' +
+          '- offset (int, optional): The number of items to skip before starting to collect the result set\n' +
+          '- sort (string array, optional): Sort criteria for the results. Example: ["name.en asc", "createdAt desc"]\n' +
+          '- expand (string array, optional): An array of field paths to expand. Example: ["custom.type"]\n' +
+          '\n' +
+          'If both id and key are not provided, it will fetch a list of channels using query parameters.\n',
+        parameters: ZodObject {
+          spa: [Function: bound safeParseAsync] AsyncFunction,
+          _def: [Object],
+          parse: [Function: bound parse],
+          safeParse: [Function: bound safeParse],
+          parseAsync: [Function: bound parseAsync] AsyncFunction,
+          safeParseAsync: [Function: bound safeParseAsync] AsyncFunction,
+          refine: [Function: bound refine],
+          refinement: [Function: bound refinement],
+          superRefine: [Function: bound superRefine],
+          optional: [Function: bound optional],
+          nullable: [Function: bound nullable],
+          nullish: [Function: bound nullish],
+          array: [Function: bound array],
+          promise: [Function: bound promise],
+          or: [Function: bound or],
+          and: [Function: bound and],
+          transform: [Function: bound transform],
+          brand: [Function: bound brand],
+          default: [Function: bound default],
+          catch: [Function: bound catch],
+          describe: [Function: bound describe],
+          pipe: [Function: bound pipe],
+          readonly: [Function: bound readonly],
+          isNullable: [Function: bound isNullable],
+          isOptional: [Function: bound isOptional],
+          '~standard': [Object],
+          _cached: null,
+          nonstrict: [Function: passthrough],
+          augment: [Function: extend]
+        },
+        actions: { channel: [Object] }
+      },
+      {
+        method: 'create_channel',
+        name: 'Create Channel',
+        description: '\n' +
+          'This tool will create a new Channel in commercetools.\n' +
+          '\n' +
+          'It takes these required arguments:\n' +
+          '- key (string): User-defined unique identifier for the Channel\n' +
+          '- roles (array): Roles of the Channel. Each channel must have at least one role.\n' +
+          '  Available roles: "InventorySupply", "ProductDistribution", "OrderExport", "OrderImport", "Primary"\n' +
+          '\n' +
+          'It takes these optional arguments:\n' +
+          '- name (object, optional): Localized name of the Channel (record mapping locale to string)\n' +
+          '- description (object, optional): Localized description of the Channel (record mapping locale to string)\n' +
+          '- address (object, optional): Address where the Channel is located\n' +
+          '- geoLocation (object, optional): GeoJSON Point encoding the geo location of the Channel\n' +
+          '- custom (object, optional): Custom fields for the Channel\n' +
+          '\n' +
+          'Example name and description format:\n' +
+          '{\n' +
+          '  "en": "Main Warehouse",\n' +
+          '  "de": "Hauptlager"\n' +
+          '}\n' +
+          '\n' +
+          'Example geoLocation format:\n' +
+          '{\n' +
+          '  "type": "Point",\n' +
+          '  "coordinates": [13.377704, 52.516275]\n' +
+          '}\n',
+        parameters: ZodObject {
+          spa: [Function: bound safeParseAsync] AsyncFunction,
+          _def: [Object],
+          parse: [Function: bound parse],
+          safeParse: [Function: bound safeParse],
+          parseAsync: [Function: bound parseAsync] AsyncFunction,
+          safeParseAsync: [Function: bound safeParseAsync] AsyncFunction,
+          refine: [Function: bound refine],
+          refinement: [Function: bound refinement],
+          superRefine: [Function: bound superRefine],
+          optional: [Function: bound optional],
+          nullable: [Function: bound nullable],
+          nullish: [Function: bound nullish],
+          array: [Function: bound array],
+          promise: [Function: bound promise],
+          or: [Function: bound or],
+          and: [Function: bound and],
+          transform: [Function: bound transform],
+          brand: [Function: bound brand],
+          default: [Function: bound default],
+          catch: [Function: bound catch],
+          describe: [Function: bound describe],
+          pipe: [Function: bound pipe],
+          readonly: [Function: bound readonly],
+          isNullable: [Function: bound isNullable],
+          isOptional: [Function: bound isOptional],
+          '~standard': [Object],
+          _cached: null,
+          nonstrict: [Function: passthrough],
+          augment: [Function: extend]
+        },
+        actions: { channel: [Object] }
+      },
+      {
+        method: 'update_channel',
+        name: 'Update Channel',
+        description: '\n' +
+          'This tool will update a Channel in commercetools using update actions from the commercetools API.\n' +
+          '\n' +
+          'It takes these required arguments:\n' +
+          '- version (integer): The current version of the channel\n' +
+          '- actions (array): An array of update actions to perform on the channel. Each action should have an "action" field indicating the action type\n' +
+          '\n' +
+          'It also requires ONE of these identifiers:\n' +
+          '- id (string, optional): The ID of the channel to update\n' +
+          '- key (string, optional): The key of the channel to update\n' +
+          '\n' +
+          'Example actions from commercetools API include:\n' +
+          '- changeKey: Change the key of the channel\n' +
+          '- changeName: Change the localized name of the channel\n' +
+          '- changeDescription: Change the localized description of the channel\n' +
+          '- setRoles: Set the roles of the channel\n' +
+          '- addRoles: Add roles to the channel\n' +
+          '- removeRoles: Remove roles from the channel\n' +
+          '- setAddress: Set the address of the channel\n' +
+          '- setGeoLocation: Set the geo location of the channel\n' +
+          '- setCustomType: Set the custom type for the channel\n' +
+          '- setCustomField: Set a custom field for the channel\n' +
+          '\n' +
+          'Each action type requires specific fields according to the commercetools API.\n',
+        parameters: ZodObject {
+          spa: [Function: bound safeParseAsync] AsyncFunction,
+          _def: [Object],
+          parse: [Function: bound parse],
+          safeParse: [Function: bound safeParse],
+          parseAsync: [Function: bound parseAsync] AsyncFunction,
+          safeParseAsync: [Function: bound safeParseAsync] AsyncFunction,
+          refine: [Function: bound refine],
+          refinement: [Function: bound refinement],
+          superRefine: [Function: bound superRefine],
+          optional: [Function: bound optional],
+          nullable: [Function: bound nullable],
+          nullish: [Function: bound nullish],
+          array: [Function: bound array],
+          promise: [Function: bound promise],
+          or: [Function: bound or],
+          and: [Function: bound and],
+          transform: [Function: bound transform],
+          brand: [Function: bound brand],
+          default: [Function: bound default],
+          catch: [Function: bound catch],
+          describe: [Function: bound describe],
+          pipe: [Function: bound pipe],
+          readonly: [Function: bound readonly],
+          isNullable: [Function: bound isNullable],
+          isOptional: [Function: bound isOptional],
+          '~standard': [Object],
+          _cached: null,
+          nonstrict: [Function: passthrough],
+          augment: [Function: extend]
+        },
+        actions: { channel: [Object] }
+      },
+      {
+        method: 'create_customer',
+        name: 'Create Customer',
+        description: '\n' +
+          'This tool will create a new Customer in commercetools or a specific store in commercetools.\n' +
+          '\n' +
+          'It takes these required arguments:\n' +
+          '- email (string): Customer email address.\n' +
+          '- password (string): Customer password.\n' +
+          '- storeKey (string, optional): The key of the store to create the customer in.\n' +
+          '\n' +
+          'It takes these optional arguments:\n' +
+          '- firstName (string, optional): Customer first name.\n' +
+          '- lastName (string, optional): Customer last name.\n' +
+          '- middleName (string, optional): Customer middle name.\n' +
+          '- title (string, optional): Customer title (e.g., Mr., Mrs., Dr.).\n' +
+          '- dateOfBirth (string, optional): Customer date of birth in ISO 8601 format (YYYY-MM-DD).\n' +
+          '- companyName (string, optional): Customer company name.\n' +
+          '- vatId (string, optional): Customer VAT identification number.\n' +
+          '- addresses (array, optional): An array of customer addresses.\n' +
+          '- defaultShippingAddress (integer, optional): Index of default shipping address in the addresses array.\n' +
+          '- defaultBillingAddress (integer, optional): Index of default billing address in the addresses array.\n' +
+          '- shippingAddresses (array of integers, optional): Indices of shipping addresses in the addresses array.\n' +
+          '- billingAddresses (array of integers, optional): Indices of billing addresses in the addresses array.\n' +
+          '- isEmailVerified (boolean, optional): Whether the customer email is verified.\n' +
+          '- externalId (string, optional): Customer external ID.\n' +
+          '- customerGroup (object, optional): Customer group reference.\n' +
+          '- custom (object, optional): Custom fields.\n' +
+          '- locale (string, optional): Customer locale.\n' +
+          '- salutation (string, optional): Customer salutation.\n' +
+          '- key (string, optional): Customer key.\n',
+        parameters: ZodObject {
+          spa: [Function: bound safeParseAsync] AsyncFunction,
+          _def: [Object],
+          parse: [Function: bound parse],
+          safeParse: [Function: bound safeParse],
+          parseAsync: [Function: bound parseAsync] AsyncFunction,
+          safeParseAsync: [Function: bound safeParseAsync] AsyncFunction,
+          refine: [Function: bound refine],
+          refinement: [Function: bound refinement],
+          superRefine: [Function: bound superRefine],
+          optional: [Function: bound optional],
+          nullable: [Function: bound nullable],
+          nullish: [Function: bound nullish],
+          array: [Function: bound array],
+          promise: [Function: bound promise],
+          or: [Function: bound or],
+          and: [Function: bound and],
+          transform: [Function: bound transform],
+          brand: [Function: bound brand],
+          default: [Function: bound default],
+          catch: [Function: bound catch],
+          describe: [Function: bound describe],
+          pipe: [Function: bound pipe],
+          readonly: [Function: bound readonly],
+          isNullable: [Function: bound isNullable],
+          isOptional: [Function: bound isOptional],
+          '~standard': [Object],
+          _cached: null,
+          nonstrict: [Function: passthrough],
+          augment: [Function: extend]
+        },
+        actions: { customer: [Object] }
+      },
+      {
+        method: 'read_customer',
+        name: 'Read Customer',
+        description: '\n' +
+          'This tool will fetch a Customer by ID from commercetools or a specific store in commercetools or query customers from commercetools.\n' +
+          '\n' +
+          'It takes these required arguments:\n' +
+          '- id (string, optional): The ID of the customer to fetch.\n' +
+          '- storeKey (string, optional): The key of the store to fetch the customer from.\n' +
+          '\n' +
+          'It takes these optional arguments:\n' +
+          '- where (array of strings, optional): Query predicates specified as strings. Example: ["email = \\"customer@example.com\\""]\n' +
+          '- sort (array of strings, optional): Sort criteria for the results. Example: ["firstName asc", "createdAt desc"]\n' +
+          '- limit (integer, optional): A limit on the number of objects to be returned. Limit can range between 1 and 500, and the default is 10.\n' +
+          '- offset (integer, optional): The number of items to skip before starting to collect the result set.\n' +
+          '- expand (array of strings, optional): Fields to expand. Example: ["customerGroup"]\n',
+        parameters: ZodObject {
+          spa: [Function: bound safeParseAsync] AsyncFunction,
+          _def: [Object],
+          parse: [Function: bound parse],
+          safeParse: [Function: bound safeParse],
+          parseAsync: [Function: bound parseAsync] AsyncFunction,
+          safeParseAsync: [Function: bound safeParseAsync] AsyncFunction,
+          refine: [Function: bound refine],
+          refinement: [Function: bound refinement],
+          superRefine: [Function: bound superRefine],
+          optional: [Function: bound optional],
+          nullable: [Function: bound nullable],
+          nullish: [Function: bound nullish],
+          array: [Function: bound array],
+          promise: [Function: bound promise],
+          or: [Function: bound or],
+          and: [Function: bound and],
+          transform: [Function: bound transform],
+          brand: [Function: bound brand],
+          default: [Function: bound default],
+          catch: [Function: bound catch],
+          describe: [Function: bound describe],
+          pipe: [Function: bound pipe],
+          readonly: [Function: bound readonly],
+          isNullable: [Function: bound isNullable],
+          isOptional: [Function: bound isOptional],
+          '~standard': [Object],
+          _cached: null,
+          nonstrict: [Function: passthrough],
+          augment: [Function: extend]
+        },
+        actions: { customer: [Object] }
+      },
+      {
+        method: 'update_customer',
+        name: 'Update Customer',
+        description: '\n' +
+          'This tool will update a Customer in commercetools using update actions from the commercetools API.\n' +
+          '\n' +
+          'It takes these required arguments:\n' +
+          '- id (string): The ID of the customer to update.\n' +
+          '- version (integer): The current version of the customer.\n' +
+          '- actions (array): An array of update actions to perform on the customer. Each action should have an "action" field indicating the action type.\n' +
+          '\n' +
+          'Example actions from commercetools API include:\n' +
+          '- addAddress\n' +
+          '- addBillingAddressId\n' +
+          '- addShippingAddressId\n' +
+          '- changeAddress\n' +
+          '- changeEmail\n' +
+          '- removeAddress\n' +
+          '- removeBillingAddressId\n' +
+          '- removeShippingAddressId\n' +
+          '- setCompanyName\n' +
+          '- setCustomField\n' +
+          '- setCustomType\n' +
+          '- setDateOfBirth\n' +
+          '- setDefaultBillingAddress\n' +
+          '- setDefaultShippingAddress\n' +
+          '- setFirstName\n' +
+          '- setLastName\n' +
+          '- setLocale\n' +
+          '- setMiddleName\n' +
+          '- setSalutation\n' +
+          '- setTitle\n' +
+          '- setVatId\n' +
+          '\n' +
+          'Each action type requires specific fields according to the commercetools API.\n',
+        parameters: ZodObject {
+          spa: [Function: bound safeParseAsync] AsyncFunction,
+          _def: [Object],
+          parse: [Function: bound parse],
+          safeParse: [Function: bound safeParse],
+          parseAsync: [Function: bound parseAsync] AsyncFunction,
+          safeParseAsync: [Function: bound safeParseAsync] AsyncFunction,
+          refine: [Function: bound refine],
+          refinement: [Function: bound refinement],
+          superRefine: [Function: bound superRefine],
+          optional: [Function: bound optional],
+          nullable: [Function: bound nullable],
+          nullish: [Function: bound nullish],
+          array: [Function: bound array],
+          promise: [Function: bound promise],
+          or: [Function: bound or],
+          and: [Function: bound and],
+          transform: [Function: bound transform],
+          brand: [Function: bound brand],
+          default: [Function: bound default],
+          catch: [Function: bound catch],
+          describe: [Function: bound describe],
+          pipe: [Function: bound pipe],
+          readonly: [Function: bound readonly],
+          isNullable: [Function: bound isNullable],
+          isOptional: [Function: bound isOptional],
+          '~standard': [Object],
+          _cached: null,
+          nonstrict: [Function: passthrough],
+          augment: [Function: extend]
+        },
+        actions: { customer: [Object] }
+      },
+      {
+        method: 'read_customer_group',
+        name: 'Read Customer Group',
+        description: '\n' +
+          'This tool will fetch CustomerGroups from commercetools.\n' +
+          '\n' +
+          'It can be used in three ways:\n' +
+          '1. To fetch a single category by its ID\n' +
+          '2. To fetch a single category by its key\n' +
+          '3. To query multiple categories based on criteria\n' +
+          '\n' +
+          'It takes these parameters:\n' +
+          '- id (string, optional): The ID of the customer group to fetch\n' +
+          '- key (string, optional): The key of the customer group to fetch\n' +
+          '- where (string array, optional): Query predicates for filtering customer groups. Example: ["name=\\"Webshop user\\""]\n' +
+          '- limit (int, optional): The number of customer groups to return (default: 10, range: 1-500)\n' +
+          '- offset (int, optional): The number of items to skip before starting to collect the result set\n' +
+          '- sort (string array, optional): Sort criteria for the results. Example: ["name asc", "createdAt desc"]\n' +
+          '- expand (string array, optional): An array of field paths to expand. Example: ["custom.type"]\n' +
+          '\n' +
+          'If both id and key are not provided, it will fetch a list of customer groups using query parameters.\n',
+        parameters: ZodObject {
+          spa: [Function: bound safeParseAsync] AsyncFunction,
+          _def: [Object],
+          parse: [Function: bound parse],
+          safeParse: [Function: bound safeParse],
+          parseAsync: [Function: bound parseAsync] AsyncFunction,
+          safeParseAsync: [Function: bound safeParseAsync] AsyncFunction,
+          refine: [Function: bound refine],
+          refinement: [Function: bound refinement],
+          superRefine: [Function: bound superRefine],
+          optional: [Function: bound optional],
+          nullable: [Function: bound nullable],
+          nullish: [Function: bound nullish],
+          array: [Function: bound array],
+          promise: [Function: bound promise],
+          or: [Function: bound or],
+          and: [Function: bound and],
+          transform: [Function: bound transform],
+          brand: [Function: bound brand],
+          default: [Function: bound default],
+          catch: [Function: bound catch],
+          describe: [Function: bound describe],
+          pipe: [Function: bound pipe],
+          readonly: [Function: bound readonly],
+          isNullable: [Function: bound isNullable],
+          isOptional: [Function: bound isOptional],
+          '~standard': [Object],
+          _cached: null,
+          nonstrict: [Function: passthrough],
+          augment: [Function: extend]
+        },
+        actions: { 'customer-group': [Object] }
+      },
+      {
+        method: 'create_customer_group',
+        name: 'Create Customer Group',
+        description: '\n' +
+          'This tool will create a new Customer Group in commercetools.\n' +
+          '\n' +
+          'It takes these required arguments:\n' +
+          '- groupName (string): Unique name of the customer group in the project.\n' +
+          '\n' +
+          'It takes these optional arguments:\n' +
+          '- key (string, optional): User-defined unique identifier for the Customer Group. Pattern: ^[A-Za-z0-9_-]+$, Min length: 2, Max length: 256\n' +
+          '- custom (object, optional): Custom fields for the Customer Group.\n' +
+          '\n' +
+          'Example custom object format:\n' +
+          '{\n' +
+          '  "type": {\n' +
+          '    "id": "type-id",\n' +
+          '    "typeId": "type"\n' +
+          '  },\n' +
+          '  "fields": {\n' +
+          '    "exampleStringField": "value"\n' +
+          '  }\n' +
+          '}\n' +
+          '\n' +
+          'Use project settings to get the available language codes for localized fields.\n',
+        parameters: ZodObject {
+          spa: [Function: bound safeParseAsync] AsyncFunction,
+          _def: [Object],
+          parse: [Function: bound parse],
+          safeParse: [Function: bound safeParse],
+          parseAsync: [Function: bound parseAsync] AsyncFunction,
+          safeParseAsync: [Function: bound safeParseAsync] AsyncFunction,
+          refine: [Function: bound refine],
+          refinement: [Function: bound refinement],
+          superRefine: [Function: bound superRefine],
+          optional: [Function: bound optional],
+          nullable: [Function: bound nullable],
+          nullish: [Function: bound nullish],
+          array: [Function: bound array],
+          promise: [Function: bound promise],
+          or: [Function: bound or],
+          and: [Function: bound and],
+          transform: [Function: bound transform],
+          brand: [Function: bound brand],
+          default: [Function: bound default],
+          catch: [Function: bound catch],
+          describe: [Function: bound describe],
+          pipe: [Function: bound pipe],
+          readonly: [Function: bound readonly],
+          isNullable: [Function: bound isNullable],
+          isOptional: [Function: bound isOptional],
+          '~standard': [Object],
+          _cached: null,
+          nonstrict: [Function: passthrough],
+          augment: [Function: extend]
+        },
+        actions: { 'customer-group': [Object] }
+      },
+      {
+        method: 'update_customer_group',
+        name: 'Update Customer Group',
+        description: '\n' +
+          'This tool will update a Customer Group in commercetools using update actions from the commercetools API.\n' +
+          '\n' +
+          'It takes these required arguments:\n' +
+          '- version (integer): The current version of the customer group\n' +
+          '- actions (array): An array of update actions to perform on the customer group\n' +
+          '\n' +
+          'It also requires ONE of these identifiers:\n' +
+          '- id (string, optional): The ID of the customer group to update\n' +
+          '- key (string, optional): The key of the customer group to update\n' +
+          '\n' +
+          'Example actions from commercetools API include:\n' +
+          '- changeName: Update the name of the customer group\n' +
+          '- setKey: Set or remove the key of the customer group\n' +
+          '- setCustomType: Set a custom type for the customer group\n' +
+          '- setCustomField: Set a custom field for the customer group\n' +
+          '\n' +
+          'Each action type requires specific fields according to the commercetools API.\n' +
+          '\n' +
+          'Example update format:\n' +
+          '{\n' +
+          '  "id": "customer-group-id",\n' +
+          '  "version": 1,\n' +
+          '  "actions": [\n' +
+          '    {\n' +
+          '      "action": "changeName",\n' +
+          '      "name": "New Name"\n' +
+          '    }\n' +
+          '  ]\n' +
+          '}\n',
+        parameters: ZodEffects {
+          spa: [Function: bound safeParseAsync] AsyncFunction,
+          _def: [Object],
+          parse: [Function: bound parse],
+          safeParse: [Function: bound safeParse],
+          parseAsync: [Function: bound parseAsync] AsyncFunction,
+          safeParseAsync: [Function: bound safeParseAsync] AsyncFunction,
+          refine: [Function: bound refine],
+          refinement: [Function: bound refinement],
+          superRefine: [Function: bound superRefine],
+          optional: [Function: bound optional],
+          nullable: [Function: bound nullable],
+          nullish: [Function: bound nullish],
+          array: [Function: bound array],
+          promise: [Function: bound promise],
+          or: [Function: bound or],
+          and: [Function: bound and],
+          transform: [Function: bound transform],
+          brand: [Function: bound brand],
+          default: [Function: bound default],
+          catch: [Function: bound catch],
+          describe: [Function: bound describe],
+          pipe: [Function: bound pipe],
+          readonly: [Function: bound readonly],
+          isNullable: [Function: bound isNullable],
+          isOptional: [Function: bound isOptional],
+          '~standard': [Object]
+        },
+        actions: { 'customer-group': [Object] }
+      },
+      {
+        method: 'read_order',
+        name: 'Read Order',
+        description: '\n' +
+          'This tool will fetch information about a commercetools order.\n' +
+          '\n' +
+          'It can be used in three ways:\n' +
+          '1. To fetch a single order by its ID\n' +
+          '2. To fetch a single order by its order number\n' +
+          '3. To query multiple orders based on criteria\n' +
+          '\n' +
+          'It takes these parameters:\n' +
+          '- id (string, optional): The ID of the order to fetch\n' +
+          '- orderNumber (string, optional): The order number of the order to fetch\n' +
+          '- where (string array, optional): Query predicates for filtering orders. Example: ["orderNumber=\\"1001\\""]\n' +
+          '- limit (int, optional): The number of orders to return (default: 10, range: 1-500)\n' +
+          '- offset (int, optional): The number of items to skip before starting to collect the result set\n' +
+          '- sort (string array, optional): Sort criteria for the results. Example: ["createdAt desc"]\n' +
+          '- expand (string array, optional): An array of field paths to expand. Example: ["customer", "lineItems[*].variant"]\n' +
+          '- storeKey (string, optional): Key of the store to read orders from\n' +
+          '\n' +
+          'Either id, orderNumber, or where must be provided.\n',
+        parameters: ZodObject {
+          spa: [Function: bound safeParseAsync] AsyncFunction,
+          _def: [Object],
+          parse: [Function: bound parse],
+          safeParse: [Function: bound safeParse],
+          parseAsync: [Function: bound parseAsync] AsyncFunction,
+          safeParseAsync: [Function: bound safeParseAsync] AsyncFunction,
+          refine: [Function: bound refine],
+          refinement: [Function: bound refinement],
+          superRefine: [Function: bound superRefine],
+          optional: [Function: bound optional],
+          nullable: [Function: bound nullable],
+          nullish: [Function: bound nullish],
+          array: [Function: bound array],
+          promise: [Function: bound promise],
+          or: [Function: bound or],
+          and: [Function: bound and],
+          transform: [Function: bound transform],
+          brand: [Function: bound brand],
+          default: [Function: bound default],
+          catch: [Function: bound catch],
+          describe: [Function: bound describe],
+          pipe: [Function: bound pipe],
+          readonly: [Function: bound readonly],
+          isNullable: [Function: bound isNullable],
+          isOptional: [Function: bound isOptional],
+          '~standard': [Object],
+          _cached: null,
+          nonstrict: [Function: passthrough],
+          augment: [Function: extend]
+        },
+        actions: { order: [Object] }
+      },
+      {
+        method: 'create_order',
+        name: 'Create Order',
+        description: '\n' +
+          'This tool will create a new Order from a Cart or a Quote in commercetools or Import an Order.\n' +
+          '\n' +
+          '1. Create an Order from a Cart\n' +
+          'It takes these required arguments:\n' +
+          '- version (integer): The current version of the cart.\n' +
+          '\n' +
+          'It takes these optional arguments:\n' +
+          '- id (string, optional): The ID of the cart to create the order from.\n' +
+          '- orderNumber (string, optional): User-defined identifier of the Order.\n' +
+          '- storeKey (string, optional): Key of the store to create the order in.\n' +
+          '\n' +
+          'The cart ID is required unless provided through context.\n' +
+          '\n' +
+          '2. Create an Order from a Quote\n' +
+          'It takes these required arguments:\n' +
+          '- quoteId (string): The ID of the quote to create the order from.\n' +
+          '- version (integer): The current version of the quote.\n' +
+          '\n' +
+          'It takes these optional arguments:\n' +
+          '- orderNumber (string, optional): User-defined identifier of the Order.\n' +
+          '- storeKey (string, optional): Key of the store to create the order in.\n' +
+          '\n' +
+          '3. Create an Order by Import\n' +
+          'It takes these required arguments:\n' +
+          '- totalPrice (object): Total price of the order with currencyCode and centAmount.\n' +
+          '\n' +
+          'It takes these optional arguments:\n' +
+          '- orderNumber (string, optional): User-defined identifier of the Order.\n' +
+          '- customerId (string, optional): ID of the customer that the Order belongs to.\n' +
+          '- customerEmail (string, optional): Email address of the Customer.\n' +
+          '- store (object, optional): Reference to a Store the Order belongs to.\n' +
+          '- lineItems (array, optional): Line items in the order.\n' +
+          '\n' +
+          'Either customerId or customerEmail must be provided.\n',
+        parameters: ZodEffects {
+          spa: [Function: bound safeParseAsync] AsyncFunction,
+          _def: [Object],
+          parse: [Function: bound parse],
+          safeParse: [Function: bound safeParse],
+          parseAsync: [Function: bound parseAsync] AsyncFunction,
+          safeParseAsync: [Function: bound safeParseAsync] AsyncFunction,
+          refine: [Function: bound refine],
+          refinement: [Function: bound refinement],
+          superRefine: [Function: bound superRefine],
+          optional: [Function: bound optional],
+          nullable: [Function: bound nullable],
+          nullish: [Function: bound nullish],
+          array: [Function: bound array],
+          promise: [Function: bound promise],
+          or: [Function: bound or],
+          and: [Function: bound and],
+          transform: [Function: bound transform],
+          brand: [Function: bound brand],
+          default: [Function: bound default],
+          catch: [Function: bound catch],
+          describe: [Function: bound describe],
+          pipe: [Function: bound pipe],
+          readonly: [Function: bound readonly],
+          isNullable: [Function: bound isNullable],
+          isOptional: [Function: bound isOptional],
+          '~standard': [Object]
+        },
+        actions: { order: [Object] }
+      },
+      {
+        method: 'update_order',
+        name: 'Update Order',
+        description: '\n' +
+          'This tool will update an Order in commercetools using update actions from the commercetools API.\n' +
+          '\n' +
+          'It takes these required arguments:\n' +
+          '- version (integer): The current version of the order.\n' +
+          '- actions (array): An array of update actions to perform on the order. Each action should have an "action" field indicating the action type.\n' +
+          '\n' +
+          'It also requires ONE of these identifiers:\n' +
+          '- id (string, optional): The ID of the order to update\n' +
+          '- orderNumber (string, optional): The order number of the order to update\n' +
+          '\n' +
+          'It takes these optional arguments:\n' +
+          '- storeKey (string, optional): Key of the store the order belongs to\n' +
+          '\n' +
+          'Example actions from commercetools API include:\n' +
+          '- addDelivery: Add a new delivery to the order\n' +
+          '- addParcelToDelivery: Add a parcel to a delivery\n' +
+          '- addPayment: Add a payment to the order\n' +
+          '- addReturnInfo: Add return information to the order\n' +
+          '- changeOrderState: Change the state of the order\n' +
+          '- changePaymentState: Change the payment state of the order\n' +
+          '- changeShipmentState: Change the shipment state of the order\n' +
+          '- importLineItemState: Import line item state\n' +
+          '- removeDelivery: Remove a delivery from the order\n' +
+          '- removeParcelFromDelivery: Remove a parcel from a delivery\n' +
+          '- removePayment: Remove a payment from the order\n' +
+          '- setCustomerEmail: Set the customer email of the order\n' +
+          '- setCustomField: Set a custom field for the order\n' +
+          '- setCustomType: Set a custom type for the order\n' +
+          '- setDeliveryAddress: Set the address for a delivery\n' +
+          '- setOrderNumber: Set the order number\n' +
+          '- setParcelItems: Set the items of a parcel\n' +
+          '- setParcelMeasurements: Set the measurements of a parcel\n' +
+          '- setParcelTrackingData: Set the tracking data of a parcel\n' +
+          '- setReturnPaymentState: Set the payment state of a return\n' +
+          '- setReturnShipmentState: Set the shipment state of a return\n' +
+          '- transitionLineItemState: Transition the state of a line item\n' +
+          '- transitionState: Transition the state of the order\n' +
+          '- updateSyncInfo: Update the sync info of the order\n' +
+          '\n' +
+          'Each action type requires specific fields according to the commercetools API.\n',
+        parameters: ZodObject {
+          spa: [Function: bound safeParseAsync] AsyncFunction,
+          _def: [Object],
+          parse: [Function: bound parse],
+          safeParse: [Function: bound safeParse],
+          parseAsync: [Function: bound parseAsync] AsyncFunction,
+          safeParseAsync: [Function: bound safeParseAsync] AsyncFunction,
+          refine: [Function: bound refine],
+          refinement: [Function: bound refinement],
+          superRefine: [Function: bound superRefine],
+          optional: [Function: bound optional],
+          nullable: [Function: bound nullable],
+          nullish: [Function: bound nullish],
+          array: [Function: bound array],
+          promise: [Function: bound promise],
+          or: [Function: bound or],
+          and: [Function: bound and],
+          transform: [Function: bound transform],
+          brand: [Function: bound brand],
+          default: [Function: bound default],
+          catch: [Function: bound catch],
+          describe: [Function: bound describe],
+          pipe: [Function: bound pipe],
+          readonly: [Function: bound readonly],
+          isNullable: [Function: bound isNullable],
+          isOptional: [Function: bound isOptional],
+          '~standard': [Object],
+          _cached: null,
+          nonstrict: [Function: passthrough],
+          augment: [Function: extend]
+        },
+        actions: { order: [Object] }
+      },
+      {
+        name: 'Read Inventory',
+        method: 'read_inventory',
+        parameters: ZodObject {
+          spa: [Function: bound safeParseAsync] AsyncFunction,
+          _def: [Object],
+          parse: [Function: bound parse],
+          safeParse: [Function: bound safeParse],
+          parseAsync: [Function: bound parseAsync] AsyncFunction,
+          safeParseAsync: [Function: bound safeParseAsync] AsyncFunction,
+          refine: [Function: bound refine],
+          refinement: [Function: bound refinement],
+          superRefine: [Function: bound superRefine],
+          optional: [Function: bound optional],
+          nullable: [Function: bound nullable],
+          nullish: [Function: bound nullish],
+          array: [Function: bound array],
+          promise: [Function: bound promise],
+          or: [Function: bound or],
+          and: [Function: bound and],
+          transform: [Function: bound transform],
+          brand: [Function: bound brand],
+          default: [Function: bound default],
+          catch: [Function: bound catch],
+          describe: [Function: bound describe],
+          pipe: [Function: bound pipe],
+          readonly: [Function: bound readonly],
+          isNullable: [Function: bound isNullable],
+          isOptional: [Function: bound isOptional],
+          '~standard': [Object],
+          _cached: null,
+          nonstrict: [Function: passthrough],
+          augment: [Function: extend]
+        },
+        description: '\n' +
+          'Read inventory entries from the commercetools platform. You can:\n' +
+          '- Get a single inventory entry by providing either its ID or key\n' +
+          '- List multiple inventory entries with optional filtering, sorting, and pagination\n' +
+          '\n' +
+          'Parameters:\n' +
+          '- id: The ID of a specific inventory entry to retrieve (optional)\n' +
+          '- key: The key of a specific inventory entry to retrieve (optional)\n' +
+          '- limit: Number of results requested when listing (default: 20, max: 500)\n' +
+          '- offset: Number of elements to skip when listing (default: 0, max: 10000)\n' +
+          '- sort: Sort criteria for listing results (e.g., ["createdAt desc"])\n' +
+          '- where: Query predicates for filtering when listing (e.g., ["sku=\\"ABC123\\""])\n' +
+          '- expand: Reference paths to expand (e.g., ["supplyChannel"])\n' +
+          '\n' +
+          'Examples:\n' +
+          '// Get by ID\n' +
+          'inventory.read({\n' +
+          '  id: "d3a6d2c1-b1a2-c3d4-e5f6-789012345678"\n' +
+          '})\n' +
+          '\n' +
+          '// Get by key\n' +
+          'inventory.read({\n' +
+          '  key: "inventory-key-123"\n' +
+          '})\n' +
+          '\n' +
+          '// List with filtering\n' +
+          'inventory.read({\n' +
+          '  limit: 10,\n' +
+          '  where: ["sku=\\"product-sku-123\\""]\n' +
+          '})\n',
+        actions: { inventory: [Object] }
+      },
+      {
+        name: 'Create Inventory',
+        method: 'create_inventory',
+        parameters: ZodObject {
+          spa: [Function: bound safeParseAsync] AsyncFunction,
+          _def: [Object],
+          parse: [Function: bound parse],
+          safeParse: [Function: bound safeParse],
+          parseAsync: [Function: bound parseAsync] AsyncFunction,
+          safeParseAsync: [Function: bound safeParseAsync] AsyncFunction,
+          refine: [Function: bound refine],
+          refinement: [Function: bound refinement],
+          superRefine: [Function: bound superRefine],
+          optional: [Function: bound optional],
+          nullable: [Function: bound nullable],
+          nullish: [Function: bound nullish],
+          array: [Function: bound array],
+          promise: [Function: bound promise],
+          or: [Function: bound or],
+          and: [Function: bound and],
+          transform: [Function: bound transform],
+          brand: [Function: bound brand],
+          default: [Function: bound default],
+          catch: [Function: bound catch],
+          describe: [Function: bound describe],
+          pipe: [Function: bound pipe],
+          readonly: [Function: bound readonly],
+          isNullable: [Function: bound isNullable],
+          isOptional: [Function: bound isOptional],
+          '~standard': [Object],
+          _cached: null,
+          nonstrict: [Function: passthrough],
+          augment: [Function: extend]
+        },
+        description: '\n' +
+          'Create a new inventory entry in the commercetools platform.\n' +
+          '\n' +
+          'Parameters:\n' +
+          '- key: User-defined unique identifier (optional)\n' +
+          '- sku: ProductVariant SKU (required)\n' +
+          '- supplyChannel: Channel reference that supplies this inventory entry (optional)\n' +
+          '- quantityOnStock: Overall amount of stock (required)\n' +
+          '- restockableInDays: How often the inventory entry is restocked in days (optional)\n' +
+          '- expectedDelivery: Date and time of the next restock in ISO 8601 format (optional)\n' +
+          '- custom: Custom fields for the inventory entry (optional)\n' +
+          '\n' +
+          'Example:\n' +
+          'inventory.create({\n' +
+          '  key: "inventory-key-123",\n' +
+          '  sku: "product-sku-123",\n' +
+          '  quantityOnStock: 100,\n' +
+          '  restockableInDays: 7\n' +
+          '})\n',
+        actions: { inventory: [Object] }
+      },
+      {
+        name: 'Update Inventory',
+        method: 'update_inventory',
+        parameters: ZodObject {
+          spa: [Function: bound safeParseAsync] AsyncFunction,
+          _def: [Object],
+          parse: [Function: bound parse],
+          safeParse: [Function: bound safeParse],
+          parseAsync: [Function: bound parseAsync] AsyncFunction,
+          safeParseAsync: [Function: bound safeParseAsync] AsyncFunction,
+          refine: [Function: bound refine],
+          refinement: [Function: bound refinement],
+          superRefine: [Function: bound superRefine],
+          optional: [Function: bound optional],
+          nullable: [Function: bound nullable],
+          nullish: [Function: bound nullish],
+          array: [Function: bound array],
+          promise: [Function: bound promise],
+          or: [Function: bound or],
+          and: [Function: bound and],
+          transform: [Function: bound transform],
+          brand: [Function: bound brand],
+          default: [Function: bound default],
+          catch: [Function: bound catch],
+          describe: [Function: bound describe],
+          pipe: [Function: bound pipe],
+          readonly: [Function: bound readonly],
+          isNullable: [Function: bound isNullable],
+          isOptional: [Function: bound isOptional],
+          '~standard': [Object],
+          _cached: null,
+          nonstrict: [Function: passthrough],
+          augment: [Function: extend]
+        },
+        description: '\n' +
+          'Update or delete an inventory entry in the commercetools platform. You must identify the entry using either ID or key.\n' +
+          '\n' +
+          'Parameters:\n' +
+          '- id: The ID of the inventory entry to update/delete (optional if key is provided)\n' +
+          '- key: The key of the inventory entry to update/delete (optional if id is provided)\n' +
+          '- version: Expected version of the inventory entry (required)\n' +
+          '- actions: Array of update actions (required)\n' +
+          '\n' +
+          'Available update actions:\n' +
+          '- addQuantity: Add to quantityOnStock\n' +
+          '- removeQuantity: Remove from quantityOnStock\n' +
+          '- changeQuantity: Set quantityOnStock\n' +
+          '- setKey: Set the key\n' +
+          '- setRestockableInDays: Set restockableInDays\n' +
+          '- setExpectedDelivery: Set expectedDelivery\n' +
+          '- setSupplyChannel: Set supplyChannel\n' +
+          '- setCustomType: Set or remove custom type and fields\n' +
+          '- setCustomField: Set or remove a custom field\n' +
+          '- delete: Delete the inventory entry\n' +
+          '\n' +
+          'Examples:\n' +
+          '// Update by ID\n' +
+          'inventory.update({\n' +
+          '  id: "d3a6d2c1-b1a2-c3d4-e5f6-789012345678",\n' +
+          '  version: 1,\n' +
+          '  actions: [\n' +
+          '    {\n' +
+          '      action: "addQuantity",\n' +
+          '      quantity: 10\n' +
+          '    }\n' +
+          '  ]\n' +
+          '})\n' +
+          '\n' +
+          '// Update by key\n' +
+          'inventory.update({\n' +
+          '  key: "inventory-key-123",\n' +
+          '  version: 1,\n' +
+          '  actions: [\n' +
+          '    {\n' +
+          '      action: "changeQuantity",\n' +
+          '      quantity: 50\n' +
+          '    }\n' +
+          '  ]\n' +
+          '})\n' +
+          '\n' +
+          '// Delete by ID\n' +
+          'inventory.update({\n' +
+          '  id: "d3a6d2c1-b1a2-c3d4-e5f6-789012345678",\n' +
+          '  version: 1,\n' +
+          '  actions: [\n' +
+          '    {\n' +
+          '      action: "delete"\n' +
+          '    }\n' +
+          '  ]\n' +
+          '})\n',
+        actions: { inventory: [Object] }
+      },
+      {
+        method: 'list_products',
+        name: 'List Products',
+        description: '\n' +
+          'This tool will fetch a list of Products from commercetools.\n' +
+          '\n' +
+          'It takes these optional arguments:\n' +
+          '- limit (int, optional): The number of products to return (default: 10, range: 1-500).\n' +
+          '- offset (int, optional): The number of items to skip before starting to collect the result set.\n' +
+          '- sort (string array, optional): Sort criteria for the results. Example: ["name.en asc", "createdAt desc"]\n' +
+          '- where (string array, optional): Query predicates specified as strings. Example: ["masterData(current(name(en = \\"Product Name\\"))"]. In this example "en" is the language code.\n' +
+          '- expand (string array, optional): An array of field paths to expand. Example: ["masterData.current.categories[*]"]\n' +
+          '\n' +
+          'Use project settings to get the language code.\n',
+        parameters: ZodObject {
+          spa: [Function: bound safeParseAsync] AsyncFunction,
+          _def: [Object],
+          parse: [Function: bound parse],
+          safeParse: [Function: bound safeParse],
+          parseAsync: [Function: bound parseAsync] AsyncFunction,
+          safeParseAsync: [Function: bound safeParseAsync] AsyncFunction,
+          refine: [Function: bound refine],
+          refinement: [Function: bound refinement],
+          superRefine: [Function: bound superRefine],
+          optional: [Function: bound optional],
+          nullable: [Function: bound nullable],
+          nullish: [Function: bound nullish],
+          array: [Function: bound array],
+          promise: [Function: bound promise],
+          or: [Function: bound or],
+          and: [Function: bound and],
+          transform: [Function: bound transform],
+          brand: [Function: bound brand],
+          default: [Function: bound default],
+          catch: [Function: bound catch],
+          describe: [Function: bound describe],
+          pipe: [Function: bound pipe],
+          readonly: [Function: bound readonly],
+          isNullable: [Function: bound isNullable],
+          isOptional: [Function: bound isOptional],
+          '~standard': [Object],
+          _cached: null,
+          nonstrict: [Function: passthrough],
+          augment: [Function: extend]
+        },
+        actions: { products: [Object] }
+      },
+      {
+        method: 'create_product',
+        name: 'Create Product',
+        description: '\n' +
+          'This tool will create a new Product in commercetools.\n' +
+          '\n' +
+          'It takes these required arguments:\n' +
+          '- productType (string): The ID of the product type to create the product from.\n' +
+          '- name (localized-string): The name of the product.\n' +
+          '- slug (localized-string): The slug of the product.\n' +
+          '\n' +
+          'It takes these optional arguments:\n' +
+          '- description (localized-string, optional): The description of the product.\n' +
+          '- categories (string array, optional): The categories of the product.\n' +
+          '- masterVariant (object, optional): The master variant of the product.\n' +
+          '- variants (object array, optional): The variants of the product.\n' +
+          '- key (string, optional): The key of the product.\n' +
+          '- metaTitle (localized-string, optional): The meta title of the product.\n' +
+          '- metaDescription (localized-string, optional): The meta description of the product.\n' +
+          '- metaKeywords (localized-string, optional): The meta keywords of the product.\n' +
+          '- searchKeywords (localized-string, optional): The search keywords of the product.\n' +
+          '- taxCategory (string, optional): The tax category of the product.\n' +
+          '- state (string, optional): The state of the product.\n' +
+          '\n' +
+          'Use project settings to get the language code.\n',
+        parameters: ZodObject {
+          spa: [Function: bound safeParseAsync] AsyncFunction,
+          _def: [Object],
+          parse: [Function: bound parse],
+          safeParse: [Function: bound safeParse],
+          parseAsync: [Function: bound parseAsync] AsyncFunction,
+          safeParseAsync: [Function: bound safeParseAsync] AsyncFunction,
+          refine: [Function: bound refine],
+          refinement: [Function: bound refinement],
+          superRefine: [Function: bound superRefine],
+          optional: [Function: bound optional],
+          nullable: [Function: bound nullable],
+          nullish: [Function: bound nullish],
+          array: [Function: bound array],
+          promise: [Function: bound promise],
+          or: [Function: bound or],
+          and: [Function: bound and],
+          transform: [Function: bound transform],
+          brand: [Function: bound brand],
+          default: [Function: bound default],
+          catch: [Function: bound catch],
+          describe: [Function: bound describe],
+          pipe: [Function: bound pipe],
+          readonly: [Function: bound readonly],
+          isNullable: [Function: bound isNullable],
+          isOptional: [Function: bound isOptional],
+          '~standard': [Object],
+          _cached: null,
+          nonstrict: [Function: passthrough],
+          augment: [Function: extend]
+        },
+        actions: { products: [Object] }
+      },
+      {
+        method: 'update_product',
+        name: 'Update Product',
+        description: '\n' +
+          'This tool will update a Product in commercetools using update actions from the commercetools API.\n' +
+          '\n' +
+          'It takes these required arguments:\n' +
+          '- id (string): The ID of the product to update.\n' +
+          '- version (integer): The current version of the product.\n' +
+          '- actions (array): An array of update actions to perform on the product. Each action should have an "action" field indicating the action type.\n' +
+          '\n' +
+          'Example actions from commercetools API include:\n' +
+          '- addAsset\n' +
+          '- addExternalImage\n' +
+          '- addPrice\n' +
+          '- addToCategory\n' +
+          '- changeAssetName\n' +
+          '- changeAssetOrder\n' +
+          '- changeMasterVariant\n' +
+          '- changeName\n' +
+          '- changePrice\n' +
+          '- changeSlug\n' +
+          '- removeAsset\n' +
+          '- removeFromCategory\n' +
+          '- removeImage\n' +
+          '- removePrice\n' +
+          '- revertStagedChanges\n' +
+          '- revertStagedVariantChanges\n' +
+          '- setAssetCustomField\n' +
+          '- setAssetCustomType\n' +
+          '- setAssetDescription\n' +
+          '- setAssetKey\n' +
+          '- setAssetSources\n' +
+          '- setAssetTags\n' +
+          '- setAttribute\n' +
+          '- setAttributeInAllVariants\n' +
+          '- setCategoryOrderHint\n' +
+          '- setDescription\n' +
+          '- setDiscountedPrice\n' +
+          '- setImageLabel\n' +
+          '- setKey\n' +
+          '- setMetaDescription\n' +
+          '- setMetaKeywords\n' +
+          '- setMetaTitle\n' +
+          '- setPrices\n' +
+          '- setProductPriceCustomField\n' +
+          '- setProductPriceCustomType\n' +
+          '- setProductVariantKey\n' +
+          '- setSearchKeywords\n' +
+          '- setSku\n' +
+          '- setTaxCategory\n' +
+          '- transitionState\n' +
+          '- unpublish\n' +
+          '\n' +
+          'Each action type requires specific fields according to the commercetools API.\n',
+        parameters: ZodObject {
+          spa: [Function: bound safeParseAsync] AsyncFunction,
+          _def: [Object],
+          parse: [Function: bound parse],
+          safeParse: [Function: bound safeParse],
+          parseAsync: [Function: bound parseAsync] AsyncFunction,
+          safeParseAsync: [Function: bound safeParseAsync] AsyncFunction,
+          refine: [Function: bound refine],
+          refinement: [Function: bound refinement],
+          superRefine: [Function: bound superRefine],
+          optional: [Function: bound optional],
+          nullable: [Function: bound nullable],
+          nullish: [Function: bound nullish],
+          array: [Function: bound array],
+          promise: [Function: bound promise],
+          or: [Function: bound or],
+          and: [Function: bound and],
+          transform: [Function: bound transform],
+          brand: [Function: bound brand],
+          default: [Function: bound default],
+          catch: [Function: bound catch],
+          describe: [Function: bound describe],
+          pipe: [Function: bound pipe],
+          readonly: [Function: bound readonly],
+          isNullable: [Function: bound isNullable],
+          isOptional: [Function: bound isOptional],
+          '~standard': [Object],
+          _cached: null,
+          nonstrict: [Function: passthrough],
+          augment: [Function: extend]
+        },
+        actions: { products: [Object] }
+      },
+      {
+        method: 'read_project',
+        name: 'Read Project',
+        description: '\n' +
+          'This tool will fetch information about a commercetools project.\n' +
+          '\n' +
+          'It takes these optional arguments:\n' +
+          '- projectKey (string, optional): The key of the project to read. If not provided, the current project will be used.\n' +
+          '\n' +
+          'The response will contain detailed information about the project including countries, currencies, languages, and more.\n',
+        parameters: ZodObject {
+          spa: [Function: bound safeParseAsync] AsyncFunction,
+          _def: [Object],
+          parse: [Function: bound parse],
+          safeParse: [Function: bound safeParse],
+          parseAsync: [Function: bound parseAsync] AsyncFunction,
+          safeParseAsync: [Function: bound safeParseAsync] AsyncFunction,
+          refine: [Function: bound refine],
+          refinement: [Function: bound refinement],
+          superRefine: [Function: bound superRefine],
+          optional: [Function: bound optional],
+          nullable: [Function: bound nullable],
+          nullish: [Function: bound nullish],
+          array: [Function: bound array],
+          promise: [Function: bound promise],
+          or: [Function: bound or],
+          and: [Function: bound and],
+          transform: [Function: bound transform],
+          brand: [Function: bound brand],
+          default: [Function: bound default],
+          catch: [Function: bound catch],
+          describe: [Function: bound describe],
+          pipe: [Function: bound pipe],
+          readonly: [Function: bound readonly],
+          isNullable: [Function: bound isNullable],
+          isOptional: [Function: bound isOptional],
+          '~standard': [Object],
+          _cached: null,
+          nonstrict: [Function: passthrough],
+          augment: [Function: extend]
+        },
+        actions: { project: [Object] }
+      },
+      {
+        method: 'update_project',
+        name: 'Update Project',
+        description: '\n' +
+          'This tool will update settings for a commercetools project. This is an admin-only operation.\n' +
+          '\n' +
+          'It takes these arguments:\n' +
+          '- version (number, optional): The current version of the project. If not provided, the current version will be fetched automatically.\n' +
+          '- actions (array, required): The list of update actions to apply to the project.\n' +
+          '- projectKey (string, optional): The key of the project to update. If not provided, the current project will be used.\n' +
+          '\n' +
+          'Available update actions include:\n' +
+          '- changeName: Update the project name\n' +
+          '- changeCountries: Update the list of countries\n' +
+          '- changeCurrencies: Update the list of currencies\n' +
+          '- changeLanguages: Update the list of languages\n' +
+          '- changeMessagesConfiguration: Update the Messages Query feature configuration\n' +
+          '- changeCartsConfiguration: Update the Carts feature configuration\n' +
+          '- changeCountryTaxRateFallbackEnabled: Change the country tax rate fallback setting\n' +
+          '- changeShoppingListsConfiguration: Update the Shopping Lists feature configuration\n' +
+          '- setShippingRateInputType: Set the shipping rate input type\n' +
+          '- setExternalOAuth: Configure an external OAuth provider\n' +
+          '- changeProductSearchIndexingEnabled: Enable/disable product search indexing\n' +
+          '- changeOrderSearchStatus: Change the Order Search status\n' +
+          '- changeCustomerSearchStatus: Change the Customer Search status\n' +
+          '- changeBusinessUnitSearchStatus: Change the Business Unit Search status\n' +
+          '- and more\n' +
+          '\n' +
+          'The response will contain the updated project information.\n',
+        parameters: ZodObject {
+          spa: [Function: bound safeParseAsync] AsyncFunction,
+          _def: [Object],
+          parse: [Function: bound parse],
+          safeParse: [Function: bound safeParse],
+          parseAsync: [Function: bound parseAsync] AsyncFunction,
+          safeParseAsync: [Function: bound safeParseAsync] AsyncFunction,
+          refine: [Function: bound refine],
+          refinement: [Function: bound refinement],
+          superRefine: [Function: bound superRefine],
+          optional: [Function: bound optional],
+          nullable: [Function: bound nullable],
+          nullish: [Function: bound nullish],
+          array: [Function: bound array],
+          promise: [Function: bound promise],
+          or: [Function: bound or],
+          and: [Function: bound and],
+          transform: [Function: bound transform],
+          brand: [Function: bound brand],
+          default: [Function: bound default],
+          catch: [Function: bound catch],
+          describe: [Function: bound describe],
+          pipe: [Function: bound pipe],
+          readonly: [Function: bound readonly],
+          isNullable: [Function: bound isNullable],
+          isOptional: [Function: bound isOptional],
+          '~standard': [Object],
+          _cached: null,
+          nonstrict: [Function: passthrough],
+          augment: [Function: extend]
+        },
+        actions: { project: [Object] }
+      },
+      {
+        method: 'search_products',
+        name: 'Search Products',
+        description: '\n' +
+          'This tool allows you to search for products using the Product Search API from commercetools.\n' +
+          '\n' +
+          'This endpoint is powerful for creating storefront discovery experiences where customers can browse and search across Products.\n' +
+          'It supports searching through Products across Stores, Product Selections, and Standalone Prices.\n' +
+          '\n' +
+          'The tool takes these arguments:\n' +
+          '- query (object, required): The search query against searchable Product fields, expressed in the search query language.\n' +
+          '- sort (array, optional): Controls how results are sorted. Each sort item has:\n' +
+          "  - field (string): The field to sort by (e.g., 'variants.prices.centAmount', 'score')\n" +
+          "  - order (string): 'asc' or 'desc'\n" +
+          "  - mode (string, optional): For multi-valued fields - 'min' or 'max'\n" +
+          '  If not provided, results are sorted by relevance score in descending order.\n' +
+          '- limit (integer, optional): The maximum number of search results to return in one page. Default: 20, Minimum: 0, Maximum: 100.\n' +
+          '- offset (integer, optional): The number of search results to skip for pagination. Default: 0, Minimum: 0, Maximum: 10000.\n' +
+          '- markMatchingVariants (boolean, optional): If true, returns additional information about which Product Variants match the search query.\n' +
+          '- productProjectionParameters (object, optional): Controls data integration with Product Projection parameters.\n' +
+          '- facets (array, optional): Facets to calculate counts, distinct values, or ranges on the result set.\n' +
+          '\n' +
+          'Example query formats:\n' +
+          '- Wildcard: { "wildcard": { "field": "name", "language": "en-US", "value": "*pasta*", "caseInsensitive": true } }\n' +
+          '- Exact match: { "exact": { "field": "variants.attributes.color", "fieldType": "text", "value": "red" } }\n' +
+          '- Range: { "range": { "field": "variants.price.centAmount", "fieldType": "number", "lte": 5000 } }\n' +
+          '- Full text: { "fullText": { "field": "name", "value": "running shoes", "language": "en-US" } }\n' +
+          '\n' +
+          'The API supports only those Locales configured in the Project.\n',
+        parameters: ZodObject {
+          spa: [Function: bound safeParseAsync] AsyncFunction,
+          _def: [Object],
+          parse: [Function: bound parse],
+          safeParse: [Function: bound safeParse],
+          parseAsync: [Function: bound parseAsync] AsyncFunction,
+          safeParseAsync: [Function: bound safeParseAsync] AsyncFunction,
+          refine: [Function: bound refine],
+          refinement: [Function: bound refinement],
+          superRefine: [Function: bound superRefine],
+          optional: [Function: bound optional],
+          nullable: [Function: bound nullable],
+          nullish: [Function: bound nullish],
+          array: [Function: bound array],
+          promise: [Function: bound promise],
+          or: [Function: bound or],
+          and: [Function: bound and],
+          transform: [Function: bound transform],
+          brand: [Function: bound brand],
+          default: [Function: bound default],
+          catch: [Function: bound catch],
+          describe: [Function: bound describe],
+          pipe: [Function: bound pipe],
+          readonly: [Function: bound readonly],
+          isNullable: [Function: bound isNullable],
+          isOptional: [Function: bound isOptional],
+          '~standard': [Object],
+          _cached: null,
+          nonstrict: [Function: passthrough],
+          augment: [Function: extend]
+        },
+        actions: { 'product-search': [Object] }
+      },
+      {
+        method: 'read_product_selection',
+        name: 'Read Product Selection',
+        description: '\n' +
+          'This tool will fetch ProductSelections from commercetools.\n' +
+          '\n' +
+          'It can be used in two ways:\n' +
+          '\n' +
+          '1. To fetch a specific ProductSelection by providing either:\n' +
+          '   - id (string, optional): The ID of the ProductSelection to fetch, or\n' +
+          '   - key (string, optional): The key of the ProductSelection to fetch.\n' +
+          '   - expand (string array, optional): References to expand in the returned object.\n' +
+          '\n' +
+          '2. To query a list of ProductSelections by providing any of these optional parameters:\n' +
+          '   - where (string array, optional): Query predicates for filtering. Example: ["name(en=\\"Summer Collection\\")"]\n' +
+          '   - sort (string array, optional): Sort criteria. Example: ["name.en asc", "createdAt desc"]\n' +
+          '   - limit (number, optional): Maximum number of results to return (default: 20, max: 500)\n' +
+          '   - offset (number, optional): Number of results to skip\n' +
+          '   - expand (string array, optional): References to expand in the returned objects\n' +
+          '\n' +
+          "Note: When querying (without id/key), the response will be a paged object containing 'results' array.\n",
+        parameters: ZodObject {
+          spa: [Function: bound safeParseAsync] AsyncFunction,
+          _def: [Object],
+          parse: [Function: bound parse],
+          safeParse: [Function: bound safeParse],
+          parseAsync: [Function: bound parseAsync] AsyncFunction,
+          safeParseAsync: [Function: bound safeParseAsync] AsyncFunction,
+          refine: [Function: bound refine],
+          refinement: [Function: bound refinement],
+          superRefine: [Function: bound superRefine],
+          optional: [Function: bound optional],
+          nullable: [Function: bound nullable],
+          nullish: [Function: bound nullish],
+          array: [Function: bound array],
+          promise: [Function: bound promise],
+          or: [Function: bound or],
+          and: [Function: bound and],
+          transform: [Function: bound transform],
+          brand: [Function: bound brand],
+          default: [Function: bound default],
+          catch: [Function: bound catch],
+          describe: [Function: bound describe],
+          pipe: [Function: bound pipe],
+          readonly: [Function: bound readonly],
+          isNullable: [Function: bound isNullable],
+          isOptional: [Function: bound isOptional],
+          '~standard': [Object],
+          _cached: null,
+          nonstrict: [Function: passthrough],
+          augment: [Function: extend]
+        },
+        actions: { 'product-selection': [Object] }
+      },
+      {
+        method: 'create_product_selection',
+        name: 'Create Product Selection',
+        description: '\n' +
+          'This tool will create a new ProductSelection in commercetools.\n' +
+          '\n' +
+          'It takes these arguments:\n' +
+          '- name (localized-string, required): The localized name of the ProductSelection.\n' +
+          '- key (string, optional): User-defined unique identifier for the ProductSelection.\n' +
+          '- mode (enum, optional): Specifies in which way the Products are assigned to the ProductSelection. Values: "Individual" or "IndividualExclusion". Default: "Individual"\n' +
+          '  - Individual: Each Product that should be part of the selection is added explicitly.\n' +
+          '  - IndividualExclusion: Each Product that should NOT be part of the selection is excluded explicitly.\n' +
+          '- custom (object, optional): Custom fields for the ProductSelection.\n' +
+          '\n' +
+          'Use project settings to get the language code for the localized strings.\n',
+        parameters: ZodObject {
+          spa: [Function: bound safeParseAsync] AsyncFunction,
+          _def: [Object],
+          parse: [Function: bound parse],
+          safeParse: [Function: bound safeParse],
+          parseAsync: [Function: bound parseAsync] AsyncFunction,
+          safeParseAsync: [Function: bound safeParseAsync] AsyncFunction,
+          refine: [Function: bound refine],
+          refinement: [Function: bound refinement],
+          superRefine: [Function: bound superRefine],
+          optional: [Function: bound optional],
+          nullable: [Function: bound nullable],
+          nullish: [Function: bound nullish],
+          array: [Function: bound array],
+          promise: [Function: bound promise],
+          or: [Function: bound or],
+          and: [Function: bound and],
+          transform: [Function: bound transform],
+          brand: [Function: bound brand],
+          default: [Function: bound default],
+          catch: [Function: bound catch],
+          describe: [Function: bound describe],
+          pipe: [Function: bound pipe],
+          readonly: [Function: bound readonly],
+          isNullable: [Function: bound isNullable],
+          isOptional: [Function: bound isOptional],
+          '~standard': [Object],
+          _cached: null,
+          nonstrict: [Function: passthrough],
+          augment: [Function: extend]
+        },
+        actions: { 'product-selection': [Object] }
+      },
+      {
+        method: 'update_product_selection',
+        name: 'Update Product Selection',
+        description: '\n' +
+          'This tool will update a ProductSelection in commercetools using update actions from the commercetools API.\n' +
+          '\n' +
+          'It takes these required arguments:\n' +
+          '- version (integer, required): The current version of the ProductSelection.\n' +
+          '- id (string, optional): The ID of the ProductSelection to update.\n' +
+          '- key (string, optional): The key of the ProductSelection to update.\n' +
+          '- actions (array, required): An array of update actions to perform on the ProductSelection. Each action should have an "action" field indicating the action type.\n' +
+          '\n' +
+          'Note: Either id or key must be provided.\n' +
+          '\n' +
+          'Example actions from commercetools API include:\n' +
+          '- addProduct: Add a Product to the ProductSelection\n' +
+          '- removeProduct: Remove a Product from the ProductSelection\n' +
+          '- setKey: Set a new key for the ProductSelection\n' +
+          '- changeName: Change the name of the ProductSelection\n' +
+          '- setCustomType: Set a custom type for the ProductSelection\n' +
+          '- setCustomField: Set a custom field for the ProductSelection\n' +
+          '- setVariantSelection: Set variant selection for a product (when mode is Individual)\n' +
+          '- setVariantExclusion: Set variant exclusion for a product (when mode is IndividualExclusion)\n' +
+          '\n' +
+          'Each action type requires specific fields according to the commercetools API.\n',
+        parameters: ZodObject {
+          spa: [Function: bound safeParseAsync] AsyncFunction,
+          _def: [Object],
+          parse: [Function: bound parse],
+          safeParse: [Function: bound safeParse],
+          parseAsync: [Function: bound parseAsync] AsyncFunction,
+          safeParseAsync: [Function: bound safeParseAsync] AsyncFunction,
+          refine: [Function: bound refine],
+          refinement: [Function: bound refinement],
+          superRefine: [Function: bound superRefine],
+          optional: [Function: bound optional],
+          nullable: [Function: bound nullable],
+          nullish: [Function: bound nullish],
+          array: [Function: bound array],
+          promise: [Function: bound promise],
+          or: [Function: bound or],
+          and: [Function: bound and],
+          transform: [Function: bound transform],
+          brand: [Function: bound brand],
+          default: [Function: bound default],
+          catch: [Function: bound catch],
+          describe: [Function: bound describe],
+          pipe: [Function: bound pipe],
+          readonly: [Function: bound readonly],
+          isNullable: [Function: bound isNullable],
+          isOptional: [Function: bound isOptional],
+          '~standard': [Object],
+          _cached: null,
+          nonstrict: [Function: passthrough],
+          augment: [Function: extend]
+        },
+        actions: { 'product-selection': [Object] }
+      },
+      {
+        method: 'read_standalone_price',
+        name: 'Read Standalone Price',
+        description: '\n' +
+          'This tool will fetch information about a commercetools standalone price.\n' +
+          '\n' +
+          'It can be used in three ways:\n' +
+          '1. To fetch a single standalone price by its ID\n' +
+          '2. To fetch a single standalone price by its key\n' +
+          '3. To query multiple standalone prices based on criteria\n' +
+          '\n' +
+          'It takes these parameters:\n' +
+          '- id (string, optional): The ID of the standalone price to fetch\n' +
+          '- key (string, optional): The key of the standalone price to fetch\n' +
+          '- where (string array, optional): Query predicates for filtering standalone prices. Example: ["sku=\\"A0E200000002E49\\""]\n' +
+          '- limit (int, optional): The number of standalone prices to return (default: 10, range: 1-500)\n' +
+          '- offset (int, optional): The number of items to skip before starting to collect the result set\n' +
+          '- sort (string array, optional): Sort criteria for the results. Example: ["value.centAmount asc", "createdAt desc"]\n' +
+          '- expand (string array, optional): An array of field paths to expand. Example: ["customerGroup", "channel"]\n' +
+          '\n' +
+          'If both id and key are not provided, it will fetch a list of standalone prices using query parameters.\n',
+        parameters: ZodObject {
+          spa: [Function: bound safeParseAsync] AsyncFunction,
+          _def: [Object],
+          parse: [Function: bound parse],
+          safeParse: [Function: bound safeParse],
+          parseAsync: [Function: bound parseAsync] AsyncFunction,
+          safeParseAsync: [Function: bound safeParseAsync] AsyncFunction,
+          refine: [Function: bound refine],
+          refinement: [Function: bound refinement],
+          superRefine: [Function: bound superRefine],
+          optional: [Function: bound optional],
+          nullable: [Function: bound nullable],
+          nullish: [Function: bound nullish],
+          array: [Function: bound array],
+          promise: [Function: bound promise],
+          or: [Function: bound or],
+          and: [Function: bound and],
+          transform: [Function: bound transform],
+          brand: [Function: bound brand],
+          default: [Function: bound default],
+          catch: [Function: bound catch],
+          describe: [Function: bound describe],
+          pipe: [Function: bound pipe],
+          readonly: [Function: bound readonly],
+          isNullable: [Function: bound isNullable],
+          isOptional: [Function: bound isOptional],
+          '~standard': [Object],
+          _cached: null,
+          nonstrict: [Function: passthrough],
+          augment: [Function: extend]
+        },
+        actions: { 'standalone-price': [Object] }
+      },
+      {
+        method: 'create_standalone_price',
+        name: 'Create Standalone Price',
+        description: '\n' +
+          'This tool will create a new Standalone Price in commercetools.\n' +
+          '\n' +
+          'It takes these required arguments:\n' +
+          '- sku (string): SKU of the ProductVariant to which this Price is associated.\n' +
+          '- value (object): Money value of this Price, containing currencyCode and centAmount.\n' +
+          '\n' +
+          'It takes these optional arguments:\n' +
+          '- key (string, optional): User-defined unique identifier of the StandalonePrice. Pattern: ^[A-Za-z0-9_-]+$, Min length: 2, Max length: 256\n' +
+          '- country (string, optional): Country for which this Price is valid. Pattern: ^[A-Z]{2}$\n' +
+          '- customerGroup (object, optional): Reference to a CustomerGroup for which this Price is valid.\n' +
+          '- channel (object, optional): Reference to a Channel for which this Price is valid.\n' +
+          '- validFrom (string, optional): Date from which the Price is valid (ISO 8601 format).\n' +
+          '- validUntil (string, optional): Date until the Price is valid (ISO 8601 format).\n' +
+          '- tiers (array, optional): Price tiers for quantity-based discounts.\n' +
+          '- active (boolean, optional): Whether the price is active or not.\n' +
+          '- discounted (object, optional): Set if a matching ProductDiscount exists.\n' +
+          '- staged (boolean, optional): Whether to create a staged price.\n' +
+          '\n' +
+          'Example value format:\n' +
+          '{\n' +
+          '  "type": "centPrecision",\n' +
+          '  "currencyCode": "EUR",\n' +
+          '  "centAmount": 10000,\n' +
+          '  "fractionDigits": 2\n' +
+          '}\n' +
+          '\n' +
+          'Example tiers format:\n' +
+          '[\n' +
+          '  {\n' +
+          '    "minimumQuantity": 10,\n' +
+          '    "value": {\n' +
+          '      "type": "centPrecision",\n' +
+          '      "currencyCode": "EUR",\n' +
+          '      "centAmount": 9000,\n' +
+          '      "fractionDigits": 2\n' +
+          '    }\n' +
+          '  }\n' +
+          ']\n',
+        parameters: ZodObject {
+          spa: [Function: bound safeParseAsync] AsyncFunction,
+          _def: [Object],
+          parse: [Function: bound parse],
+          safeParse: [Function: bound safeParse],
+          parseAsync: [Function: bound parseAsync] AsyncFunction,
+          safeParseAsync: [Function: bound safeParseAsync] AsyncFunction,
+          refine: [Function: bound refine],
+          refinement: [Function: bound refinement],
+          superRefine: [Function: bound superRefine],
+          optional: [Function: bound optional],
+          nullable: [Function: bound nullable],
+          nullish: [Function: bound nullish],
+          array: [Function: bound array],
+          promise: [Function: bound promise],
+          or: [Function: bound or],
+          and: [Function: bound and],
+          transform: [Function: bound transform],
+          brand: [Function: bound brand],
+          default: [Function: bound default],
+          catch: [Function: bound catch],
+          describe: [Function: bound describe],
+          pipe: [Function: bound pipe],
+          readonly: [Function: bound readonly],
+          isNullable: [Function: bound isNullable],
+          isOptional: [Function: bound isOptional],
+          '~standard': [Object],
+          _cached: null,
+          nonstrict: [Function: passthrough],
+          augment: [Function: extend]
+        },
+        actions: { 'standalone-price': [Object] }
+      },
+      {
+        method: 'update_standalone_price',
+        name: 'Update Standalone Price',
+        description: '\n' +
+          'This tool will update a Standalone Price in commercetools using update actions from the commercetools API.\n' +
+          '\n' +
+          'It takes these required arguments:\n' +
+          '- version (integer): The current version of the standalone price.\n' +
+          '- actions (array): An array of update actions to perform on the standalone price. Each action should have an "action" field indicating the action type.\n' +
+          '\n' +
+          'It also requires ONE of these identifiers:\n' +
+          '- id (string, optional): The ID of the standalone price to update\n' +
+          '- key (string, optional): The key of the standalone price to update\n' +
+          '\n' +
+          'Example actions from commercetools API include:\n' +
+          '- changeValue: Change the money value of the standalone price\n' +
+          '- setActive: Set or unset the active state of the standalone price\n' +
+          '- addPriceTier: Add a price tier to the standalone price\n' +
+          '- removePriceTier: Remove a price tier from the standalone price\n' +
+          '- setPriceTiers: Set all price tiers for the standalone price\n' +
+          '- applyStagedChanges: Apply all staged changes to the standalone price\n' +
+          '- removeStagedChanges: Remove all staged changes from the standalone price\n' +
+          '- setValidFrom: Set the valid from date of the standalone price\n' +
+          '- setValidUntil: Set the valid until date of the standalone price\n' +
+          '- setValidFromAndUntil: Set both valid from and valid until dates of the standalone price\n' +
+          '\n' +
+          'Each action type requires specific fields according to the commercetools API.\n',
+        parameters: ZodObject {
+          spa: [Function: bound safeParseAsync] AsyncFunction,
+          _def: [Object],
+          parse: [Function: bound parse],
+          safeParse: [Function: bound safeParse],
+          parseAsync: [Function: bound parseAsync] AsyncFunction,
+          safeParseAsync: [Function: bound safeParseAsync] AsyncFunction,
+          refine: [Function: bound refine],
+          refinement: [Function: bound refinement],
+          superRefine: [Function: bound superRefine],
+          optional: [Function: bound optional],
+          nullable: [Function: bound nullable],
+          nullish: [Function: bound nullish],
+          array: [Function: bound array],
+          promise: [Function: bound promise],
+          or: [Function: bound or],
+          and: [Function: bound and],
+          transform: [Function: bound transform],
+          brand: [Function: bound brand],
+          default: [Function: bound default],
+          catch: [Function: bound catch],
+          describe: [Function: bound describe],
+          pipe: [Function: bound pipe],
+          readonly: [Function: bound readonly],
+          isNullable: [Function: bound isNullable],
+          isOptional: [Function: bound isOptional],
+          '~standard': [Object],
+          _cached: null,
+          nonstrict: [Function: passthrough],
+          augment: [Function: extend]
+        },
+        actions: { 'standalone-price': [Object] }
+      },
+      {
+        method: 'read_product_discount',
+        name: 'Read Product Discount',
+        description: '\n' +
+          'This tool will fetch Product Discounts from commercetools.\n' +
+          '\n' +
+          'It takes these optional arguments:\n' +
+          '- id (string, optional): The ID of the product discount to fetch.\n' +
+          '- key (string, optional): The key of the product discount to fetch.\n' +
+          '- where (string array, optional): Query predicates specified as strings for filtering product discounts. Example: ["name(en = \\"Summer Sale\\")"]\n' +
+          '- limit (int, optional): The number of product discounts to return (default: 10, range: 1-500).\n' +
+          '- offset (int, optional): The number of items to skip before starting to collect the result set.\n' +
+          '- sort (string array, optional): Sort criteria for the results. Example: ["name.en asc", "createdAt desc"]\n' +
+          '- expand (string array, optional): An array of field paths to expand. Example: ["references[*]"]\n' +
+          '\n' +
+          'If both id and key are omitted, this tool will return a list of product discounts based on the other query parameters.\n' +
+          'If either id or key is provided, this tool will return a single product discount.\n',
+        parameters: ZodObject {
+          spa: [Function: bound safeParseAsync] AsyncFunction,
+          _def: [Object],
+          parse: [Function: bound parse],
+          safeParse: [Function: bound safeParse],
+          parseAsync: [Function: bound parseAsync] AsyncFunction,
+          safeParseAsync: [Function: bound safeParseAsync] AsyncFunction,
+          refine: [Function: bound refine],
+          refinement: [Function: bound refinement],
+          superRefine: [Function: bound superRefine],
+          optional: [Function: bound optional],
+          nullable: [Function: bound nullable],
+          nullish: [Function: bound nullish],
+          array: [Function: bound array],
+          promise: [Function: bound promise],
+          or: [Function: bound or],
+          and: [Function: bound and],
+          transform: [Function: bound transform],
+          brand: [Function: bound brand],
+          default: [Function: bound default],
+          catch: [Function: bound catch],
+          describe: [Function: bound describe],
+          pipe: [Function: bound pipe],
+          readonly: [Function: bound readonly],
+          isNullable: [Function: bound isNullable],
+          isOptional: [Function: bound isOptional],
+          '~standard': [Object],
+          _cached: null,
+          nonstrict: [Function: passthrough],
+          augment: [Function: extend]
+        },
+        actions: { 'product-discount': [Object] }
+      },
+      {
+        method: 'create_product_discount',
+        name: 'Create Product Discount',
+        description: '\n' +
+          'This tool will create a new Product Discount in commercetools.\n' +
+          '\n' +
+          'It takes these required arguments:\n' +
+          '- name (localized-string): The name of the product discount.\n' +
+          '- predicate (string): Valid ProductDiscount predicate to determine which products will be discounted.\n' +
+          '- value (object): Type of discount and its corresponding value.\n' +
+          '- sortOrder (string): Unique decimal value between 0 and 1 defining the order of Product Discounts to apply.\n' +
+          '\n' +
+          'It takes these optional arguments:\n' +
+          '- key (string, optional): User-defined unique identifier of the ProductDiscount.\n' +
+          '- description (localized-string, optional): The description of the product discount.\n' +
+          '- isActive (boolean, optional): If true the Product Discount is applied to Products matching the predicate.\n' +
+          '- validFrom (string, optional): Date and time (UTC) from which the Discount is effective.\n' +
+          '- validUntil (string, optional): Date and time (UTC) until which the Discount is effective.\n' +
+          '\n' +
+          'The value object must be one of these types:\n' +
+          '1. Absolute discount:\n' +
+          '   {\n' +
+          '     "type": "absolute",\n' +
+          '     "money": [\n' +
+          '       {\n' +
+          '         "type": "centPrecision",\n' +
+          '         "currencyCode": "EUR",\n' +
+          '         "centAmount": 100,\n' +
+          '         "fractionDigits": 2\n' +
+          '       }\n' +
+          '     ]\n' +
+          '   }\n' +
+          '\n' +
+          '2. Relative discount (percentage):\n' +
+          '   {\n' +
+          '     "type": "relative",\n' +
+          '     "permyriad": 1000  // 10% (1000 out of 10000)\n' +
+          '   }\n' +
+          '\n' +
+          '3. External discount (calculated externally):\n' +
+          '   {\n' +
+          '     "type": "external"\n' +
+          '   }\n' +
+          '\n' +
+          'Product discount predicate examples:\n' +
+          '\n' +
+          '1. Basic equality:\n' +
+          '   - "product.id = \\"{{product-id}}\\""\n' +
+          '   - "product.key = \\"my-product-key\\""\n' +
+          '   - "variant.id = 1"\n' +
+          '   - "variant.key = \\"my-variant-key\\""\n' +
+          '   - "sku = \\"AB-123\\""\n' +
+          '\n' +
+          '2. Inequality:\n' +
+          '   - "product.key != \\"holidayTShirt\\""\n' +
+          '   - "variant.price.centAmount > 5000"  // Products priced above 50 EUR\n' +
+          '   - "variant.price.centAmount <= 3000"  // Products priced at 30 EUR or below\n' +
+          '\n' +
+          '3. Containment (for collections/arrays):\n' +
+          '   - "categories.id contains \\"category-id\\""  // Products in a specific category\n' +
+          '   - "attributes.size contains any (\\"xl\\", \\"xxl\\")"  // Products with XL or XXL sizes\n' +
+          '   - "attributes.season contains all (\\"spring2023\\", \\"summer2023\\")"  // Products in both seasons\n' +
+          '   - "attributes.color in (\\"red\\", \\"blue\\")"  // Products that are red or blue\n' +
+          '\n' +
+          '4. Defined/empty checks:\n' +
+          '   - "variant.attributes.brand is defined"  // Products with brand attribute defined\n' +
+          '   - "variant.attributes.tags is not empty"  // Products with at least one tag\n' +
+          '   - "variant.sku is not defined"  // Products without SKU\n' +
+          '\n' +
+          '5. Combining conditions:\n' +
+          '   - "product.key = \\"holiday-special\\" and variant.price.centAmount > 1000"\n' +
+          '   - "variant.attributes.season = \\"summer\\" or variant.attributes.season = \\"spring\\""\n' +
+          '   - "not(product.key = \\"clearance-item\\")"  // All products except clearance items\n' +
+          '   - "(categories.id = \\"shirts\\" or categories.id = \\"tops\\") and variant.price.centAmount < 2000"\n' +
+          '\n' +
+          '6. Working with dates:\n' +
+          '   - "variant.attributes.releaseDate > \\"2023-01-01T00:00:00.000Z\\""  // Products released after Jan 1, 2023\n',
+        parameters: ZodObject {
+          spa: [Function: bound safeParseAsync] AsyncFunction,
+          _def: [Object],
+          parse: [Function: bound parse],
+          safeParse: [Function: bound safeParse],
+          parseAsync: [Function: bound parseAsync] AsyncFunction,
+          safeParseAsync: [Function: bound safeParseAsync] AsyncFunction,
+          refine: [Function: bound refine],
+          refinement: [Function: bound refinement],
+          superRefine: [Function: bound superRefine],
+          optional: [Function: bound optional],
+          nullable: [Function: bound nullable],
+          nullish: [Function: bound nullish],
+          array: [Function: bound array],
+          promise: [Function: bound promise],
+          or: [Function: bound or],
+          and: [Function: bound and],
+          transform: [Function: bound transform],
+          brand: [Function: bound brand],
+          default: [Function: bound default],
+          catch: [Function: bound catch],
+          describe: [Function: bound describe],
+          pipe: [Function: bound pipe],
+          readonly: [Function: bound readonly],
+          isNullable: [Function: bound isNullable],
+          isOptional: [Function: bound isOptional],
+          '~standard': [Object],
+          _cached: null,
+          nonstrict: [Function: passthrough],
+          augment: [Function: extend]
+        },
+        actions: { 'product-discount': [Object] }
+      },
+      {
+        method: 'update_product_discount',
+        name: 'Update Product Discount',
+        description: '\n' +
+          'This tool will update a Product Discount in commercetools using update actions from the commercetools API.\n' +
+          '\n' +
+          'It takes these required arguments:\n' +
+          '- version (integer): The current version of the product discount.\n' +
+          '- actions (array): An array of update actions to perform on the product discount.\n' +
+          '\n' +
+          'It takes one of these required identifier arguments:\n' +
+          '- id (string): The ID of the product discount to update.\n' +
+          '- key (string): The key of the product discount to update.\n' +
+          '\n' +
+          'Example actions from commercetools API include:\n' +
+          '- changeValue: Change the discount value.\n' +
+          '- changePredicate: Change the product discount predicate.\n' +
+          '- changeIsActive: Change the active status of the product discount.\n' +
+          '- setValidFrom: Set the validFrom date.\n' +
+          '- setValidUntil: Set the validUntil date.\n' +
+          '- setValidFromAndUntil: Set both validFrom and validUntil dates.\n' +
+          '- changeName: Change the name of the product discount.\n' +
+          '- setDescription: Set or remove the description of the product discount.\n' +
+          '- changeSortOrder: Change the sort order of the product discount.\n' +
+          '\n' +
+          'Each action type requires specific fields according to the commercetools API.\n' +
+          '\n' +
+          'Example action for changing the value:\n' +
+          '{\n' +
+          '  "action": "changeValue",\n' +
+          '  "value": {\n' +
+          '    "type": "absolute",\n' +
+          '    "money": [\n' +
+          '      {\n' +
+          '        "type": "centPrecision",\n' +
+          '        "currencyCode": "EUR",\n' +
+          '        "centAmount": 500,\n' +
+          '        "fractionDigits": 2\n' +
+          '      }\n' +
+          '    ]\n' +
+          '  }\n' +
+          '}\n',
+        parameters: ZodObject {
+          spa: [Function: bound safeParseAsync] AsyncFunction,
+          _def: [Object],
+          parse: [Function: bound parse],
+          safeParse: [Function: bound safeParse],
+          parseAsync: [Function: bound parseAsync] AsyncFunction,
+          safeParseAsync: [Function: bound safeParseAsync] AsyncFunction,
+          refine: [Function: bound refine],
+          refinement: [Function: bound refinement],
+          superRefine: [Function: bound superRefine],
+          optional: [Function: bound optional],
+          nullable: [Function: bound nullable],
+          nullish: [Function: bound nullish],
+          array: [Function: bound array],
+          promise: [Function: bound promise],
+          or: [Function: bound or],
+          and: [Function: bound and],
+          transform: [Function: bound transform],
+          brand: [Function: bound brand],
+          default: [Function: bound default],
+          catch: [Function: bound catch],
+          describe: [Function: bound describe],
+          pipe: [Function: bound pipe],
+          readonly: [Function: bound readonly],
+          isNullable: [Function: bound isNullable],
+          isOptional: [Function: bound isOptional],
+          '~standard': [Object],
+          _cached: null,
+          nonstrict: [Function: passthrough],
+          augment: [Function: extend]
+        },
+        actions: { 'product-discount': [Object] }
+      },
+      {
+        method: 'read_product_type',
+        name: 'Read Product Type',
+        description: '\n' +
+          'This tool will fetch a single Product Type from commercetools by its ID or a list of Product Types by optional parameters.\n' +
+          '\n' +
+          '\n' +
+          'It takes these optional arguments:\n' +
+          '- id (string, optional): The ID of the product type to retrieve.\n' +
+          '- limit (int, optional): The number of product types to return (default: 10, range: 1-500).\n' +
+          '- offset (int, optional): The number of items to skip before starting to collect the result set.\n' +
+          '- sort (string array, optional): Sort criteria for the results. Example: ["name asc", "createdAt desc"]\n' +
+          '- where (string array, optional): Query predicates specified as strings. Example: ["name = \\"Standard product type\\""]\n' +
+          '- expand (string array, optional): An array of field paths to expand. Example: ["attributes[*].type"]',
+        parameters: ZodObject {
+          spa: [Function: bound safeParseAsync] AsyncFunction,
+          _def: [Object],
+          parse: [Function: bound parse],
+          safeParse: [Function: bound safeParse],
+          parseAsync: [Function: bound parseAsync] AsyncFunction,
+          safeParseAsync: [Function: bound safeParseAsync] AsyncFunction,
+          refine: [Function: bound refine],
+          refinement: [Function: bound refinement],
+          superRefine: [Function: bound superRefine],
+          optional: [Function: bound optional],
+          nullable: [Function: bound nullable],
+          nullish: [Function: bound nullish],
+          array: [Function: bound array],
+          promise: [Function: bound promise],
+          or: [Function: bound or],
+          and: [Function: bound and],
+          transform: [Function: bound transform],
+          brand: [Function: bound brand],
+          default: [Function: bound default],
+          catch: [Function: bound catch],
+          describe: [Function: bound describe],
+          pipe: [Function: bound pipe],
+          readonly: [Function: bound readonly],
+          isNullable: [Function: bound isNullable],
+          isOptional: [Function: bound isOptional],
+          '~standard': [Object],
+          _cached: null,
+          nonstrict: [Function: passthrough],
+          augment: [Function: extend]
+        },
+        actions: { 'product-type': [Object] }
+      },
+      {
+        method: 'create_product_type',
+        name: 'Create Product Type',
+        description: '\n' +
+          'This tool will create a new Product Type in commercetools.\n' +
+          '\n' +
+          'It takes these required arguments:\n' +
+          '- key (string): The unique key of the product type.\n' +
+          '- name (string): The name of the product type.\n' +
+          '- description (string): The description of the product type.\n' +
+          '\n' +
+          'It takes these optional arguments:\n' +
+          '- attributes (array, optional): An array of attribute definitions for the product type. Each attribute should have:\n' +
+          '  - name (string): The name of the attribute.\n' +
+          '  - label (localized-string): The localized label for the attribute.\n' +
+          '  - isRequired (boolean, optional): Whether the attribute is required.\n' +
+          '  - isSearchable (boolean, optional): Whether the attribute is searchable.\n' +
+          '  - type (object): The type definition of the attribute with a name field (e.g., text, number, boolean, enum).\n' +
+          '  - attributeConstraint (enum, optional): The constraint of the attribute (None, Unique, CombinationUnique, SameForAll).\n' +
+          '  - inputTip (localized-string, optional): The input tip for the attribute.\n' +
+          '  - inputHint (enum, optional): The input hint for the attribute (SingleLine, MultiLine).\n' +
+          '\n' +
+          'Example attribute types include:\n' +
+          '- Text: { "name": "text" }\n' +
+          '- Number: { "name": "number" }\n' +
+          '- Boolean: { "name": "boolean" }\n' +
+          '- Enum: { "name": "enum", "values": [{"key": "value1", "label": "Value 1"}] }\n' +
+          '- LocalizedEnum: { "name": "lenum", "values": [{"key": "value1", "label": {"en": "Value 1"}}] }\n' +
+          '- LocalizedText: { "name": "ltext" }\n' +
+          '- Reference: { "name": "reference", "referenceTypeId": "product" }\n',
+        parameters: ZodObject {
+          spa: [Function: bound safeParseAsync] AsyncFunction,
+          _def: [Object],
+          parse: [Function: bound parse],
+          safeParse: [Function: bound safeParse],
+          parseAsync: [Function: bound parseAsync] AsyncFunction,
+          safeParseAsync: [Function: bound safeParseAsync] AsyncFunction,
+          refine: [Function: bound refine],
+          refinement: [Function: bound refinement],
+          superRefine: [Function: bound superRefine],
+          optional: [Function: bound optional],
+          nullable: [Function: bound nullable],
+          nullish: [Function: bound nullish],
+          array: [Function: bound array],
+          promise: [Function: bound promise],
+          or: [Function: bound or],
+          and: [Function: bound and],
+          transform: [Function: bound transform],
+          brand: [Function: bound brand],
+          default: [Function: bound default],
+          catch: [Function: bound catch],
+          describe: [Function: bound describe],
+          pipe: [Function: bound pipe],
+          readonly: [Function: bound readonly],
+          isNullable: [Function: bound isNullable],
+          isOptional: [Function: bound isOptional],
+          '~standard': [Object],
+          _cached: null,
+          nonstrict: [Function: passthrough],
+          augment: [Function: extend]
+        },
+        actions: { 'product-type': [Object] }
+      },
+      {
+        method: 'update_product_type',
+        name: 'Update Product Type',
+        description: '\n' +
+          'This tool will update a Product Type in commercetools using update actions from the commercetools API.\n' +
+          '\n' +
+          'It takes these required arguments:\n' +
+          '- id (string): The ID of the product type to update.\n' +
+          '- version (integer): The current version of the product type.\n' +
+          '- actions (array): An array of update actions to perform on the product type. Each action should have an "action" field indicating the action type.\n' +
+          '\n' +
+          'Example actions from commercetools API include:\n' +
+          '- addAttributeDefinition\n' +
+          '- removeAttributeDefinition\n' +
+          '- changeAttributeDefinition\n' +
+          '- changeName\n' +
+          '- changeDescription\n' +
+          '- changeAttributeOrder\n' +
+          '- changeAttributeOrderByName\n' +
+          '- changeEnumValueOrder\n' +
+          '- changeLocalizedEnumValueOrder\n' +
+          '- changeEnumValueLabel\n' +
+          '- changeLocalizedEnumValueLabel\n' +
+          '- addPlainEnumValue\n' +
+          '- addLocalizedEnumValue\n' +
+          '- removePlainEnumValue\n' +
+          '- removeLocalizedEnumValue\n' +
+          '- changeIsSearchable\n' +
+          '- changeInputHint\n' +
+          '- setKey\n' +
+          '- setInputTip\n' +
+          '- removeAttributeDefinition\n' +
+          '\n' +
+          'Each action type requires specific fields according to the commercetools API.\n',
+        parameters: ZodObject {
+          spa: [Function: bound safeParseAsync] AsyncFunction,
+          _def: [Object],
+          parse: [Function: bound parse],
+          safeParse: [Function: bound safeParse],
+          parseAsync: [Function: bound parseAsync] AsyncFunction,
+          safeParseAsync: [Function: bound safeParseAsync] AsyncFunction,
+          refine: [Function: bound refine],
+          refinement: [Function: bound refinement],
+          superRefine: [Function: bound superRefine],
+          optional: [Function: bound optional],
+          nullable: [Function: bound nullable],
+          nullish: [Function: bound nullish],
+          array: [Function: bound array],
+          promise: [Function: bound promise],
+          or: [Function: bound or],
+          and: [Function: bound and],
+          transform: [Function: bound transform],
+          brand: [Function: bound brand],
+          default: [Function: bound default],
+          catch: [Function: bound catch],
+          describe: [Function: bound describe],
+          pipe: [Function: bound pipe],
+          readonly: [Function: bound readonly],
+          isNullable: [Function: bound isNullable],
+          isOptional: [Function: bound isOptional],
+          '~standard': [Object],
+          _cached: null,
+          nonstrict: [Function: passthrough],
+          augment: [Function: extend]
+        },
+        actions: { 'product-type': [Object] }
+      },
+      {
+        method: 'bulk_create',
+        name: 'Bulk Create',
+        description: '\n' +
+          'Bulk create different types of entities in commercetools.\n' +
+          '\n' +
+          'This function allows you to create multiple entities of different types in a single operation. All operations are executed in parallel using Promise.all.\n' +
+          '\n' +
+          'The function accepts an array of items, where each item specifies:\n' +
+          "- entityType: The type of entity to create (e.g., 'product', 'customer', etc.)\n" +
+          '- data: The data for creating the entity, which should match the schema required by the corresponding create function\n' +
+          '\n' +
+          'Supported entity types:\n' +
+          '- product\n' +
+          '- customer\n' +
+          '- cart\n' +
+          '- category\n' +
+          '- channel\n' +
+          '- discount-code\n' +
+          '- cart-discount\n' +
+          '- product-discount\n' +
+          '- customer-group\n' +
+          '- standalone-price\n' +
+          '- inventory\n' +
+          '\n' +
+          'Parameters:\n' +
+          '- items: An array of objects, each containing:\n' +
+          '  - entityType: The type of entity to create\n' +
+          '  - data: The data for creating the entity\n' +
+          '\n' +
+          'Example request:\n' +
+          '```json\n' +
+          '{\n' +
+          '  "items": [\n' +
+          '    {\n' +
+          '      "entityType": "product",\n' +
+          '      "data": {\n' +
+          '        "productType": {\n' +
+          '          "id": "product-type-id",\n' +
+          '          "typeId": "product-type"\n' +
+          '        },\n' +
+          '        "name": {\n' +
+          '          "en": "Sample Product 1"\n' +
+          '        },\n' +
+          '        "slug": {\n' +
+          '          "en": "sample-product-1"\n' +
+          '        }\n' +
+          '      }\n' +
+          '    },\n' +
+          '    {\n' +
+          '      "entityType": "customer",\n' +
+          '      "data": {\n' +
+          '        "email": "customer@example.com",\n' +
+          '        "password": "password123",\n' +
+          '        "firstName": "John",\n' +
+          '        "lastName": "Doe"\n' +
+          '      }\n' +
+          '    }\n' +
+          '  ]\n' +
+          '}\n' +
+          '```\n' +
+          '\n' +
+          'Example response:\n' +
+          '```json\n' +
+          '{\n' +
+          '  "success": true,\n' +
+          '  "results": [\n' +
+          '    {\n' +
+          '      // Product creation result\n' +
+          '    },\n' +
+          '    {\n' +
+          '      // Customer creation result\n' +
+          '    }\n' +
+          '  ]\n' +
+          '}\n' +
+          '```\n' +
+          '\n' +
+          'Errors:\n' +
+          '- If any creation operation fails, the entire operation will fail\n' +
+          '- The error message will indicate which entity type failed to be created\n',
+        parameters: ZodObject {
+          spa: [Function: bound safeParseAsync] AsyncFunction,
+          _def: [Object],
+          parse: [Function: bound parse],
+          safeParse: [Function: bound safeParse],
+          parseAsync: [Function: bound parseAsync] AsyncFunction,
+          safeParseAsync: [Function: bound safeParseAsync] AsyncFunction,
+          refine: [Function: bound refine],
+          refinement: [Function: bound refinement],
+          superRefine: [Function: bound superRefine],
+          optional: [Function: bound optional],
+          nullable: [Function: bound nullable],
+          nullish: [Function: bound nullish],
+          array: [Function: bound array],
+          promise: [Function: bound promise],
+          or: [Function: bound or],
+          and: [Function: bound and],
+          transform: [Function: bound transform],
+          brand: [Function: bound brand],
+          default: [Function: bound default],
+          catch: [Function: bound catch],
+          describe: [Function: bound describe],
+          pipe: [Function: bound pipe],
+          readonly: [Function: bound readonly],
+          isNullable: [Function: bound isNullable],
+          isOptional: [Function: bound isOptional],
+          '~standard': [Object],
+          _cached: null,
+          nonstrict: [Function: passthrough],
+          augment: [Function: extend]
+        },
+        actions: { bulk: [Object] }
+      },
+      {
+        method: 'bulk_update',
+        name: 'Bulk Update',
+        description: '\n' +
+          'Bulk update different types of entities in commercetools.\n' +
+          '\n' +
+          'This function allows you to update multiple entities of different types in a single operation. All operations are executed in parallel using Promise.all.\n' +
+          '\n' +
+          'The function accepts an array of items, where each item specifies:\n' +
+          "- entityType: The type of entity to update (e.g., 'product', 'customer', etc.)\n" +
+          '- data: The data for updating the entity, which should match the schema required by the corresponding update function\n' +
+          '\n' +
+          'Supported entity types:\n' +
+          '- product\n' +
+          '- customer\n' +
+          '- cart\n' +
+          '- category\n' +
+          '- channel\n' +
+          '- discount-code\n' +
+          '- cart-discount\n' +
+          '- product-discount\n' +
+          '- customer-group\n' +
+          '- standalone-price\n' +
+          '- inventory\n' +
+          '- order\n' +
+          '- product-selection\n' +
+          '- product-type\n' +
+          '\n' +
+          'Parameters:\n' +
+          '- items: An array of objects, each containing:\n' +
+          '  - entityType: The type of entity to update\n' +
+          '  - data: The data for updating the entity\n' +
+          '\n' +
+          'Example request:\n' +
+          '```json\n' +
+          '{\n' +
+          '  "items": [\n' +
+          '    {\n' +
+          '      "entityType": "product",\n' +
+          '      "data": {\n' +
+          '        "id": "product-id-1",\n' +
+          '        "version": 1,\n' +
+          '        "actions": [\n' +
+          '          {\n' +
+          '            "action": "changeName",\n' +
+          '            "name": {\n' +
+          '              "en": "Updated Product Name"\n' +
+          '            }\n' +
+          '          }\n' +
+          '        ]\n' +
+          '      }\n' +
+          '    },\n' +
+          '    {\n' +
+          '      "entityType": "inventory",\n' +
+          '      "data": {\n' +
+          '        "id": "inventory-id-1",\n' +
+          '        "version": 1,\n' +
+          '        "actions": [\n' +
+          '          {\n' +
+          '            "action": "changeQuantity",\n' +
+          '            "quantity": 50\n' +
+          '          }\n' +
+          '        ]\n' +
+          '      }\n' +
+          '    }\n' +
+          '  ]\n' +
+          '}\n' +
+          '```\n' +
+          '\n' +
+          'Example response:\n' +
+          '```json\n' +
+          '{\n' +
+          '  "success": true,\n' +
+          '  "results": [\n' +
+          '    {\n' +
+          '      // Product update result\n' +
+          '    },\n' +
+          '    {\n' +
+          '      // Inventory update result\n' +
+          '    }\n' +
+          '  ]\n' +
+          '}\n' +
+          '```\n' +
+          '\n' +
+          'Errors:\n' +
+          '- If any update operation fails, the entire operation will fail\n' +
+          '- The error message will indicate which entity type failed to be updated\n',
+        parameters: ZodObject {
+          spa: [Function: bound safeParseAsync] AsyncFunction,
+          _def: [Object],
+          parse: [Function: bound parse],
+          safeParse: [Function: bound safeParse],
+          parseAsync: [Function: bound parseAsync] AsyncFunction,
+          safeParseAsync: [Function: bound safeParseAsync] AsyncFunction,
+          refine: [Function: bound refine],
+          refinement: [Function: bound refinement],
+          superRefine: [Function: bound superRefine],
+          optional: [Function: bound optional],
+          nullable: [Function: bound nullable],
+          nullish: [Function: bound nullish],
+          array: [Function: bound array],
+          promise: [Function: bound promise],
+          or: [Function: bound or],
+          and: [Function: bound and],
+          transform: [Function: bound transform],
+          brand: [Function: bound brand],
+          default: [Function: bound default],
+          catch: [Function: bound catch],
+          describe: [Function: bound describe],
+          pipe: [Function: bound pipe],
+          readonly: [Function: bound readonly],
+          isNullable: [Function: bound isNullable],
+          isOptional: [Function: bound isOptional],
+          '~standard': [Object],
+          _cached: null,
+          nonstrict: [Function: passthrough],
+          augment: [Function: extend]
+        },
+        actions: { bulk: [Object] }
+      }
+    ]
+
+      at Object.<anonymous> (src/shared/product-search/test/tools.test.ts:20:13)
+
+--------------------------|---------|----------|---------|---------|-------------------
+File                      | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+--------------------------|---------|----------|---------|---------|-------------------
+All files                 |   15.69 |     2.81 |    5.76 |   16.51 |                   
+ ai-sdk                   |       0 |      100 |       0 |       0 |                   
+  index.ts                |       0 |      100 |     100 |       0 | 1-4               
+  tool.ts                 |       0 |      100 |       0 |       0 | 2-16              
+  toolkit.ts              |       0 |      100 |       0 |       0 | 2-56              
+ langchain                |       0 |      100 |       0 |       0 |                   
+  index.ts                |       0 |      100 |     100 |       0 | 1-4               
+  tool.ts                 |       0 |      100 |       0 |       0 | 2-23              
+  toolkit.ts              |       0 |      100 |       0 |       0 | 2-65              
+ modelcontextprotocol     |       0 |      100 |       0 |       0 |                   
+  index.ts                |       0 |      100 |     100 |       0 | 1-4               
+  toolkit.ts              |       0 |      100 |       0 |       0 | 1-60              
+ shared                   |   31.66 |        0 |   14.28 |   31.57 |                   
+  api.ts                  |       0 |        0 |       0 |       0 | 1-74              
+  configuration.ts        |       0 |      100 |       0 |       0 | 4-13              
+  functions.ts            |       0 |      100 |       0 |       0 | 3-31              
+  tools.ts                |     100 |      100 |     100 |     100 |                   
+ shared/bulk              |    42.1 |       25 |   16.66 |   42.85 |                   
+  base.functions.ts       |       0 |        0 |       0 |       0 | 4-125             
+  functions.ts            |       0 |        0 |       0 |       0 | 3-22              
+  parameters.ts           |     100 |      100 |     100 |     100 |                   
+  prompts.ts              |     100 |      100 |     100 |     100 |                   
+  tools.ts                |    87.5 |      100 |     100 |   85.71 | 41                
+ shared/cart              |    6.02 |     0.87 |    3.57 |    6.25 |                   
+  admin.functions.ts      |       0 |        0 |       0 |       0 | 14-191            
+  base.functions.ts       |       0 |        0 |       0 |       0 | 8-306             
+  customer.functions.ts   |       0 |        0 |       0 |       0 | 7-215             
+  functions.ts            |       0 |        0 |       0 |       0 | 1-106             
+  parameters.ts           |     100 |      100 |     100 |     100 |                   
+  prompts.ts              |     100 |      100 |     100 |     100 |                   
+  store.functions.ts      |       0 |        0 |       0 |       0 | 8-258             
+  tools.ts                |      75 |    33.33 |     100 |   72.72 | 87,95,110         
+ shared/cart-discount     |   15.69 |     4.76 |    5.88 |   16.77 |                   
+  admin.functions.ts      |       0 |        0 |       0 |       0 | 12-120            
+  base.functions.ts       |       0 |        0 |       0 |       0 | 6-246             
+  functions.ts            |       0 |        0 |       0 |       0 | 4-71              
+  parameters.ts           |     100 |      100 |     100 |     100 |                   
+  prompts.ts              |     100 |      100 |     100 |     100 |                   
+  store.functions.ts      |       0 |        0 |       0 |       0 | 12-125            
+  tools.ts                |    87.5 |    66.66 |     100 |   85.71 | 59                
+ shared/category          |   11.86 |     4.16 |    6.66 |   12.62 |                   
+  admin.functions.ts      |       0 |        0 |       0 |       0 | 12-107            
+  base.functions.ts       |       0 |        0 |       0 |       0 | 6-180             
+  customer.functions.ts   |       0 |        0 |       0 |       0 | 4-49              
+  functions.ts            |       0 |        0 |       0 |       0 | 8-65              
+  parameters.ts           |     100 |      100 |     100 |     100 |                   
+  prompts.ts              |     100 |      100 |     100 |     100 |                   
+  tools.ts                |    87.5 |      100 |     100 |   85.71 | 55                
+ shared/channel           |   17.24 |     4.34 |    9.09 |   18.42 |                   
+  admin.functions.ts      |       0 |        0 |       0 |       0 | 12-112            
+  base.functions.ts       |       0 |        0 |       0 |       0 | 6-154             
+  functions.ts            |       0 |        0 |       0 |       0 | 3-29              
+  parameters.ts           |     100 |      100 |     100 |     100 |                   
+  prompts.ts              |     100 |      100 |     100 |     100 |                   
+  tools.ts                |    87.5 |      100 |     100 |   85.71 | 55                
+ shared/customer          |   11.71 |     2.94 |    7.69 |   12.17 |                   
+  admin.functions.ts      |       0 |        0 |       0 |       0 | 12-100            
+  base.functions.ts       |       0 |        0 |       0 |       0 | 6-162             
+  customer.functions.ts   |       0 |        0 |       0 |       0 | 4-32              
+  functions.ts            |       0 |        0 |       0 |       0 | 3-43              
+  parameters.ts           |     100 |      100 |     100 |     100 |                   
+  prompts.ts              |     100 |      100 |     100 |     100 |                   
+  store.functions.ts      |       0 |        0 |       0 |       0 | 12-85             
+  tools.ts                |   66.66 |    33.33 |     100 |   63.63 | 53,58-61          
+ shared/customer-group    |   21.52 |     3.57 |    3.84 |   22.38 |                   
+  admin.functions.ts      |       0 |        0 |       0 |       0 | 3-115             
+  base.functions.ts       |       0 |        0 |       0 |       0 | 11-210            
+  functions.ts            |       0 |        0 |       0 |       0 | 2-121             
+  parameters.ts           |    90.9 |        0 |       0 |    90.9 | 15,230            
+  prompts.ts              |     100 |      100 |     100 |     100 |                   
+  tools.ts                |    87.5 |      100 |     100 |   85.71 | 75                
+ shared/discount-code     |    4.08 |        0 |       0 |       5 |                   
+  admin.functions.ts      |       0 |        0 |       0 |       0 | 9-94              
+  base.functions.ts       |       0 |        0 |       0 |       0 | 11-149            
+  functions.ts            |       0 |        0 |       0 |       0 | 8-62              
+  parameters.ts           |     100 |      100 |     100 |     100 |                   
+  prompts.ts              |       0 |      100 |     100 |       0 | 1-37              
+  tools.ts                |       0 |        0 |       0 |       0 | 1-60              
+ shared/errors            |       0 |        0 |       0 |       0 |                   
+  sdkError.ts             |       0 |        0 |       0 |       0 | 1-10              
+ shared/inventory         |   15.09 |     9.09 |    4.76 |   14.42 |                   
+  admin.functions.ts      |       0 |        0 |       0 |       0 | 9-160             
+  base.functions.ts       |       0 |      100 |       0 |       0 | 8-192             
+  functions.ts            |       0 |        0 |       0 |       0 | 8-77              
+  parameters.ts           |     100 |      100 |     100 |     100 |                   
+  prompts.ts              |     100 |      100 |     100 |     100 |                   
+  tools.ts                |    87.5 |      100 |     100 |   85.71 | 58                
+ shared/order             |    6.64 |     0.74 |    3.12 |    6.96 |                   
+  admin.functions.ts      |       0 |        0 |       0 |       0 | 15-261            
+  base.functions.ts       |       0 |        0 |       0 |       0 | 2-249             
+  customer.functions.ts   |       0 |        0 |       0 |       0 | 3-141             
+  functions.ts            |       0 |        0 |       0 |       0 | 1-124             
+  parameters.ts           |      50 |        0 |       0 |      50 | 210-221           
+  prompts.ts              |     100 |      100 |     100 |     100 |                   
+  store.functions.ts      |       0 |        0 |       0 |       0 | 8-239             
+  tools.ts                |   66.66 |    33.33 |     100 |   63.63 | 55,60-63          
+ shared/product-discount  |   18.55 |     4.76 |    5.26 |   18.47 |                   
+  admin.functions.ts      |       0 |        0 |       0 |       0 | 12-161            
+  base.functions.ts       |       0 |        0 |       0 |       0 | 12-174            
+  functions.ts            |       0 |        0 |       0 |       0 | 8-62              
+  parameters.ts           |     100 |      100 |     100 |     100 |                   
+  prompts.ts              |     100 |      100 |     100 |     100 |                   
+  tools.ts                |    87.5 |      100 |     100 |   85.71 | 59                
+ shared/product-search    |      36 |        0 |      20 |   36.36 |                   
+  admin.functions.ts      |       0 |      100 |       0 |       0 | 4-15              
+  base.functions.ts       |       0 |        0 |       0 |       0 | 4-38              
+  functions.ts            |       0 |      100 |       0 |       0 | 4-29              
+  parameters.ts           |     100 |      100 |     100 |     100 |                   
+  prompts.ts              |     100 |      100 |     100 |     100 |                   
+  tools.ts                |     100 |      100 |     100 |     100 |                   
+ shared/product-selection |   13.86 |     4.34 |    7.14 |   14.94 |                   
+  admin.functions.ts      |       0 |        0 |       0 |       0 | 2-121             
+  base.functions.ts       |       0 |        0 |       0 |       0 | 7-145             
+  functions.ts            |       0 |        0 |       0 |       0 | 8-56              
+  parameters.ts           |     100 |      100 |     100 |     100 |                   
+  prompts.ts              |     100 |      100 |     100 |     100 |                   
+  tools.ts                |    87.5 |      100 |     100 |   85.71 | 59                
+ shared/product-type      |   21.73 |     6.66 |    8.33 |   24.56 |                   
+  admin.functions.ts      |       0 |        0 |       0 |       0 | 12-57             
+  base.functions.ts       |       0 |        0 |       0 |       0 | 6-92              
+  functions.ts            |       0 |        0 |       0 |       0 | 9-59              
+  parameters.ts           |     100 |      100 |     100 |     100 |                   
+  prompts.ts              |     100 |      100 |     100 |     100 |                   
+  tools.ts                |    87.5 |      100 |     100 |   85.71 | 59                
+ shared/products          |   21.73 |     6.66 |    8.33 |   24.56 |                   
+  admin.functions.ts      |       0 |        0 |       0 |       0 | 12-57             
+  base.functions.ts       |       0 |        0 |       0 |       0 | 6-92              
+  functions.ts            |       0 |        0 |       0 |       0 | 9-57              
+  parameters.ts           |     100 |      100 |     100 |     100 |                   
+  prompts.ts              |     100 |      100 |     100 |     100 |                   
+  tools.ts                |    87.5 |      100 |     100 |   85.71 | 55                
+ shared/project           |   45.05 |     7.14 |    12.5 |   48.19 |                   
+  admin.functions.ts      |       0 |        0 |       0 |       0 | 4-75              
+  base.functions.ts       |       0 |        0 |       0 |       0 | 2-52              
+  functions.ts            |       0 |        0 |       0 |       0 | 4-46              
+  parameters.ts           |     100 |      100 |     100 |     100 |                   
+  prompts.ts              |     100 |      100 |     100 |     100 |                   
+  tools.ts                |    87.5 |      100 |     100 |   85.71 | 35                
+ shared/standalone-price  |   17.24 |     4.34 |    9.09 |   18.42 |                   
+  admin.functions.ts      |       0 |        0 |       0 |       0 | 12-112            
+  base.functions.ts       |       0 |        0 |       0 |       0 | 7-155             
+  functions.ts            |       0 |        0 |       0 |       0 | 14-40             
+  parameters.ts           |     100 |      100 |     100 |     100 |                   
+  prompts.ts              |     100 |      100 |     100 |     100 |                   
+  tools.ts                |    87.5 |      100 |     100 |   85.71 | 59                
+ types                    |       0 |        0 |       0 |       0 |                   
+  tools.ts                |       0 |        0 |       0 |       0 | 3-19              
+--------------------------|---------|----------|---------|---------|-------------------

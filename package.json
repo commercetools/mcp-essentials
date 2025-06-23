@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "@commercetools/platform-sdk": "^8.5.0",
+    "@commercetools/ts-client": "^3.2.0",
+    "@commercetools-demo/ct-agent-toolkit": "^1.0.0"
+  },
+  "packageManager": "pnpm@9.11.0"
+}
