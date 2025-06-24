@@ -16,17 +16,19 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: pnpm
-        uses: pnpm/action-setup@v4
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4.1.0
+        id: pnpm-install
         with:
-          version: 9.11.0
+          run_install: false
 
-      - name: Node
+      - name: Setup Node (uses version in .nvmrc)
         uses: actions/setup-node@v4
         with:
-          node-version: "18"
+          node-version-file: ".nvmrc"
+          cache: "pnpm"
 
       - name: Install
         run: pnpm install --frozen-lockfile
@@ -52,17 +54,19 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: pnpm
-        uses: pnpm/action-setup@v4
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4.1.0
+        id: pnpm-install
         with:
-          version: 9.11.0
+          run_install: false
 
-      - name: Node
+      - name: Setup Node (uses version in .nvmrc)
         uses: actions/setup-node@v4
         with:
-          node-version: "18"
+          node-version-file: ".nvmrc"
+          cache: "pnpm"
 
       - name: Install
         run: pnpm install --frozen-lockfile
