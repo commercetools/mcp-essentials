@@ -25,6 +25,9 @@
   "engines": {
     "node": ">=18"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "@commercetools/ct-agent-toolkit": "workspace:*",
     "@modelcontextprotocol/sdk": "^1.11.0",
