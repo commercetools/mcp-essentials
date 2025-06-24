@@ -59,7 +59,10 @@ jobs:
         run: pnpm --filter @commercetools/ct-agent-toolkit run test
 
       - name: Test - Model Context Protocol
-        run: pnpm --filter @commercetools/mcp-essentials run test
+        run: |
+          # Builds types which are neededin tests
+          pnpm --filter @commercetools/ct-agent-toolkit run build
+          pnpm --filter @commercetools/mcp-essentials run test
 
   building:
     name: Building
