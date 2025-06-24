@@ -1,6 +1,6 @@
 {
   "name": "@commercetools/ct-agent-toolkit",
-  "version": "1.14.0",
+  "version": "1.0.0",
   "homepage": "https://github.com/commercetools/ct-agent-toolkit",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
