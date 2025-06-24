@@ -25,7 +25,7 @@
     "node": ">=18"
   },
   "dependencies": {
-    "@commercetools/ct-agent-toolkit": "1.14.0",
+    "@commercetools/ct-agent-toolkit": "workspace:*",
     "@modelcontextprotocol/sdk": "^1.11.0",
     "colors": "^1.4.0"
   },
