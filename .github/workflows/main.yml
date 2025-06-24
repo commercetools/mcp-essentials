@@ -14,10 +14,6 @@ jobs:
     name: Build - TypeScript
     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        working-directory: ./typescript
-
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -36,28 +32,24 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build
-        run: pnpm run build
+        run: pnpm --filter @commercetools/ct-agent-toolkit run build
 
       - name: Clean
-        run: pnpm run clean
+        run: pnpm --filter @commercetools/ct-agent-toolkit run clean
 
       - name: Lint
-        run: pnpm run lint
+        run: pnpm --filter @commercetools/ct-agent-toolkit run lint
 
       - name: Prettier
-        run: pnpm run prettier-check
+        run: pnpm --filter @commercetools/ct-agent-toolkit run prettier-check
 
       - name: Test
-        run: pnpm run test
+        run: pnpm --filter @commercetools/ct-agent-toolkit run test
 
   modelcontextprotocol-build:
     name: Build - Model Context Protocol
     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        working-directory: ./modelcontextprotocol
-
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -76,49 +68,16 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build
-        run: pnpm run build
+        run: pnpm --filter @commercetools/mcp-essentials run build
 
       - name: Clean
-        run: pnpm run clean
+        run: pnpm --filter @commercetools/mcp-essentials run clean
 
       - name: Lint
-        run: pnpm run lint
+        run: pnpm --filter @commercetools/mcp-essentials run lint
 
       - name: Prettier
-        run: pnpm run prettier-check
+        run: pnpm --filter @commercetools/mcp-essentials run prettier-check
 
       - name: Test
-        run: pnpm run test
-
-  # python-build:
-  #   name: Build - Python
-  #   runs-on: ubuntu-latest
-
-  #   defaults:
-  #     run:
-  #       working-directory: ./python
-
-  #   steps:
-  #     - name: Checkout
-  #       uses: actions/checkout@v3
-
-  #     - name: Python
-  #       uses: actions/setup-python@v4
-  #       with:
-  #         python-version: "3.11"
-
-  #     - name: Install
-  #       run: make venv
-
-  #     - name: Build
-  #       run: |
-  #         set -x
-  #         source venv/bin/activate
-  #         rm -rf build dist *.egg-info
-  #         make build
-  #         python -m twine check dist/*
-
-  #     - name: Test
-  #       run: |
-  #         make venv
-  #         make test
+        run: pnpm --filter @commercetools/mcp-essentials run test
