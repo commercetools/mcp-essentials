@@ -13,6 +13,7 @@
   ],
   "scripts": {
     "preinstall": "npx only-allow pnpm",
+    "prebuild": "pnpm --filter @commercetools/ct-agent-toolkit run build",
     "build": "tsc && node -e \"require('fs').chmodSync('dist/index.js', '755')\"",
     "clean": "rm -rf dist",
     "lint": "eslint \"./**/*.ts*\"",
