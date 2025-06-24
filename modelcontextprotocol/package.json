@@ -12,6 +12,7 @@
     "package.json"
   ],
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "build": "tsc && node -e \"require('fs').chmodSync('dist/index.js', '755')\"",
     "clean": "rm -rf dist",
     "lint": "eslint \"./**/*.ts*\"",
