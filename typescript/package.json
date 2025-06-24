@@ -3,6 +3,7 @@
   "version": "1.14.0",
   "homepage": "https://github.com/commercetools-demo/ct-agent-toolkit",
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "build": "tsup",
     "changeset": "changeset",
     "changeset:version": "changeset version",

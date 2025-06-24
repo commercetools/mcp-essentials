@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "preinstall": "npx only-allow pnpm"
+  },
   "dependencies": {
     "@commercetools/platform-sdk": "^8.5.0",
     "@commercetools/ts-client": "^3.2.0",
