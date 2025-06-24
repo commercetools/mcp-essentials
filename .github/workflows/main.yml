@@ -10,7 +10,7 @@ on:
       - main
 
 jobs:
-  typescript-build:
+  lint-test-buuild:
     name: Build - TypeScript
     runs-on: ubuntu-latest
 
@@ -33,55 +33,32 @@ jobs:
       - name: Install
         run: pnpm install --frozen-lockfile
 
-      - name: Build
+      - name: Build - TypeScript
         run: pnpm --filter @commercetools/ct-agent-toolkit run build
 
-      - name: Clean
+      - name: Clean - TypeScript
         run: pnpm --filter @commercetools/ct-agent-toolkit run clean
 
-      - name: Lint
+      - name: Lint - TypeScript
         run: pnpm --filter @commercetools/ct-agent-toolkit run lint
 
-      - name: Prettier
+      - name: Prettier - TypeScript
         run: pnpm --filter @commercetools/ct-agent-toolkit run prettier-check
 
-      - name: Test
+      - name: Test - TypeScript
         run: pnpm --filter @commercetools/ct-agent-toolkit run test
 
-  modelcontextprotocol-build:
-    name: Build - Model Context Protocol
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4.1.0
-        id: pnpm-install
-        with:
-          run_install: false
-
-      - name: Setup Node (uses version in .nvmrc)
-        uses: actions/setup-node@v4
-        with:
-          node-version-file: ".nvmrc"
-          cache: "pnpm"
-
-      - name: Install
-        run: pnpm install --frozen-lockfile
-
-      - name: Build
+      - name: Build - Model Context Protocol
         run: pnpm --filter @commercetools/mcp-essentials run build
 
-      - name: Clean
+      - name: Clean - Model Context Protocol
         run: pnpm --filter @commercetools/mcp-essentials run clean
 
-      - name: Lint
+      - name: Lint - Model Context Protocol
         run: pnpm --filter @commercetools/mcp-essentials run lint
 
-      - name: Prettier
+      - name: Prettier - Model Context Protocol
         run: pnpm --filter @commercetools/mcp-essentials run prettier-check
 
-      - name: Test
+      - name: Test - Model Context Protocol
         run: pnpm --filter @commercetools/mcp-essentials run test
