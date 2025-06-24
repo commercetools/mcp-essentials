@@ -34,7 +34,7 @@
     "modelcontextprotocol",
     "commercetools"
   ],
-  "author": "Luciano Giavedoni <luciano.giavedoni@commercetools.com>",
+  "author": "commercetools GmbH <info@commercetools.com> (https://commercetools.com)",
   "license": "MIT",
   "devDependencies": {
     "@eslint/compat": "^1.2.6",

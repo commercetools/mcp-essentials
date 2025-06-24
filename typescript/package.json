@@ -35,7 +35,7 @@
   "engines": {
     "node": ">=18"
   },
-  "author": "Luciano Giavedoni <lgiavedoni@gmail.com> (https://github.com/lgiavedoni)",
+  "author": "commercetools GmbH <info@commercetools.com> (https://commercetools.com)",
   "contributors": [
     "Luciano Giavedoni <lgiavedoni@gmail.com>",
     "Behnam Tehrani <behnam.tehrani@commercetools.com>"
