@@ -3,10 +3,10 @@ import {
   CommercetoolsAgentToolkit,
   Configuration,
   AvailableNamespaces,
-} from '@commercetools-demo/ct-agent-toolkit/modelcontextprotocol';
+} from '@commercetools/ct-agent-toolkit/modelcontextprotocol';
 
 // Mock the CommercetoolsAgentToolkit and transport
-jest.mock('@commercetools-demo/ct-agent-toolkit/modelcontextprotocol');
+jest.mock('@commercetools/ct-agent-toolkit/modelcontextprotocol');
 jest.mock('@modelcontextprotocol/sdk/server/stdio.js');
 
 describe('parseArgs function', () => {

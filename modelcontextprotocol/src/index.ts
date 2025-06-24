@@ -4,7 +4,7 @@ import {
   CommercetoolsAgentToolkit,
   Configuration,
   AvailableNamespaces,
-} from '@commercetools-demo/ct-agent-toolkit/modelcontextprotocol';
+} from '@commercetools/ct-agent-toolkit/modelcontextprotocol';
 import {StdioServerTransport} from '@modelcontextprotocol/sdk/server/stdio.js';
 import {red, yellow} from 'colors';
 

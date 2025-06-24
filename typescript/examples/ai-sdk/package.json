@@ -9,7 +9,7 @@
   "license": "MIT",
   "dependencies": {
     "@ai-sdk/openai": "^0.0.63",
-    "@commercetools-demo/ct-agent-toolkit": "latest",
+    "@commercetools/ct-agent-toolkit": "latest",
     "ai": "^4.1.54",
     "dotenv": "^16.4.5"
   },

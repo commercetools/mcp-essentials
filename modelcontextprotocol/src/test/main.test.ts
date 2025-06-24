@@ -1,8 +1,8 @@
 import {main} from '../index';
-import {CommercetoolsAgentToolkit} from '@commercetools-demo/ct-agent-toolkit/modelcontextprotocol';
+import {CommercetoolsAgentToolkit} from '@commercetools/ct-agent-toolkit/modelcontextprotocol';
 import {StdioServerTransport} from '@modelcontextprotocol/sdk/server/stdio.js';
 
-jest.mock('@commercetools-demo/ct-agent-toolkit/modelcontextprotocol');
+jest.mock('@commercetools/ct-agent-toolkit/modelcontextprotocol');
 jest.mock('@modelcontextprotocol/sdk/server/stdio.js');
 
 describe('main function', () => {

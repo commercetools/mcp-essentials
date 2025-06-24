@@ -1,7 +1,7 @@
 {
-  "name": "@commercetools-demo/mcp",
+  "name": "@commercetools/mcp-essentials",
   "version": "1.14.0",
-  "homepage": "https://github.com/commercetools-demo/ct-agent-toolkit/",
+  "homepage": "https://github.com/commercetools/ct-agent-toolkit/",
   "description": "A command line tool for setting up commercetools MCP server",
   "bin": "dist/index.js",
   "files": [
@@ -25,7 +25,7 @@
     "node": ">=18"
   },
   "dependencies": {
-    "@commercetools-demo/ct-agent-toolkit": "1.14.0",
+    "@commercetools/ct-agent-toolkit": "1.14.0",
     "@modelcontextprotocol/sdk": "^1.11.0",
     "colors": "^1.4.0"
   },

@@ -65,7 +65,7 @@ body:
     id: api-version
     attributes:
       label: API version
-      description: See [Versioning](https://www.npmjs.com/package/@commercetools-demo/ct-agent-toolkit) in NPM to find which version you're using
+      description: See [Versioning](https://www.npmjs.com/package/@commercetools/ct-agent-toolkit) in NPM to find which version you're using
       placeholder: "1.0.0"
     validations:
       required: true
