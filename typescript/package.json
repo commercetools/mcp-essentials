@@ -1,7 +1,7 @@
 {
-  "name": "@commercetools-demo/ct-agent-toolkit",
+  "name": "@commercetools/ct-agent-toolkit",
   "version": "1.14.0",
-  "homepage": "https://github.com/commercetools-demo/ct-agent-toolkit",
+  "homepage": "https://github.com/commercetools/ct-agent-toolkit",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "build": "tsup",
