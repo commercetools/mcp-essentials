@@ -4,6 +4,8 @@
   "homepage": "https://github.com/commercetools-demo/ct-agent-toolkit",
   "scripts": {
     "build": "tsup",
+    "changeset": "changeset",
+    "changeset:version": "changeset version",
     "clean": "rm -rf langchain ai-sdk modelcontextprotocol openai",
     "lint": "eslint \"./**/*.ts*\"",
     "prettier": "prettier './**/*.{js,ts,md,html,css}' --write",
