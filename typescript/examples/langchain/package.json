@@ -10,7 +10,7 @@
   "dependencies": {
     "@langchain/core": "^0.3.6",
     "@langchain/openai": "^0.3.5",
-    "@commercetools-demo/ct-agent-toolkit": "latest",
+    "@commercetools/agent-essentials": "latest",
     "dotenv": "^16.4.5",
     "langchain": "^0.3.2"
   },

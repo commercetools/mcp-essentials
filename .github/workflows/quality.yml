@@ -1,0 +1,86 @@
+name: Quality
+
+on:
+  workflow_dispatch: {}
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  linting:
+    name: Linting
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup linting
+        uses: ./.github/actions/setup
+
+      - name: Lint - TypeScript
+        run: pnpm --filter @commercetools/agent-essentials run lint
+
+      - name: Lint - Model Context Protocol
+        run: pnpm --filter @commercetools/mcp-essentials run lint
+
+  formatting:
+    name: Formatting
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup formatting
+        uses: ./.github/actions/setup
+
+      - name: Prettier - TypeScript
+        run: pnpm --filter @commercetools/agent-essentials run prettier-check
+
+      - name: Prettier - Model Context Protocol
+        run: pnpm --filter @commercetools/mcp-essentials run prettier-check
+
+  testing:
+    name: Testing
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup testing
+        uses: ./.github/actions/setup
+
+      - name: Test - TypeScript
+        run: pnpm --filter @commercetools/agent-essentials run test
+
+      - name: Test - Model Context Protocol
+        run: |
+          # Builds types which are neededin tests
+          pnpm --filter @commercetools/agent-essentials run build
+          pnpm --filter @commercetools/mcp-essentials run test
+
+  building:
+    name: Building
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup testing
+        uses: ./.github/actions/setup
+
+      - name: Test - TypeScript
+        run: |
+          pnpm --filter @commercetools/agent-essentials run build
+          pnpm --filter @commercetools/agent-essentials run clean
+
+      - name: Test - Model Context Protocol
+        run: |
+          pnpm --filter @commercetools/mcp-essentials run build
+          pnpm --filter @commercetools/mcp-essentials run clean

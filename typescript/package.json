@@ -1,9 +1,12 @@
 {
-  "name": "@commercetools-demo/ct-agent-toolkit",
-  "version": "1.14.0",
-  "homepage": "https://github.com/commercetools-demo/ct-agent-toolkit",
+  "name": "@commercetools/agent-essentials",
+  "version": "1.0.0",
+  "homepage": "https://github.com/commercetools/mcp-essentials",
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "build": "tsup",
+    "changeset": "changeset",
+    "changeset:version": "changeset version",
     "clean": "rm -rf langchain ai-sdk modelcontextprotocol openai",
     "lint": "eslint \"./**/*.ts*\"",
     "prettier": "prettier './**/*.{js,ts,md,html,css}' --write",
@@ -32,15 +35,15 @@
   "engines": {
     "node": ">=18"
   },
-  "author": "Luciano Giavedoni <lgiavedoni@gmail.com> (https://github.com/lgiavedoni)",
-  "contributors": [
-    "Luciano Giavedoni <lgiavedoni@gmail.com>",
-    "Behnam Tehrani <behnam.tehrani@commercetools.com>"
-  ],
+  "author": "commercetools GmbH <info@commercetools.com> (https://commercetools.com)",
+  "publishConfig": {
+    "access": "public"
+  },
   "license": "MIT",
   "devDependencies": {
     "@eslint/compat": "^1.2.4",
     "@types/jest": "^29.5.14",
+    "@changesets/cli": "^2.29.4",
     "@types/node": "^22.10.5",
     "@typescript-eslint/eslint-plugin": "^8.19.1",
     "eslint": "^9.17.0",

@@ -16,7 +16,7 @@ pnpm add link:../typescript
 npx ts-node src/index.ts --tools=products.read --clientId=CLIENT_ID --clientSecret=CLIENT_SECRET --authUrl=AUTH_URL --projectKey=PROJECT_KEY --apiUrl=API_URL
 
 # test using mcptools : Install mcptools from https://github.com/f/mcptools
-mcp call list_products --params '{"limit": 2}' npx ts-node /<absolute-path>/ct-agent-toolkit/modelcontextprotocol/src/index.ts --tools=all \
+mcp call list_products --params '{"limit": 2}' npx ts-node /<absolute-path>/agent-essentials/modelcontextprotocol/src/index.ts --tools=all \
 --projectKey="PROJECT_KEY" \
 --clientSecret="CLIENT_SECRET" \
 --clientId="CLIENT_ID" \
@@ -49,7 +49,7 @@ Configure MCP servers in Claude Desktop
       "command": "npx",
       "args": [
         "ts-node",
-        "/<absolute-path>/ct-agent-toolkit/modelcontextprotocol/src/index.ts",
+        "/<absolute-path>/agent-essentials/modelcontextprotocol/src/index.ts",
         "--tools=all",
         "--projectKey=PROJECT_KEY",
         "--clientSecret=CLIENT_SECRET",

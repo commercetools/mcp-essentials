@@ -58,14 +58,14 @@ body:
     id: lib-version
     attributes:
       label: Library version
-      placeholder: ct-agent-toolkit v1.0.0
+      placeholder: agent-essentials v1.0.0
     validations:
       required: true
   - type: input
     id: api-version
     attributes:
       label: API version
-      description: See [Versioning](https://www.npmjs.com/package/@commercetools-demo/ct-agent-toolkit) in NPM to find which version you're using
+      description: See [Versioning](https://www.npmjs.com/package/@commercetools/agent-essentials) in NPM to find which version you're using
       placeholder: "1.0.0"
     validations:
       required: true

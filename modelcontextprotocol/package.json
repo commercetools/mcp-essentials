@@ -1,7 +1,7 @@
 {
-  "name": "@commercetools-demo/mcp",
-  "version": "1.14.0",
-  "homepage": "https://github.com/commercetools-demo/ct-agent-toolkit/",
+  "name": "@commercetools/mcp-essentials",
+  "version": "1.0.0",
+  "homepage": "https://github.com/commercetools/mcp-essentials",
   "description": "A command line tool for setting up commercetools MCP server",
   "bin": "dist/index.js",
   "files": [
@@ -12,6 +12,8 @@
     "package.json"
   ],
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
+    "prebuild": "pnpm --filter @commercetools/agent-essentials run build",
     "build": "tsc && node -e \"require('fs').chmodSync('dist/index.js', '755')\"",
     "clean": "rm -rf dist",
     "lint": "eslint \"./**/*.ts*\"",
@@ -24,8 +26,11 @@
   "engines": {
     "node": ">=18"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
-    "@commercetools-demo/ct-agent-toolkit": "1.14.0",
+    "@commercetools/agent-essentials": "workspace:*",
     "@modelcontextprotocol/sdk": "^1.11.0",
     "colors": "^1.4.0"
   },
@@ -34,7 +39,7 @@
     "modelcontextprotocol",
     "commercetools"
   ],
-  "author": "Luciano Giavedoni <luciano.giavedoni@commercetools.com>",
+  "author": "commercetools GmbH <info@commercetools.com> (https://commercetools.com)",
   "license": "MIT",
   "devDependencies": {
     "@eslint/compat": "^1.2.6",
