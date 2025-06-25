@@ -1,6 +1,8 @@
 {
   "scripts": {
-    "preinstall": "npx only-allow pnpm"
+    "preinstall": "npx only-allow pnpm",
+    "changeset": "changeset",
+    "changeset:version": "changeset version"
   },
   "dependencies": {
     "@commercetools/platform-sdk": "^8.5.0",
