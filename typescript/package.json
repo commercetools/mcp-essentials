@@ -36,10 +36,6 @@
     "node": ">=18"
   },
   "author": "commercetools GmbH <info@commercetools.com> (https://commercetools.com)",
-  "contributors": [
-    "Luciano Giavedoni <lgiavedoni@gmail.com>",
-    "Behnam Tehrani <behnam.tehrani@commercetools.com>"
-  ],
   "publishConfig": {
     "access": "public"
   },
