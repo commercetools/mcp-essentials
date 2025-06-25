@@ -141,7 +141,7 @@ You don't need this source code unless you want to modify the package. If you ju
 want to use the package run:
 
 ```
-npm install @commercetools/ct-agent-toolkit
+npm install @commercetools/agent-essentials
 ```
 
 #### Requirements
@@ -155,7 +155,7 @@ The library needs to be configured with your commercetools project API client cr
 Additionally, `configuration` enables you to specify the types of actions that can be taken using the toolkit.
 
 ```typescript
-import { CommercetoolsAgentToolkit } from "@commercetools/ct-agent-toolkit/langchain";
+import { CommercetoolsAgentToolkit } from "@commercetools/agent-essentials/langchain";
 
 const commercetoolsAgentToolkit = new CommercetoolsAgentToolkit({
   clientId: process.env.CLIENT_ID!,
@@ -204,7 +204,7 @@ const agentExecutor = new AgentExecutor({
 The commercetools MCP Essentials also supports setting up your own MCP server. For example:
 
 ```typescript
-import { CommercetoolsAgentToolkit } from "@commercetools/ct-agent-toolkit/modelcontextprotocol";
+import { CommercetoolsAgentToolkit } from "@commercetools/agent-essentials/modelcontextprotocol";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 
 const server = new CommercetoolsAgentToolkit({

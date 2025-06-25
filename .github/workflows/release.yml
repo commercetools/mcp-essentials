@@ -42,7 +42,7 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Build - TypeScript
-        run: pnpm --filter @commercetools/ct-agent-toolkit run build
+        run: pnpm --filter @commercetools/agent-essentials run build
 
       - name: Build - Model Context Protocol
         run: pnpm --filter @commercetools/mcp-essentials run build

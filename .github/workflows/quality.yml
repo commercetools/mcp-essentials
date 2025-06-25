@@ -22,7 +22,7 @@ jobs:
         uses: ./.github/actions/setup
 
       - name: Lint - TypeScript
-        run: pnpm --filter @commercetools/ct-agent-toolkit run lint
+        run: pnpm --filter @commercetools/agent-essentials run lint
 
       - name: Lint - Model Context Protocol
         run: pnpm --filter @commercetools/mcp-essentials run lint
@@ -39,7 +39,7 @@ jobs:
         uses: ./.github/actions/setup
 
       - name: Prettier - TypeScript
-        run: pnpm --filter @commercetools/ct-agent-toolkit run prettier-check
+        run: pnpm --filter @commercetools/agent-essentials run prettier-check
 
       - name: Prettier - Model Context Protocol
         run: pnpm --filter @commercetools/mcp-essentials run prettier-check
@@ -56,12 +56,12 @@ jobs:
         uses: ./.github/actions/setup
 
       - name: Test - TypeScript
-        run: pnpm --filter @commercetools/ct-agent-toolkit run test
+        run: pnpm --filter @commercetools/agent-essentials run test
 
       - name: Test - Model Context Protocol
         run: |
           # Builds types which are neededin tests
-          pnpm --filter @commercetools/ct-agent-toolkit run build
+          pnpm --filter @commercetools/agent-essentials run build
           pnpm --filter @commercetools/mcp-essentials run test
 
   building:
@@ -77,8 +77,8 @@ jobs:
 
       - name: Test - TypeScript
         run: |
-          pnpm --filter @commercetools/ct-agent-toolkit run build
-          pnpm --filter @commercetools/ct-agent-toolkit run clean
+          pnpm --filter @commercetools/agent-essentials run build
+          pnpm --filter @commercetools/agent-essentials run clean
 
       - name: Test - Model Context Protocol
         run: |

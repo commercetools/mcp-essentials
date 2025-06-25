@@ -6,7 +6,7 @@ You don't need this source code unless you want to modify the package. If you ju
 want to use the package run:
 
 ```
-npm install @commercetools/ct-agent-toolkit
+npm install @commercetools/agent-essentials
 ```
 
 The commercetools MCP Essentials enables popular agent frameworks including LangChain, Vercel's AI SDK, and the [Model Context Protocol (MCP)](https://modelcontextprotocol.com/) to integrate with commercetools APIs through function calling.

@@ -13,7 +13,7 @@
   ],
   "scripts": {
     "preinstall": "npx only-allow pnpm",
-    "prebuild": "pnpm --filter @commercetools/ct-agent-toolkit run build",
+    "prebuild": "pnpm --filter @commercetools/agent-essentials run build",
     "build": "tsc && node -e \"require('fs').chmodSync('dist/index.js', '755')\"",
     "clean": "rm -rf dist",
     "lint": "eslint \"./**/*.ts*\"",
@@ -30,7 +30,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@commercetools/ct-agent-toolkit": "workspace:*",
+    "@commercetools/agent-essentials": "workspace:*",
     "@modelcontextprotocol/sdk": "^1.11.0",
     "colors": "^1.4.0"
   },

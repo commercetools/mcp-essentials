@@ -1,9 +1,9 @@
 import {main, parseArgs} from '..';
-import {CommercetoolsAgentToolkit} from '@commercetools/ct-agent-toolkit/modelcontextprotocol';
+import {CommercetoolsAgentToolkit} from '@commercetools/agent-essentials/modelcontextprotocol';
 import {StdioServerTransport} from '@modelcontextprotocol/sdk/server/stdio.js';
 
 // Mock these imports
-jest.mock('@commercetools/ct-agent-toolkit/modelcontextprotocol');
+jest.mock('@commercetools/agent-essentials/modelcontextprotocol');
 jest.mock('@modelcontextprotocol/sdk/server/stdio.js');
 
 describe('Product Type Tools', () => {

@@ -8,7 +8,7 @@ importers:
 
   .:
     dependencies:
-      '@commercetools/ct-agent-toolkit':
+      '@commercetools/agent-essentials':
         specifier: workspace:*
         version: link:typescript
       '@commercetools/platform-sdk':
@@ -20,7 +20,7 @@ importers:
 
   modelcontextprotocol:
     dependencies:
-      '@commercetools/ct-agent-toolkit':
+      '@commercetools/agent-essentials':
         specifier: workspace:*
         version: link:../typescript
       '@modelcontextprotocol/sdk':
