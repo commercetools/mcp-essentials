@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@changesets/cli':
+        specifier: ^2.29.4
+        version: 2.29.5
       '@commercetools/agent-essentials':
         specifier: workspace:*
         version: link:typescript
@@ -100,9 +103,6 @@ importers:
         specifier: ^3.24.3
         version: 3.24.5(zod@3.25.67)
     devDependencies:
-      '@changesets/cli':
-        specifier: ^2.29.4
-        version: 2.29.5
       '@eslint/compat':
         specifier: ^1.2.4
         version: 1.3.0(eslint@9.29.0)

@@ -5,6 +5,7 @@
     "changeset:version": "changeset version"
   },
   "dependencies": {
+    "@changesets/cli": "^2.29.4",
     "@commercetools/platform-sdk": "^8.5.0",
     "@commercetools/ts-client": "^3.2.0",
     "@commercetools/agent-essentials": "workspace:*"
