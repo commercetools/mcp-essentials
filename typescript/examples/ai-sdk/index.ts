@@ -1,10 +1,10 @@
-import {CommercetoolsAgentToolkit} from '../../src/ai-sdk/index';
+import {CommercetoolsAgentEssentials} from '../../src/ai-sdk/index';
 import {openai} from '@ai-sdk/openai';
 import {generateText} from 'ai';
 
 require('dotenv').config();
 
-const commercetoolsAgentToolkit = new CommercetoolsAgentToolkit({
+const CommercetoolsAgentEssentials = new CommercetoolsAgentEssentials({
   clientId: process.env.CLIENT_ID!,
   clientSecret: process.env.CLIENT_SECRET!,
   authUrl: process.env.AUTH_URL!,
@@ -36,7 +36,7 @@ const model = openai('gpt-4o');
   console.log(`\\nExecuting: ${initialPrompt}`);
   const resultInitial = await generateText({
     model: model,
-    tools: {...commercetoolsAgentToolkit.getTools()},
+    tools: {...CommercetoolsAgentEssentials.getTools()},
     maxSteps: 5,
     prompt: initialPrompt,
   });
@@ -51,7 +51,7 @@ const model = openai('gpt-4o');
   console.log(`\\nExecuting: ${prompt1}`);
   const result1 = await generateText({
     model: model,
-    tools: {...commercetoolsAgentToolkit.getTools()},
+    tools: {...CommercetoolsAgentEssentials.getTools()},
     maxSteps: 5,
     prompt: prompt1,
   });
@@ -92,7 +92,7 @@ I will need the ID of this newly created product AND the ID or key of the produc
   console.log(`\\nExecuting: ${prompt2}`);
   const result2 = await generateText({
     model: model,
-    tools: {...commercetoolsAgentToolkit.getTools()},
+    tools: {...CommercetoolsAgentEssentials.getTools()},
     maxSteps: 10,
     prompt: prompt2,
   });
@@ -107,7 +107,7 @@ I will need the ID of this newly created product AND the ID or key of the produc
   console.log(`\\nExecuting: ${prompt3}`);
   const result3 = await generateText({
     model: model,
-    tools: {...commercetoolsAgentToolkit.getTools()},
+    tools: {...CommercetoolsAgentEssentials.getTools()},
     maxSteps: 5,
     prompt: prompt3,
   });
@@ -122,7 +122,7 @@ I will need the ID of this newly created product AND the ID or key of the produc
   console.log(`\\nExecuting: ${prompt4}`);
   const result4 = await generateText({
     model: model,
-    tools: {...commercetoolsAgentToolkit.getTools()},
+    tools: {...CommercetoolsAgentEssentials.getTools()},
     maxSteps: 10,
     prompt: prompt4,
   });
@@ -137,7 +137,7 @@ I will need the ID of this newly created product AND the ID or key of the produc
   console.log(`\\nExecuting: ${prompt5}`);
   const result5 = await generateText({
     model: model,
-    tools: {...commercetoolsAgentToolkit.getTools()},
+    tools: {...CommercetoolsAgentEssentials.getTools()},
     maxSteps: 5,
     prompt: prompt5,
   });

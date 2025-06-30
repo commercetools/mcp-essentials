@@ -7,7 +7,7 @@ import {
 import {contextToTools} from '../shared/tools';
 import type {Configuration} from '../types/configuration';
 import CommercetoolsTool from './tool';
-class CommercetoolsAgentToolkit {
+class CommercetoolsAgentEssentials {
   private _commercetools: CommercetoolsAPI;
 
   tools: {[key: string]: Tool};
@@ -59,4 +59,4 @@ class CommercetoolsAgentToolkit {
   }
 }
 
-export default CommercetoolsAgentToolkit;
+export default CommercetoolsAgentEssentials;

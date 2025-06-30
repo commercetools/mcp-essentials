@@ -17,7 +17,7 @@ interface ToolDefinition {
   actions: any;
 }
 
-class CommercetoolsAgentToolkit implements BaseToolkit {
+class CommercetoolsAgentEssentials implements BaseToolkit {
   private _commercetools: CommercetoolsAPI;
 
   tools: DynamicStructuredTool[];
@@ -70,4 +70,4 @@ class CommercetoolsAgentToolkit implements BaseToolkit {
   }
 }
 
-export default CommercetoolsAgentToolkit;
+export default CommercetoolsAgentEssentials;

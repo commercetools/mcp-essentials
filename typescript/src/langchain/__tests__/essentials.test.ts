@@ -1,4 +1,4 @@
-import CommercetoolsAgentToolkit from '../toolkit';
+import CommercetoolsAgentEssentials from '../essentials';
 import CommercetoolsAPI from '../../shared/api';
 import CommercetoolsTool from '../tool';
 import {isToolAllowed} from '../../shared/configuration';
@@ -55,7 +55,7 @@ jest.mock('../../shared/tools', () => {
 // or we can get the mocked tools via `require('../../shared/tools')` within the test cases if needed.
 let mockToolDefinitions: any[]; // To hold the data for assertions
 
-describe('CommercetoolsAgentToolkit (Langchain)', () => {
+describe('CommercetoolsAgentEssentials (Langchain)', () => {
   const mockConfiguration = {
     enabledTools: ['cart', 'product.lcTool2'],
     context: {isAdmin: true},
@@ -86,7 +86,7 @@ describe('CommercetoolsAgentToolkit (Langchain)', () => {
   });
 
   it('should initialize CommercetoolsAPI with constructor arguments', () => {
-    const toolkit = new CommercetoolsAgentToolkit({
+    const agentEssentials = new CommercetoolsAgentEssentials({
       clientId: 'id',
       clientSecret: 'secret',
       authUrl: 'auth',
@@ -116,7 +116,7 @@ describe('CommercetoolsAgentToolkit (Langchain)', () => {
       return false;
     });
 
-    const toolkit = new CommercetoolsAgentToolkit({
+    const agentEssentials = new CommercetoolsAgentEssentials({
       clientId: 'id',
       clientSecret: 'secret',
       authUrl: 'auth',
@@ -147,16 +147,16 @@ describe('CommercetoolsAgentToolkit (Langchain)', () => {
       expect.anything()
     );
 
-    expect(toolkit.tools.length).toBe(2);
-    // Check if the tools in the toolkit are the mocked Langchain tools
-    toolkit.tools.forEach((tool) => {
+    expect(agentEssentials.tools.length).toBe(2);
+    // Check if the tools in the agent essentials are the mocked Langchain tools
+    agentEssentials.tools.forEach((tool) => {
       expect(tool).toBe(mockLangchainTool);
     });
   });
 
   it('should return all created Langchain tools via getTools method', () => {
     (isToolAllowed as jest.Mock).mockReturnValue(true); // Allow all
-    const toolkit = new CommercetoolsAgentToolkit({
+    const agentEssentials = new CommercetoolsAgentEssentials({
       clientId: 'id',
       clientSecret: 'secret',
       authUrl: 'auth',
@@ -165,7 +165,7 @@ describe('CommercetoolsAgentToolkit (Langchain)', () => {
       configuration: {enabledTools: ['*']} as any,
     });
 
-    const returnedTools = toolkit.getTools();
+    const returnedTools = agentEssentials.getTools();
     expect(returnedTools.length).toBe(mockToolDefinitions.length);
     returnedTools.forEach((tool) => {
       expect(tool).toBe(mockLangchainTool);
@@ -174,7 +174,7 @@ describe('CommercetoolsAgentToolkit (Langchain)', () => {
 
   it('should handle empty configuration (no tools enabled)', () => {
     (isToolAllowed as jest.Mock).mockReturnValue(false); // No tools allowed
-    const toolkit = new CommercetoolsAgentToolkit({
+    const agentEssentials = new CommercetoolsAgentEssentials({
       clientId: 'id',
       clientSecret: 'secret',
       authUrl: 'auth',
@@ -185,6 +185,6 @@ describe('CommercetoolsAgentToolkit (Langchain)', () => {
 
     expect(isToolAllowed).toHaveBeenCalledTimes(mockToolDefinitions.length);
     expect(CommercetoolsTool).not.toHaveBeenCalled();
-    expect(toolkit.tools.length).toBe(0);
+    expect(agentEssentials.tools.length).toBe(0);
   });
 });

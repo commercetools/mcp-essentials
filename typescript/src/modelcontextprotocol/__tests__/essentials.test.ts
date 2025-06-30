@@ -1,4 +1,4 @@
-import CommercetoolsAgentToolkit from '../toolkit';
+import CommercetoolsAgentEssentials from '../essentials';
 import {McpServer} from '@modelcontextprotocol/sdk/server/mcp.js';
 import CommercetoolsAPI from '../../shared/api';
 import {isToolAllowed} from '../../shared/configuration';
@@ -50,7 +50,7 @@ jest.mock('../../shared/tools', () => {
 
 let mockSharedToolsData: any[]; // To hold the data for assertions
 
-describe('CommercetoolsAgentToolkit (ModelContextProtocol)', () => {
+describe('CommercetoolsAgentEssentials (ModelContextProtocol)', () => {
   const mockConfiguration: Configuration = {
     actions: {
       products: {
@@ -82,7 +82,7 @@ describe('CommercetoolsAgentToolkit (ModelContextProtocol)', () => {
     // Setup mockToolMethod for the McpServer's tool method
     mockToolMethod = jest.fn();
 
-    // Set up McpServer mock to handle the fact that CommercetoolsAgentToolkit extends it
+    // Set up McpServer mock to handle the fact that CommercetoolsAgentEssentials extends it
     (McpServer as jest.Mock).mockImplementation(function (this: any) {
       this.tool = mockToolMethod;
     });
@@ -112,7 +112,7 @@ describe('CommercetoolsAgentToolkit (ModelContextProtocol)', () => {
   });
 
   it('should call McpServer constructor with correct parameters', () => {
-    const toolkit = new CommercetoolsAgentToolkit({
+    const agentEssentials = new CommercetoolsAgentEssentials({
       clientId: 'id',
       clientSecret: 'secret',
       authUrl: 'auth',
@@ -127,7 +127,7 @@ describe('CommercetoolsAgentToolkit (ModelContextProtocol)', () => {
   });
 
   it('should initialize CommercetoolsAPI', () => {
-    const toolkit = new CommercetoolsAgentToolkit({
+    const agentEssentials = new CommercetoolsAgentEssentials({
       clientId: 'id',
       clientSecret: 'secret',
       authUrl: 'auth',
@@ -146,7 +146,7 @@ describe('CommercetoolsAgentToolkit (ModelContextProtocol)', () => {
   });
 
   it('should filter tools and register allowed tools with McpServer when registerAdminTools is called', () => {
-    const toolkit = new CommercetoolsAgentToolkit({
+    const agentEssentials = new CommercetoolsAgentEssentials({
       clientId: 'id',
       clientSecret: 'secret',
       authUrl: 'auth',
@@ -174,7 +174,7 @@ describe('CommercetoolsAgentToolkit (ModelContextProtocol)', () => {
   });
 
   it('handler function should call commercetoolsAPI.run and format result', async () => {
-    const toolkit = new CommercetoolsAgentToolkit({
+    const agentEssentials = new CommercetoolsAgentEssentials({
       clientId: 'id',
       clientSecret: 'secret',
       authUrl: 'auth',
@@ -210,7 +210,7 @@ describe('CommercetoolsAgentToolkit (ModelContextProtocol)', () => {
 
   it('should correctly handle no tools being allowed', () => {
     (isToolAllowed as jest.Mock).mockReturnValue(false); // Disallow all tools
-    const toolkit = new CommercetoolsAgentToolkit({
+    const agentEssentials = new CommercetoolsAgentEssentials({
       clientId: 'id',
       clientSecret: 'secret',
       authUrl: 'auth',

@@ -6,7 +6,7 @@ import {
 } from '../shared/configuration';
 import {contextToTools} from '../shared/tools';
 import type {Configuration} from '../types/configuration';
-class CommercetoolsAgentToolkit extends McpServer {
+class CommercetoolsAgentEssentials extends McpServer {
   private _commercetools: CommercetoolsAPI;
   constructor({
     clientId,
@@ -63,4 +63,4 @@ class CommercetoolsAgentToolkit extends McpServer {
   }
 }
 
-export default CommercetoolsAgentToolkit;
+export default CommercetoolsAgentEssentials;

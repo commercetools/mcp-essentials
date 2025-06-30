@@ -1,6 +1,6 @@
 # commercetools MCP Essentials
 
-This repository contains both a MCP server (which you can integrate with many MCP clients) and a toolkit that can be used from within agent frameworks.
+This repository contains both a MCP server (which you can integrate with many MCP clients) and agent essentials that can be used from within agent frameworks.
 
 # commercetools Model Context Protocol
 
@@ -151,13 +151,13 @@ npm install @commercetools/agent-essentials
 ### Usage
 
 The library needs to be configured with your commercetools project API client credentials which is available in your [Merchant center](https://docs.commercetools.com/getting-started/create-api-client).
-**Important**: Ensure that the API client credentials have the necessary scopes aligned with the actions you configure in the toolkit. For example, if you configure `products: { read: true }`, your API client must have the `view_products` scope.
-Additionally, `configuration` enables you to specify the types of actions that can be taken using the toolkit.
+**Important**: Ensure that the API client credentials have the necessary scopes aligned with the actions you configure in the agent essentials. For example, if you configure `products: { read: true }`, your API client must have the `view_products` scope.
+Additionally, `configuration` enables you to specify the types of actions that can be taken using the agent essentials.
 
 ```typescript
-import { CommercetoolsAgentToolkit } from "@commercetools/agent-essentials/langchain";
+import { CommercetoolsAgentEssentials } from "@commercetools/agent-essentials/langchain";
 
-const commercetoolsAgentToolkit = new CommercetoolsAgentToolkit({
+const commercetoolsAgentEssentials = new CommercetoolsAgentEssentials({
   clientId: process.env.CLIENT_ID!,
   clientSecret: process.env.CLIENT_SECRET!,
   projectKey: process.env.PROJECT_KEY!,
@@ -180,12 +180,12 @@ const commercetoolsAgentToolkit = new CommercetoolsAgentToolkit({
 
 #### Tools
 
-The toolkit works with LangChain and Vercel's AI SDK and can be passed as a list of tools. For example:
+The agent essentials work with LangChain and Vercel's AI SDK and can be passed as a list of tools. For example:
 
 ```typescript
 import { AgentExecutor, createStructuredChatAgent } from "langchain/agents";
 
-const tools = commercetoolsAgentToolkit.getTools();
+const tools = commercetoolsAgentEssentials.getTools();
 
 const agent = await createStructuredChatAgent({
   llm,
@@ -204,10 +204,10 @@ const agentExecutor = new AgentExecutor({
 The commercetools MCP Essentials also supports setting up your own MCP server. For example:
 
 ```typescript
-import { CommercetoolsAgentToolkit } from "@commercetools/agent-essentials/modelcontextprotocol";
+import { CommercetoolsAgentEssentials } from "@commercetools/agent-essentials/modelcontextprotocol";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 
-const server = new CommercetoolsAgentToolkit({
+const server = new CommercetoolsAgentEssentials({
   clientId: process.env.CLIENT_ID!,
   clientSecret: process.env.CLIENT_SECRET!,
   projectKey: process.env.PROJECT_KEY!,
@@ -244,5 +244,5 @@ main().catch((error) => {
 Returns the current set of available tools that can be used with LangChain, AI SDK, or other agent frameworks:
 
 ```typescript
-const tools = commercetoolsAgentToolkit.getTools();
+const tools = commercetoolsAgentEssentials.getTools();
 ```
