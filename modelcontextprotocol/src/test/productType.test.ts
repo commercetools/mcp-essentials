@@ -1,5 +1,5 @@
 import {main, parseArgs} from '..';
-import {CommercetoolsAgentToolkit} from '@commercetools/agent-essentials/modelcontextprotocol';
+import {CommercetoolsAgentEssentials} from '@commercetools/agent-essentials/modelcontextprotocol';
 import {StdioServerTransport} from '@modelcontextprotocol/sdk/server/stdio.js';
 
 // Mock these imports
@@ -27,7 +27,7 @@ describe('Product Type Tools', () => {
 
     await main();
 
-    expect(CommercetoolsAgentToolkit).toHaveBeenCalledWith({
+    expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
       clientId: 'test_client_id',
       clientSecret: 'test_client_secret',
       authUrl: 'https://auth.commercetools.com',
@@ -59,7 +59,7 @@ describe('Product Type Tools', () => {
 
     await main();
 
-    expect(CommercetoolsAgentToolkit).toHaveBeenCalledWith({
+    expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
       clientId: 'test_client_id',
       clientSecret: 'test_client_secret',
       authUrl: 'https://auth.commercetools.com',
@@ -89,7 +89,7 @@ describe('Product Type Tools', () => {
 
     await main();
 
-    expect(CommercetoolsAgentToolkit).toHaveBeenCalledWith({
+    expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
       clientId: 'test_client_id',
       clientSecret: 'test_client_secret',
       authUrl: 'https://auth.commercetools.com',
@@ -119,7 +119,7 @@ describe('Product Type Tools', () => {
 
     await main();
 
-    expect(CommercetoolsAgentToolkit).toHaveBeenCalledWith({
+    expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
       clientId: 'test_client_id',
       clientSecret: 'test_client_secret',
       authUrl: 'https://auth.commercetools.com',
@@ -150,7 +150,7 @@ describe('Product Type Tools', () => {
 
     await main();
 
-    expect(CommercetoolsAgentToolkit).toHaveBeenCalledWith({
+    expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
       clientId: 'test_client_id',
       clientSecret: 'test_client_secret',
       authUrl: 'https://auth.commercetools.com',

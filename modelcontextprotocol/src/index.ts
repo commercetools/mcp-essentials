@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import {
-  CommercetoolsAgentToolkit,
+  CommercetoolsAgentEssentials,
   Configuration,
   AvailableNamespaces,
 } from '@commercetools/agent-essentials/modelcontextprotocol';
@@ -198,7 +198,7 @@ function handleError(error: any) {
 export async function main() {
   const {options, env} = parseArgs(process.argv.slice(2));
 
-  // Create the CommercetoolsAgentToolkit instance
+  // Create the CommercetoolsAgentEssentials instance
   const selectedTools = options.tools!;
   const configuration: Configuration = {
     actions: {},
@@ -249,7 +249,7 @@ export async function main() {
     });
   }
 
-  const server = new CommercetoolsAgentToolkit({
+  const server = new CommercetoolsAgentEssentials({
     clientId: env.clientId!,
     clientSecret: env.clientSecret!,
     authUrl: env.authUrl!,

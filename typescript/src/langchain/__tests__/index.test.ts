@@ -1,7 +1,7 @@
-import {CommercetoolsAgentToolkit} from '../index';
+import {CommercetoolsAgentEssentials} from '../index';
 
 describe('Langchain SDK Index', () => {
-  it('should export CommercetoolsAgentToolkit', () => {
-    expect(CommercetoolsAgentToolkit).toBeDefined();
+  it('should export CommercetoolsAgentEssentials', () => {
+    expect(CommercetoolsAgentEssentials).toBeDefined();
   });
 });
