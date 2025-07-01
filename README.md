@@ -1,3 +1,6 @@
+> [!IMPORTANT]  
+> Important Note: Commerce MCP is provided free of charge as an early access service. Our Service Level Agreement do not apply to Commerce MCP, and it is provided on an "as-is" basis.
+
 # commercetools MCP Essentials
 
 This repository contains both a MCP server (which you can integrate with many MCP clients) and agent essentials that can be used from within agent frameworks.
