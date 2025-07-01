@@ -51,6 +51,7 @@ jobs:
         id: changesets
         uses: changesets/action@v1
         with:
+          title: Pending Releases (aka Version Packages)
           publish: pnpm changeset publish
           version: pnpm changeset:version
           commit: "ci(changesets): version packages"
