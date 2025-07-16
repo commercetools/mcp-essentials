@@ -232,14 +232,21 @@ Once all thoughts are done, you can use the recently registered tools to finish 
       }
 
       const registeredToolNames = validatedInput?.toolsToRegister?.join(", ") || "";
-      const nextAction = !validatedInput.nextThoughtNeeded && registeredToolNames ? `MCP ahs been update with new tools. You can now use the newly registered tools ${registeredToolNames} to finish the operation` : "Continue thinking";
-
+      if (!validatedInput.nextThoughtNeeded && registeredToolNames) {
+        const message = `Now everything is ready in the configured MCP server. Please try again answering the user's query.`
+        return JSON.stringify({
+          thoughtNumber: validatedInput.thoughtNumber,
+          totalThoughts: validatedInput.totalThoughts,
+          nextThoughtNeeded: validatedInput.nextThoughtNeeded,
+          toolsToRegister: validatedInput.toolsToRegister,
+          message: message,
+        })
+      }
 
       return JSON.stringify({
         thoughtNumber: validatedInput.thoughtNumber,
         totalThoughts: validatedInput.totalThoughts,
         nextThoughtNeeded: validatedInput.nextThoughtNeeded,
-        nextAction: nextAction,
         toolsToRegister: validatedInput.toolsToRegister,
         branches: Object.keys(this.branches),
         thoughtHistoryLength: this.thoughtHistory.length,
