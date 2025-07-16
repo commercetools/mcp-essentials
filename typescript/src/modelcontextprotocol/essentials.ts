@@ -9,6 +9,7 @@ import { contextToTools } from '../shared/tools';
 import type { Configuration } from '../types/configuration';
 
 interface ThoughtData {
+  originalQuery: string;
   thought: string;
   thoughtNumber: number;
   totalThoughts: number;
@@ -18,7 +19,8 @@ interface ThoughtData {
   branchId?: string;
   needsMoreThoughts?: boolean;
   nextThoughtNeeded: boolean;
-  toolsToRegister?: string[];
+  registerTools?: string[];
+  alreadyRegisteredTools?: string[];
 }
 
 class CommercetoolsAgentEssentials extends McpServer {
@@ -79,7 +81,9 @@ class CommercetoolsAgentEssentials extends McpServer {
       branchFromThought: z.number().int().min(1).optional().describe("Branching point thought number"),
       branchId: z.string().optional().describe("Branch identifier"),
       needsMoreThoughts: z.boolean().optional().describe("If more thoughts are needed"),
-      toolsToRegister: z.array(z.string()).optional().describe("Tools to register"),
+      registerTools: z.array(z.string()).optional().describe("Tools to register"),
+      alreadyRegisteredTools: z.array(z.string()).optional().describe("Tools that are already registered"),
+      originalQuery: z.string().optional().describe("The original user query"),
     });
 
     // Register the sequential thinking tool using zod schema
@@ -90,40 +94,22 @@ This tool helps analyze problems through a flexible thinking process that can ad
 Each thought can build on, question, or revise previous insights as understanding deepens.
 
 When to use this tool:
-- Breaking down complex Commercetools problems into steps
-- Planning and design with room for revision
-- Analysis of product, cart, order, customer management workflows
-- Problems where the full scope might not be clear initially
-- Tasks that need to maintain context over multiple steps
-- Situations where irrelevant information needs to be filtered out
+- You need to execute a command or a query to a commercetools project, BUT you don't know which tools to use
 
 Key features:
 - You can adjust total_thoughts up or down as you progress
 - You can question or revise previous thoughts
 - You can add more thoughts even after reaching what seemed like the end
 - You can express uncertainty and explore alternative approaches
-- Not every thought needs to build linearly - you can branch or backtrack
-- Generates a solution hypothesis for Commercetools operations
-- Verifies the hypothesis based on the Chain of Thought steps
-- Repeats the process until satisfied
-- Provides a correct answer for Commercetools implementation
 
-Parameters explained:
-- thought: Your current thinking step about Commercetools operations
-- next_thought_needed: True if you need more thinking, even if at what seemed like the end
-- thought_number: Current number in sequence (can go beyond initial total if needed)
-- total_thoughts: Current estimate of thoughts needed (can be adjusted up/down)
-- is_revision: A boolean indicating if this thought revises previous thinking
-- revises_thought: If is_revision is true, which thought number is being reconsidered
-- branch_from_thought: If branching, which thought number is the branching point
-- branch_id: Identifier for the current branch (if any)
-- needs_more_thoughts: If reaching end but realizing more thoughts needed.
-
+This tool DOES NOT call the tools, it only prepares the MCP server to call the tools.
 Once all thoughts are done, you can use the recently registered tools to finish the operation.
 `,
       thoughtSchema.shape,
       async (arg, extra) => {
         const result = await this.processThought(arg as ThoughtData);
+        const parsedResult = JSON.parse(result);
+        const isComplete = !parsedResult.nextThoughtNeeded;
         return {
           content: [
             {
@@ -131,6 +117,7 @@ Once all thoughts are done, you can use the recently registered tools to finish 
               text: String(result),
             },
           ],
+          isError: isComplete, // Mark as error when planning is complete to force attention
         };
       }
     );
@@ -173,23 +160,33 @@ Once all thoughts are done, you can use the recently registered tools to finish 
       return false;
     }
 
-    // Register the tool dynamically (no need to check if already registered)
-    this.tool(
-      tool.method,
-      tool.description,
-      tool.parameters.shape,
-      async (arg: any) => {
-        const result = await this._commercetools.run(tool.method, arg);
-        return {
-          content: [
-            {
-              type: 'text' as const,
-              text: String(result),
-            },
-          ],
-        };
+    // try to register the tool, if already registered, return true
+    try {
+
+      // Register the tool dynamically (no need to check if already registered)
+      this.tool(
+        tool.method,
+        tool.description,
+        tool.parameters.shape,
+        async (arg: any) => {
+          const result = await this._commercetools.run(tool.method, arg);
+          return {
+            content: [
+              {
+                type: 'text' as const,
+                text: String(result),
+              },
+            ],
+          };
+        }
+      );
+    } catch (error) {
+      if (error instanceof Error && error.message.includes("already registered")) {
+        return true;
       }
-    );
+      console.error(`Error registering tool: ${toolName}`, error);
+      return false;
+    }
 
     return true;
   }
@@ -216,12 +213,12 @@ Once all thoughts are done, you can use the recently registered tools to finish 
         const formattedThought = this.formatThought(validatedInput);
         console.error(formattedThought);
       }
-      const toolsToRegister = validatedInput.toolsToRegister
+      const registerTools = validatedInput.registerTools
 
       let toolRegistrationResult = null;
 
-      if (toolsToRegister && toolsToRegister.length > 0) {
-        toolsToRegister.forEach((tool) => {
+      if (registerTools && registerTools.length > 0) {
+        registerTools.forEach((tool) => {
           const success = this.registerToolIfNeeded(tool);
           toolRegistrationResult = {
             requestedTool: tool,
@@ -231,34 +228,40 @@ Once all thoughts are done, you can use the recently registered tools to finish 
         });
       }
 
-      const registeredToolNames = validatedInput?.toolsToRegister?.join(", ") || "";
-      if (!validatedInput.nextThoughtNeeded && registeredToolNames) {
-        const message = `Now everything is ready in the configured MCP server. Please try again answering the user's query.`
+      if (!validatedInput.nextThoughtNeeded) {
+        const alreadyRegisteredTools = validatedInput.alreadyRegisteredTools || [];
+        const registeredToolNames = validatedInput?.registerTools || []
+        const toolNames = [...new Set([...alreadyRegisteredTools, ...registeredToolNames])]
+        const message = `STOP: The 'commercetools_reflective_planner' has finished preparing the tools. Before proceeding with the commercetools operation, you MUST ask the user to confirm their original query: "${validatedInput.originalQuery}".`
         return JSON.stringify({
+          originalQuery: validatedInput.originalQuery,
           thoughtNumber: validatedInput.thoughtNumber,
           totalThoughts: validatedInput.totalThoughts,
           nextThoughtNeeded: validatedInput.nextThoughtNeeded,
-          toolsToRegister: validatedInput.toolsToRegister,
+          alreadyRegisteredTools: toolNames,
           message: message,
+          nextAction: "Ask user for confirmation before executing any commercetools operations",
+          requiresUserConfirmation: true
         })
       }
 
       return JSON.stringify({
+        originalQuery: validatedInput.originalQuery,
         thoughtNumber: validatedInput.thoughtNumber,
         totalThoughts: validatedInput.totalThoughts,
         nextThoughtNeeded: validatedInput.nextThoughtNeeded,
-        toolsToRegister: validatedInput.toolsToRegister,
+        alreadyRegisteredTools: [...(validatedInput.alreadyRegisteredTools ?? []), ...(validatedInput.registerTools ?? [])],
         branches: Object.keys(this.branches),
         thoughtHistoryLength: this.thoughtHistory.length,
         toolRegistrationResult,
         availableCommercetools: {
-          message: "Commercetools API ready for operations",
-          contextSupported: "Full Commercetools context available for product, cart, order, customer management",
-          dynamicToolRegistration: "Now please pass 'toolsToRegister' in your thought to request specific tools",
+          dynamicToolRegistration: "Now please pass 'registerTools' in your thought to register specific tools",
           availableTools: contextToTools(this.processedConfiguration.context)
             .filter((tool: any) => isToolAllowed(tool, this.processedConfiguration))
             .map((tool: any) => tool.method)
-        }
+        },
+        nextAction: "Continue thinking"
+
       }, null, 2);
     } catch (error) {
       return JSON.stringify({
