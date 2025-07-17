@@ -78,10 +78,3 @@ export const existingTokenAuthSchema = z.object({
   projectKey: z.string(),
   apiUrl: z.string().url(),
 });
-
-export const authConfigSchema = z.union([
-  clientCredentialsAuthSchema,
-  passwordAuthSchema,
-  anonymousSessionAuthSchema,
-  existingTokenAuthSchema,
-]);

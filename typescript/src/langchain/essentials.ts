@@ -7,7 +7,7 @@ import {
   processConfigurationDefaults,
 } from '../shared/configuration';
 import type {Configuration} from '../types/configuration';
-import {AuthConfig, authConfigSchema} from '../types/auth';
+import {AuthConfig} from '../types/auth';
 import {z} from 'zod';
 
 interface ToolDefinition {
