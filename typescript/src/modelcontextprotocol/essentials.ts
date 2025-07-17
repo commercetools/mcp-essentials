@@ -1,12 +1,12 @@
-import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import {McpServer} from '@modelcontextprotocol/sdk/server/mcp.js';
 import CommercetoolsAPI from '../shared/api';
 import {
   isToolAllowed,
   processConfigurationDefaults,
 } from '../shared/configuration';
-import { contextToTools } from '../shared/tools';
-import type { Configuration } from '../types/configuration';
-import { AuthConfig, authConfigSchema } from '../types/auth';
+import {contextToTools} from '../shared/tools';
+import type {Configuration} from '../types/configuration';
+import {AuthConfig, authConfigSchema} from '../types/auth';
 
 class CommercetoolsAgentEssentials extends McpServer {
   private _commercetools: CommercetoolsAPI;

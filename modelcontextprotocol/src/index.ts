@@ -6,8 +6,8 @@ import {
   AvailableNamespaces,
   AuthConfig,
 } from '@commercetools/agent-essentials/modelcontextprotocol';
-import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
-import { red, yellow } from 'colors';
+import {StdioServerTransport} from '@modelcontextprotocol/sdk/server/stdio.js';
+import {red, yellow} from 'colors';
 
 type Options = {
   tools?: string[];
@@ -27,7 +27,11 @@ type EnvVars = {
   accessToken?: string;
   username?: string;
   password?: string;
-  authType?: 'client_credentials' | 'password' | 'anonymous_session' | 'auth_token';
+  authType?:
+    | 'client_credentials'
+    | 'password'
+    | 'anonymous_session'
+    | 'auth_token';
 };
 
 const HIDDEN_ARGS = ['customerId', 'isAdmin', 'storeKey', 'businessUnitKey'];
@@ -111,7 +115,7 @@ export const ACCEPTED_TOOLS = [
   'store.update',
 ];
 
-export function parseArgs(args: string[]): { options: Options; env: EnvVars } {
+export function parseArgs(args: string[]): {options: Options; env: EnvVars} {
   const options: Options = {};
   const env: EnvVars = {};
 
@@ -187,7 +191,10 @@ export function parseArgs(args: string[]): { options: Options; env: EnvVars } {
   env.accessToken = env.accessToken || process.env.ACCESS_TOKEN;
   env.username = env.username || process.env.USERNAME;
   env.password = env.password || process.env.PASSWORD;
-  env.authType = env.authType || (process.env.AUTH_TYPE as EnvVars['authType']) || 'client_credentials';
+  env.authType =
+    env.authType ||
+    (process.env.AUTH_TYPE as EnvVars['authType']) ||
+    'client_credentials';
   options.businessUnitKey =
     options.businessUnitKey || process.env.BUSINESS_UNIT_KEY;
   options.storeKey = options.storeKey || process.env.STORE_KEY;
@@ -206,17 +213,28 @@ export function parseArgs(args: string[]): { options: Options; env: EnvVars } {
   switch (env.authType) {
     case 'client_credentials':
       if (!env.clientId || !env.clientSecret) {
-        throw new Error('CLIENT_ID and CLIENT_SECRET are required for client_credentials auth type.');
+        throw new Error(
+          'CLIENT_ID and CLIENT_SECRET are required for client_credentials auth type.'
+        );
       }
       break;
     case 'password':
-      if (!env.clientId || !env.clientSecret || !env.username || !env.password) {
-        throw new Error('CLIENT_ID, CLIENT_SECRET, USERNAME, and PASSWORD are required for password auth type.');
+      if (
+        !env.clientId ||
+        !env.clientSecret ||
+        !env.username ||
+        !env.password
+      ) {
+        throw new Error(
+          'CLIENT_ID, CLIENT_SECRET, USERNAME, and PASSWORD are required for password auth type.'
+        );
       }
       break;
     case 'anonymous_session':
       if (!env.clientId || !env.clientSecret) {
-        throw new Error('CLIENT_ID and CLIENT_SECRET are required for anonymous_session auth type.');
+        throw new Error(
+          'CLIENT_ID and CLIENT_SECRET are required for anonymous_session auth type.'
+        );
       }
       break;
     case 'auth_token':
@@ -225,10 +243,12 @@ export function parseArgs(args: string[]): { options: Options; env: EnvVars } {
       }
       break;
     default:
-      throw new Error(`Invalid auth type: ${env.authType}. Supported types are: client_credentials, password, anonymous_session, auth_token`);
+      throw new Error(
+        `Invalid auth type: ${env.authType}. Supported types are: client_credentials, password, anonymous_session, auth_token`
+      );
   }
 
-  return { options, env };
+  return {options, env};
 }
 
 function createAuthConfig(env: EnvVars): AuthConfig {
@@ -279,7 +299,7 @@ function handleError(error: any) {
 }
 
 export async function main() {
-  const { options, env } = parseArgs(process.argv.slice(2));
+  const {options, env} = parseArgs(process.argv.slice(2));
 
   // Create the CommercetoolsAgentEssentials instance
   const selectedTools = options.tools!;

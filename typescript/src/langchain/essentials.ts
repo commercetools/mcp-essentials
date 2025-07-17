@@ -1,14 +1,14 @@
-import { BaseToolkit, DynamicStructuredTool } from '@langchain/core/tools';
+import {BaseToolkit, DynamicStructuredTool} from '@langchain/core/tools';
 import CommercetoolsTool from './tool';
 import CommercetoolsAPI from '../shared/api';
-import { contextToTools } from '../shared/tools';
+import {contextToTools} from '../shared/tools';
 import {
   isToolAllowed,
   processConfigurationDefaults,
 } from '../shared/configuration';
-import type { Configuration } from '../types/configuration';
-import { AuthConfig, authConfigSchema } from '../types/auth';
-import { z } from 'zod';
+import type {Configuration} from '../types/configuration';
+import {AuthConfig, authConfigSchema} from '../types/auth';
+import {z} from 'zod';
 
 interface ToolDefinition {
   method: string;

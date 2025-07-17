@@ -7,15 +7,17 @@ import {
   ApiRoot,
   createApiBuilderFromCtpClient,
 } from '@commercetools/platform-sdk';
-import { contextToFunctionMapping } from './functions';
-import { CommercetoolsFuncContext, Context } from '../types/configuration';
-import { AuthConfig } from '../types/auth';
+import {contextToFunctionMapping} from './functions';
+import {CommercetoolsFuncContext, Context} from '../types/configuration';
+import {AuthConfig} from '../types/auth';
 class CommercetoolsAPI {
-
   private client: Client | undefined;
   public apiRoot: ApiRoot;
 
-  constructor(private authConfig: AuthConfig, private context?: Context) {
+  constructor(
+    private authConfig: AuthConfig,
+    private context?: Context
+  ) {
     this.client = this.createClient();
 
     if (!this.client) {
@@ -26,17 +28,16 @@ class CommercetoolsAPI {
   }
 
   private createClient(): Client | undefined {
-    const { authUrl, projectKey, apiUrl } = this.authConfig;
+    const {authUrl, projectKey, apiUrl} = this.authConfig;
     const httpMiddlewareOptions: HttpMiddlewareOptions = {
       host: apiUrl,
     };
-
 
     if (this.authConfig.type === 'auth_token') {
       return new ClientBuilder()
         .withHttpMiddleware(httpMiddlewareOptions)
         .withConcurrentModificationMiddleware()
-        .withExistingTokenFlow(this.authConfig.accessToken, { force: true })
+        .withExistingTokenFlow(this.authConfig.accessToken, {force: true})
         .build();
     }
 
@@ -95,7 +96,6 @@ class CommercetoolsAPI {
   private handleUnrecognizedAuthConfig(authConfig: never) {
     throw new Error(`Unrecognized auth type: ${JSON.stringify(authConfig)}`);
   }
-
 
   async run(method: string, arg: any) {
     const functionMap = contextToFunctionMapping(this.context) as Record<
