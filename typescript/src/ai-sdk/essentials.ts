@@ -6,7 +6,7 @@ import {
 } from '../shared/configuration';
 import {contextToTools} from '../shared/tools';
 import type {Configuration} from '../types/configuration';
-import {AuthConfig, authConfigSchema} from '../types/auth';
+import {AuthConfig} from '../types/auth';
 import CommercetoolsTool from './tool';
 
 class CommercetoolsAgentEssentials {
@@ -20,9 +20,6 @@ class CommercetoolsAgentEssentials {
     authConfig: AuthConfig;
     configuration: Configuration;
   }) {
-    // Validate auth config
-    authConfigSchema.parse(authConfig);
-
     // Process configuration to apply smart defaults
     const processedConfiguration = processConfigurationDefaults(configuration);
 
