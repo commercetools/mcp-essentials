@@ -1,41 +1,33 @@
-import type {Tool} from 'ai';
+import type { Tool } from 'ai';
 import CommercetoolsAPI from '../shared/api';
 import {
   isToolAllowed,
   processConfigurationDefaults,
 } from '../shared/configuration';
-import {contextToTools} from '../shared/tools';
-import type {Configuration} from '../types/configuration';
+import { contextToTools } from '../shared/tools';
+import type { Configuration } from '../types/configuration';
+import { AuthConfig, authConfigSchema } from '../types/auth';
 import CommercetoolsTool from './tool';
+
 class CommercetoolsAgentEssentials {
   private _commercetools: CommercetoolsAPI;
-
-  tools: {[key: string]: Tool};
+  tools: { [key: string]: Tool };
 
   constructor({
-    clientId,
-    clientSecret,
-    authUrl,
-    projectKey,
-    apiUrl,
+    authConfig,
     configuration,
   }: {
-    clientId: string;
-    clientSecret: string;
-    authUrl: string;
-    projectKey: string;
-    apiUrl: string;
+    authConfig: AuthConfig;
     configuration: Configuration;
   }) {
+    // Validate auth config
+    authConfigSchema.parse(authConfig);
+
     // Process configuration to apply smart defaults
     const processedConfiguration = processConfigurationDefaults(configuration);
 
     this._commercetools = new CommercetoolsAPI(
-      clientId,
-      clientSecret,
-      authUrl,
-      projectKey,
-      apiUrl,
+      authConfig,
       processedConfiguration.context
     );
     this.tools = {};
@@ -54,7 +46,7 @@ class CommercetoolsAgentEssentials {
     });
   }
 
-  getTools(): {[key: string]: Tool} {
+  getTools(): { [key: string]: Tool } {
     return this.tools;
   }
 }
