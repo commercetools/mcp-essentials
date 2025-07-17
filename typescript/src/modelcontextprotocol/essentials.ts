@@ -6,21 +6,15 @@ import {
 } from '../shared/configuration';
 import {contextToTools} from '../shared/tools';
 import type {Configuration} from '../types/configuration';
+import {AuthConfig} from '../types/auth';
+
 class CommercetoolsAgentEssentials extends McpServer {
   private _commercetools: CommercetoolsAPI;
   constructor({
-    clientId,
-    clientSecret,
-    authUrl,
-    projectKey,
-    apiUrl,
+    authConfig,
     configuration,
   }: {
-    clientId: string;
-    clientSecret: string;
-    authUrl: string;
-    projectKey: string;
-    apiUrl: string;
+    authConfig: AuthConfig;
     configuration: Configuration;
   }) {
     super({
@@ -32,11 +26,7 @@ class CommercetoolsAgentEssentials extends McpServer {
     const processedConfiguration = processConfigurationDefaults(configuration);
 
     this._commercetools = new CommercetoolsAPI(
-      clientId,
-      clientSecret,
-      authUrl,
-      projectKey,
-      apiUrl,
+      authConfig,
       processedConfiguration.context
     );
     const filteredTools = contextToTools(processedConfiguration.context).filter(
