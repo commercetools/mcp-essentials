@@ -57,6 +57,7 @@
     "typescript": "^5.7.2"
   },
   "dependencies": {
+    "@commercetools/agent-essentials": "link:",
     "@commercetools/platform-sdk": "^8.5.0",
     "@commercetools/ts-client": "^3.2.0",
     "zod": "^3.24.2",

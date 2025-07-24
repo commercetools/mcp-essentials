@@ -45,7 +45,16 @@ class CommercetoolsAPI {
     this.context = context;
   }
 
-  async run(method: string, arg: any) {
+  async run(
+    method: string,
+    arg: any,
+    cb?: (args: any, api: ApiRoot) => Promise<unknown>
+  ) {
+    // handle custom tools execution
+    if (cb && typeof cb == 'function') {
+      return JSON.stringify(await cb(arg, this.apiRoot));
+    }
+
     const functionMap = contextToFunctionMapping(this.context) as Record<
       string,
       any
