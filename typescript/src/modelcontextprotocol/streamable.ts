@@ -1,15 +1,10 @@
-import {
-  Configuration,
-  CommercetoolsAgentEssentials,
-} from '../modelcontextprotocol';
-import {McpServer} from '@modelcontextprotocol/sdk/server/mcp.js';
-import {
-  StreamableHTTPServerTransport,
-  StreamableHTTPServerTransportOptions,
-} from '@modelcontextprotocol/sdk/server/streamableHttp.js';
-import {isInitializeRequest} from '@modelcontextprotocol/sdk/types.js';
-import express, {Express, Request, Response} from 'express';
 import {randomUUID} from 'node:crypto';
+import express, {Express, Request, Response} from 'express';
+import {CommercetoolsAgentEssentials} from '../modelcontextprotocol';
+import {McpServer} from '@modelcontextprotocol/sdk/server/mcp.js';
+import {StreamableHTTPServerTransport} from '@modelcontextprotocol/sdk/server/streamableHttp.js';
+import {isInitializeRequest} from '@modelcontextprotocol/sdk/types.js';
+import {StreamServerOptions} from '../types/configuration';
 
 export default class CommercetoolsAgentEssentialsStreamable {
   private app: Express;
@@ -26,31 +21,20 @@ export default class CommercetoolsAgentEssentialsStreamable {
 
     stateless,
     streamableHttpOptions,
+    server,
     app,
-  }: {
-    clientId: string;
-    clientSecret: string;
-    authUrl: string;
-    projectKey: string;
-    apiUrl: string;
-    configuration: Configuration;
-
-    // streamable http configuration
-    stateless?: boolean;
-    streamableHttpOptions: StreamableHTTPServerTransportOptions;
-
-    // express app instance
-    app?: Express;
-  }) {
+  }: StreamServerOptions) {
     // initialize the mcp server
-    this.server = new CommercetoolsAgentEssentials({
-      clientId,
-      clientSecret,
-      authUrl,
-      projectKey,
-      apiUrl,
-      configuration,
-    });
+    this.server =
+      server ??
+      new CommercetoolsAgentEssentials({
+        clientId,
+        clientSecret,
+        authUrl,
+        projectKey,
+        apiUrl,
+        configuration,
+      });
 
     // initialize express app
     this.app = app ?? express();
@@ -77,7 +61,6 @@ export default class CommercetoolsAgentEssentialsStreamable {
 
           // connect server to the transport
           await this.server.connect(transport);
-          await transport.handleRequest(req, res, req.body);
         } else {
           const sessionId = req.headers['mcp-session-id'] as string | undefined;
           if (sessionId && this.transports[sessionId]) {
