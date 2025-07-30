@@ -32,7 +32,8 @@
   "dependencies": {
     "@commercetools/agent-essentials": "workspace:*",
     "@modelcontextprotocol/sdk": "^1.11.0",
-    "colors": "^1.4.0"
+    "colors": "^1.4.0",
+    "mcp-remote": "^0.1.18"
   },
   "keywords": [
     "mcp",
