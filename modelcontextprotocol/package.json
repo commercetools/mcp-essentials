@@ -14,6 +14,8 @@
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "prebuild": "pnpm --filter @commercetools/agent-essentials run build",
+    "dev": "tsup --env.NODE_ENV dev",
+    "dev:start": "nodemon  dist/index.js --watch",
     "build": "tsc && node -e \"require('fs').chmodSync('dist/index.js', '755')\"",
     "clean": "rm -rf dist",
     "lint": "eslint \"./**/*.ts*\"",
@@ -32,7 +34,8 @@
   "dependencies": {
     "@commercetools/agent-essentials": "workspace:*",
     "@modelcontextprotocol/sdk": "^1.11.0",
-    "colors": "^1.4.0"
+    "colors": "^1.4.0",
+    "dotenv": "^17.2.1"
   },
   "keywords": [
     "mcp",
@@ -55,6 +58,7 @@
     "prettier": "^3.5.1",
     "ts-jest": "^29.2.5",
     "ts-node": "^10.9.2",
+    "tsup": "^8.3.5",
     "typescript": "^5.8.3"
   }
 }
