@@ -263,8 +263,8 @@ export async function main() {
   });
 
   const transport = new StdioServerTransport();
-  console.info(green('MCP server is running...'));
   await server.connect(transport);
+  console.info(green('MCP server is running...'));
 }
 
 if (require.main === module) {
