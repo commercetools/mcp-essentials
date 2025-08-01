@@ -45,6 +45,7 @@
   "license": "MIT",
   "devDependencies": {
     "@eslint/compat": "^1.2.4",
+    "@types/express": "^5.0.3",
     "@types/jest": "^29.5.14",
     "@types/node": "^22.10.5",
     "@typescript-eslint/eslint-plugin": "^8.19.1",
@@ -64,6 +65,7 @@
   "dependencies": {
     "@commercetools/platform-sdk": "^8.5.0",
     "@commercetools/ts-client": "^3.2.0",
+    "express": "^5.1.0",
     "zod": "^3.24.2",
     "zod-to-json-schema": "^3.24.3"
   },
