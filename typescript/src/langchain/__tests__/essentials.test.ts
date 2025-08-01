@@ -131,18 +131,21 @@ describe('CommercetoolsAgentEssentials (Langchain)', () => {
     expect(CommercetoolsTool).toHaveBeenCalledWith(
       mockCommercetoolsAPIInstance,
       mockToolDefinitions[0].method,
+      mockToolDefinitions[0].name,
       mockToolDefinitions[0].description,
       expect.any(Object)
     );
     expect(CommercetoolsTool).toHaveBeenCalledWith(
       mockCommercetoolsAPIInstance,
       mockToolDefinitions[1].method,
+      mockToolDefinitions[1].name,
       mockToolDefinitions[1].description,
       expect.any(Object)
     );
     expect(CommercetoolsTool).not.toHaveBeenCalledWith(
       expect.anything(),
       mockToolDefinitions[2].method,
+      mockToolDefinitions[2].name,
       expect.anything(),
       expect.anything()
     );

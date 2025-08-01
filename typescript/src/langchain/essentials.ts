@@ -59,6 +59,7 @@ class CommercetoolsAgentEssentials implements BaseToolkit {
       CommercetoolsTool(
         this._commercetools,
         toolDef.method,
+        toolDef.name,
         toolDef.description,
         toolDef.parameters
       )

@@ -25,6 +25,7 @@ describe('CommercetoolsTool (Langchain)', () => {
   let mockCommercetoolsAPI: jest.Mocked<CommercetoolsAPI>;
 
   const testMethod = 'lcTestMethod';
+  const testName = 'Langchain Test Name';
   const testDescription = 'Langchain Test Description';
   const testSchema = z.object({
     lcParam1: z.string().describe('LC Parameter 1'),
@@ -49,6 +50,7 @@ describe('CommercetoolsTool (Langchain)', () => {
     CommercetoolsTool(
       mockCommercetoolsAPI,
       testMethod,
+      testName,
       testDescription,
       testSchema
     );
@@ -59,7 +61,7 @@ describe('CommercetoolsTool (Langchain)', () => {
     );
     const toolArgs = (DynamicStructuredTool as unknown as jest.Mock).mock
       .calls[0][0];
-    expect(toolArgs.name).toBe(testMethod);
+    expect(toolArgs.name).toBe(testName);
     expect(toolArgs.description).toBe(testDescription);
     expect(toolArgs.schema).toBe(testSchema);
   });
@@ -68,6 +70,7 @@ describe('CommercetoolsTool (Langchain)', () => {
     CommercetoolsTool(
       mockCommercetoolsAPI,
       testMethod,
+      testName,
       testDescription,
       testSchema
     );
@@ -94,6 +97,7 @@ describe('CommercetoolsTool (Langchain)', () => {
     CommercetoolsTool(
       mockCommercetoolsAPI,
       testMethod,
+      testName,
       testDescription,
       testSchema
     );

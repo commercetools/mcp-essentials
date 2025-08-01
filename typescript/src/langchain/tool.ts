@@ -7,11 +7,12 @@ import CommercetoolsAPI from '../shared/api';
 export default function CommercetoolsTool(
   commercetoolsAPI: CommercetoolsAPI,
   method: string,
+  name: string,
   description: string,
   schema: z.ZodObject<any, any, any, any, {[x: string]: any}>
 ): DynamicStructuredTool {
   return new DynamicStructuredTool({
-    name: method,
+    name: name,
     description: description,
     schema: schema,
     func: async (
