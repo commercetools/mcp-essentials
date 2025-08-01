@@ -27,6 +27,11 @@
       "types": "./modelcontextprotocol/index.d.ts",
       "require": "./modelcontextprotocol/index.js",
       "import": "./modelcontextprotocol/index.mjs"
+    },
+    "./langchain": {
+      "types": "./langchain/index.d.ts",
+      "require": "./langchain/index.js",
+      "import": "./langchain/index.mjs"
     }
   },
   "packageManager": "pnpm@9.11.0",
