@@ -1,4 +1,4 @@
-> [!IMPORTANT]  
+> [!IMPORTANT]
 > Important Note: Commerce MCP is provided free of charge as an early access service. Our Service Level Agreement do not apply to Commerce MCP, and it is provided on an "as-is" basis.
 
 # commercetools MCP Essentials
@@ -11,9 +11,14 @@ This repository contains both a MCP server (which you can integrate with many MC
 
 To run the commercetools MCP server using npx, use the following command:
 
+### Client Credentials Authentication (Default)
+
 ```bash
-# To set up all available tools
+# To set up all available tools (authType is optional, defaults to client_credentials)
 npx -y @commercetools/mcp-essentials --tools=all --clientId=CLIENT_ID --clientSecret=CLIENT_SECRET --projectKey=PROJECT_KEY --authUrl=AUTH_URL --apiUrl=API_URL
+
+# Explicitly specify client_credentials (optional)
+npx -y @commercetools/mcp-essentials --tools=all --authType=client_credentials --clientId=CLIENT_ID --clientSecret=CLIENT_SECRET --projectKey=PROJECT_KEY --authUrl=AUTH_URL --apiUrl=API_URL
 
 # To set up all read-only tools
 npx -y @commercetools/mcp-essentials --tools=all.read --clientId=CLIENT_ID --clientSecret=CLIENT_SECRET --projectKey=PROJECT_KEY --authUrl=AUTH_URL --apiUrl=API_URL
@@ -25,11 +30,32 @@ npx -y @commercetools/mcp-essentials --tools=all.read --clientId=CLIENT_ID --cli
 npx -y @commercetools/mcp-essentials --tools=products.read,products.create --clientId=CLIENT_ID --clientSecret=CLIENT_SECRET --projectKey=PROJECT_KEY --authUrl=AUTH_URL --apiUrl=API_URL
 ```
 
-Make sure to replace `CLIENT_ID`, `CLIENT_SECRET`, `PROJECT_KEY`, `AUTH_URL`, and `API_URL` with your actual values. If using the customerId parameter, replace `CUSTOMER_ID` with the actual customer ID. Alternatively, you could set the API_KEY in your environment variables.
+### Access Token Authentication
+
+```bash
+# To set up all available tools with access token
+npx -y @commercetools/mcp-essentials --tools=all --authType=auth_token --accessToken=ACCESS_TOKEN --projectKey=PROJECT_KEY --authUrl=AUTH_URL --apiUrl=API_URL
+
+# To set up all read-only tools with access token
+npx -y @commercetools/mcp-essentials --tools=all.read --authType=auth_token --accessToken=ACCESS_TOKEN --projectKey=PROJECT_KEY --authUrl=AUTH_URL --apiUrl=API_URL
+```
+
+Make sure to replace `CLIENT_ID`, `CLIENT_SECRET`, `PROJECT_KEY`, `AUTH_URL`, `API_URL`, and `ACCESS_TOKEN` with your actual values. If using the customerId parameter, replace `CUSTOMER_ID` with the actual customer ID. Alternatively, you could set the API_KEY in your environment variables.
+
+### Authentication Options
+
+The MCP server supports two authentication methods:
+
+| Authentication Type | Required Arguments | Description |
+|-------------------|-------------------|-------------|
+| `client_credentials` (default) | `--clientId`, `--clientSecret` | Uses API client credentials for authentication. `--authType=client_credentials` is optional since this is the default |
+| `auth_token` | `--accessToken` | Uses a pre-existing access token for authentication. Requires `--authType=auth_token` |
 
 ### Usage with Claude Desktop
 
 Add the following to your `claude_desktop_config.json`. See [here](https://modelcontextprotocol.io/quickstart/user) for more details.
+
+#### Client Credentials Authentication
 
 ```json
 {
@@ -42,6 +68,30 @@ Add the following to your `claude_desktop_config.json`. See [here](https://model
         "--tools=all",
         "--clientId=CLIENT_ID",
         "--clientSecret=CLIENT_SECRET",
+        "--authUrl=AUTH_URL",
+        "--projectKey=PROJECT_KEY",
+        "--apiUrl=API_URL"
+      ]
+    }
+  }
+}
+```
+
+**Note**: You can optionally add `"--authType=client_credentials"` to be explicit, but it's not required since this is the default.
+
+#### Access Token Authentication
+
+```json
+{
+  "mcpServers": {
+    "commercetools": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@commercetools/mcp-essentials@latest",
+        "--tools=all",
+        "--authType=auth_token",
+        "--accessToken=ACCESS_TOKEN",
         "--authUrl=AUTH_URL",
         "--projectKey=PROJECT_KEY",
         "--apiUrl=API_URL"
@@ -153,9 +203,11 @@ npm install @commercetools/agent-essentials
 
 ### Usage
 
-The library needs to be configured with your commercetools project API client credentials which is available in your [Merchant center](https://docs.commercetools.com/getting-started/create-api-client).
+The library needs to be configured with your commercetools project credentials which are available in your [Merchant center](https://docs.commercetools.com/getting-started/create-api-client).
 **Important**: Ensure that the API client credentials have the necessary scopes aligned with the actions you configure in the agent essentials. For example, if you configure `products: { read: true }`, your API client must have the `view_products` scope.
 Additionally, `configuration` enables you to specify the types of actions that can be taken using the agent essentials.
+
+### Client Credentials Authentication (Default)
 
 ```typescript
 import { CommercetoolsAgentEssentials } from "@commercetools/agent-essentials/langchain";
@@ -166,6 +218,34 @@ const commercetoolsAgentEssentials = new CommercetoolsAgentEssentials({
   projectKey: process.env.PROJECT_KEY!,
   authUrl: process.env.AUTH_URL!,
   apiUrl: process.env.API_URL!,
+  configuration: {
+    actions: {
+      products: {
+        read: true,
+        create: true,
+        update: true,
+      },
+      project: {
+        read: true,
+      },
+    },
+  },
+});
+```
+
+### Access Token Authentication
+
+```typescript
+import { CommercetoolsAgentEssentials } from "@commercetools/agent-essentials/langchain";
+
+const commercetoolsAgentEssentials = new CommercetoolsAgentEssentials({
+  authConfig: {
+    type: 'auth_token',
+    accessToken: process.env.ACCESS_TOKEN!,
+    projectKey: process.env.PROJECT_KEY!,
+    authUrl: process.env.AUTH_URL!,
+    apiUrl: process.env.API_URL!,
+  },
   configuration: {
     actions: {
       products: {

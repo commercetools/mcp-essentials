@@ -28,11 +28,14 @@ describe('Product Type Tools', () => {
     await main();
 
     expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
-      clientId: 'test_client_id',
-      clientSecret: 'test_client_secret',
-      authUrl: 'https://auth.commercetools.com',
-      projectKey: 'test_project',
-      apiUrl: 'https://api.commercetools.com',
+      authConfig: {
+        type: 'client_credentials',
+        clientId: 'test_client_id',
+        clientSecret: 'test_client_secret',
+        authUrl: 'https://auth.commercetools.com',
+        projectKey: 'test_project',
+        apiUrl: 'https://api.commercetools.com',
+      },
       configuration: {
         actions: {'product-type': {read: true}},
         context: {
@@ -60,11 +63,14 @@ describe('Product Type Tools', () => {
     await main();
 
     expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
-      clientId: 'test_client_id',
-      clientSecret: 'test_client_secret',
-      authUrl: 'https://auth.commercetools.com',
-      projectKey: 'test_project',
-      apiUrl: 'https://api.commercetools.com',
+      authConfig: {
+        type: 'client_credentials',
+        clientId: 'test_client_id',
+        clientSecret: 'test_client_secret',
+        authUrl: 'https://auth.commercetools.com',
+        projectKey: 'test_project',
+        apiUrl: 'https://api.commercetools.com',
+      },
       configuration: {
         actions: {'product-type': {create: true}},
         context: {
@@ -90,11 +96,14 @@ describe('Product Type Tools', () => {
     await main();
 
     expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
-      clientId: 'test_client_id',
-      clientSecret: 'test_client_secret',
-      authUrl: 'https://auth.commercetools.com',
-      projectKey: 'test_project',
-      apiUrl: 'https://api.commercetools.com',
+      authConfig: {
+        type: 'client_credentials',
+        clientId: 'test_client_id',
+        clientSecret: 'test_client_secret',
+        authUrl: 'https://auth.commercetools.com',
+        projectKey: 'test_project',
+        apiUrl: 'https://api.commercetools.com',
+      },
       configuration: {
         actions: {'product-type': {update: true}},
         context: {
@@ -120,11 +129,14 @@ describe('Product Type Tools', () => {
     await main();
 
     expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
-      clientId: 'test_client_id',
-      clientSecret: 'test_client_secret',
-      authUrl: 'https://auth.commercetools.com',
-      projectKey: 'test_project',
-      apiUrl: 'https://api.commercetools.com',
+      authConfig: {
+        type: 'client_credentials',
+        clientId: 'test_client_id',
+        clientSecret: 'test_client_secret',
+        authUrl: 'https://auth.commercetools.com',
+        projectKey: 'test_project',
+        apiUrl: 'https://api.commercetools.com',
+      },
       configuration: {
         actions: {'product-type': {read: true, create: true, update: true}},
         context: {
@@ -151,11 +163,14 @@ describe('Product Type Tools', () => {
     await main();
 
     expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
-      clientId: 'test_client_id',
-      clientSecret: 'test_client_secret',
-      authUrl: 'https://auth.commercetools.com',
-      projectKey: 'test_project',
-      apiUrl: 'https://api.commercetools.com',
+      authConfig: {
+        type: 'client_credentials',
+        clientId: 'test_client_id',
+        clientSecret: 'test_client_secret',
+        authUrl: 'https://auth.commercetools.com',
+        projectKey: 'test_project',
+        apiUrl: 'https://api.commercetools.com',
+      },
       configuration: {
         actions: {'product-type': {read: true}},
         context: {
