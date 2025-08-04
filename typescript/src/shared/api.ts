@@ -1,5 +1,4 @@
 import {
-  AuthMiddlewareOptions,
   Client,
   ClientBuilder,
   HttpMiddlewareOptions,
@@ -10,39 +9,59 @@ import {
 } from '@commercetools/platform-sdk';
 import {contextToFunctionMapping} from './functions';
 import {CommercetoolsFuncContext, Context} from '../types/configuration';
+import {AuthConfig} from '../types/auth';
 class CommercetoolsAPI {
-  private authMiddlewareOptions: AuthMiddlewareOptions;
-  private httpMiddlewareOptions: HttpMiddlewareOptions;
-  private client: Client;
+  private client: Client | undefined;
   public apiRoot: ApiRoot;
-  private context?: Context;
 
   constructor(
-    clientId: string,
-    clientSecret: string,
-    authUrl: string,
-    projectKey: string,
-    apiUrl: string,
-    context?: Context
+    private authConfig: AuthConfig,
+    private context?: Context
   ) {
-    this.authMiddlewareOptions = {
-      credentials: {
-        clientId: clientId,
-        clientSecret: clientSecret,
-      },
-      host: authUrl,
-      projectKey: projectKey,
-    };
-    this.httpMiddlewareOptions = {
+    this.client = this.createClient();
+
+    if (!this.client) {
+      throw new Error('Failed to create client');
+    }
+
+    this.apiRoot = createApiBuilderFromCtpClient(this.client);
+  }
+
+  private createClient(): Client | undefined {
+    const {authUrl, projectKey, apiUrl} = this.authConfig;
+    const httpMiddlewareOptions: HttpMiddlewareOptions = {
       host: apiUrl,
     };
-    this.client = new ClientBuilder()
-      .withHttpMiddleware(this.httpMiddlewareOptions)
-      .withConcurrentModificationMiddleware()
-      .withClientCredentialsFlow(this.authMiddlewareOptions)
-      .build();
-    this.apiRoot = createApiBuilderFromCtpClient(this.client);
-    this.context = context;
+
+    if (this.authConfig.type === 'client_credentials') {
+      return new ClientBuilder()
+        .withHttpMiddleware(httpMiddlewareOptions)
+        .withConcurrentModificationMiddleware()
+        .withClientCredentialsFlow({
+          host: authUrl,
+          projectKey: projectKey,
+          credentials: {
+            clientId: this.authConfig.clientId,
+            clientSecret: this.authConfig.clientSecret,
+          },
+        })
+        .build();
+    }
+
+
+    if (this.authConfig.type === 'auth_token') {
+      return new ClientBuilder()
+        .withHttpMiddleware(httpMiddlewareOptions)
+        .withConcurrentModificationMiddleware()
+        .withExistingTokenFlow(this.authConfig.accessToken, {force: true})
+        .build();
+    }
+
+    this.handleUnrecognizedAuthConfig(this.authConfig);
+  }
+
+  private handleUnrecognizedAuthConfig(authConfig: never) {
+    throw new Error(`Unrecognized auth type: ${JSON.stringify(authConfig)}`);
   }
 
   async run(method: string, arg: any) {
@@ -60,7 +79,7 @@ class CommercetoolsAPI {
       await func(
         this.apiRoot,
         {
-          projectKey: this.authMiddlewareOptions.projectKey,
+          projectKey: this.authConfig.projectKey,
           ...this.context,
         } as CommercetoolsFuncContext,
         arg
