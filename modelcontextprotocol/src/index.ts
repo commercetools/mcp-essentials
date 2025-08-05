@@ -287,7 +287,7 @@ export async function main() {
       },
     });
 
-    const port = env.port || 3000;
+    const port = env.port || 8080;
     streamServer.listen(port, function () {
       console.log(`running on port`, port);
     });
