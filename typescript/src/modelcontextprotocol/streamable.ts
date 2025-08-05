@@ -28,11 +28,14 @@ export default class CommercetoolsAgentEssentialsStreamable {
     this.server =
       server ??
       new CommercetoolsAgentEssentials({
-        clientId,
-        clientSecret,
-        authUrl,
-        projectKey,
-        apiUrl,
+        authConfig: {
+          type: 'client_credentials',
+          clientId,
+          clientSecret,
+          authUrl,
+          projectKey,
+          apiUrl,
+        },
         configuration,
       });
 

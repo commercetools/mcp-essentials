@@ -87,19 +87,25 @@ describe('CommercetoolsAgentEssentials (Langchain)', () => {
 
   it('should initialize CommercetoolsAPI with constructor arguments', () => {
     const agentEssentials = new CommercetoolsAgentEssentials({
-      clientId: 'id',
-      clientSecret: 'secret',
-      authUrl: 'auth',
-      projectKey: 'key',
-      apiUrl: 'api',
+      authConfig: {
+        clientId: 'id',
+        clientSecret: 'secret',
+        authUrl: 'auth',
+        projectKey: 'key',
+        apiUrl: 'api',
+        type: 'client_credentials',
+      },
       configuration: mockConfiguration,
     });
     expect(CommercetoolsAPI).toHaveBeenCalledWith(
-      'id',
-      'secret',
-      'auth',
-      'key',
-      'api',
+      {
+        clientId: 'id',
+        clientSecret: 'secret',
+        authUrl: 'auth',
+        projectKey: 'key',
+        apiUrl: 'api',
+        type: 'client_credentials',
+      },
       mockConfiguration.context
     );
   });
@@ -117,11 +123,14 @@ describe('CommercetoolsAgentEssentials (Langchain)', () => {
     });
 
     const agentEssentials = new CommercetoolsAgentEssentials({
-      clientId: 'id',
-      clientSecret: 'secret',
-      authUrl: 'auth',
-      projectKey: 'key',
-      apiUrl: 'api',
+      authConfig: {
+        clientId: 'id',
+        clientSecret: 'secret',
+        authUrl: 'auth',
+        projectKey: 'key',
+        apiUrl: 'api',
+        type: 'client_credentials',
+      },
       configuration: mockConfiguration,
     });
 
@@ -157,11 +166,14 @@ describe('CommercetoolsAgentEssentials (Langchain)', () => {
   it('should return all created Langchain tools via getTools method', () => {
     (isToolAllowed as jest.Mock).mockReturnValue(true); // Allow all
     const agentEssentials = new CommercetoolsAgentEssentials({
-      clientId: 'id',
-      clientSecret: 'secret',
-      authUrl: 'auth',
-      projectKey: 'key',
-      apiUrl: 'api',
+      authConfig: {
+        clientId: 'id',
+        clientSecret: 'secret',
+        authUrl: 'auth',
+        projectKey: 'key',
+        apiUrl: 'api',
+        type: 'client_credentials',
+      },
       configuration: {enabledTools: ['*']} as any,
     });
 
@@ -175,11 +187,14 @@ describe('CommercetoolsAgentEssentials (Langchain)', () => {
   it('should handle empty configuration (no tools enabled)', () => {
     (isToolAllowed as jest.Mock).mockReturnValue(false); // No tools allowed
     const agentEssentials = new CommercetoolsAgentEssentials({
-      clientId: 'id',
-      clientSecret: 'secret',
-      authUrl: 'auth',
-      projectKey: 'key',
-      apiUrl: 'api',
+      authConfig: {
+        clientId: 'id',
+        clientSecret: 'secret',
+        authUrl: 'auth',
+        projectKey: 'key',
+        apiUrl: 'api',
+        type: 'client_credentials',
+      },
       configuration: {enabledTools: []} as any,
     });
 

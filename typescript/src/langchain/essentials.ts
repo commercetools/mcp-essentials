@@ -8,6 +8,7 @@ import {
 } from '../shared/configuration';
 import type {Configuration} from '../types/configuration';
 import {z} from 'zod';
+import {AuthConfig} from '../types/auth';
 
 interface ToolDefinition {
   method: string;
@@ -23,29 +24,17 @@ class CommercetoolsAgentEssentials implements BaseToolkit {
   tools: DynamicStructuredTool[];
 
   constructor({
-    clientId,
-    clientSecret,
-    authUrl,
-    projectKey,
-    apiUrl,
+    authConfig,
     configuration,
   }: {
-    clientId: string;
-    clientSecret: string;
-    authUrl: string;
-    projectKey: string;
-    apiUrl: string;
+    authConfig: AuthConfig;
     configuration: Configuration;
   }) {
     // Process configuration to apply smart defaults
     const processedConfiguration = processConfigurationDefaults(configuration);
 
     this._commercetools = new CommercetoolsAPI(
-      clientId,
-      clientSecret,
-      authUrl,
-      projectKey,
-      apiUrl,
+      authConfig,
       processedConfiguration.context
     );
 

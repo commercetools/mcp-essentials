@@ -113,11 +113,14 @@ describe('CommercetoolsAgentEssentials (ModelContextProtocol)', () => {
 
   it('should call McpServer constructor with correct parameters', () => {
     const agentEssentials = new CommercetoolsAgentEssentials({
-      clientId: 'id',
-      clientSecret: 'secret',
-      authUrl: 'auth',
-      projectKey: 'key',
-      apiUrl: 'api',
+      authConfig: {
+        clientId: 'id',
+        clientSecret: 'secret',
+        authUrl: 'auth',
+        projectKey: 'key',
+        apiUrl: 'api',
+        type: 'client_credentials',
+      },
       configuration: mockConfiguration,
     });
     expect(McpServer).toHaveBeenCalledWith({
@@ -128,30 +131,39 @@ describe('CommercetoolsAgentEssentials (ModelContextProtocol)', () => {
 
   it('should initialize CommercetoolsAPI', () => {
     const agentEssentials = new CommercetoolsAgentEssentials({
-      clientId: 'id',
-      clientSecret: 'secret',
-      authUrl: 'auth',
-      projectKey: 'key',
-      apiUrl: 'api',
+      authConfig: {
+        clientId: 'id',
+        clientSecret: 'secret',
+        authUrl: 'auth',
+        projectKey: 'key',
+        apiUrl: 'api',
+        type: 'client_credentials',
+      },
       configuration: mockConfiguration,
     });
     expect(CommercetoolsAPI).toHaveBeenCalledWith(
-      'id',
-      'secret',
-      'auth',
-      'key',
-      'api',
+      {
+        clientId: 'id',
+        clientSecret: 'secret',
+        authUrl: 'auth',
+        projectKey: 'key',
+        apiUrl: 'api',
+        type: 'client_credentials',
+      },
       mockConfiguration.context
     );
   });
 
   it('should filter tools and register allowed tools with McpServer when registerAdminTools is called', () => {
     const agentEssentials = new CommercetoolsAgentEssentials({
-      clientId: 'id',
-      clientSecret: 'secret',
-      authUrl: 'auth',
-      projectKey: 'key',
-      apiUrl: 'api',
+      authConfig: {
+        clientId: 'id',
+        clientSecret: 'secret',
+        authUrl: 'auth',
+        projectKey: 'key',
+        apiUrl: 'api',
+        type: 'client_credentials',
+      },
       configuration: mockConfiguration,
     });
 
@@ -175,11 +187,14 @@ describe('CommercetoolsAgentEssentials (ModelContextProtocol)', () => {
 
   it('handler function should call commercetoolsAPI.run and format result', async () => {
     const agentEssentials = new CommercetoolsAgentEssentials({
-      clientId: 'id',
-      clientSecret: 'secret',
-      authUrl: 'auth',
-      projectKey: 'key',
-      apiUrl: 'api',
+      authConfig: {
+        clientId: 'id',
+        clientSecret: 'secret',
+        authUrl: 'auth',
+        projectKey: 'key',
+        apiUrl: 'api',
+        type: 'client_credentials',
+      },
       configuration: mockConfiguration,
     });
 
@@ -211,11 +226,14 @@ describe('CommercetoolsAgentEssentials (ModelContextProtocol)', () => {
   it('should correctly handle no tools being allowed', () => {
     (isToolAllowed as jest.Mock).mockReturnValue(false); // Disallow all tools
     const agentEssentials = new CommercetoolsAgentEssentials({
-      clientId: 'id',
-      clientSecret: 'secret',
-      authUrl: 'auth',
-      projectKey: 'key',
-      apiUrl: 'api',
+      authConfig: {
+        clientId: 'id',
+        clientSecret: 'secret',
+        authUrl: 'auth',
+        projectKey: 'key',
+        apiUrl: 'api',
+        type: 'client_credentials',
+      },
       configuration: {enabledTools: []} as any,
     });
 

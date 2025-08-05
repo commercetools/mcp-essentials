@@ -26,11 +26,14 @@ describe('main function', () => {
     await main();
 
     expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
-      clientId: 'test_client_id',
-      clientSecret: 'test_client_secret',
-      authUrl: 'https://auth.commercetools.com',
-      projectKey: 'test_project',
-      apiUrl: 'https://api.commercetools.com',
+      authConfig: {
+        type: 'client_credentials',
+        clientId: 'test_client_id',
+        clientSecret: 'test_client_secret',
+        authUrl: 'https://auth.commercetools.com',
+        projectKey: 'test_project',
+        apiUrl: 'https://api.commercetools.com',
+      },
       configuration: {
         actions: {
           products: {read: true, create: true, update: true},
@@ -84,11 +87,14 @@ describe('main function', () => {
     await main();
 
     expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
-      clientId: 'test_client_id',
-      clientSecret: 'test_client_secret',
-      authUrl: 'https://auth.commercetools.com',
-      projectKey: 'test_project',
-      apiUrl: 'https://api.commercetools.com',
+      authConfig: {
+        type: 'client_credentials',
+        clientId: 'test_client_id',
+        clientSecret: 'test_client_secret',
+        authUrl: 'https://auth.commercetools.com',
+        projectKey: 'test_project',
+        apiUrl: 'https://api.commercetools.com',
+      },
       configuration: {
         actions: {products: {read: true}},
         context: {
@@ -116,11 +122,14 @@ describe('main function', () => {
     await main();
 
     expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
-      clientId: 'test_client_id',
-      clientSecret: 'test_client_secret',
-      authUrl: 'https://auth.commercetools.com',
-      projectKey: 'test_project',
-      apiUrl: 'https://api.commercetools.com',
+      authConfig: {
+        type: 'client_credentials',
+        clientId: 'test_client_id',
+        clientSecret: 'test_client_secret',
+        authUrl: 'https://auth.commercetools.com',
+        projectKey: 'test_project',
+        apiUrl: 'https://api.commercetools.com',
+      },
       configuration: {
         actions: {products: {create: true}},
         context: {
@@ -148,11 +157,14 @@ describe('main function', () => {
     await main();
 
     expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
-      clientId: 'test_client_id',
-      clientSecret: 'test_client_secret',
-      authUrl: 'https://auth.commercetools.com',
-      projectKey: 'test_project',
-      apiUrl: 'https://api.commercetools.com',
+      authConfig: {
+        type: 'client_credentials',
+        clientId: 'test_client_id',
+        clientSecret: 'test_client_secret',
+        authUrl: 'https://auth.commercetools.com',
+        projectKey: 'test_project',
+        apiUrl: 'https://api.commercetools.com',
+      },
       configuration: {
         actions: {products: {update: true}},
         context: {
@@ -180,11 +192,14 @@ describe('main function', () => {
     await main();
 
     expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
-      clientId: 'test_client_id',
-      clientSecret: 'test_client_secret',
-      authUrl: 'https://auth.commercetools.com',
-      projectKey: 'test_project',
-      apiUrl: 'https://api.commercetools.com',
+      authConfig: {
+        type: 'client_credentials',
+        clientId: 'test_client_id',
+        clientSecret: 'test_client_secret',
+        authUrl: 'https://auth.commercetools.com',
+        projectKey: 'test_project',
+        apiUrl: 'https://api.commercetools.com',
+      },
       configuration: {
         actions: {project: {read: true}},
         context: {
@@ -212,11 +227,14 @@ describe('main function', () => {
     await main();
 
     expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
-      clientId: 'test_client_id',
-      clientSecret: 'test_client_secret',
-      authUrl: 'https://auth.commercetools.com',
-      projectKey: 'test_project',
-      apiUrl: 'https://api.commercetools.com',
+      authConfig: {
+        type: 'client_credentials',
+        clientId: 'test_client_id',
+        clientSecret: 'test_client_secret',
+        authUrl: 'https://auth.commercetools.com',
+        projectKey: 'test_project',
+        apiUrl: 'https://api.commercetools.com',
+      },
       configuration: {
         actions: {'product-search': {read: true}},
         context: {
@@ -244,11 +262,14 @@ describe('main function', () => {
     await main();
 
     expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
-      clientId: 'test_client_id',
-      clientSecret: 'test_client_secret',
-      authUrl: 'https://auth.commercetools.com',
-      projectKey: 'test_project',
-      apiUrl: 'https://api.commercetools.com',
+      authConfig: {
+        type: 'client_credentials',
+        clientId: 'test_client_id',
+        clientSecret: 'test_client_secret',
+        authUrl: 'https://auth.commercetools.com',
+        projectKey: 'test_project',
+        apiUrl: 'https://api.commercetools.com',
+      },
       configuration: {
         actions: {category: {read: true}},
         context: {
@@ -276,11 +297,14 @@ describe('main function', () => {
     await main();
 
     expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
-      clientId: 'test_client_id',
-      clientSecret: 'test_client_secret',
-      authUrl: 'https://auth.commercetools.com',
-      projectKey: 'test_project',
-      apiUrl: 'https://api.commercetools.com',
+      authConfig: {
+        type: 'client_credentials',
+        clientId: 'test_client_id',
+        clientSecret: 'test_client_secret',
+        authUrl: 'https://auth.commercetools.com',
+        projectKey: 'test_project',
+        apiUrl: 'https://api.commercetools.com',
+      },
       configuration: {
         actions: {category: {create: true}},
         context: {
@@ -308,11 +332,14 @@ describe('main function', () => {
     await main();
 
     expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
-      clientId: 'test_client_id',
-      clientSecret: 'test_client_secret',
-      authUrl: 'https://auth.commercetools.com',
-      projectKey: 'test_project',
-      apiUrl: 'https://api.commercetools.com',
+      authConfig: {
+        type: 'client_credentials',
+        clientId: 'test_client_id',
+        clientSecret: 'test_client_secret',
+        authUrl: 'https://auth.commercetools.com',
+        projectKey: 'test_project',
+        apiUrl: 'https://api.commercetools.com',
+      },
       configuration: {
         actions: {category: {update: true}},
         context: {
@@ -340,11 +367,14 @@ describe('main function', () => {
     await main();
 
     expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
-      clientId: 'test_client_id',
-      clientSecret: 'test_client_secret',
-      authUrl: 'https://auth.commercetools.com',
-      projectKey: 'test_project',
-      apiUrl: 'https://api.commercetools.com',
+      authConfig: {
+        type: 'client_credentials',
+        clientId: 'test_client_id',
+        clientSecret: 'test_client_secret',
+        authUrl: 'https://auth.commercetools.com',
+        projectKey: 'test_project',
+        apiUrl: 'https://api.commercetools.com',
+      },
       configuration: {
         actions: {'product-selection': {read: true}},
         context: {
@@ -372,11 +402,14 @@ describe('main function', () => {
     await main();
 
     expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
-      clientId: 'test_client_id',
-      clientSecret: 'test_client_secret',
-      authUrl: 'https://auth.commercetools.com',
-      projectKey: 'test_project',
-      apiUrl: 'https://api.commercetools.com',
+      authConfig: {
+        type: 'client_credentials',
+        clientId: 'test_client_id',
+        clientSecret: 'test_client_secret',
+        authUrl: 'https://auth.commercetools.com',
+        projectKey: 'test_project',
+        apiUrl: 'https://api.commercetools.com',
+      },
       configuration: {
         actions: {'product-selection': {create: true}},
         context: {
@@ -404,11 +437,14 @@ describe('main function', () => {
     await main();
 
     expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
-      clientId: 'test_client_id',
-      clientSecret: 'test_client_secret',
-      authUrl: 'https://auth.commercetools.com',
-      projectKey: 'test_project',
-      apiUrl: 'https://api.commercetools.com',
+      authConfig: {
+        type: 'client_credentials',
+        clientId: 'test_client_id',
+        clientSecret: 'test_client_secret',
+        authUrl: 'https://auth.commercetools.com',
+        projectKey: 'test_project',
+        apiUrl: 'https://api.commercetools.com',
+      },
       configuration: {
         actions: {'product-selection': {update: true}},
         context: {
@@ -436,11 +472,14 @@ describe('main function', () => {
     await main();
 
     expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
-      clientId: 'test_client_id',
-      clientSecret: 'test_client_secret',
-      authUrl: 'https://auth.commercetools.com',
-      projectKey: 'test_project',
-      apiUrl: 'https://api.commercetools.com',
+      authConfig: {
+        type: 'client_credentials',
+        clientId: 'test_client_id',
+        clientSecret: 'test_client_secret',
+        authUrl: 'https://auth.commercetools.com',
+        projectKey: 'test_project',
+        apiUrl: 'https://api.commercetools.com',
+      },
       configuration: {
         actions: {order: {read: true}},
         context: {
@@ -468,11 +507,14 @@ describe('main function', () => {
     await main();
 
     expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
-      clientId: 'test_client_id',
-      clientSecret: 'test_client_secret',
-      authUrl: 'https://auth.commercetools.com',
-      projectKey: 'test_project',
-      apiUrl: 'https://api.commercetools.com',
+      authConfig: {
+        type: 'client_credentials',
+        clientId: 'test_client_id',
+        clientSecret: 'test_client_secret',
+        authUrl: 'https://auth.commercetools.com',
+        projectKey: 'test_project',
+        apiUrl: 'https://api.commercetools.com',
+      },
       configuration: {
         actions: {order: {create: true}},
         context: {
@@ -500,11 +542,14 @@ describe('main function', () => {
     await main();
 
     expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
-      clientId: 'test_client_id',
-      clientSecret: 'test_client_secret',
-      authUrl: 'https://auth.commercetools.com',
-      projectKey: 'test_project',
-      apiUrl: 'https://api.commercetools.com',
+      authConfig: {
+        type: 'client_credentials',
+        clientId: 'test_client_id',
+        clientSecret: 'test_client_secret',
+        authUrl: 'https://auth.commercetools.com',
+        projectKey: 'test_project',
+        apiUrl: 'https://api.commercetools.com',
+      },
       configuration: {
         actions: {order: {update: true}},
         context: {
@@ -532,11 +577,14 @@ describe('main function', () => {
     await main();
 
     expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
-      clientId: 'test_client_id',
-      clientSecret: 'test_client_secret',
-      authUrl: 'https://auth.commercetools.com',
-      projectKey: 'test_project',
-      apiUrl: 'https://api.commercetools.com',
+      authConfig: {
+        type: 'client_credentials',
+        clientId: 'test_client_id',
+        clientSecret: 'test_client_secret',
+        authUrl: 'https://auth.commercetools.com',
+        projectKey: 'test_project',
+        apiUrl: 'https://api.commercetools.com',
+      },
       configuration: {
         actions: {cart: {read: true}},
         context: {
@@ -564,11 +612,14 @@ describe('main function', () => {
     await main();
 
     expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
-      clientId: 'test_client_id',
-      clientSecret: 'test_client_secret',
-      authUrl: 'https://auth.commercetools.com',
-      projectKey: 'test_project',
-      apiUrl: 'https://api.commercetools.com',
+      authConfig: {
+        type: 'client_credentials',
+        clientId: 'test_client_id',
+        clientSecret: 'test_client_secret',
+        authUrl: 'https://auth.commercetools.com',
+        projectKey: 'test_project',
+        apiUrl: 'https://api.commercetools.com',
+      },
       configuration: {
         actions: {cart: {create: true}},
         context: {
@@ -596,11 +647,14 @@ describe('main function', () => {
     await main();
 
     expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
-      clientId: 'test_client_id',
-      clientSecret: 'test_client_secret',
-      authUrl: 'https://auth.commercetools.com',
-      projectKey: 'test_project',
-      apiUrl: 'https://api.commercetools.com',
+      authConfig: {
+        type: 'client_credentials',
+        clientId: 'test_client_id',
+        clientSecret: 'test_client_secret',
+        authUrl: 'https://auth.commercetools.com',
+        projectKey: 'test_project',
+        apiUrl: 'https://api.commercetools.com',
+      },
       configuration: {
         actions: {cart: {update: true}},
         context: {
@@ -628,11 +682,14 @@ describe('main function', () => {
     await main();
 
     expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
-      clientId: 'test_client_id',
-      clientSecret: 'test_client_secret',
-      authUrl: 'https://auth.commercetools.com',
-      projectKey: 'test_project',
-      apiUrl: 'https://api.commercetools.com',
+      authConfig: {
+        type: 'client_credentials',
+        clientId: 'test_client_id',
+        clientSecret: 'test_client_secret',
+        authUrl: 'https://auth.commercetools.com',
+        projectKey: 'test_project',
+        apiUrl: 'https://api.commercetools.com',
+      },
       configuration: {
         actions: {customer: {create: true}},
         context: {
@@ -660,11 +717,14 @@ describe('main function', () => {
     await main();
 
     expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
-      clientId: 'test_client_id',
-      clientSecret: 'test_client_secret',
-      authUrl: 'https://auth.commercetools.com',
-      projectKey: 'test_project',
-      apiUrl: 'https://api.commercetools.com',
+      authConfig: {
+        type: 'client_credentials',
+        clientId: 'test_client_id',
+        clientSecret: 'test_client_secret',
+        authUrl: 'https://auth.commercetools.com',
+        projectKey: 'test_project',
+        apiUrl: 'https://api.commercetools.com',
+      },
       configuration: {
         actions: {customer: {read: true}},
         context: {
@@ -692,11 +752,14 @@ describe('main function', () => {
     await main();
 
     expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
-      clientId: 'test_client_id',
-      clientSecret: 'test_client_secret',
-      authUrl: 'https://auth.commercetools.com',
-      projectKey: 'test_project',
-      apiUrl: 'https://api.commercetools.com',
+      authConfig: {
+        type: 'client_credentials',
+        clientId: 'test_client_id',
+        clientSecret: 'test_client_secret',
+        authUrl: 'https://auth.commercetools.com',
+        projectKey: 'test_project',
+        apiUrl: 'https://api.commercetools.com',
+      },
       configuration: {
         actions: {customer: {update: true}},
         context: {
@@ -724,11 +787,14 @@ describe('main function', () => {
     await main();
 
     expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
-      clientId: 'test_client_id',
-      clientSecret: 'test_client_secret',
-      authUrl: 'https://auth.commercetools.com',
-      projectKey: 'test_project',
-      apiUrl: 'https://api.commercetools.com',
+      authConfig: {
+        type: 'client_credentials',
+        clientId: 'test_client_id',
+        clientSecret: 'test_client_secret',
+        authUrl: 'https://auth.commercetools.com',
+        projectKey: 'test_project',
+        apiUrl: 'https://api.commercetools.com',
+      },
       configuration: {
         actions: {'customer-group': {read: true}},
         context: {
@@ -756,11 +822,14 @@ describe('main function', () => {
     await main();
 
     expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
-      clientId: 'test_client_id',
-      clientSecret: 'test_client_secret',
-      authUrl: 'https://auth.commercetools.com',
-      projectKey: 'test_project',
-      apiUrl: 'https://api.commercetools.com',
+      authConfig: {
+        type: 'client_credentials',
+        clientId: 'test_client_id',
+        clientSecret: 'test_client_secret',
+        authUrl: 'https://auth.commercetools.com',
+        projectKey: 'test_project',
+        apiUrl: 'https://api.commercetools.com',
+      },
       configuration: {
         actions: {'customer-group': {create: true}},
         context: {
@@ -788,11 +857,14 @@ describe('main function', () => {
     await main();
 
     expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
-      clientId: 'test_client_id',
-      clientSecret: 'test_client_secret',
-      authUrl: 'https://auth.commercetools.com',
-      projectKey: 'test_project',
-      apiUrl: 'https://api.commercetools.com',
+      authConfig: {
+        type: 'client_credentials',
+        clientId: 'test_client_id',
+        clientSecret: 'test_client_secret',
+        authUrl: 'https://auth.commercetools.com',
+        projectKey: 'test_project',
+        apiUrl: 'https://api.commercetools.com',
+      },
       configuration: {
         actions: {'customer-group': {update: true}},
         context: {
@@ -820,11 +892,14 @@ describe('main function', () => {
     await main();
 
     expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
-      clientId: 'test_client_id',
-      clientSecret: 'test_client_secret',
-      authUrl: 'https://auth.commercetools.com',
-      projectKey: 'test_project',
-      apiUrl: 'https://api.commercetools.com',
+      authConfig: {
+        type: 'client_credentials',
+        clientId: 'test_client_id',
+        clientSecret: 'test_client_secret',
+        authUrl: 'https://auth.commercetools.com',
+        projectKey: 'test_project',
+        apiUrl: 'https://api.commercetools.com',
+      },
       configuration: {
         actions: {'standalone-price': {read: true}},
         context: {
@@ -852,11 +927,14 @@ describe('main function', () => {
     await main();
 
     expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
-      clientId: 'test_client_id',
-      clientSecret: 'test_client_secret',
-      authUrl: 'https://auth.commercetools.com',
-      projectKey: 'test_project',
-      apiUrl: 'https://api.commercetools.com',
+      authConfig: {
+        type: 'client_credentials',
+        clientId: 'test_client_id',
+        clientSecret: 'test_client_secret',
+        authUrl: 'https://auth.commercetools.com',
+        projectKey: 'test_project',
+        apiUrl: 'https://api.commercetools.com',
+      },
       configuration: {
         actions: {'standalone-price': {create: true}},
         context: {
@@ -884,11 +962,14 @@ describe('main function', () => {
     await main();
 
     expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
-      clientId: 'test_client_id',
-      clientSecret: 'test_client_secret',
-      authUrl: 'https://auth.commercetools.com',
-      projectKey: 'test_project',
-      apiUrl: 'https://api.commercetools.com',
+      authConfig: {
+        type: 'client_credentials',
+        clientId: 'test_client_id',
+        clientSecret: 'test_client_secret',
+        authUrl: 'https://auth.commercetools.com',
+        projectKey: 'test_project',
+        apiUrl: 'https://api.commercetools.com',
+      },
       configuration: {
         actions: {'standalone-price': {update: true}},
         context: {
@@ -916,11 +997,14 @@ describe('main function', () => {
     await main();
 
     expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
-      clientId: 'test_client_id',
-      clientSecret: 'test_client_secret',
-      authUrl: 'https://auth.commercetools.com',
-      projectKey: 'test_project',
-      apiUrl: 'https://api.commercetools.com',
+      authConfig: {
+        type: 'client_credentials',
+        clientId: 'test_client_id',
+        clientSecret: 'test_client_secret',
+        authUrl: 'https://auth.commercetools.com',
+        projectKey: 'test_project',
+        apiUrl: 'https://api.commercetools.com',
+      },
       configuration: {
         actions: {'product-discount': {read: true}},
         context: {
@@ -948,11 +1032,14 @@ describe('main function', () => {
     await main();
 
     expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
-      clientId: 'test_client_id',
-      clientSecret: 'test_client_secret',
-      authUrl: 'https://auth.commercetools.com',
-      projectKey: 'test_project',
-      apiUrl: 'https://api.commercetools.com',
+      authConfig: {
+        type: 'client_credentials',
+        clientId: 'test_client_id',
+        clientSecret: 'test_client_secret',
+        authUrl: 'https://auth.commercetools.com',
+        projectKey: 'test_project',
+        apiUrl: 'https://api.commercetools.com',
+      },
       configuration: {
         actions: {'product-discount': {create: true}},
         context: {
@@ -980,11 +1067,14 @@ describe('main function', () => {
     await main();
 
     expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
-      clientId: 'test_client_id',
-      clientSecret: 'test_client_secret',
-      authUrl: 'https://auth.commercetools.com',
-      projectKey: 'test_project',
-      apiUrl: 'https://api.commercetools.com',
+      authConfig: {
+        type: 'client_credentials',
+        clientId: 'test_client_id',
+        clientSecret: 'test_client_secret',
+        authUrl: 'https://auth.commercetools.com',
+        projectKey: 'test_project',
+        apiUrl: 'https://api.commercetools.com',
+      },
       configuration: {
         actions: {'product-discount': {update: true}},
         context: {
@@ -1012,11 +1102,14 @@ describe('main function', () => {
     await main();
 
     expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
-      clientId: 'test_client_id',
-      clientSecret: 'test_client_secret',
-      authUrl: 'https://auth.commercetools.com',
-      projectKey: 'test_project',
-      apiUrl: 'https://api.commercetools.com',
+      authConfig: {
+        type: 'client_credentials',
+        clientId: 'test_client_id',
+        clientSecret: 'test_client_secret',
+        authUrl: 'https://auth.commercetools.com',
+        projectKey: 'test_project',
+        apiUrl: 'https://api.commercetools.com',
+      },
       configuration: {
         actions: {'cart-discount': {read: true}},
         context: {
@@ -1044,11 +1137,14 @@ describe('main function', () => {
     await main();
 
     expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
-      clientId: 'test_client_id',
-      clientSecret: 'test_client_secret',
-      authUrl: 'https://auth.commercetools.com',
-      projectKey: 'test_project',
-      apiUrl: 'https://api.commercetools.com',
+      authConfig: {
+        type: 'client_credentials',
+        clientId: 'test_client_id',
+        clientSecret: 'test_client_secret',
+        authUrl: 'https://auth.commercetools.com',
+        projectKey: 'test_project',
+        apiUrl: 'https://api.commercetools.com',
+      },
       configuration: {
         actions: {'cart-discount': {create: true}},
         context: {
@@ -1076,11 +1172,14 @@ describe('main function', () => {
     await main();
 
     expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
-      clientId: 'test_client_id',
-      clientSecret: 'test_client_secret',
-      authUrl: 'https://auth.commercetools.com',
-      projectKey: 'test_project',
-      apiUrl: 'https://api.commercetools.com',
+      authConfig: {
+        type: 'client_credentials',
+        clientId: 'test_client_id',
+        clientSecret: 'test_client_secret',
+        authUrl: 'https://auth.commercetools.com',
+        projectKey: 'test_project',
+        apiUrl: 'https://api.commercetools.com',
+      },
       configuration: {
         actions: {'cart-discount': {update: true}},
         context: {
@@ -1108,11 +1207,14 @@ describe('main function', () => {
     await main();
 
     expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
-      clientId: 'test_client_id',
-      clientSecret: 'test_client_secret',
-      authUrl: 'https://auth.commercetools.com',
-      projectKey: 'test_project',
-      apiUrl: 'https://api.commercetools.com',
+      authConfig: {
+        type: 'client_credentials',
+        clientId: 'test_client_id',
+        clientSecret: 'test_client_secret',
+        authUrl: 'https://auth.commercetools.com',
+        projectKey: 'test_project',
+        apiUrl: 'https://api.commercetools.com',
+      },
       configuration: {
         actions: {'discount-code': {read: true}},
         context: {
@@ -1140,11 +1242,14 @@ describe('main function', () => {
     await main();
 
     expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
-      clientId: 'test_client_id',
-      clientSecret: 'test_client_secret',
-      authUrl: 'https://auth.commercetools.com',
-      projectKey: 'test_project',
-      apiUrl: 'https://api.commercetools.com',
+      authConfig: {
+        type: 'client_credentials',
+        clientId: 'test_client_id',
+        clientSecret: 'test_client_secret',
+        authUrl: 'https://auth.commercetools.com',
+        projectKey: 'test_project',
+        apiUrl: 'https://api.commercetools.com',
+      },
       configuration: {
         actions: {'discount-code': {create: true}},
         context: {
@@ -1172,11 +1277,14 @@ describe('main function', () => {
     await main();
 
     expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
-      clientId: 'test_client_id',
-      clientSecret: 'test_client_secret',
-      authUrl: 'https://auth.commercetools.com',
-      projectKey: 'test_project',
-      apiUrl: 'https://api.commercetools.com',
+      authConfig: {
+        type: 'client_credentials',
+        clientId: 'test_client_id',
+        clientSecret: 'test_client_secret',
+        authUrl: 'https://auth.commercetools.com',
+        projectKey: 'test_project',
+        apiUrl: 'https://api.commercetools.com',
+      },
       configuration: {
         actions: {'discount-code': {update: true}},
         context: {
@@ -1204,11 +1312,14 @@ describe('main function', () => {
     await main();
 
     expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
-      clientId: 'test_client_id',
-      clientSecret: 'test_client_secret',
-      authUrl: 'https://auth.commercetools.com',
-      projectKey: 'test_project',
-      apiUrl: 'https://api.commercetools.com',
+      authConfig: {
+        type: 'client_credentials',
+        clientId: 'test_client_id',
+        clientSecret: 'test_client_secret',
+        authUrl: 'https://auth.commercetools.com',
+        projectKey: 'test_project',
+        apiUrl: 'https://api.commercetools.com',
+      },
       configuration: {
         actions: {bulk: {create: true}},
         context: {
@@ -1236,11 +1347,14 @@ describe('main function', () => {
     await main();
 
     expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
-      clientId: 'test_client_id',
-      clientSecret: 'test_client_secret',
-      authUrl: 'https://auth.commercetools.com',
-      projectKey: 'test_project',
-      apiUrl: 'https://api.commercetools.com',
+      authConfig: {
+        type: 'client_credentials',
+        clientId: 'test_client_id',
+        clientSecret: 'test_client_secret',
+        authUrl: 'https://auth.commercetools.com',
+        projectKey: 'test_project',
+        apiUrl: 'https://api.commercetools.com',
+      },
       configuration: {
         actions: {bulk: {update: true}},
         context: {
@@ -1268,11 +1382,14 @@ describe('main function', () => {
     await main();
 
     expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
-      clientId: 'test_client_id',
-      clientSecret: 'test_client_secret',
-      authUrl: 'https://auth.commercetools.com',
-      projectKey: 'test_project',
-      apiUrl: 'https://api.commercetools.com',
+      authConfig: {
+        type: 'client_credentials',
+        clientId: 'test_client_id',
+        clientSecret: 'test_client_secret',
+        authUrl: 'https://auth.commercetools.com',
+        projectKey: 'test_project',
+        apiUrl: 'https://api.commercetools.com',
+      },
       configuration: {
         actions: {inventory: {read: true}},
         context: {
@@ -1300,11 +1417,14 @@ describe('main function', () => {
     await main();
 
     expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
-      clientId: 'test_client_id',
-      clientSecret: 'test_client_secret',
-      authUrl: 'https://auth.commercetools.com',
-      projectKey: 'test_project',
-      apiUrl: 'https://api.commercetools.com',
+      authConfig: {
+        type: 'client_credentials',
+        clientId: 'test_client_id',
+        clientSecret: 'test_client_secret',
+        authUrl: 'https://auth.commercetools.com',
+        projectKey: 'test_project',
+        apiUrl: 'https://api.commercetools.com',
+      },
       configuration: {
         actions: {inventory: {create: true}},
         context: {
@@ -1332,11 +1452,14 @@ describe('main function', () => {
     await main();
 
     expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
-      clientId: 'test_client_id',
-      clientSecret: 'test_client_secret',
-      authUrl: 'https://auth.commercetools.com',
-      projectKey: 'test_project',
-      apiUrl: 'https://api.commercetools.com',
+      authConfig: {
+        type: 'client_credentials',
+        clientId: 'test_client_id',
+        clientSecret: 'test_client_secret',
+        authUrl: 'https://auth.commercetools.com',
+        projectKey: 'test_project',
+        apiUrl: 'https://api.commercetools.com',
+      },
       configuration: {
         actions: {inventory: {update: true}},
         context: {
@@ -1364,11 +1487,14 @@ describe('main function', () => {
     await main();
 
     expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
-      clientId: 'test_client_id',
-      clientSecret: 'test_client_secret',
-      authUrl: 'https://auth.commercetools.com',
-      projectKey: 'test_project',
-      apiUrl: 'https://api.commercetools.com',
+      authConfig: {
+        type: 'client_credentials',
+        clientId: 'test_client_id',
+        clientSecret: 'test_client_secret',
+        authUrl: 'https://auth.commercetools.com',
+        projectKey: 'test_project',
+        apiUrl: 'https://api.commercetools.com',
+      },
       configuration: {
         actions: {store: {read: true}},
         context: {
@@ -1396,11 +1522,14 @@ describe('main function', () => {
     await main();
 
     expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
-      clientId: 'test_client_id',
-      clientSecret: 'test_client_secret',
-      authUrl: 'https://auth.commercetools.com',
-      projectKey: 'test_project',
-      apiUrl: 'https://api.commercetools.com',
+      authConfig: {
+        type: 'client_credentials',
+        clientId: 'test_client_id',
+        clientSecret: 'test_client_secret',
+        authUrl: 'https://auth.commercetools.com',
+        projectKey: 'test_project',
+        apiUrl: 'https://api.commercetools.com',
+      },
       configuration: {
         actions: {store: {create: true}},
         context: {
@@ -1428,11 +1557,14 @@ describe('main function', () => {
     await main();
 
     expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
-      clientId: 'test_client_id',
-      clientSecret: 'test_client_secret',
-      authUrl: 'https://auth.commercetools.com',
-      projectKey: 'test_project',
-      apiUrl: 'https://api.commercetools.com',
+      authConfig: {
+        type: 'client_credentials',
+        clientId: 'test_client_id',
+        clientSecret: 'test_client_secret',
+        authUrl: 'https://auth.commercetools.com',
+        projectKey: 'test_project',
+        apiUrl: 'https://api.commercetools.com',
+      },
       configuration: {
         actions: {store: {update: true}},
         context: {
@@ -1460,11 +1592,14 @@ describe('main function', () => {
     await main();
 
     expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
-      clientId: 'test_client_id',
-      clientSecret: 'test_client_secret',
-      authUrl: 'https://auth.commercetools.com',
-      projectKey: 'test_project',
-      apiUrl: 'https://api.commercetools.com',
+      authConfig: {
+        type: 'client_credentials',
+        clientId: 'test_client_id',
+        clientSecret: 'test_client_secret',
+        authUrl: 'https://auth.commercetools.com',
+        projectKey: 'test_project',
+        apiUrl: 'https://api.commercetools.com',
+      },
       configuration: {
         actions: {quote: {read: true}},
         context: {
@@ -1492,11 +1627,14 @@ describe('main function', () => {
     await main();
 
     expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
-      clientId: 'test_client_id',
-      clientSecret: 'test_client_secret',
-      authUrl: 'https://auth.commercetools.com',
-      projectKey: 'test_project',
-      apiUrl: 'https://api.commercetools.com',
+      authConfig: {
+        type: 'client_credentials',
+        clientId: 'test_client_id',
+        clientSecret: 'test_client_secret',
+        authUrl: 'https://auth.commercetools.com',
+        projectKey: 'test_project',
+        apiUrl: 'https://api.commercetools.com',
+      },
       configuration: {
         actions: {quote: {create: true}},
         context: {
@@ -1524,11 +1662,14 @@ describe('main function', () => {
     await main();
 
     expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
-      clientId: 'test_client_id',
-      clientSecret: 'test_client_secret',
-      authUrl: 'https://auth.commercetools.com',
-      projectKey: 'test_project',
-      apiUrl: 'https://api.commercetools.com',
+      authConfig: {
+        type: 'client_credentials',
+        clientId: 'test_client_id',
+        clientSecret: 'test_client_secret',
+        authUrl: 'https://auth.commercetools.com',
+        projectKey: 'test_project',
+        apiUrl: 'https://api.commercetools.com',
+      },
       configuration: {
         actions: {quote: {update: true}},
         context: {
@@ -1556,11 +1697,14 @@ describe('main function', () => {
     await main();
 
     expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
-      clientId: 'test_client_id',
-      clientSecret: 'test_client_secret',
-      authUrl: 'https://auth.commercetools.com',
-      projectKey: 'test_project',
-      apiUrl: 'https://api.commercetools.com',
+      authConfig: {
+        type: 'client_credentials',
+        clientId: 'test_client_id',
+        clientSecret: 'test_client_secret',
+        authUrl: 'https://auth.commercetools.com',
+        projectKey: 'test_project',
+        apiUrl: 'https://api.commercetools.com',
+      },
       configuration: {
         actions: {'staged-quote': {read: true}},
         context: {
@@ -1588,11 +1732,14 @@ describe('main function', () => {
     await main();
 
     expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
-      clientId: 'test_client_id',
-      clientSecret: 'test_client_secret',
-      authUrl: 'https://auth.commercetools.com',
-      projectKey: 'test_project',
-      apiUrl: 'https://api.commercetools.com',
+      authConfig: {
+        type: 'client_credentials',
+        clientId: 'test_client_id',
+        clientSecret: 'test_client_secret',
+        authUrl: 'https://auth.commercetools.com',
+        projectKey: 'test_project',
+        apiUrl: 'https://api.commercetools.com',
+      },
       configuration: {
         actions: {'staged-quote': {create: true}},
         context: {
@@ -1620,11 +1767,14 @@ describe('main function', () => {
     await main();
 
     expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
-      clientId: 'test_client_id',
-      clientSecret: 'test_client_secret',
-      authUrl: 'https://auth.commercetools.com',
-      projectKey: 'test_project',
-      apiUrl: 'https://api.commercetools.com',
+      authConfig: {
+        type: 'client_credentials',
+        clientId: 'test_client_id',
+        clientSecret: 'test_client_secret',
+        authUrl: 'https://auth.commercetools.com',
+        projectKey: 'test_project',
+        apiUrl: 'https://api.commercetools.com',
+      },
       configuration: {
         actions: {'staged-quote': {update: true}},
         context: {
@@ -1654,11 +1804,14 @@ describe('main function', () => {
     await main();
 
     expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
-      clientId: 'test_client_id',
-      clientSecret: 'test_client_secret',
-      authUrl: 'https://auth.commercetools.com',
-      projectKey: 'test_project',
-      apiUrl: 'https://api.commercetools.com',
+      authConfig: {
+        type: 'client_credentials',
+        clientId: 'test_client_id',
+        clientSecret: 'test_client_secret',
+        authUrl: 'https://auth.commercetools.com',
+        projectKey: 'test_project',
+        apiUrl: 'https://api.commercetools.com',
+      },
       configuration: {
         actions: {
           products: {read: true},
@@ -1674,5 +1827,214 @@ describe('main function', () => {
     });
 
     expect(StdioServerTransport).toHaveBeenCalled();
+  });
+
+  it.each([
+    {
+      authType: 'client_credentials',
+      authArgs: [
+        '--authType=client_credentials',
+        '--clientId=test_client_id',
+        '--clientSecret=test_client_secret',
+      ],
+      expectedAuthConfig: {
+        type: 'client_credentials',
+        clientId: 'test_client_id',
+        clientSecret: 'test_client_secret',
+        authUrl: 'https://auth.commercetools.com',
+        projectKey: 'test_project',
+        apiUrl: 'https://api.commercetools.com',
+      },
+    },
+    {
+      authType: 'auth_token',
+      authArgs: ['--authType=auth_token', '--accessToken=test_access_token'],
+      expectedAuthConfig: {
+        type: 'auth_token',
+        accessToken: 'test_access_token',
+        authUrl: 'https://auth.commercetools.com',
+        projectKey: 'test_project',
+        apiUrl: 'https://api.commercetools.com',
+      },
+    },
+  ])(
+    'should initialize the server with authType=$authType correctly',
+    async ({authType, authArgs, expectedAuthConfig}) => {
+      process.argv = [
+        'node',
+        'index.js',
+        '--tools=products.read',
+        ...authArgs,
+        '--authUrl=https://auth.commercetools.com',
+        '--projectKey=test_project',
+        '--apiUrl=https://api.commercetools.com',
+        '--isAdmin=true',
+      ];
+
+      await main();
+
+      expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
+        authConfig: expectedAuthConfig,
+        configuration: {
+          actions: {products: {read: true}},
+          context: {
+            isAdmin: true,
+          },
+        },
+      });
+
+      expect(StdioServerTransport).toHaveBeenCalled();
+    }
+  );
+
+  it('should use client_credentials as default authType when not specified', async () => {
+    process.argv = [
+      'node',
+      'index.js',
+      '--tools=products.read',
+      '--clientId=test_client_id',
+      '--clientSecret=test_client_secret',
+      '--authUrl=https://auth.commercetools.com',
+      '--projectKey=test_project',
+      '--apiUrl=https://api.commercetools.com',
+      '--isAdmin=true',
+    ];
+
+    await main();
+
+    expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
+      authConfig: {
+        type: 'client_credentials',
+        clientId: 'test_client_id',
+        clientSecret: 'test_client_secret',
+        authUrl: 'https://auth.commercetools.com',
+        projectKey: 'test_project',
+        apiUrl: 'https://api.commercetools.com',
+      },
+      configuration: {
+        actions: {products: {read: true}},
+        context: {
+          isAdmin: true,
+        },
+      },
+    });
+
+    expect(StdioServerTransport).toHaveBeenCalled();
+  });
+
+  // Test cases for authType CLI argument
+  describe('authType CLI argument', () => {
+    it.each([
+      {
+        authType: 'client_credentials',
+        authArgs: [
+          '--authType=client_credentials',
+          '--clientId=test_client_id',
+          '--clientSecret=test_client_secret',
+        ],
+        expectedAuthConfig: {
+          type: 'client_credentials',
+          clientId: 'test_client_id',
+          clientSecret: 'test_client_secret',
+          authUrl: 'https://auth.commercetools.com',
+          projectKey: 'test_project',
+          apiUrl: 'https://api.commercetools.com',
+        },
+      },
+      {
+        authType: 'auth_token',
+        authArgs: ['--authType=auth_token', '--accessToken=test_access_token'],
+        expectedAuthConfig: {
+          type: 'auth_token',
+          accessToken: 'test_access_token',
+          authUrl: 'https://auth.commercetools.com',
+          projectKey: 'test_project',
+          apiUrl: 'https://api.commercetools.com',
+        },
+      },
+    ])(
+      'should initialize the server with authType=$authType correctly',
+      async ({authType, authArgs, expectedAuthConfig}) => {
+        process.argv = [
+          'node',
+          'index.js',
+          '--tools=products.read',
+          ...authArgs,
+          '--authUrl=https://auth.commercetools.com',
+          '--projectKey=test_project',
+          '--apiUrl=https://api.commercetools.com',
+          '--isAdmin=true',
+        ];
+
+        await main();
+
+        expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
+          authConfig: expectedAuthConfig,
+          configuration: {
+            actions: {products: {read: true}},
+            context: {
+              isAdmin: true,
+            },
+          },
+        });
+
+        expect(StdioServerTransport).toHaveBeenCalled();
+      }
+    );
+
+    it('should throw error for unsupported authType=password', async () => {
+      process.argv = [
+        'node',
+        'index.js',
+        '--tools=products.read',
+        '--authType=password',
+        '--clientId=test_client_id',
+        '--clientSecret=test_client_secret',
+        '--authUrl=https://auth.commercetools.com',
+        '--projectKey=test_project',
+        '--apiUrl=https://api.commercetools.com',
+        '--isAdmin=true',
+      ];
+
+      await expect(main()).rejects.toThrow(
+        'Invalid auth type: password. Supported types are: client_credentials, auth_token'
+      );
+    });
+
+    it('should use client_credentials as default when authType=empty_string is provided', async () => {
+      process.argv = [
+        'node',
+        'index.js',
+        '--tools=products.read',
+        '--authType=',
+        '--clientId=test_client_id',
+        '--clientSecret=test_client_secret',
+        '--authUrl=https://auth.commercetools.com',
+        '--projectKey=test_project',
+        '--apiUrl=https://api.commercetools.com',
+        '--isAdmin=true',
+      ];
+
+      await main();
+
+      expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
+        authConfig: {
+          type: 'client_credentials',
+          clientId: 'test_client_id',
+          clientSecret: 'test_client_secret',
+          authUrl: 'https://auth.commercetools.com',
+          projectKey: 'test_project',
+          apiUrl: 'https://api.commercetools.com',
+        },
+        configuration: {
+          actions: {products: {read: true}},
+          context: {
+            isAdmin: true,
+          },
+        },
+      });
+
+      expect(StdioServerTransport).toHaveBeenCalled();
+    });
   });
 });
