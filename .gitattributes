@@ -1,0 +1,22 @@
+*.cfg               text eol=lf
+*.conf              text eol=lf
+*.css               text eol=lf
+*.html              text eol=lf
+*.htm               text eol=lf
+*.ini               text eol=lf
+*.j2                text eol=lf
+*.js                text eol=lf
+*.json              text eol=lf
+*.jsx               text eol=lf
+*.md                text eol=lf
+*.php               text eol=lf
+*.scss              text eol=lf
+*.sql               text eol=lf
+*.twig              text eol=lf
+*.ts                text eol=lf
+*.tsx               text eol=lf
+*.txt               text eol=lf
+*.xml               text eol=lf
+*.yml               text eol=lf
+
+*.svg -diff

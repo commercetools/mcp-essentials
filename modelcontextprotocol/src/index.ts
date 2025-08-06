@@ -6,7 +6,7 @@ import {
   AvailableNamespaces,
 } from '@commercetools/agent-essentials/modelcontextprotocol';
 import {StdioServerTransport} from '@modelcontextprotocol/sdk/server/stdio.js';
-import {red, yellow} from 'colors';
+import {red, yellow, green} from 'colors';
 
 type Options = {
   tools?: string[];
@@ -144,7 +144,10 @@ export function parseArgs(args: string[]): {options: Options; env: EnvVars} {
 
   // Check if required tools arguments is present
   if (!options.tools) {
-    throw new Error('The --tools arguments must be provided.');
+    if (!process.env.TOOLS) {
+      throw new Error('The --tools arguments must be provided.');
+    }
+    options.tools = process.env.TOOLS.split(',');
   }
 
   // Validate tools against accepted enum values
@@ -196,6 +199,7 @@ function handleError(error: any) {
 }
 
 export async function main() {
+  require('dotenv').config();
   const {options, env} = parseArgs(process.argv.slice(2));
 
   // Create the CommercetoolsAgentEssentials instance
@@ -260,6 +264,7 @@ export async function main() {
 
   const transport = new StdioServerTransport();
   await server.connect(transport);
+  console.info(green('MCP server is running...'));
 }
 
 if (require.main === module) {
