@@ -30,7 +30,7 @@ const commercetoolsAgentEssentials = new CommercetoolsAgentEssentials({
 });
 ```
 
-**BREAKING CHANGE**: The constructor signature has been updated. Please check the README for the new signature.
+**BREAKING CHANGE**: The constructor signature of `CommercetoolsAgentEssentials` has changed to support more authentication types. See example below to learn what changed.
 
 
 Example:
