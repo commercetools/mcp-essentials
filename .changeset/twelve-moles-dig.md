@@ -3,7 +3,32 @@
 "@commercetools/agent-essentials": major
 ---
 
-Add support for authencation via existing AuthToken.
+Add support for authenticating via existing `access_token`.
+
+Example:
+```ts
+const commercetoolsAgentEssentials = new CommercetoolsAgentEssentials({
+  authConfig: {
+    type: 'auth_token',
+    accessToken: process.env.ACCESS_TOKEN!,
+    projectKey: process.env.PROJECT_KEY!,
+    authUrl: process.env.AUTH_URL!,
+    apiUrl: process.env.API_URL!,
+  },
+  configuration: {
+    actions: {
+      products: {
+        read: true,
+        create: true,
+        update: true,
+      },
+      project: {
+        read: true,
+      },
+    },
+  },
+});
+```
 
 **BREAKING CHANGE**: The constructor signature has been updated. Please check the README for the new signature.
 
@@ -54,3 +79,4 @@ Example:
 +   },
 + });
 ```
+
