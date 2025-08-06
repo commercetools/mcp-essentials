@@ -88,11 +88,14 @@ describe('CommercetoolsAgentEssentials (ModelContextProtocol)', () => {
     });
 
     mockCommercetoolsAPIInstance = new CommercetoolsAPI(
-      'c',
-      's',
-      'a',
-      'p',
-      'a',
+      {
+        type: 'client_credentials',
+        clientId: 'clientId',
+        clientSecret: 'clientSecret',
+        authUrl: 'authUrl',
+        projectKey: 'projectKey',
+        apiUrl: 'apiUrl',
+      },
       mockConfiguration.context
     ) as jest.Mocked<CommercetoolsAPI>;
     mockCommercetoolsAPIInstance.run = jest.fn();

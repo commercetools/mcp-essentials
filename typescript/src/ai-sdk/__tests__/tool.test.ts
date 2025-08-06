@@ -12,13 +12,14 @@ jest.mock('ai', () => ({
 jest.mock('../../shared/api');
 
 describe('CommercetoolsTool', () => {
-  const mockCommercetoolsAPI = new CommercetoolsAPI(
-    'clientId',
-    'clientSecret',
-    'authUrl',
-    'projectKey',
-    'apiUrl'
-  ) as jest.Mocked<CommercetoolsAPI>;
+  const mockCommercetoolsAPI = new CommercetoolsAPI({
+    type: 'client_credentials',
+    clientId: 'clientId',
+    clientSecret: 'clientSecret',
+    authUrl: 'authUrl',
+    projectKey: 'projectKey',
+    apiUrl: 'apiUrl',
+  }) as jest.Mocked<CommercetoolsAPI>;
 
   const testMethod = 'testMethod';
   const testDescription = 'Test Description';

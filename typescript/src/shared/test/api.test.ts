@@ -30,13 +30,14 @@ describe('CommercetoolsAPI', () => {
 
   describe('constructor', () => {
     it('should initialize with required parameters', () => {
-      const api = new CommercetoolsAPI(
-        'client-id',
-        'client-secret',
-        'https://auth.commercetools.com',
-        'test-project',
-        'https://api.commercetools.com'
-      );
+      const api = new CommercetoolsAPI({
+        type: 'client_credentials',
+        clientId: 'client-id',
+        clientSecret: 'client-secret',
+        authUrl: 'https://auth.commercetools.com',
+        projectKey: 'test-project',
+        apiUrl: 'https://api.commercetools.com',
+      });
 
       expect(ClientBuilder).toHaveBeenCalled();
       expect(mockClientBuilder.withHttpMiddleware).toHaveBeenCalledWith({
@@ -60,11 +61,14 @@ describe('CommercetoolsAPI', () => {
     it('should initialize with context', () => {
       const context = {isAdmin: true, storeKey: 'test-store'};
       const api = new CommercetoolsAPI(
-        'client-id',
-        'client-secret',
-        'https://auth.commercetools.com',
-        'test-project',
-        'https://api.commercetools.com',
+        {
+          type: 'client_credentials',
+          clientId: 'client-id',
+          clientSecret: 'client-secret',
+          authUrl: 'https://auth.commercetools.com',
+          projectKey: 'test-project',
+          apiUrl: 'https://api.commercetools.com',
+        },
         context
       );
 
@@ -77,13 +81,14 @@ describe('CommercetoolsAPI', () => {
     const mockFunction = jest.fn();
 
     beforeEach(() => {
-      api = new CommercetoolsAPI(
-        'client-id',
-        'client-secret',
-        'https://auth.commercetools.com',
-        'test-project',
-        'https://api.commercetools.com'
-      );
+      api = new CommercetoolsAPI({
+        type: 'client_credentials',
+        clientId: 'client-id',
+        clientSecret: 'client-secret',
+        authUrl: 'https://auth.commercetools.com',
+        projectKey: 'test-project',
+        apiUrl: 'https://api.commercetools.com',
+      });
 
       (contextToFunctionMapping as jest.Mock).mockReturnValue({
         testMethod: mockFunction,
@@ -108,11 +113,14 @@ describe('CommercetoolsAPI', () => {
     it('should execute a method with context', async () => {
       const context = {isAdmin: true, storeKey: 'test-store'};
       const apiWithContext = new CommercetoolsAPI(
-        'client-id',
-        'client-secret',
-        'https://auth.commercetools.com',
-        'test-project',
-        'https://api.commercetools.com',
+        {
+          type: 'client_credentials',
+          clientId: 'client-id',
+          clientSecret: 'client-secret',
+          authUrl: 'https://auth.commercetools.com',
+          projectKey: 'test-project',
+          apiUrl: 'https://api.commercetools.com',
+        },
         context
       );
 
