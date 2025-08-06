@@ -7,9 +7,9 @@ import {
   ApiRoot,
   createApiBuilderFromCtpClient,
 } from '@commercetools/platform-sdk';
-import {contextToFunctionMapping} from './functions';
-import {CommercetoolsFuncContext, Context} from '../types/configuration';
-import {AuthConfig} from '../types/auth';
+import { contextToFunctionMapping } from './functions';
+import { CommercetoolsFuncContext, Context } from '../types/configuration';
+import { AuthConfig } from '../types/auth';
 
 class CommercetoolsAPI {
   private client: Client | undefined;
@@ -29,7 +29,7 @@ class CommercetoolsAPI {
   }
 
   private createClient(): Client | undefined {
-    const {authUrl, projectKey, apiUrl} = this.authConfig;
+    const { authUrl, projectKey, apiUrl } = this.authConfig;
     const httpMiddlewareOptions: HttpMiddlewareOptions = {
       host: apiUrl,
     };
@@ -50,10 +50,11 @@ class CommercetoolsAPI {
     }
 
     if (this.authConfig.type === 'auth_token') {
+      const authorizationHeader = `Bearer ${this.authConfig.accessToken}`;
       return new ClientBuilder()
         .withHttpMiddleware(httpMiddlewareOptions)
         .withConcurrentModificationMiddleware()
-        .withExistingTokenFlow(this.authConfig.accessToken, {force: true})
+        .withExistingTokenFlow(authorizationHeader, { force: true })
         .build();
     }
 
