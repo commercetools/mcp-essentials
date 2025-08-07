@@ -7,8 +7,8 @@ import {
   CommercetoolsAgentEssentialsStreamable,
   AuthConfig,
 } from '@commercetools/agent-essentials/modelcontextprotocol';
-import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
-import { red, yellow, green } from 'colors';
+import {StdioServerTransport} from '@modelcontextprotocol/sdk/server/stdio.js';
+import {red, yellow, green} from 'colors';
 
 type Options = {
   tools?: string[];
@@ -112,7 +112,7 @@ export const ACCEPTED_TOOLS = [
 ];
 
 // eslint-disable-next-line complexity
-export function parseArgs(args: string[]): { options: Options; env: EnvVars } {
+export function parseArgs(args: string[]): {options: Options; env: EnvVars} {
   const options: Options = {};
   const env: EnvVars = {};
 
@@ -236,7 +236,7 @@ export function parseArgs(args: string[]): { options: Options; env: EnvVars } {
       );
   }
 
-  return { options, env };
+  return {options, env};
 }
 
 function createAuthConfig(env: EnvVars): AuthConfig {
@@ -272,7 +272,7 @@ function handleError(error: any) {
 
 export async function main() {
   require('dotenv').config();
-  const { options, env } = parseArgs(process.argv.slice(2));
+  const {options, env} = parseArgs(process.argv.slice(2));
 
   // Create the CommercetoolsAgentEssentials instance
   const selectedTools = options.tools!;
