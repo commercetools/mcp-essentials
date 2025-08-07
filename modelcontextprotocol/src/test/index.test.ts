@@ -169,6 +169,181 @@ describe('parseArgs function', () => {
       const {options} = parseArgs(args);
       expect(options.isAdmin).toBe(false);
     });
+
+    it.each([
+      {
+        authType: undefined,
+        expectedAuthType: 'client_credentials',
+        requiredArgs: [
+          '--clientId=test_client_id',
+          '--clientSecret=test_client_secret',
+        ],
+        optionalArgs: [],
+      },
+      {
+        authType: 'client_credentials',
+        expectedAuthType: 'client_credentials',
+        requiredArgs: [
+          '--clientId=test_client_id',
+          '--clientSecret=test_client_secret',
+        ],
+        optionalArgs: [],
+      },
+      {
+        authType: 'auth_token',
+        expectedAuthType: 'auth_token',
+        requiredArgs: ['--accessToken=test_access_token'],
+        optionalArgs: [],
+      },
+    ])(
+      'should parse authType=$authType correctly',
+      ({authType, expectedAuthType, requiredArgs, optionalArgs}) => {
+        const args = [
+          '--tools=all',
+          authType ? `--authType=${authType}` : '',
+          '--authUrl=https://auth.commercetools.com',
+          '--projectKey=test_project',
+          '--apiUrl=https://api.commercetools.com',
+          ...requiredArgs,
+          ...optionalArgs,
+        ];
+        const {env} = parseArgs(args);
+        expect(env.authType).toBe(expectedAuthType);
+      }
+    );
+
+    it.each([
+      {
+        authType: undefined,
+        envKeys: ['CLIENT_ID', 'CLIENT_SECRET'],
+        envValues: ['test_client_id', 'test_client_secret'],
+      },
+      {
+        authType: 'client_credentials',
+        envKeys: ['CLIENT_ID', 'CLIENT_SECRET'],
+        envValues: ['test_client_id', 'test_client_secret'],
+      },
+      {
+        authType: 'auth_token',
+        envKeys: ['ACCESS_TOKEN'],
+        envValues: ['test_access_token'],
+      },
+    ])(
+      'should use environment variable $authType when authType argument is not provided',
+      ({authType = 'client_credentials', envKeys, envValues}) => {
+        process.env.AUTH_TYPE = authType;
+        envKeys.forEach((key, index) => {
+          process.env[key] = envValues[index];
+        });
+        process.env.AUTH_URL = 'https://auth.commercetools.com';
+        process.env.PROJECT_KEY = 'env_project';
+        process.env.API_URL = 'https://api.commercetools.com';
+
+        const args = ['--tools=all'];
+        const {env} = parseArgs(args);
+
+        expect(env.authType).toBe(authType);
+
+        // Clean up
+        delete process.env.AUTH_TYPE;
+        envKeys.forEach((key) => {
+          delete process.env[key];
+        });
+        delete process.env.AUTH_URL;
+        delete process.env.PROJECT_KEY;
+        delete process.env.API_URL;
+      }
+    );
+
+    it('should prefer command line authType over environment variable', () => {
+      process.env.AUTH_TYPE = 'auth_token';
+      process.env.ACCESS_TOKEN = 'env_access_token';
+      process.env.AUTH_URL = 'https://auth.commercetools.com';
+      process.env.PROJECT_KEY = 'env_project';
+      process.env.API_URL = 'https://api.commercetools.com';
+
+      const args = [
+        '--tools=all',
+        '--authType=client_credentials',
+        '--clientId=arg_client_id',
+        '--clientSecret=arg_client_secret',
+        '--authUrl=https://auth-arg.commercetools.com',
+        '--projectKey=arg_project',
+        '--apiUrl=https://api-arg.commercetools.com',
+      ];
+      const {env} = parseArgs(args);
+      expect(env.authType).toBe('client_credentials');
+
+      // Clean up
+      delete process.env.AUTH_TYPE;
+      delete process.env.ACCESS_TOKEN;
+      delete process.env.AUTH_URL;
+      delete process.env.PROJECT_KEY;
+      delete process.env.API_URL;
+    });
+
+    describe('authType validation', () => {
+      describe.each([
+        {
+          authType: 'client_credentials',
+          missingCredential: 'clientId',
+          args: ['--clientSecret=test_client_secret'],
+          expectedError:
+            'Missing required client credentials when "authType" is "client_credentials". Please make sure to provide the values for "clientId", "clientSecret" or via environment variables (CLIENT_ID, CLIENT_SECRET).',
+        },
+        {
+          authType: 'client_credentials',
+          missingCredential: 'clientSecret',
+          args: ['--clientId=test_client_id'],
+          expectedError:
+            'Missing required client credentials when "authType" is "client_credentials". Please make sure to provide the values for "clientId", "clientSecret" or via environment variables (CLIENT_ID, CLIENT_SECRET).',
+        },
+        {
+          authType: 'client_credentials',
+          missingCredential: 'both',
+          args: [],
+          expectedError:
+            'Missing required client credentials when "authType" is "client_credentials". Please make sure to provide the values for "clientId", "clientSecret" or via environment variables (CLIENT_ID, CLIENT_SECRET).',
+        },
+        {
+          authType: 'auth_token',
+          missingCredential: 'accessToken',
+          args: [],
+          expectedError:
+            'Missing required access token when "authType" is "auth_token". Please make sure to provide the value for "accessToken" or via environment variable (ACCESS_TOKEN).',
+        },
+      ])(
+        '$authType with missing $missingCredential',
+        ({authType, args, expectedError}) => {
+          it(`should throw an error when authType=${authType} but required credentials are missing`, () => {
+            const testArgs = [
+              '--tools=all',
+              `--authType=${authType}`,
+              ...args,
+              '--authUrl=https://auth.commercetools.com',
+              '--projectKey=test_project',
+              '--apiUrl=https://api.commercetools.com',
+            ];
+            expect(() => parseArgs(testArgs)).toThrow(expectedError);
+          });
+        }
+      );
+
+      it('should throw an error for unsupported authType value', () => {
+        const args = [
+          '--tools=all',
+          '--authType=unsupported_type',
+          '--clientId=test_client_id',
+          '--clientSecret=test_client_secret',
+          '--authUrl=https://auth.commercetools.com',
+          '--projectKey=test_project',
+          '--apiUrl=https://api.commercetools.com',
+        ];
+        expect(() => parseArgs(args)).toThrow(
+          'Invalid auth type: unsupported_type. Supported types are: client_credentials, auth_token'
+        );
+      });
+    });
   });
 
   describe('configuration building integration tests', () => {
@@ -273,7 +448,7 @@ describe('parseArgs function', () => {
     it('should throw an error if required credentials are missing', () => {
       const args = ['--tools=all'];
       expect(() => parseArgs(args)).toThrow(
-        'commercetools credentials missing. Please provide all required credentials either via arguments or environment variables (CLIENT_ID, CLIENT_SECRET, AUTH_URL, PROJECT_KEY, API_URL).'
+        'Missing required options. Please make sure to provide the values for "authUrl", "apiUrl", "projectKey" or via environment variables (AUTH_URL, API_URL, PROJECT_KEY).'
       );
     });
 
@@ -288,7 +463,7 @@ describe('parseArgs function', () => {
         '--apiUrl=https://api.commercetools.com',
       ];
       expect(() => parseArgs(args)).toThrow(
-        'Invalid argument: invalid-arg. Accepted arguments are: tools, clientId, clientSecret, authUrl, projectKey, apiUrl'
+        'Invalid argument: invalid-arg. Accepted arguments are: tools, authType, clientId, clientSecret, accessToken, authUrl, projectKey, apiUrl'
       );
     });
 

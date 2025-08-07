@@ -5,6 +5,7 @@ import {
   AvailableNamespaces,
   CommercetoolsAgentEssentials,
   CommercetoolsAgentEssentialsStreamable,
+  AuthConfig,
 } from '@commercetools/agent-essentials/modelcontextprotocol';
 import {StdioServerTransport} from '@modelcontextprotocol/sdk/server/stdio.js';
 import {red, yellow, green} from 'colors';
@@ -24,18 +25,21 @@ type EnvVars = {
   authUrl?: string;
   projectKey?: string;
   apiUrl?: string;
-
   remote?: boolean;
   stateless?: boolean;
   port?: number;
+  accessToken?: string;
+  authType?: 'client_credentials' | 'auth_token';
 };
 
 const HIDDEN_ARGS = ['customerId', 'isAdmin', 'storeKey', 'businessUnitKey'];
 
 const PUBLIC_ARGS = [
   'tools',
+  'authType',
   'clientId',
   'clientSecret',
+  'accessToken',
   'authUrl',
   'projectKey',
   'apiUrl',
@@ -118,6 +122,10 @@ export function parseArgs(args: string[]): {options: Options; env: EnvVars} {
 
       if (key == 'tools') {
         options.tools = value.split(',');
+      } else if (key == 'authType') {
+        env.authType = value as EnvVars['authType'];
+      } else if (key == 'accessToken') {
+        env.accessToken = value;
       } else if (key == 'clientId') {
         env.clientId = value;
       } else if (key == 'clientSecret') {
@@ -177,6 +185,11 @@ export function parseArgs(args: string[]): {options: Options; env: EnvVars} {
   });
 
   // Check for commercetools env vars
+  env.authType =
+    env.authType ||
+    (process.env.AUTH_TYPE as EnvVars['authType']) ||
+    'client_credentials';
+  env.accessToken = env.accessToken || process.env.ACCESS_TOKEN;
   env.clientId = env.clientId || process.env.CLIENT_ID;
   env.clientSecret = env.clientSecret || process.env.CLIENT_SECRET;
   env.authUrl = env.authUrl || process.env.AUTH_URL;
@@ -194,20 +207,62 @@ export function parseArgs(args: string[]): {options: Options; env: EnvVars} {
   options.isAdmin = options.isAdmin || process.env.IS_ADMIN === 'true';
   options.cartId = options.cartId || process.env.CART_ID;
 
-  // Validate required commercetools credentials
-  if (
-    !env.clientId ||
-    !env.clientSecret ||
-    !env.authUrl ||
-    !env.projectKey ||
-    !env.apiUrl
-  ) {
+  // Validate required commercetools credentials based on auth type
+  if (!env.authUrl || !env.projectKey || !env.apiUrl) {
     throw new Error(
-      'commercetools credentials missing. Please provide all required credentials either via arguments or environment variables (CLIENT_ID, CLIENT_SECRET, AUTH_URL, PROJECT_KEY, API_URL).'
+      'Missing required options. Please make sure to provide the values for "authUrl", "apiUrl", "projectKey" or via environment variables (AUTH_URL, API_URL, PROJECT_KEY).'
     );
   }
 
+  // Validate auth-specific requirements
+  switch (env.authType) {
+    case 'client_credentials':
+      if (!env.clientId || !env.clientSecret) {
+        throw new Error(
+          'Missing required client credentials when "authType" is "client_credentials". Please make sure to provide the values for "clientId", "clientSecret" or via environment variables (CLIENT_ID, CLIENT_SECRET).'
+        );
+      }
+      break;
+    case 'auth_token':
+      if (!env.accessToken) {
+        throw new Error(
+          'Missing required access token when "authType" is "auth_token". Please make sure to provide the value for "accessToken" or via environment variable (ACCESS_TOKEN).'
+        );
+      }
+      break;
+    default:
+      throw new Error(
+        `Invalid auth type: ${env.authType}. Supported types are: client_credentials, auth_token`
+      );
+  }
+
   return {options, env};
+}
+
+function createAuthConfig(env: EnvVars): AuthConfig {
+  const baseConfig = {
+    authUrl: env.authUrl!,
+    projectKey: env.projectKey!,
+    apiUrl: env.apiUrl!,
+  };
+
+  switch (env.authType) {
+    case 'client_credentials':
+      return {
+        type: 'client_credentials',
+        clientId: env.clientId!,
+        clientSecret: env.clientSecret!,
+        ...baseConfig,
+      };
+    case 'auth_token':
+      return {
+        type: 'auth_token',
+        accessToken: env.accessToken!,
+        ...baseConfig,
+      };
+    default:
+      throw new Error(`Unsupported auth type: ${env.authType}`);
+  }
 }
 
 function handleError(error: any) {
@@ -270,13 +325,11 @@ export async function main() {
     });
   }
 
+  const authConfig = createAuthConfig(env);
+
   const server = new CommercetoolsAgentEssentials({
-    clientId: env.clientId!,
-    clientSecret: env.clientSecret!,
-    authUrl: env.authUrl!,
-    projectKey: env.projectKey!,
-    apiUrl: env.apiUrl!,
-    configuration: configuration,
+    authConfig,
+    configuration,
   });
 
   if (env.remote) {

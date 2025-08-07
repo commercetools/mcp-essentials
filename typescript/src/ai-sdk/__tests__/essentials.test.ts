@@ -69,19 +69,25 @@ describe('CommercetoolsAgentEssentials with Admin tools', () => {
 
   it('should initialize CommercetoolsAPI with constructor arguments', () => {
     const agentEssentials = new CommercetoolsAgentEssentials({
-      clientId: 'id',
-      clientSecret: 'secret',
-      authUrl: 'auth',
-      projectKey: 'key',
-      apiUrl: 'api',
+      authConfig: {
+        clientId: 'id',
+        clientSecret: 'secret',
+        authUrl: 'auth',
+        projectKey: 'key',
+        apiUrl: 'api',
+        type: 'client_credentials',
+      },
       configuration: mockConfiguration,
     });
     expect(CommercetoolsAPI).toHaveBeenCalledWith(
-      'id',
-      'secret',
-      'auth',
-      'key',
-      'api',
+      {
+        clientId: 'id',
+        clientSecret: 'secret',
+        authUrl: 'auth',
+        projectKey: 'key',
+        apiUrl: 'api',
+        type: 'client_credentials',
+      },
       mockConfiguration.context
     );
   });
@@ -97,11 +103,14 @@ describe('CommercetoolsAgentEssentials with Admin tools', () => {
     );
 
     const agentEssentials = new CommercetoolsAgentEssentials({
-      clientId: 'id',
-      clientSecret: 'secret',
-      authUrl: 'auth',
-      projectKey: 'key',
-      apiUrl: 'api',
+      authConfig: {
+        clientId: 'id',
+        clientSecret: 'secret',
+        authUrl: 'auth',
+        projectKey: 'key',
+        apiUrl: 'api',
+        type: 'client_credentials',
+      },
       configuration: mockConfiguration,
     });
 
@@ -138,11 +147,14 @@ describe('CommercetoolsAgentEssentials with Admin tools', () => {
   it('should return all created tools via getTools method', () => {
     (isToolAllowed as jest.Mock).mockReturnValue(true); // Allow all tools for this test
     const agentEssentials = new CommercetoolsAgentEssentials({
-      clientId: 'id',
-      clientSecret: 'secret',
-      authUrl: 'auth',
-      projectKey: 'key',
-      apiUrl: 'api',
+      authConfig: {
+        clientId: 'id',
+        clientSecret: 'secret',
+        authUrl: 'auth',
+        projectKey: 'key',
+        apiUrl: 'api',
+        type: 'client_credentials',
+      },
       configuration: {
         context: {isAdmin: true},
         actions: {cart: {read: true}, products: {read: true}},
@@ -160,11 +172,14 @@ describe('CommercetoolsAgentEssentials with Admin tools', () => {
     (isToolAllowed as jest.Mock).mockReturnValue(false); // No tools allowed
 
     const agentEssentials = new CommercetoolsAgentEssentials({
-      clientId: 'id',
-      clientSecret: 'secret',
-      authUrl: 'auth',
-      projectKey: 'key',
-      apiUrl: 'api',
+      authConfig: {
+        clientId: 'id',
+        clientSecret: 'secret',
+        authUrl: 'auth',
+        projectKey: 'key',
+        apiUrl: 'api',
+        type: 'client_credentials',
+      },
       configuration: {
         context: {isAdmin: true},
         actions: {cart: {read: false}, products: {read: false}},

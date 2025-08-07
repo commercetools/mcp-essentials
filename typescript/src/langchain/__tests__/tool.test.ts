@@ -32,13 +32,14 @@ describe('CommercetoolsTool (Langchain)', () => {
   });
 
   beforeEach(() => {
-    mockCommercetoolsAPI = new CommercetoolsAPI(
-      'clientId',
-      'clientSecret',
-      'authUrl',
-      'projectKey',
-      'apiUrl'
-    ) as jest.Mocked<CommercetoolsAPI>;
+    mockCommercetoolsAPI = new CommercetoolsAPI({
+      type: 'client_credentials',
+      clientId: 'clientId',
+      clientSecret: 'clientSecret',
+      authUrl: 'authUrl',
+      projectKey: 'projectKey',
+      apiUrl: 'apiUrl',
+    }) as jest.Mocked<CommercetoolsAPI>;
     mockCommercetoolsAPI.run = jest.fn();
 
     // Clear the mock using the imported (and now mocked) DynamicStructuredTool
