@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 
 import {
-  CommercetoolsAgentEssentials,
   Configuration,
   AvailableNamespaces,
+  CommercetoolsAgentEssentials,
+  CommercetoolsAgentEssentialsStreamable,
 } from '@commercetools/agent-essentials/modelcontextprotocol';
 import {StdioServerTransport} from '@modelcontextprotocol/sdk/server/stdio.js';
 import {red, yellow, green} from 'colors';
@@ -23,6 +24,10 @@ type EnvVars = {
   authUrl?: string;
   projectKey?: string;
   apiUrl?: string;
+
+  remote?: boolean;
+  stateless?: boolean;
+  port?: number;
 };
 
 const HIDDEN_ARGS = ['customerId', 'isAdmin', 'storeKey', 'businessUnitKey'];
@@ -102,6 +107,7 @@ export const ACCEPTED_TOOLS = [
   'store.update',
 ];
 
+// eslint-disable-next-line complexity
 export function parseArgs(args: string[]): {options: Options; env: EnvVars} {
   const options: Options = {};
   const env: EnvVars = {};
@@ -122,6 +128,12 @@ export function parseArgs(args: string[]): {options: Options; env: EnvVars} {
         env.projectKey = value;
       } else if (key == 'apiUrl') {
         env.apiUrl = value;
+      } else if (key == 'remote') {
+        env.remote = value == 'true';
+      } else if (key == 'stateless') {
+        env.stateless = value == 'true';
+      } else if (key == 'port') {
+        env.port = Number(value);
       } else if (key == 'customerId') {
         options.customerId = value;
       } else if (key == 'isAdmin') {
@@ -170,6 +182,11 @@ export function parseArgs(args: string[]): {options: Options; env: EnvVars} {
   env.authUrl = env.authUrl || process.env.AUTH_URL;
   env.projectKey = env.projectKey || process.env.PROJECT_KEY;
   env.apiUrl = env.apiUrl || process.env.API_URL;
+
+  env.remote = env.remote || process.env.REMOTE == 'true';
+  env.stateless = env.stateless || process.env.STATELESS == 'true';
+  env.port = env.port || Number(process.env.PORT);
+
   options.businessUnitKey =
     options.businessUnitKey || process.env.BUSINESS_UNIT_KEY;
   options.storeKey = options.storeKey || process.env.STORE_KEY;
@@ -262,9 +279,24 @@ export async function main() {
     configuration: configuration,
   });
 
-  const transport = new StdioServerTransport();
-  await server.connect(transport);
-  console.info(green('MCP server is running...'));
+  if (env.remote) {
+    const streamServer = new CommercetoolsAgentEssentialsStreamable({
+      server,
+      stateless: env.stateless,
+      streamableHttpOptions: {
+        sessionIdGenerator: undefined,
+      },
+    });
+
+    const port = env.port || 8080;
+    streamServer.listen(port, function () {
+      console.log(`running on port`, port);
+    });
+  } else {
+    const transport = new StdioServerTransport();
+    await server.connect(transport);
+  }
+  console.error(green('MCP server is running...'));
 }
 
 if (require.main === module) {

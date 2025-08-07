@@ -1,4 +1,7 @@
+import {StreamableHTTPServerTransportOptions} from '@modelcontextprotocol/sdk/server/streamableHttp.js';
+import {CommercetoolsAgentEssentials} from '../modelcontextprotocol';
 import {AvailableNamespaces} from './tools';
+import {Express} from 'express';
 
 // Actions restrict the subset of API calls that can be made. They should
 // be used in conjunction with Restricted API Keys. Setting a permission to false
@@ -38,3 +41,31 @@ export type Configuration = {
   actions?: Actions;
   context?: Context;
 };
+
+type WithServerInstance = {
+  server: CommercetoolsAgentEssentials;
+  clientId?: string;
+  clientSecret?: string;
+  authUrl?: string;
+  projectKey?: string;
+  apiUrl?: string;
+  configuration?: Configuration;
+  stateless?: boolean;
+  streamableHttpOptions: StreamableHTTPServerTransportOptions;
+  app?: Express;
+};
+
+type WithServerConfig = {
+  server?: undefined;
+  clientId: string;
+  clientSecret: string;
+  authUrl: string;
+  projectKey: string;
+  apiUrl: string;
+  configuration: Configuration;
+  stateless?: boolean;
+  streamableHttpOptions: StreamableHTTPServerTransportOptions;
+  app?: Express;
+};
+
+export type StreamServerOptions = WithServerInstance | WithServerConfig;
