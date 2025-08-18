@@ -261,13 +261,6 @@ describe('CommercetoolsAgentEssentials (ModelContextProtocol)', () => {
   });
 
   describe('::scopeToActions [filter configured actions based on token scopes]', () => {
-    // jest.mock('../../utils/scopes', () => {
-    //   return {
-    //     scopesToActions: (scope: Array<string>, config: Configuration) =>
-    //       scopesToActions(scope, config),
-    //   };
-    // });
-
     it('should introspect a token on initialization', () => {
       // eslint-disable-next-line no-new
       new CommercetoolsAgentEssentials({
