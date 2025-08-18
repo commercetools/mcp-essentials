@@ -18,4 +18,11 @@ export interface ExistingTokenAuth extends BaseAuthConfig {
   accessToken: string;
 }
 
+export interface Introspect {
+  active: boolean;
+  scope: string;
+  exp: bigint;
+  client_id: string;
+}
+
 export type AuthConfig = ClientCredentialsAuth | ExistingTokenAuth;

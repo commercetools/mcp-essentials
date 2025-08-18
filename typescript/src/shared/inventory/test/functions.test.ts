@@ -108,12 +108,16 @@ describe('Inventory Functions', () => {
     });
 
     it('should handle errors properly', async () => {
+      const errlog = console.error;
+      console.error = () => {}; // temporarily override native log fn
+
       mockExecute.mockRejectedValueOnce(new Error('API error'));
       const params = {limit: 10};
 
       await expect(
         readInventory(mockApiRoot as any, mockContext, params)
       ).rejects.toThrow('API error');
+      console.error = errlog; // restore native log fn
     });
   });
 
