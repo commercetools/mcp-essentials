@@ -30,8 +30,9 @@ class CommercetoolsAgentEssentials extends McpServer {
     this.configuration = configuration;
     this.init().catch((err) => {
       console.error(err);
-      // eslint-disable-next-line no-process-exit
-      process.exit(1);
+      throw new Error(
+        err.message ?? 'Unable to initialze `CommercetoolsAgentEssentials`'
+      );
     });
   }
 

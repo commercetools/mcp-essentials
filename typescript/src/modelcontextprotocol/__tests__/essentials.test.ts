@@ -387,6 +387,10 @@ describe('CommercetoolsAgentEssentials (ModelContextProtocol)', () => {
     let _mockToolMethod: jest.Mock;
     let _mockCommercetoolsAPIInstance: jest.Mocked<CommercetoolsAPI>;
 
+    jest.mock('../../shared/api.ts', () => ({
+      introspect: jest.fn(),
+    }));
+
     const _mockConfiguration: Configuration = {
       actions: {
         products: {
@@ -450,8 +454,6 @@ describe('CommercetoolsAgentEssentials (ModelContextProtocol)', () => {
     });
 
     afterAll(() => {
-      (console.error as jest.Mock).mockClear();
-      (process.exit as unknown as jest.Mock).mockClear();
       _mockCommercetoolsAPIInstance.introspect = jest
         .fn()
         .mockImplementation(function () {
@@ -481,34 +483,16 @@ describe('CommercetoolsAgentEssentials (ModelContextProtocol)', () => {
     });
 
     it('should properly handle error', async () => {
-      console.error = jest.fn((err) => err);
-      process.exit = jest.fn((code) => code) as any;
-      _mockCommercetoolsAPIInstance.introspect = jest
-        .fn()
-        .mockImplementation(function () {
-          throw new Error('Simulated Error in instropect method.');
-        });
+      (_mockCommercetoolsAPIInstance.introspect as jest.Mock).mockRejectedValue(
+        new Error('Simulated error in the instropsect method')
+      );
 
-      // eslint-disable-next-line no-new
-      new CommercetoolsAgentEssentials({
-        authConfig: {
-          clientId: 'id',
-          clientSecret: 'secret',
-          authUrl: 'auth',
-          projectKey: 'key',
-          apiUrl: 'api',
-          type: 'client_credentials',
-        },
-        configuration: _mockConfiguration,
-      });
+      const instance = Object.create(CommercetoolsAgentEssentials.prototype);
+      instance.configuration = {context: {isAdmin: true}};
 
       await new Promise(setImmediate);
-      expect(console.error).toHaveBeenCalled();
-      expect(process.exit).toHaveBeenCalled();
-
-      expect(process.exit).toHaveBeenCalledWith(1);
-      expect(console.error).toHaveBeenCalledWith(
-        Error('Simulated Error in instropect method.')
+      await expect(instance.init()).rejects.toThrow(
+        /Simulated error in the instropsect method/
       );
     });
   });
