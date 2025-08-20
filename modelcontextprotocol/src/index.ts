@@ -271,7 +271,9 @@ function handleError(error: any) {
 }
 
 export async function main() {
-  require('dotenv').config();
+  require('dotenv').config({
+    quiet: true,
+  });
   const {options, env} = parseArgs(process.argv.slice(2));
 
   // Create the CommercetoolsAgentEssentials instance
