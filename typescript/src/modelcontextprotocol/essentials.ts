@@ -7,6 +7,7 @@ import {
 import {contextToTools} from '../shared/tools';
 import type {Configuration} from '../types/configuration';
 import {AuthConfig} from '../types/auth';
+import {contextToToolsHierarchyTools} from '../shared/tools-hierarchy/tools';
 
 class CommercetoolsAgentEssentials extends McpServer {
   private _commercetools: CommercetoolsAPI;
@@ -18,10 +19,19 @@ class CommercetoolsAgentEssentials extends McpServer {
     authConfig: AuthConfig;
     configuration: Configuration;
   }) {
-    super({
-      name: 'Commercetools',
-      version: '0.4.0',
-    });
+    super(
+      {
+        name: 'Commercetools',
+        version: '0.4.0',
+      },
+      {
+        capabilities: {
+          tool: {
+            listChanged: true,
+          },
+        },
+      }
+    );
 
     // Process configuration to apply smart defaults
     const processedConfiguration = processConfigurationDefaults(configuration);
@@ -34,24 +44,97 @@ class CommercetoolsAgentEssentials extends McpServer {
     const filteredTools = contextToTools(processedConfiguration.context).filter(
       (tool) => isToolAllowed(tool, processedConfiguration)
     );
-    filteredTools.forEach((tool) => {
-      this.tool(
-        tool.method,
-        tool.description,
-        tool.parameters.shape,
-        async (arg: any) => {
-          const result = await this._commercetools.run(tool.method, arg);
-          return {
-            content: [
-              {
-                type: 'text' as const,
-                text: String(result),
-              },
-            ],
-          };
-        }
-      );
-    });
+
+    const returnAllTools =
+      filteredTools.length <= (processedConfiguration.maxTools ?? 2);
+    if (returnAllTools) {
+      filteredTools.forEach((tool) => {
+        this.tool(
+          tool.method,
+          tool.description,
+          tool.parameters.shape,
+          async (arg: any) => {
+            const result = await this._commercetools.run(tool.method, arg);
+            return {
+              content: [
+                {
+                  type: 'text' as const,
+                  text: String(result),
+                },
+              ],
+            };
+          }
+        );
+      });
+      return;
+    }
+
+    const {listAvailableTools, injectTools} = contextToToolsHierarchyTools();
+
+    this.tool(
+      listAvailableTools.method,
+      listAvailableTools.description,
+      listAvailableTools.parameters.shape,
+      async (arg: any) => {
+        const result = await this._commercetools.run(
+          listAvailableTools.method,
+          arg
+        );
+        return {
+          content: [
+            {
+              type: 'text' as const,
+              text: String(result),
+            },
+          ],
+        };
+      }
+    );
+
+    this.tool(
+      injectTools.method,
+      injectTools.description,
+      injectTools.parameters.shape,
+      async (arg: any) => {
+        const toolsToInject = filteredTools.filter((tool) =>
+          arg.toolMethods.includes(tool.method)
+        );
+
+        toolsToInject.forEach((tool) => {
+          this.tool(
+            tool.method,
+            tool.description,
+            tool.parameters.shape,
+            async (arg: any) => {
+              const result = await this._commercetools.run(tool.method, arg);
+              return {
+                content: [
+                  {
+                    type: 'text' as const,
+                    text: String(result),
+                  },
+                ],
+              };
+            }
+          );
+        });
+
+        this.sendToolListChanged();
+        await new Promise((resolve) => setTimeout(resolve, 500));
+        const injectedToolMethods = toolsToInject
+          .map((tool) => tool.method)
+          .join(', ');
+
+        return {
+          content: [
+            {
+              type: 'text' as const,
+              text: `Tools successfully injected: ${injectedToolMethods}. The tool list has been updated and new tools are now available for use.`,
+            },
+          ],
+        };
+      }
+    );
   }
 }
 

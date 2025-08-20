@@ -269,9 +269,9 @@ function handleError(error: any) {
   console.error(red('\n🚨  Error initializing commercetools MCP server:\n'));
   console.error(yellow(`   ${error.message}\n`));
 }
+// require('dotenv').config();
 
 export async function main() {
-  require('dotenv').config();
   const {options, env} = parseArgs(process.argv.slice(2));
 
   // Create the CommercetoolsAgentEssentials instance

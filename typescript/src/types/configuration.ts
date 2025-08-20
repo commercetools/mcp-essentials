@@ -40,6 +40,7 @@ export type CommercetoolsFuncContext = Context & {
 export type Configuration = {
   actions?: Actions;
   context?: Context;
+  maxTools?: number;
 };
 
 type WithServerInstance = {
