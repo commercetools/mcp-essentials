@@ -1,13 +1,13 @@
-import {McpServer} from '@modelcontextprotocol/sdk/server/mcp.js';
+import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import CommercetoolsAPI from '../shared/api';
 import {
   isToolAllowed,
   processConfigurationDefaults,
 } from '../shared/configuration';
-import {contextToTools} from '../shared/tools';
-import type {Configuration} from '../types/configuration';
-import {AuthConfig} from '../types/auth';
-import {contextToToolsHierarchyTools} from '../shared/tools-hierarchy/tools';
+import { contextToTools } from '../shared/tools';
+import type { Configuration } from '../types/configuration';
+import { AuthConfig } from '../types/auth';
+import { contextToToolsHierarchyTools } from '../shared/tools-hierarchy/tools';
 
 class CommercetoolsAgentEssentials extends McpServer {
   private _commercetools: CommercetoolsAPI;
@@ -26,7 +26,7 @@ class CommercetoolsAgentEssentials extends McpServer {
       },
       {
         capabilities: {
-          tool: {
+          tools: {
             listChanged: true,
           },
         },
@@ -69,7 +69,7 @@ class CommercetoolsAgentEssentials extends McpServer {
       return;
     }
 
-    const {listAvailableTools, injectTools} = contextToToolsHierarchyTools();
+    const { listAvailableTools, injectTools } = contextToToolsHierarchyTools();
 
     this.tool(
       listAvailableTools.method,
@@ -125,14 +125,8 @@ class CommercetoolsAgentEssentials extends McpServer {
           .map((tool) => tool.method)
           .join(', ');
 
-        return {
-          content: [
-            {
-              type: 'text' as const,
-              text: `Tools successfully injected: ${injectedToolMethods}. The tool list has been updated and new tools are now available for use.`,
-            },
-          ],
-        };
+        // force the MCP client to retry user's request
+        throw new Error(`TOOLS_INJECTED: ${injectedToolMethods}`);
       }
     );
   }
