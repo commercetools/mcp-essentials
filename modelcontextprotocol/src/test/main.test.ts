@@ -2,7 +2,6 @@ import {main} from '../index';
 import {CommercetoolsAgentEssentials} from '@commercetools/agent-essentials/modelcontextprotocol';
 import {StdioServerTransport} from '@modelcontextprotocol/sdk/server/stdio.js';
 import {McpServer} from '@modelcontextprotocol/sdk/server/mcp.js';
-import {connect} from 'http2';
 
 jest.mock('@commercetools/agent-essentials/modelcontextprotocol');
 jest.mock('@modelcontextprotocol/sdk/server/stdio.js');
@@ -1935,6 +1934,16 @@ describe('main function', () => {
 
   // Test cases for authType CLI argument
   describe('authType CLI argument', () => {
+    beforeEach(() => {
+      jest.clearAllMocks();
+      jest
+        .spyOn(CommercetoolsAgentEssentials, 'create')
+        // @ts-ignore
+        .mockImplementation(() => ({
+          connect: jest.fn(),
+        }));
+    });
+
     it.each([
       {
         authType: 'client_credentials',

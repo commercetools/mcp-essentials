@@ -1,4 +1,4 @@
-import {main, parseArgs} from '..';
+import {main} from '..';
 import {CommercetoolsAgentEssentials} from '@commercetools/agent-essentials/modelcontextprotocol';
 import {StdioServerTransport} from '@modelcontextprotocol/sdk/server/stdio.js';
 
@@ -9,6 +9,12 @@ jest.mock('@modelcontextprotocol/sdk/server/stdio.js');
 describe('Product Type Tools', () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    jest
+      .spyOn(CommercetoolsAgentEssentials, 'create')
+      // @ts-ignore
+      .mockImplementation(() => ({
+        connect: jest.fn(),
+      }));
     process.env = {};
   });
 
