@@ -1,5 +1,9 @@
 import {main} from '..';
-import {CommercetoolsAgentEssentials} from '@commercetools/agent-essentials/modelcontextprotocol';
+import {
+  AuthConfig,
+  CommercetoolsAgentEssentials,
+  Configuration,
+} from '@commercetools/agent-essentials/modelcontextprotocol';
 import {StdioServerTransport} from '@modelcontextprotocol/sdk/server/stdio.js';
 
 // Mock these imports
@@ -11,10 +15,12 @@ describe('Product Type Tools', () => {
     jest.clearAllMocks();
     jest
       .spyOn(CommercetoolsAgentEssentials, 'create')
-      // @ts-ignore
-      .mockImplementation(() => ({
-        connect: jest.fn(),
-      }));
+      .mockImplementation(
+        (_: {authConfig: AuthConfig; configuration: Configuration}) =>
+          Promise.resolve<any>({
+            connect: jest.fn(),
+          })
+      );
     process.env = {};
   });
 
