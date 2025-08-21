@@ -1,5 +1,9 @@
 import {main} from '../index';
-import {CommercetoolsAgentEssentials} from '@commercetools/agent-essentials/modelcontextprotocol';
+import {
+  AuthConfig,
+  CommercetoolsAgentEssentials,
+  Configuration,
+} from '@commercetools/agent-essentials/modelcontextprotocol';
 import {StdioServerTransport} from '@modelcontextprotocol/sdk/server/stdio.js';
 import {McpServer} from '@modelcontextprotocol/sdk/server/mcp.js';
 
@@ -14,10 +18,12 @@ describe('main function', () => {
 
     jest
       .spyOn(CommercetoolsAgentEssentials, 'create')
-      // @ts-ignore
-      .mockImplementation(() => ({
-        connect: jest.fn(),
-      }));
+      .mockImplementation(
+        (_: {authConfig: AuthConfig; configuration: Configuration}) =>
+          Promise.resolve<any>({
+            connect: jest.fn(),
+          })
+      );
   });
 
   it('should initialize the server with tools=all correctly', async () => {
@@ -1938,10 +1944,12 @@ describe('main function', () => {
       jest.clearAllMocks();
       jest
         .spyOn(CommercetoolsAgentEssentials, 'create')
-        // @ts-ignore
-        .mockImplementation(() => ({
-          connect: jest.fn(),
-        }));
+        .mockImplementation(
+          (_: {authConfig: AuthConfig; configuration: Configuration}) =>
+            Promise.resolve<any>({
+              connect: jest.fn(),
+            })
+        );
     });
 
     it.each([
