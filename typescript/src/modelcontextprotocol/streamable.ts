@@ -1,6 +1,9 @@
 import {randomUUID} from 'node:crypto';
 import express, {Express, Request, Response} from 'express';
-import {CommercetoolsAgentEssentials} from '../modelcontextprotocol';
+import {
+  CommercetoolsAgentEssentials,
+  Configuration,
+} from '../modelcontextprotocol';
 import {McpServer} from '@modelcontextprotocol/sdk/server/mcp.js';
 import {StreamableHTTPServerTransport} from '@modelcontextprotocol/sdk/server/streamableHttp.js';
 import {isInitializeRequest} from '@modelcontextprotocol/sdk/types.js';
@@ -8,8 +11,15 @@ import {StreamServerOptions} from '../types/configuration';
 
 export default class CommercetoolsAgentEssentialsStreamable {
   private app: Express;
-  private server: McpServer;
+  private server: CommercetoolsAgentEssentials;
   private transports: {[sessionId: string]: StreamableHTTPServerTransport} = {};
+
+  private clientId: string;
+  private clientSecret: string;
+  private authUrl: string;
+  private projectKey: string;
+  private apiUrl: string;
+  private configuration: Configuration;
 
   constructor({
     clientId,
@@ -24,20 +34,14 @@ export default class CommercetoolsAgentEssentialsStreamable {
     server,
     app,
   }: StreamServerOptions) {
-    // initialize the mcp server
-    this.server =
-      server ??
-      new CommercetoolsAgentEssentials({
-        authConfig: {
-          type: 'client_credentials',
-          clientId,
-          clientSecret,
-          authUrl,
-          projectKey,
-          apiUrl,
-        },
-        configuration,
-      });
+    this.server = server!;
+
+    this.clientId = clientId!;
+    this.clientSecret = clientSecret!;
+    this.authUrl = authUrl!;
+    this.projectKey = projectKey!;
+    this.apiUrl = apiUrl!;
+    this.configuration = configuration!;
 
     // initialize express app
     this.app = app ?? express();
@@ -59,11 +63,11 @@ export default class CommercetoolsAgentEssentialsStreamable {
           res.on('close', async () => {
             // close the transport and server
             await transport.close();
-            await this.server.close();
+            await (await this.getServer()).close();
           });
 
           // connect server to the transport
-          await this.server.connect(transport);
+          await (await this.getServer()).connect(transport);
         } else {
           const sessionId = req.headers['mcp-session-id'] as string | undefined;
           if (sessionId && this.transports[sessionId]) {
@@ -91,7 +95,7 @@ export default class CommercetoolsAgentEssentialsStreamable {
             };
 
             // connect server to the transport
-            await this.server.connect(transport);
+            await (await this.getServer()).connect(transport);
           } else {
             return res.status(400).json({
               jsonrpc: '2.0',
@@ -130,6 +134,22 @@ export default class CommercetoolsAgentEssentialsStreamable {
      */
     this.app.get('/mcp', async (req: Request, res: Response) => {
       /* noop */
+    });
+  }
+
+  // eslint-disable-next-line require-await
+  private async getServer(): Promise<CommercetoolsAgentEssentials> {
+    if (this.server) return this.server;
+    return CommercetoolsAgentEssentials.create({
+      authConfig: {
+        type: 'client_credentials',
+        clientId: this.clientId,
+        clientSecret: this.clientSecret,
+        authUrl: this.authUrl,
+        projectKey: this.projectKey,
+        apiUrl: this.apiUrl,
+      },
+      configuration: this.configuration,
     });
   }
 

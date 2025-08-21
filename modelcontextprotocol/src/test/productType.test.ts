@@ -27,7 +27,7 @@ describe('Product Type Tools', () => {
 
     await main();
 
-    expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
+    expect(CommercetoolsAgentEssentials.create).toHaveBeenCalledWith({
       authConfig: {
         type: 'client_credentials',
         clientId: 'test_client_id',
@@ -62,7 +62,7 @@ describe('Product Type Tools', () => {
 
     await main();
 
-    expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
+    expect(CommercetoolsAgentEssentials.create).toHaveBeenCalledWith({
       authConfig: {
         type: 'client_credentials',
         clientId: 'test_client_id',
@@ -95,7 +95,7 @@ describe('Product Type Tools', () => {
 
     await main();
 
-    expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
+    expect(CommercetoolsAgentEssentials.create).toHaveBeenCalledWith({
       authConfig: {
         type: 'client_credentials',
         clientId: 'test_client_id',
@@ -128,7 +128,7 @@ describe('Product Type Tools', () => {
 
     await main();
 
-    expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
+    expect(CommercetoolsAgentEssentials.create).toHaveBeenCalledWith({
       authConfig: {
         type: 'client_credentials',
         clientId: 'test_client_id',
@@ -162,7 +162,7 @@ describe('Product Type Tools', () => {
 
     await main();
 
-    expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
+    expect(CommercetoolsAgentEssentials.create).toHaveBeenCalledWith({
       authConfig: {
         type: 'client_credentials',
         clientId: 'test_client_id',

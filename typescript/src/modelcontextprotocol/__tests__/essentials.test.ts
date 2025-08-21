@@ -128,7 +128,7 @@ describe('CommercetoolsAgentEssentials (ModelContextProtocol)', () => {
   });
 
   it('should call McpServer constructor with correct parameters', () => {
-    const agentEssentials = new CommercetoolsAgentEssentials({
+    CommercetoolsAgentEssentials.create({
       authConfig: {
         clientId: 'id',
         clientSecret: 'secret',
@@ -146,7 +146,7 @@ describe('CommercetoolsAgentEssentials (ModelContextProtocol)', () => {
   });
 
   it('should initialize CommercetoolsAPI', () => {
-    const agentEssentials = new CommercetoolsAgentEssentials({
+    CommercetoolsAgentEssentials.create({
       authConfig: {
         clientId: 'id',
         clientSecret: 'secret',
@@ -171,7 +171,7 @@ describe('CommercetoolsAgentEssentials (ModelContextProtocol)', () => {
   });
 
   it('should filter tools and register allowed tools with McpServer when registerAdminTools is called', async () => {
-    const agentEssentials = new CommercetoolsAgentEssentials({
+    CommercetoolsAgentEssentials.create({
       authConfig: {
         clientId: 'id',
         clientSecret: 'secret',
@@ -203,7 +203,7 @@ describe('CommercetoolsAgentEssentials (ModelContextProtocol)', () => {
   });
 
   it('handler function should call commercetoolsAPI.run and format result', async () => {
-    const agentEssentials = new CommercetoolsAgentEssentials({
+    CommercetoolsAgentEssentials.create({
       authConfig: {
         clientId: 'id',
         clientSecret: 'secret',
@@ -243,7 +243,7 @@ describe('CommercetoolsAgentEssentials (ModelContextProtocol)', () => {
 
   it('should correctly handle no tools being allowed', async () => {
     (isToolAllowed as jest.Mock).mockReturnValue(false); // Disallow all tools
-    const agentEssentials = new CommercetoolsAgentEssentials({
+    CommercetoolsAgentEssentials.create({
       authConfig: {
         clientId: 'id',
         clientSecret: 'secret',
@@ -262,8 +262,7 @@ describe('CommercetoolsAgentEssentials (ModelContextProtocol)', () => {
 
   describe('::scopeToActions [filter configured actions based on token scopes]', () => {
     it('should introspect a token on initialization', () => {
-      // eslint-disable-next-line no-new
-      new CommercetoolsAgentEssentials({
+      CommercetoolsAgentEssentials.create({
         authConfig: {
           clientId: 'id',
           clientSecret: 'secret',
@@ -462,7 +461,7 @@ describe('CommercetoolsAgentEssentials (ModelContextProtocol)', () => {
     });
 
     it('init commercetoolsAgentEssentials', async () => {
-      const agentEssentials = new CommercetoolsAgentEssentials({
+      const agentEssentials = CommercetoolsAgentEssentials.create({
         authConfig: {
           clientId: 'id',
           clientSecret: 'secret',
@@ -474,26 +473,33 @@ describe('CommercetoolsAgentEssentials (ModelContextProtocol)', () => {
         configuration: _mockConfiguration,
       });
 
-      await new Promise(setImmediate);
       expect(_mockCommercetoolsAPIInstance.introspect()).toEqual(['view_cart']);
-      expect(agentEssentials.getConfig()).toEqual({
+      expect((await agentEssentials).getConfig()).toEqual({
         actions: {cart: {read: true}},
         context: {isAdmin: true},
       });
     });
 
-    it('should properly handle error', async () => {
+    it('should properly handle error', () => {
       (_mockCommercetoolsAPIInstance.introspect as jest.Mock).mockRejectedValue(
         new Error('Simulated error in the instropsect method')
       );
 
-      const instance = Object.create(CommercetoolsAgentEssentials.prototype);
-      instance.configuration = {context: {isAdmin: true}};
-
-      await new Promise(setImmediate);
-      await expect(instance.init()).rejects.toThrow(
-        /Simulated error in the instropsect method/
-      );
+      jest.spyOn(CommercetoolsAgentEssentials, 'create');
+      expect(
+        CommercetoolsAgentEssentials.create({
+          authConfig: {
+            clientId: 'id',
+            clientSecret: 'secret',
+            authUrl: 'auth',
+            projectKey: 'key',
+            apiUrl: 'api',
+            type: 'client_credentials',
+          },
+          configuration: _mockConfiguration,
+        })
+      ).rejects.toThrow(/Simulated error in the instropsect method/);
+      expect(CommercetoolsAgentEssentials.create).toHaveBeenCalled();
     });
   });
 });

@@ -6,15 +6,15 @@ import {
 } from '../shared/configuration';
 import {contextToTools} from '../shared/tools';
 import type {Configuration} from '../types/configuration';
-import {AuthConfig} from '../types/auth';
 import {scopesToActions} from '../utils/scopes';
+import {AuthConfig} from '../types/auth';
 
 class CommercetoolsAgentEssentials extends McpServer {
   private authConfig: AuthConfig;
   private configuration: Configuration;
   private filteredConfig: Configuration = {};
 
-  constructor({
+  private constructor({
     authConfig,
     configuration,
   }: {
@@ -28,12 +28,6 @@ class CommercetoolsAgentEssentials extends McpServer {
 
     this.authConfig = authConfig;
     this.configuration = configuration;
-    this.init().catch((err) => {
-      console.error(err);
-      throw new Error(
-        err.message ?? 'Unable to initialze `CommercetoolsAgentEssentials`'
-      );
-    });
   }
 
   private async init() {
@@ -84,6 +78,22 @@ class CommercetoolsAgentEssentials extends McpServer {
         }
       );
     });
+  }
+
+  public static async create(option: {
+    authConfig: AuthConfig;
+    configuration: Configuration;
+  }) {
+    try {
+      const instance = new CommercetoolsAgentEssentials(option);
+      await instance.init();
+      return instance;
+    } catch (err: unknown) {
+      throw new Error(
+        (err as Error).message ??
+          'Unable to initialze `CommercetoolsAgentEssentials`'
+      );
+    }
   }
 
   getConfig(): Configuration {

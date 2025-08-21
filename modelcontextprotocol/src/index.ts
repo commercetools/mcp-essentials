@@ -327,7 +327,7 @@ export async function main() {
 
   const authConfig = createAuthConfig(env);
 
-  const server = new CommercetoolsAgentEssentials({
+  const server = await CommercetoolsAgentEssentials.create({
     authConfig,
     configuration,
   });
