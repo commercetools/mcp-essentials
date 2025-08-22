@@ -26,12 +26,6 @@ export const listAvailableToolsParameters = z.object({
       'store',
     ])
     .describe('The type of resource to list available tools for'),
-  isBulk: z
-    .boolean()
-    .optional()
-    .describe(
-      'Whether or not the user wants to do a bulk create or update operations'
-    ),
 });
 
 export const injectToolsParameters = z.object({

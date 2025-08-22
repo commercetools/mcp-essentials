@@ -10,6 +10,7 @@ import type {Configuration} from '../types/configuration';
 import {AuthConfig} from '../types/auth';
 import {contextToToolsResourceBasedToolSystem} from '../shared/resource-based-tools-system/tools';
 import {Tool} from '../types/tools';
+import {contextToBulkTools} from '../shared/bulk/tools';
 
 class CommercetoolsAgentEssentials extends McpServer {
   private _commercetools: CommercetoolsAPI;
@@ -70,6 +71,10 @@ class CommercetoolsAgentEssentials extends McpServer {
     this.registerSingleTool(listAvailableTools);
     this.registerInjectToolsTool(injectTools, filteredTools);
     this.registerExecuteTool(executeTool);
+    // Bulk tool is not a resource based tool, so we need to register it separately
+    contextToBulkTools(this._processedConfiguration.context).forEach((tool) => {
+      this.registerSingleTool(tool);
+    });
   }
 
   private registerSingleTool(tool: Tool): void {

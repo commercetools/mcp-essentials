@@ -15,11 +15,9 @@ export const listAvailableTools = async (
 ) => {
   const resourceBasedTools = contextToResourceTools(context);
   const availableTools = resourceBasedTools[params.resourceType];
-  const bulkTools = params.isBulk ? resourceBasedTools.bulk : [];
-  const tools = [...availableTools, ...bulkTools];
 
   // eslint-disable-next-line no-return-await
-  return await tools.map((tool) => {
+  return await availableTools.map((tool) => {
     return {
       method: tool.method,
       name: tool.name,

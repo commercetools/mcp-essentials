@@ -25,8 +25,6 @@ It takes these parameters:
   - productType
   - store
 
-- isBulk (boolean, optional): Whether or not the user wants to use bulk operations
-
 The output will be a list of tools that are available for the given resource type.
 `;
 
