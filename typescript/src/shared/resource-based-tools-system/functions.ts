@@ -1,9 +1,12 @@
 import {ApiRoot} from '@commercetools/platform-sdk';
 import {CommercetoolsFuncContext, Context} from '../../types/configuration';
-import {injectTools, listAvailableTools} from './tools-hierarchy.functions';
+import {
+  injectTools,
+  listAvailableTools,
+} from './resource-based-tools.functions';
 
-// Context mapping function for cart functions
-export const contextToToolsHierarchyFunctionMapping = (
+// Context mapping function for resource-based tool functions
+export const contextToResourceBasedToolSystemFunctionMapping = (
   context?: Context
 ): Record<
   string,

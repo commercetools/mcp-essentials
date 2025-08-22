@@ -22,7 +22,7 @@ import {contextToQuoteRequestFunctionMapping} from './quote-request/functions';
 import {contextToStagedQuoteFunctionMapping} from './staged-quote/functions';
 import {contextToStandalonePriceFunctionMapping} from './standalone-price/functions';
 import {contextToStoreFunctionMapping} from './store/functions';
-import {contextToToolsHierarchyFunctionMapping} from './tools-hierarchy/functions';
+import {contextToResourceBasedToolSystemFunctionMapping} from './resource-based-tools-system/functions';
 
 export const contextToFunctionMapping = (
   context?: Context
@@ -57,6 +57,6 @@ export const contextToFunctionMapping = (
     ...contextToStandalonePriceFunctionMapping(context),
     ...contextToStoreFunctionMapping(context),
     ...contextToBulkFunctionMapping(context),
-    ...contextToToolsHierarchyFunctionMapping(context),
+    ...contextToResourceBasedToolSystemFunctionMapping(context),
   };
 };

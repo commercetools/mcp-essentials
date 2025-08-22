@@ -8,15 +8,14 @@ import {
 import {contextToResourceTools, contextToTools} from '../tools';
 import {ApiRoot} from '@commercetools/platform-sdk';
 
-// Helper function to verify that a customer can read their own profile
 export const listAvailableTools = async (
   _apiRoot: ApiRoot,
   context: CommercetoolsFuncContext,
   params: z.infer<typeof listAvailableToolsParameters>
 ) => {
-  const toolsHierarchy = contextToResourceTools(context);
-  const availableTools = toolsHierarchy[params.resourceType];
-  const bulkTools = params.isBulk ? toolsHierarchy.bulk : [];
+  const resourceBasedTools = contextToResourceTools(context);
+  const availableTools = resourceBasedTools[params.resourceType];
+  const bulkTools = params.isBulk ? resourceBasedTools.bulk : [];
   const tools = [...availableTools, ...bulkTools];
 
   // eslint-disable-next-line no-return-await

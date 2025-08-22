@@ -102,9 +102,9 @@ jest.mock('../standalone-price/functions', () => ({
 jest.mock('../store/functions', () => ({
   contextToStoreFunctionMapping: jest.fn(() => ({storeFunction: jest.fn()})),
 }));
-jest.mock('../tools-hierarchy/functions', () => ({
-  contextToToolsHierarchyFunctionMapping: jest.fn(() => ({
-    toolsHierarchyFunction: jest.fn(),
+jest.mock('../resource-based-tools-system/functions', () => ({
+  contextToResourceBasedToolSystemFunctionMapping: jest.fn(() => ({
+    resourceBasedToolSystemFunction: jest.fn(),
   })),
 }));
 

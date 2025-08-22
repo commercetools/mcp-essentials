@@ -35,7 +35,7 @@ const tools: Record<string, Tool> = {
   },
 };
 
-export const contextToToolsHierarchyTools = () => {
+export const contextToToolsResourceBasedToolSystem = () => {
   return {
     listAvailableTools: tools.list_available_tools,
     injectTools: tools.inject_tools,
