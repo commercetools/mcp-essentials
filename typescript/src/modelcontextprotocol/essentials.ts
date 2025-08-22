@@ -8,6 +8,7 @@ import { contextToTools } from '../shared/tools';
 import type { Configuration } from '../types/configuration';
 import { AuthConfig } from '../types/auth';
 import { contextToToolsHierarchyTools } from '../shared/tools-hierarchy/tools';
+import z from 'zod';
 
 class CommercetoolsAgentEssentials extends McpServer {
   private _commercetools: CommercetoolsAPI;
@@ -23,13 +24,6 @@ class CommercetoolsAgentEssentials extends McpServer {
       {
         name: 'Commercetools',
         version: '0.4.0',
-      },
-      {
-        capabilities: {
-          tools: {
-            listChanged: true,
-          },
-        },
       }
     );
 
@@ -69,7 +63,8 @@ class CommercetoolsAgentEssentials extends McpServer {
       return;
     }
 
-    const { listAvailableTools, injectTools } = contextToToolsHierarchyTools();
+    const { listAvailableTools, injectTools, executeTool } =
+      contextToToolsHierarchyTools();
 
     this.tool(
       listAvailableTools.method,
@@ -119,14 +114,66 @@ class CommercetoolsAgentEssentials extends McpServer {
           );
         });
 
-        this.sendToolListChanged();
-        await new Promise((resolve) => setTimeout(resolve, 500));
-        const injectedToolMethods = toolsToInject
-          .map((tool) => tool.method)
-          .join(', ');
+        const injectedTools = toolsToInject.map((tool) => ([
+          `name: ${tool.name}`,
+          `description: ${tool.description}`,
+          `parameters: ${JSON.stringify(tool.parameters.shape, null, 2)}`,
+        ]).join('\n')).join('\n---\n');
 
-        // force the MCP client to retry user's request
-        throw new Error(`TOOLS_INJECTED: ${injectedToolMethods}`);
+        return {
+          content: [
+            {
+              type: 'text' as const,
+              text: `Relevant tools:\n${injectedTools}`,
+            },
+          ],
+        };
+      }
+    );
+
+    this.tool(
+      executeTool.method,
+      executeTool.description,
+      executeTool.parameters.shape,
+      async (args: any) => {
+        try {
+          const result = await this._commercetools.run(
+            args.toolMethod,
+            args.arguments || {}
+          );
+
+          return {
+            content: [
+              {
+                type: 'text' as const,
+                text: String(result),
+              },
+            ],
+          };
+        } catch (error) {
+          console.error(error);
+          const errorMessage =
+            error instanceof Error ? error.message : String(error);
+          const errorBody =
+            error instanceof Error && 'body' in error
+              ? JSON.stringify(error.body, null, 2)
+              : String(error);
+
+          console.error('Error executing tool', {
+            toolMethod: args.toolMethod,
+            errorMessage,
+            errorBody,
+          });
+
+          return {
+            content: [
+              {
+                type: 'text' as const,
+                text: `Error executing tool '${args.toolMethod}': ${errorMessage} - ${errorBody}`,
+              },
+            ],
+          };
+        }
       }
     );
   }

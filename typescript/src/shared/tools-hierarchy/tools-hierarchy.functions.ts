@@ -3,6 +3,7 @@ import {CommercetoolsFuncContext} from '../../types/configuration';
 import {
   listAvailableToolsParameters,
   injectToolsParameters,
+  executeToolParameters,
 } from './parameters';
 import {contextToResourceTools, contextToTools} from '../tools';
 import {ApiRoot} from '@commercetools/platform-sdk';
@@ -46,4 +47,18 @@ export const injectTools = async (
       description: tool.description,
     };
   });
+};
+
+export const executeTool = async (
+  _apiRoot: ApiRoot,
+  context: CommercetoolsFuncContext,
+  params: z.infer<typeof executeToolParameters>
+) => {
+  const allTools = contextToTools(context);
+  const tool = await allTools.find((tool) => tool.method === params.toolMethod);
+  if (!tool) {
+    throw new Error(`Tool ${params.toolMethod} not found`);
+  }
+
+  return tool;
 };

@@ -1,11 +1,15 @@
-import {listAvailableToolsPrompt, injectToolsPrompt} from './prompts';
+import {
+  listAvailableToolsPrompt,
+  injectToolsPrompt,
+  executeToolPrompt,
+} from './prompts';
 
 import {
   listAvailableToolsParameters,
   injectToolsParameters,
+  executeToolParameters,
 } from './parameters';
 import {Tool} from '../../types/tools';
-import {Context} from '../../types/configuration';
 
 const tools: Record<string, Tool> = {
   list_available_tools: {
@@ -22,11 +26,19 @@ const tools: Record<string, Tool> = {
     parameters: injectToolsParameters,
     actions: {},
   },
+  execute_tool: {
+    method: 'execute_tool',
+    name: 'Execute Tool',
+    description: executeToolPrompt,
+    parameters: executeToolParameters,
+    actions: {},
+  },
 };
 
 export const contextToToolsHierarchyTools = () => {
   return {
     listAvailableTools: tools.list_available_tools,
     injectTools: tools.inject_tools,
+    executeTool: tools.execute_tool,
   };
 };

@@ -1,8 +1,8 @@
 import CommercetoolsAgentEssentials from '../essentials';
-import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import {McpServer} from '@modelcontextprotocol/sdk/server/mcp.js';
 import CommercetoolsAPI from '../../shared/api';
-import { isToolAllowed } from '../../shared/configuration';
-import { Configuration, Context } from '../../types/configuration';
+import {isToolAllowed} from '../../shared/configuration';
+import {Configuration, Context} from '../../types/configuration';
 
 // Mock dependencies
 jest.mock('@modelcontextprotocol/sdk/server/mcp.js');
@@ -13,7 +13,7 @@ jest.mock('../../shared/configuration', () => ({
 }));
 
 jest.mock('../../shared/tools', () => {
-  const { z: localZ } = require('zod'); // Require z inside the factory
+  const {z: localZ} = require('zod'); // Require z inside the factory
   return {
     contextToTools: (context: Context) => [
       {
@@ -69,8 +69,8 @@ describe('CommercetoolsAgentEssentials (ModelContextProtocol)', () => {
 
   beforeAll(() => {
     // Load the mocked definitions for use in tests
-    const { contextToTools } = require('../../shared/tools');
-    mockSharedToolsData = contextToTools({ isAdmin: true });
+    const {contextToTools} = require('../../shared/tools');
+    mockSharedToolsData = contextToTools({isAdmin: true});
   });
 
   beforeEach(() => {
@@ -215,8 +215,8 @@ describe('CommercetoolsAgentEssentials (ModelContextProtocol)', () => {
     const handler = toolCallArgs[3]; // The async handler function
     const toolMethod = toolCallArgs[0];
 
-    const handlerArg = { paramA: 'testValue' };
-    const apiResult = { data: 'api success' };
+    const handlerArg = {paramA: 'testValue'};
+    const apiResult = {data: 'api success'};
     mockCommercetoolsAPIInstance.run.mockResolvedValue(apiResult as any); // Cast to any here
 
     const result = await handler(handlerArg, {}); // {} for _extra
@@ -246,7 +246,7 @@ describe('CommercetoolsAgentEssentials (ModelContextProtocol)', () => {
         apiUrl: 'api',
         type: 'client_credentials',
       },
-      configuration: { enabledTools: [] } as any,
+      configuration: {enabledTools: []} as any,
     });
 
     expect(isToolAllowed).toHaveBeenCalledTimes(mockSharedToolsData.length);
