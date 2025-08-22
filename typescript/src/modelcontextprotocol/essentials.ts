@@ -1,3 +1,4 @@
+import z from 'zod';
 import {McpServer} from '@modelcontextprotocol/sdk/server/mcp.js';
 import CommercetoolsAPI from '../shared/api';
 import {
@@ -8,6 +9,7 @@ import {contextToTools} from '../shared/tools';
 import type {Configuration} from '../types/configuration';
 import {AuthConfig} from '../types/auth';
 import {contextToToolsResourceBasedToolSystem} from '../shared/resource-based-tools-system/tools';
+import {Tool} from '../types/tools';
 
 class CommercetoolsAgentEssentials extends McpServer {
   private _commercetools: CommercetoolsAPI;
@@ -51,17 +53,17 @@ class CommercetoolsAgentEssentials extends McpServer {
     );
   }
 
-  private shouldReturnAllTools(filteredTools: any[]): boolean {
+  private shouldReturnAllTools(filteredTools: Tool[]): boolean {
     return filteredTools.length <= (this._processedConfiguration.maxTools ?? 2);
   }
 
-  private registerAllTools(filteredTools: any[]): void {
+  private registerAllTools(filteredTools: Tool[]): void {
     filteredTools.forEach((tool) => {
       this.registerSingleTool(tool);
     });
   }
 
-  private registerResourceBasedToolSystem(filteredTools: any[]): void {
+  private registerResourceBasedToolSystem(filteredTools: Tool[]): void {
     const {listAvailableTools, injectTools, executeTool} =
       contextToToolsResourceBasedToolSystem();
 
@@ -70,27 +72,29 @@ class CommercetoolsAgentEssentials extends McpServer {
     this.registerExecuteTool(executeTool);
   }
 
-  private registerSingleTool(tool: any): void {
+  private registerSingleTool(tool: Tool): void {
     this.tool(
       tool.method,
       tool.description,
       tool.parameters.shape,
-      async (arg: any) => {
-        const result = await this._commercetools.run(tool.method, arg);
+      async (args: Record<string, unknown>) => {
+        const result = await this._commercetools.run(tool.method, args);
         return this.createToolResponse(result);
       }
     );
   }
 
   private registerInjectToolsTool(
-    injectTools: any,
-    filteredTools: any[]
+    injectTools: Tool,
+    filteredTools: Tool[]
   ): void {
+    type ToolShape = z.infer<typeof injectTools.parameters.shape>;
+
     this.tool(
       injectTools.method,
       injectTools.description,
       injectTools.parameters.shape,
-      async (arg: any) => {
+      async (arg: ToolShape) => {
         const toolsToInject = filteredTools.filter((tool) =>
           arg.toolMethods.includes(tool.method)
         );
@@ -106,12 +110,14 @@ class CommercetoolsAgentEssentials extends McpServer {
     );
   }
 
-  private registerExecuteTool(executeTool: any): void {
+  private registerExecuteTool(executeTool: Tool): void {
+    type ToolShape = z.infer<typeof executeTool.parameters.shape>;
+
     this.tool(
       executeTool.method,
       executeTool.description,
       executeTool.parameters.shape,
-      async (args: any) => {
+      async (args: ToolShape) => {
         try {
           const result = await this._commercetools.run(
             args.toolMethod,
@@ -126,7 +132,7 @@ class CommercetoolsAgentEssentials extends McpServer {
     );
   }
 
-  private createToolResponse(result: any) {
+  private createToolResponse(result: unknown) {
     return {
       content: [
         {
@@ -137,7 +143,7 @@ class CommercetoolsAgentEssentials extends McpServer {
     };
   }
 
-  private formatInjectedTools(toolsToInject: any[]): string {
+  private formatInjectedTools(toolsToInject: Tool[]): string {
     return toolsToInject
       .map((tool) =>
         [
@@ -149,9 +155,9 @@ class CommercetoolsAgentEssentials extends McpServer {
       .join('\n---\n');
   }
 
-  private handleToolExecutionError(error: any, toolMethod: string) {
-    console.error(error);
+  private handleToolExecutionError(error: unknown, toolMethod: string) {
     const errorMessage = error instanceof Error ? error.message : String(error);
+
     const errorBody =
       error instanceof Error && 'body' in error
         ? JSON.stringify(error.body, null, 2)

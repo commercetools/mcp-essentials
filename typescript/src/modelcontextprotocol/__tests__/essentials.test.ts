@@ -126,19 +126,10 @@ describe('CommercetoolsAgentEssentials (ModelContextProtocol)', () => {
       },
       configuration: mockConfiguration,
     });
-    expect(McpServer).toHaveBeenCalledWith(
-      {
-        name: 'Commercetools',
-        version: '0.4.0',
-      },
-      {
-        capabilities: {
-          tools: {
-            listChanged: true,
-          },
-        },
-      }
-    );
+    expect(McpServer).toHaveBeenCalledWith({
+      name: 'Commercetools',
+      version: '0.4.0',
+    });
   });
 
   it('should initialize CommercetoolsAPI', () => {
