@@ -16,9 +16,8 @@ export class SDKError extends Error {
       details.push(error.message);
     }
 
-    const errorMessage = details.length > 0
-      ? `${message}: ${details.join(', ')}`
-      : message;
+    const errorMessage =
+      details.length > 0 ? `${message}: ${details.join(', ')}` : message;
 
     super(errorMessage);
     this.name = 'SDKError';
