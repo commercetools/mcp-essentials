@@ -1,11 +1,10 @@
-import {ApiRoot} from '@commercetools/platform-sdk';
-import {CommercetoolsFuncContext, Context} from '../../types/configuration';
+import { ApiRoot } from '@commercetools/platform-sdk';
+import { CommercetoolsFuncContext, Context } from '../../types/configuration';
 import {
   injectTools,
   listAvailableTools,
 } from './resource-based-tools.functions';
 
-// Context mapping function for resource-based tool functions
 export const contextToResourceBasedToolSystemFunctionMapping = (
   context?: Context
 ): Record<
