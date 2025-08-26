@@ -1,5 +1,5 @@
-import { ApiRoot } from '@commercetools/platform-sdk';
-import { CommercetoolsFuncContext, Context } from '../../types/configuration';
+import {ApiRoot} from '@commercetools/platform-sdk';
+import {CommercetoolsFuncContext, Context} from '../../types/configuration';
 import {
   injectTools,
   listAvailableTools,
