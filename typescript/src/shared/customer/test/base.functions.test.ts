@@ -133,7 +133,7 @@ describe('Customer Base Functions', () => {
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
         expect((error as SDKError).message).toBe(
-          'Failed to read customer by ID'
+          'Failed to read customer by ID: Customer not found'
         );
       }
     });
@@ -246,7 +246,9 @@ describe('Customer Base Functions', () => {
         await queryCustomers(mockApiRoot, 'test-project');
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
-        expect((error as SDKError).message).toBe('Failed to query customers');
+        expect((error as SDKError).message).toBe(
+          'Failed to query customers: Query failed'
+        );
       }
     });
   });
@@ -339,7 +341,9 @@ describe('Customer Base Functions', () => {
         await createCustomer(mockApiRoot, 'test-project', customerDraft);
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
-        expect((error as SDKError).message).toBe('Failed to create customer');
+        expect((error as SDKError).message).toBe(
+          'Failed to create customer: Creation failed'
+        );
       }
     });
   });
@@ -445,7 +449,9 @@ describe('Customer Base Functions', () => {
         );
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
-        expect((error as SDKError).message).toBe('Failed to update customer');
+        expect((error as SDKError).message).toBe(
+          'Failed to update customer: Failed to read customer by ID: Creation failed'
+        );
       }
     });
 
@@ -475,7 +481,9 @@ describe('Customer Base Functions', () => {
         );
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
-        expect((error as SDKError).message).toBe('Failed to update customer');
+        expect((error as SDKError).message).toBe(
+          'Failed to update customer: Failed to read customer by ID: Customer not found'
+        );
       }
     });
   });

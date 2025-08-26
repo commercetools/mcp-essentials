@@ -151,7 +151,9 @@ describe('Quote Admin Functions', () => {
         await readQuote(mockApiRoot, mockContext, params);
       } catch (thrownError) {
         expect(thrownError).toBeInstanceOf(SDKError);
-        expect((thrownError as SDKError).message).toBe('Failed to read quote');
+        expect((thrownError as SDKError).message).toBe(
+          'Failed to read quote: API error'
+        );
       }
     });
   });
@@ -268,7 +270,7 @@ describe('Quote Admin Functions', () => {
       } catch (thrownError) {
         expect(thrownError).toBeInstanceOf(SDKError);
         expect((thrownError as SDKError).message).toBe(
-          'Failed to create quote'
+          'Failed to create quote: API error'
         );
       }
     });
@@ -448,7 +450,9 @@ describe('Quote Admin Functions', () => {
         await updateQuote(mockApiRoot, mockContext, params);
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
-        expect((error as SDKError).message).toBe('Failed to update quote');
+        expect((error as SDKError).message).toBe(
+          'Failed to update quote: Either quote ID or key must be provided'
+        );
       }
     });
 
@@ -470,7 +474,9 @@ describe('Quote Admin Functions', () => {
         await updateQuote(mockApiRoot, mockContext, params);
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
-        expect((error as SDKError).message).toBe('Failed to update quote');
+        expect((error as SDKError).message).toBe(
+          'Failed to update quote: Either quote ID or key must be provided'
+        );
       }
     });
 
@@ -497,7 +503,7 @@ describe('Quote Admin Functions', () => {
       } catch (thrownError) {
         expect(thrownError).toBeInstanceOf(SDKError);
         expect((thrownError as SDKError).message).toBe(
-          'Failed to update quote'
+          'Failed to update quote: API error'
         );
       }
     });
@@ -526,7 +532,7 @@ describe('Quote Admin Functions', () => {
       } catch (thrownError) {
         expect(thrownError).toBeInstanceOf(SDKError);
         expect((thrownError as SDKError).message).toBe(
-          'Failed to update quote'
+          'Failed to update quote: API error'
         );
       }
     });

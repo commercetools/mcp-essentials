@@ -214,7 +214,7 @@ describe('Category Admin Functions', () => {
       } catch (thrownError) {
         expect(thrownError).toBeInstanceOf(SDKError);
         expect((thrownError as SDKError).message).toBe(
-          'Failed to read category'
+          'Failed to read category: API error'
         );
       }
     });
@@ -335,7 +335,7 @@ describe('Category Admin Functions', () => {
       } catch (thrownError) {
         expect(thrownError).toBeInstanceOf(SDKError);
         expect((thrownError as SDKError).message).toBe(
-          'Failed to create category'
+          'Failed to create category: API error'
         );
       }
     });
@@ -458,7 +458,9 @@ describe('Category Admin Functions', () => {
         await updateCategory(mockApiRoot, mockContext, params);
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
-        expect((error as SDKError).message).toBe('Failed to update category');
+        expect((error as SDKError).message).toBe(
+          'Failed to update category: Either id or key must be provided to update a category'
+        );
       }
     });
 
@@ -483,7 +485,7 @@ describe('Category Admin Functions', () => {
       } catch (thrownError) {
         expect(thrownError).toBeInstanceOf(SDKError);
         expect((thrownError as SDKError).message).toBe(
-          'Failed to update category'
+          'Failed to update category: API error'
         );
       }
     });
@@ -509,7 +511,7 @@ describe('Category Admin Functions', () => {
       } catch (thrownError) {
         expect(thrownError).toBeInstanceOf(SDKError);
         expect((thrownError as SDKError).message).toBe(
-          'Failed to update category'
+          'Failed to update category: API error'
         );
       }
     });

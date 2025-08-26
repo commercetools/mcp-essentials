@@ -306,7 +306,7 @@ describe('Quote Request Admin Functions', () => {
       } catch (thrownError) {
         expect(thrownError).toBeInstanceOf(SDKError);
         expect((thrownError as SDKError).message).toBe(
-          'Failed to read quote request'
+          'Failed to read quote request: API error'
         );
       }
     });
@@ -429,7 +429,7 @@ describe('Quote Request Admin Functions', () => {
       } catch (thrownError) {
         expect(thrownError).toBeInstanceOf(SDKError);
         expect((thrownError as SDKError).message).toBe(
-          'Failed to create quote request'
+          'Failed to create quote request: API error'
         );
       }
     });
@@ -637,7 +637,7 @@ describe('Quote Request Admin Functions', () => {
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
         expect((error as SDKError).message).toBe(
-          'Failed to update quote request'
+          'Failed to update quote request: Either id or key must be provided'
         );
       }
     });
@@ -668,7 +668,7 @@ describe('Quote Request Admin Functions', () => {
       } catch (thrownError) {
         expect(thrownError).toBeInstanceOf(SDKError);
         expect((thrownError as SDKError).message).toBe(
-          'Failed to update quote request'
+          'Failed to update quote request: API error'
         );
       }
     });
@@ -699,7 +699,7 @@ describe('Quote Request Admin Functions', () => {
       } catch (thrownError) {
         expect(thrownError).toBeInstanceOf(SDKError);
         expect((thrownError as SDKError).message).toBe(
-          'Failed to update quote request'
+          'Failed to update quote request: API error'
         );
       }
     });

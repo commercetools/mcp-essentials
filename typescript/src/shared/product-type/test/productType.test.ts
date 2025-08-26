@@ -74,7 +74,7 @@ describe('Product Type Functions', () => {
           {projectKey: 'test-project'},
           {id: 'non-existent-id'}
         )
-      ).rejects.toThrow('Failed to read product type Product type not found');
+      ).rejects.toThrow('Failed to read product type: Product type not found');
     });
   });
 
@@ -211,7 +211,7 @@ describe('Product Type Functions', () => {
           {projectKey: 'test-project'},
           {sort: ['invalid sort']}
         )
-      ).rejects.toThrow('Failed to list product types Invalid sort parameter');
+      ).rejects.toThrow('Failed to list product types: Invalid sort parameter');
     });
   });
 
@@ -307,7 +307,7 @@ describe('Product Type Functions', () => {
           mockProductTypeData
         )
       ).rejects.toThrow(
-        'Failed to create product type Product type with key already exists'
+        'Failed to create product type: Product type with key already exists'
       );
     });
   });
@@ -419,7 +419,7 @@ describe('Product Type Functions', () => {
           {projectKey: 'test-project'},
           mockUpdateParams
         )
-      ).rejects.toThrow('Failed to update product type Object not found');
+      ).rejects.toThrow('Failed to update product type: Object not found');
     });
   });
 });

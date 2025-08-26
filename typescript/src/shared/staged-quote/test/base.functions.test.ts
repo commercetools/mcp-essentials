@@ -114,7 +114,7 @@ describe('Staged Quote Base Functions', () => {
       } catch (thrownError) {
         expect(thrownError).toBeInstanceOf(SDKError);
         expect((thrownError as SDKError).message).toBe(
-          'Failed to read staged quote by ID'
+          'Failed to read staged quote by ID: API error'
         );
       }
     });
@@ -183,7 +183,7 @@ describe('Staged Quote Base Functions', () => {
       } catch (thrownError) {
         expect(thrownError).toBeInstanceOf(SDKError);
         expect((thrownError as SDKError).message).toBe(
-          'Failed to read staged quote by key'
+          'Failed to read staged quote by key: API error'
         );
       }
     });
@@ -238,7 +238,7 @@ describe('Staged Quote Base Functions', () => {
       } catch (thrownError) {
         expect(thrownError).toBeInstanceOf(SDKError);
         expect((thrownError as SDKError).message).toBe(
-          'Failed to query staged quotes'
+          'Failed to query staged quotes: API error'
         );
       }
     });
@@ -296,7 +296,7 @@ describe('Staged Quote Base Functions', () => {
       } catch (thrownError) {
         expect(thrownError).toBeInstanceOf(SDKError);
         expect((thrownError as SDKError).message).toBe(
-          'Failed to create staged quote'
+          'Failed to create staged quote: API error'
         );
       }
     });
@@ -371,7 +371,7 @@ describe('Staged Quote Base Functions', () => {
       } catch (thrownError) {
         expect(thrownError).toBeInstanceOf(SDKError);
         expect((thrownError as SDKError).message).toBe(
-          'Failed to update staged quote by ID'
+          'Failed to update staged quote by ID: API error'
         );
       }
     });
@@ -454,7 +454,7 @@ describe('Staged Quote Base Functions', () => {
       } catch (thrownError) {
         expect(thrownError).toBeInstanceOf(SDKError);
         expect((thrownError as SDKError).message).toBe(
-          'Failed to update staged quote by key'
+          'Failed to update staged quote by key: API error'
         );
       }
     });

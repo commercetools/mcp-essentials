@@ -140,7 +140,7 @@ describe('Quote Base Functions', () => {
       } catch (thrownError) {
         expect(thrownError).toBeInstanceOf(SDKError);
         expect((thrownError as SDKError).message).toBe(
-          'Failed to read quote by ID'
+          'Failed to read quote by ID: API error'
         );
       }
     });
@@ -197,7 +197,7 @@ describe('Quote Base Functions', () => {
       } catch (thrownError) {
         expect(thrownError).toBeInstanceOf(SDKError);
         expect((thrownError as SDKError).message).toBe(
-          'Failed to read quote by key'
+          'Failed to read quote by key: API error'
         );
       }
     });
@@ -248,7 +248,7 @@ describe('Quote Base Functions', () => {
       } catch (thrownError) {
         expect(thrownError).toBeInstanceOf(SDKError);
         expect((thrownError as SDKError).message).toBe(
-          'Failed to query quotes'
+          'Failed to query quotes: API error'
         );
       }
     });
@@ -312,7 +312,7 @@ describe('Quote Base Functions', () => {
       } catch (thrownError) {
         expect(thrownError).toBeInstanceOf(SDKError);
         expect((thrownError as SDKError).message).toBe(
-          'Failed to create quote'
+          'Failed to create quote: API error'
         );
       }
     });
@@ -388,7 +388,7 @@ describe('Quote Base Functions', () => {
       } catch (thrownError) {
         expect(thrownError).toBeInstanceOf(SDKError);
         expect((thrownError as SDKError).message).toBe(
-          'Failed to update quote by ID'
+          'Failed to update quote by ID: API error'
         );
       }
     });
@@ -464,7 +464,7 @@ describe('Quote Base Functions', () => {
       } catch (thrownError) {
         expect(thrownError).toBeInstanceOf(SDKError);
         expect((thrownError as SDKError).message).toBe(
-          'Failed to update quote by key'
+          'Failed to update quote by key: API error'
         );
       }
     });
@@ -529,7 +529,7 @@ describe('Quote Base Functions', () => {
       } catch (thrownError) {
         expect(thrownError).toBeInstanceOf(SDKError);
         expect((thrownError as SDKError).message).toBe(
-          'Failed to read quote by ID as associate'
+          'Failed to read quote by ID as associate: API error'
         );
       }
     });
@@ -582,7 +582,7 @@ describe('Quote Base Functions', () => {
       } catch (thrownError) {
         expect(thrownError).toBeInstanceOf(SDKError);
         expect((thrownError as SDKError).message).toBe(
-          'Failed to read quote by key as associate'
+          'Failed to read quote by key as associate: API error'
         );
       }
     });
@@ -632,7 +632,7 @@ describe('Quote Base Functions', () => {
       } catch (thrownError) {
         expect(thrownError).toBeInstanceOf(SDKError);
         expect((thrownError as SDKError).message).toBe(
-          'Failed to query quotes as associate'
+          'Failed to query quotes as associate: API error'
         );
       }
     });
@@ -695,7 +695,7 @@ describe('Quote Base Functions', () => {
       } catch (thrownError) {
         expect(thrownError).toBeInstanceOf(SDKError);
         expect((thrownError as SDKError).message).toBe(
-          'Failed to update quote by ID as associate'
+          'Failed to update quote by ID as associate: API error'
         );
       }
     });
@@ -757,7 +757,7 @@ describe('Quote Base Functions', () => {
       } catch (thrownError) {
         expect(thrownError).toBeInstanceOf(SDKError);
         expect((thrownError as SDKError).message).toBe(
-          'Failed to update quote by key as associate'
+          'Failed to update quote by key as associate: API error'
         );
       }
     });

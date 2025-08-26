@@ -66,7 +66,9 @@ describe('Quote Customer Functions', () => {
         await readQuote(mockApiRoot, mockContext, params);
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
-        expect((error as SDKError).message).toBe('Failed to read quote');
+        expect((error as SDKError).message).toBe(
+          'Failed to read quote: Quote not found'
+        );
       }
     });
 
@@ -115,7 +117,9 @@ describe('Quote Customer Functions', () => {
         await readQuote(mockApiRoot, mockContext, params);
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
-        expect((error as SDKError).message).toBe('Failed to read quote');
+        expect((error as SDKError).message).toBe(
+          'Failed to read quote: Quote not found'
+        );
       }
     });
 
@@ -187,7 +191,9 @@ describe('Quote Customer Functions', () => {
         await readQuote(mockApiRoot, contextWithoutCustomer as any, params);
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
-        expect((error as SDKError).message).toBe('Failed to read quote');
+        expect((error as SDKError).message).toBe(
+          'Failed to read quote: Customer ID is required'
+        );
       }
     });
 
@@ -205,7 +211,9 @@ describe('Quote Customer Functions', () => {
         await readQuote(mockApiRoot, mockContext, params);
       } catch (thrownError) {
         expect(thrownError).toBeInstanceOf(SDKError);
-        expect((thrownError as SDKError).message).toBe('Failed to read quote');
+        expect((thrownError as SDKError).message).toBe(
+          'Failed to read quote: API error'
+        );
       }
     });
   });
@@ -399,7 +407,9 @@ describe('Quote Customer Functions', () => {
         await updateQuote(mockApiRoot, mockContext, params);
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
-        expect((error as SDKError).message).toBe('Failed to update quote');
+        expect((error as SDKError).message).toBe(
+          'Failed to update quote: Cannot update quote: not owned by customer'
+        );
       }
     });
 
@@ -432,7 +442,9 @@ describe('Quote Customer Functions', () => {
         await updateQuote(mockApiRoot, mockContext, params);
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
-        expect((error as SDKError).message).toBe('Failed to update quote');
+        expect((error as SDKError).message).toBe(
+          "Failed to update quote: Action 'transitionState' is not allowed for customers"
+        );
       }
     });
 
@@ -462,7 +474,9 @@ describe('Quote Customer Functions', () => {
         await updateQuote(mockApiRoot, mockContext, params);
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
-        expect((error as SDKError).message).toBe('Failed to update quote');
+        expect((error as SDKError).message).toBe(
+          "Failed to update quote: Quote state 'Pending' is not allowed for customers"
+        );
       }
     });
 
@@ -489,7 +503,9 @@ describe('Quote Customer Functions', () => {
         await updateQuote(mockApiRoot, contextWithoutCustomer as any, params);
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
-        expect((error as SDKError).message).toBe('Failed to update quote');
+        expect((error as SDKError).message).toBe(
+          'Failed to update quote: Customer ID is required'
+        );
       }
     });
 
@@ -511,7 +527,9 @@ describe('Quote Customer Functions', () => {
         await updateQuote(mockApiRoot, mockContext, params);
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
-        expect((error as SDKError).message).toBe('Failed to update quote');
+        expect((error as SDKError).message).toBe(
+          'Failed to update quote: Either quote ID or key must be provided'
+        );
       }
     });
 
@@ -538,7 +556,7 @@ describe('Quote Customer Functions', () => {
       } catch (thrownError) {
         expect(thrownError).toBeInstanceOf(SDKError);
         expect((thrownError as SDKError).message).toBe(
-          'Failed to update quote'
+          'Failed to update quote: API error'
         );
       }
     });
@@ -575,7 +593,7 @@ describe('Quote Customer Functions', () => {
       } catch (thrownError) {
         expect(thrownError).toBeInstanceOf(SDKError);
         expect((thrownError as SDKError).message).toBe(
-          'Failed to update quote'
+          'Failed to update quote: API error'
         );
       }
     });
