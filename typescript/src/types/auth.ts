@@ -3,6 +3,8 @@ interface BaseAuthConfig {
   authUrl: string;
   projectKey: string;
   apiUrl: string;
+  clientId: string;
+  clientSecret: string;
 }
 
 // Client credentials flow - for API Client authentication
