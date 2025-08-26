@@ -6,11 +6,12 @@ import {
   processConfigurationDefaults,
 } from '../shared/configuration';
 import {contextToTools} from '../shared/tools';
-import type {Configuration} from '../types/configuration';
+import type {Configuration, Context} from '../types/configuration';
 import {AuthConfig} from '../types/auth';
 import {contextToToolsResourceBasedToolSystem} from '../shared/resource-based-tools-system/tools';
 import {Tool} from '../types/tools';
 import {contextToBulkTools} from '../shared/bulk/tools';
+import {DYNAMIC_TOOL_LOADING_THRESHOLD} from '../shared/constants';
 
 class CommercetoolsAgentEssentials extends McpServer {
   private _commercetools: CommercetoolsAPI;
@@ -34,16 +35,24 @@ class CommercetoolsAgentEssentials extends McpServer {
       this._processedConfiguration.context
     );
 
-    this.initializeTools();
+    this.initializeTools(this._processedConfiguration.context);
   }
 
-  private initializeTools(): void {
+  private initializeTools(context?: Context): void {
     const filteredTools = this.getFilteredTools();
-    const shouldReturnAllTools = this.shouldReturnAllTools(filteredTools);
+    const filteredToolsLength = filteredTools.length;
+    const dynamicToolLoadingThreshold =
+      context?.dynamicToolLoadingThreshold ?? DYNAMIC_TOOL_LOADING_THRESHOLD;
+    const shouldReturnAllTools =
+      filteredTools.length <= dynamicToolLoadingThreshold;
 
     if (shouldReturnAllTools) {
       this.registerAllTools(filteredTools);
     } else {
+      console.error(
+        `Filtered tools (${filteredToolsLength}) > ${DYNAMIC_TOOL_LOADING_THRESHOLD} - Using resource based tool system`
+      );
+
       this.registerResourceBasedToolSystem(filteredTools);
     }
   }
@@ -52,10 +61,6 @@ class CommercetoolsAgentEssentials extends McpServer {
     return contextToTools(this._processedConfiguration.context).filter((tool) =>
       isToolAllowed(tool, this._processedConfiguration)
     );
-  }
-
-  private shouldReturnAllTools(filteredTools: Tool[]): boolean {
-    return filteredTools.length <= (this._processedConfiguration.maxTools ?? 2);
   }
 
   private registerAllTools(filteredTools: Tool[]): void {

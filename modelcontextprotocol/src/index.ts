@@ -17,6 +17,7 @@ type Options = {
   isAdmin?: boolean;
   storeKey?: string;
   businessUnitKey?: string;
+  dynamicToolLoadingThreshold?: number;
 };
 
 type EnvVars = {
@@ -43,6 +44,7 @@ const PUBLIC_ARGS = [
   'authUrl',
   'projectKey',
   'apiUrl',
+  'dynamicToolLoadingThreshold',
 ];
 
 const ACCEPTED_ARGS = [...PUBLIC_ARGS, ...HIDDEN_ARGS];
@@ -146,6 +148,8 @@ export function parseArgs(args: string[]): {options: Options; env: EnvVars} {
         options.customerId = value;
       } else if (key == 'isAdmin') {
         options.isAdmin = value === 'true';
+      } else if (key == 'dynamicToolLoadingThreshold') {
+        options.dynamicToolLoadingThreshold = Number(value);
       } else if (key == 'cartId') {
         options.cartId = value;
       } else if (key == 'storeKey') {
@@ -284,6 +288,7 @@ export async function main() {
       cartId: options.cartId,
       storeKey: options.storeKey,
       businessUnitKey: options.businessUnitKey,
+      dynamicToolLoadingThreshold: options.dynamicToolLoadingThreshold,
     },
   };
 

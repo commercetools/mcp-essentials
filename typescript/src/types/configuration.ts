@@ -29,6 +29,7 @@ export type Context = {
   isAdmin?: boolean;
   cartId?: string;
   businessUnitKey?: string;
+  dynamicToolLoadingThreshold?: number;
 };
 
 export type CommercetoolsFuncContext = Context & {
@@ -40,7 +41,6 @@ export type CommercetoolsFuncContext = Context & {
 export type Configuration = {
   actions?: Actions;
   context?: Context;
-  maxTools?: number;
 };
 
 type WithServerInstance = {
