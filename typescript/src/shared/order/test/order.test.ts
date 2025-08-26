@@ -247,7 +247,7 @@ describe('Order Functions', () => {
       await expect(
         readOrder(mockApiRoot, mockContext, {id: 'test-id'})
       ).rejects.toThrow(
-        new SDKError('Failed to read order', new Error('API Error'))
+        'Failed to read order: Failed to read order by ID: API Error'
       );
     });
 
@@ -255,18 +255,14 @@ describe('Order Functions', () => {
       mockExecute.mockRejectedValueOnce(new Error('API Error'));
       await expect(
         readOrder(mockApiRoot, mockContext, {orderNumber: 'test-num'})
-      ).rejects.toThrow(
-        new SDKError('Failed to read order', new Error('API Error'))
-      );
+      ).rejects.toThrow('Failed to read order: API Error');
     });
 
     it('should throw SDKError on API failure for where', async () => {
       mockExecute.mockRejectedValueOnce(new Error('API Error'));
       await expect(
         readOrder(mockApiRoot, mockContext, {where: ['some query']})
-      ).rejects.toThrow(
-        new SDKError('Failed to read order', new Error('API Error'))
-      );
+      ).rejects.toThrow('Failed to read order: API Error');
     });
   });
 
@@ -448,7 +444,7 @@ describe('Order Functions', () => {
           actions: [],
         })
       ).rejects.toThrow(
-        new SDKError('Failed to update order', new Error('API Update Error'))
+        'Failed to update order: Failed to update order by ID: Failed to read order by ID: API Update Error'
       );
     });
 
@@ -461,7 +457,7 @@ describe('Order Functions', () => {
           actions: [],
         })
       ).rejects.toThrow(
-        new SDKError('Failed to update order', new Error('API Update Error'))
+        'Failed to update order: Failed to update order by order number: Failed to read order by order number: API Update Error'
       );
     });
 
@@ -475,7 +471,7 @@ describe('Order Functions', () => {
           actions: [],
         })
       ).rejects.toThrow(
-        new SDKError('Failed to update order', new Error('API Update Error'))
+        'Failed to update order: Failed to update order by ID: Failed to read order by ID: API Update Error'
       );
     });
 
@@ -489,7 +485,7 @@ describe('Order Functions', () => {
           actions: [],
         })
       ).rejects.toThrow(
-        new SDKError('Failed to update order', new Error('API Update Error'))
+        'Failed to update order: Failed to update order by order number: Failed to read order by order number: API Update Error'
       );
     });
   });

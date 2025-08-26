@@ -90,7 +90,9 @@ describe('Quote Store Functions', () => {
         await readQuote(mockApiRoot, mockContext, params);
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
-        expect((error as SDKError).message).toBe('Failed to read quote');
+        expect((error as SDKError).message).toBe(
+          'Failed to read quote: Quote not found'
+        );
       }
     });
 
@@ -139,7 +141,9 @@ describe('Quote Store Functions', () => {
         await readQuote(mockApiRoot, mockContext, params);
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
-        expect((error as SDKError).message).toBe('Failed to read quote');
+        expect((error as SDKError).message).toBe(
+          'Failed to read quote: Quote not found'
+        );
       }
     });
 
@@ -210,7 +214,9 @@ describe('Quote Store Functions', () => {
         await readQuote(mockApiRoot, contextWithoutStore as any, params);
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
-        expect((error as SDKError).message).toBe('Failed to read quote');
+        expect((error as SDKError).message).toBe(
+          'Failed to read quote: Store key is required'
+        );
       }
     });
 
@@ -228,7 +234,9 @@ describe('Quote Store Functions', () => {
         await readQuote(mockApiRoot, mockContext, params);
       } catch (thrownError) {
         expect(thrownError).toBeInstanceOf(SDKError);
-        expect((thrownError as SDKError).message).toBe('Failed to read quote');
+        expect((thrownError as SDKError).message).toBe(
+          'Failed to read quote: API error'
+        );
       }
     });
   });
@@ -345,7 +353,9 @@ describe('Quote Store Functions', () => {
         await createQuote(mockApiRoot, contextWithoutStore as any, params);
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
-        expect((error as SDKError).message).toBe('Failed to create quote');
+        expect((error as SDKError).message).toBe(
+          'Failed to create quote: Store key is required'
+        );
       }
     });
 
@@ -368,7 +378,7 @@ describe('Quote Store Functions', () => {
       } catch (thrownError) {
         expect(thrownError).toBeInstanceOf(SDKError);
         expect((thrownError as SDKError).message).toBe(
-          'Failed to create quote'
+          'Failed to create quote: API error'
         );
       }
     });
@@ -567,7 +577,9 @@ describe('Quote Store Functions', () => {
         await updateQuote(mockApiRoot, mockContext, params);
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
-        expect((error as SDKError).message).toBe('Failed to update quote');
+        expect((error as SDKError).message).toBe(
+          'Failed to update quote: Cannot update quote: not from this store'
+        );
       }
     });
 
@@ -602,7 +614,9 @@ describe('Quote Store Functions', () => {
         await updateQuote(mockApiRoot, mockContext, params);
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
-        expect((error as SDKError).message).toBe('Failed to update quote');
+        expect((error as SDKError).message).toBe(
+          'Failed to update quote: Cannot update quote: not from this store'
+        );
       }
     });
 
@@ -625,7 +639,9 @@ describe('Quote Store Functions', () => {
         await updateQuote(mockApiRoot, mockContext, params);
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
-        expect((error as SDKError).message).toBe('Failed to update quote');
+        expect((error as SDKError).message).toBe(
+          'Failed to update quote: Either quote ID or key must be provided'
+        );
       }
     });
 
@@ -653,7 +669,9 @@ describe('Quote Store Functions', () => {
         await updateQuote(mockApiRoot, contextWithoutStore as any, params);
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
-        expect((error as SDKError).message).toBe('Failed to update quote');
+        expect((error as SDKError).message).toBe(
+          'Failed to update quote: Store key is required'
+        );
       }
     });
 
@@ -681,7 +699,7 @@ describe('Quote Store Functions', () => {
       } catch (thrownError) {
         expect(thrownError).toBeInstanceOf(SDKError);
         expect((thrownError as SDKError).message).toBe(
-          'Failed to update quote'
+          'Failed to update quote: API error'
         );
       }
     });
@@ -719,7 +737,7 @@ describe('Quote Store Functions', () => {
       } catch (thrownError) {
         expect(thrownError).toBeInstanceOf(SDKError);
         expect((thrownError as SDKError).message).toBe(
-          'Failed to update quote'
+          'Failed to update quote: API error'
         );
       }
     });

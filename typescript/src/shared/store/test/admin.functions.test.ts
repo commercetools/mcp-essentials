@@ -38,7 +38,9 @@ describe('Store Admin Functions', () => {
         await readStore(mockApiRoot, contextWithoutAdmin, params);
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
-        expect((error as SDKError).message).toBe('Failed to read store');
+        expect((error as SDKError).message).toBe(
+          'Failed to read store: Admin access required'
+        );
       }
     });
 
@@ -196,7 +198,9 @@ describe('Store Admin Functions', () => {
         await readStore(mockApiRoot, mockContext, params);
       } catch (thrownError) {
         expect(thrownError).toBeInstanceOf(SDKError);
-        expect((thrownError as SDKError).message).toBe('Failed to read store');
+        expect((thrownError as SDKError).message).toBe(
+          'Failed to read store: API error'
+        );
       }
     });
   });
@@ -221,7 +225,9 @@ describe('Store Admin Functions', () => {
         await createStore(mockApiRoot, contextWithoutAdmin, params);
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
-        expect((error as SDKError).message).toBe('Failed to create store');
+        expect((error as SDKError).message).toBe(
+          'Failed to create store: Admin access required'
+        );
       }
     });
 
@@ -331,7 +337,7 @@ describe('Store Admin Functions', () => {
       } catch (thrownError) {
         expect(thrownError).toBeInstanceOf(SDKError);
         expect((thrownError as SDKError).message).toBe(
-          'Failed to create store'
+          'Failed to create store: API error'
         );
       }
     });
@@ -358,7 +364,9 @@ describe('Store Admin Functions', () => {
         await updateStore(mockApiRoot, contextWithoutAdmin, params);
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
-        expect((error as SDKError).message).toBe('Failed to update store');
+        expect((error as SDKError).message).toBe(
+          'Failed to update store: Admin access required'
+        );
       }
     });
 
@@ -467,7 +475,9 @@ describe('Store Admin Functions', () => {
         await updateStore(mockApiRoot, mockContext, params);
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
-        expect((error as SDKError).message).toBe('Failed to update store');
+        expect((error as SDKError).message).toBe(
+          'Failed to update store: Either store ID or key must be provided'
+        );
       }
     });
 
@@ -490,7 +500,7 @@ describe('Store Admin Functions', () => {
       } catch (thrownError) {
         expect(thrownError).toBeInstanceOf(SDKError);
         expect((thrownError as SDKError).message).toBe(
-          'Failed to update store'
+          'Failed to update store: API error'
         );
       }
     });
@@ -514,7 +524,7 @@ describe('Store Admin Functions', () => {
       } catch (thrownError) {
         expect(thrownError).toBeInstanceOf(SDKError);
         expect((thrownError as SDKError).message).toBe(
-          'Failed to update store'
+          'Failed to update store: API error'
         );
       }
     });

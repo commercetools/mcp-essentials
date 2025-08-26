@@ -37,7 +37,9 @@ describe('Store Functions', () => {
         await readStore(mockApiRoot, contextWithoutStoreKey as any, params);
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
-        expect((error as SDKError).message).toBe('Failed to read store');
+        expect((error as SDKError).message).toBe(
+          'Failed to read store: Store key is required'
+        );
       }
     });
 
@@ -107,7 +109,9 @@ describe('Store Functions', () => {
         await readStore(mockApiRoot, mockContext, params);
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
-        expect((error as SDKError).message).toBe('Failed to read store');
+        expect((error as SDKError).message).toBe(
+          'Failed to read store: Store not found'
+        );
       }
     });
 
@@ -243,7 +247,9 @@ describe('Store Functions', () => {
         await readStore(mockApiRoot, mockContext, params);
       } catch (thrownError) {
         expect(thrownError).toBeInstanceOf(SDKError);
-        expect((thrownError as SDKError).message).toBe('Failed to read store');
+        expect((thrownError as SDKError).message).toBe(
+          'Failed to read store: API error'
+        );
       }
     });
 
@@ -261,7 +267,9 @@ describe('Store Functions', () => {
         await readStore(mockApiRoot, mockContext, params);
       } catch (thrownError) {
         expect(thrownError).toBeInstanceOf(SDKError);
-        expect((thrownError as SDKError).message).toBe('Failed to read store');
+        expect((thrownError as SDKError).message).toBe(
+          'Failed to read store: API error'
+        );
       }
     });
 
@@ -279,7 +287,9 @@ describe('Store Functions', () => {
         await readStore(mockApiRoot, mockContext, params);
       } catch (thrownError) {
         expect(thrownError).toBeInstanceOf(SDKError);
-        expect((thrownError as SDKError).message).toBe('Failed to read store');
+        expect((thrownError as SDKError).message).toBe(
+          'Failed to read store: Query failed'
+        );
       }
     });
   });
@@ -303,7 +313,9 @@ describe('Store Functions', () => {
         await updateStore(mockApiRoot, contextWithoutStoreKey as any, params);
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
-        expect((error as SDKError).message).toBe('Failed to update store');
+        expect((error as SDKError).message).toBe(
+          'Failed to update store: Store key is required'
+        );
       }
     });
 
@@ -390,7 +402,7 @@ describe('Store Functions', () => {
       } catch (thrownError) {
         expect(thrownError).toBeInstanceOf(SDKError);
         expect((thrownError as SDKError).message).toBe(
-          'Failed to update store'
+          'Failed to update store: API error'
         );
       }
     });

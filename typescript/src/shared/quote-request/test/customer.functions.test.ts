@@ -42,7 +42,7 @@ describe('Quote Request Customer Functions', () => {
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
         expect((error as SDKError).message).toBe(
-          'Failed to read quote request'
+          'Failed to read quote request: Customer ID is required'
         );
       }
     });
@@ -90,7 +90,7 @@ describe('Quote Request Customer Functions', () => {
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
         expect((error as SDKError).message).toBe(
-          'Failed to read quote request'
+          'Failed to read quote request: Quote request does not belong to customer'
         );
       }
     });
@@ -140,7 +140,7 @@ describe('Quote Request Customer Functions', () => {
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
         expect((error as SDKError).message).toBe(
-          'Failed to read quote request'
+          'Failed to read quote request: Quote request does not belong to customer'
         );
       }
     });
@@ -243,7 +243,7 @@ describe('Quote Request Customer Functions', () => {
       } catch (thrownError) {
         expect(thrownError).toBeInstanceOf(SDKError);
         expect((thrownError as SDKError).message).toBe(
-          'Failed to read quote request'
+          'Failed to read quote request: API error'
         );
       }
     });
@@ -265,7 +265,7 @@ describe('Quote Request Customer Functions', () => {
       } catch (thrownError) {
         expect(thrownError).toBeInstanceOf(SDKError);
         expect((thrownError as SDKError).message).toBe(
-          'Failed to read quote request'
+          'Failed to read quote request: API error'
         );
       }
     });
@@ -285,7 +285,7 @@ describe('Quote Request Customer Functions', () => {
       } catch (thrownError) {
         expect(thrownError).toBeInstanceOf(SDKError);
         expect((thrownError as SDKError).message).toBe(
-          'Failed to read quote request'
+          'Failed to read quote request: Query failed'
         );
       }
     });
@@ -316,7 +316,7 @@ describe('Quote Request Customer Functions', () => {
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
         expect((error as SDKError).message).toBe(
-          'Failed to update quote request'
+          'Failed to update quote request: Customer ID is required'
         );
       }
     });
@@ -437,7 +437,7 @@ describe('Quote Request Customer Functions', () => {
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
         expect((error as SDKError).message).toBe(
-          'Failed to update quote request'
+          'Failed to update quote request: Quote request does not belong to customer'
         );
       }
     });
@@ -563,7 +563,7 @@ describe('Quote Request Customer Functions', () => {
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
         expect((error as SDKError).message).toBe(
-          'Failed to update quote request'
+          'Failed to update quote request: Quote request does not belong to customer'
         );
       }
     });
@@ -583,7 +583,7 @@ describe('Quote Request Customer Functions', () => {
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
         expect((error as SDKError).message).toBe(
-          'Failed to update quote request'
+          'Failed to update quote request: Failed to update quote request'
         );
       }
     });
@@ -609,7 +609,7 @@ describe('Quote Request Customer Functions', () => {
       } catch (thrownError) {
         expect(thrownError).toBeInstanceOf(SDKError);
         expect((thrownError as SDKError).message).toBe(
-          'Failed to update quote request'
+          'Failed to update quote request: Read error'
         );
       }
     });
@@ -635,7 +635,7 @@ describe('Quote Request Customer Functions', () => {
       } catch (thrownError) {
         expect(thrownError).toBeInstanceOf(SDKError);
         expect((thrownError as SDKError).message).toBe(
-          'Failed to update quote request'
+          'Failed to update quote request: Read error'
         );
       }
     });
@@ -670,7 +670,7 @@ describe('Quote Request Customer Functions', () => {
       } catch (thrownError) {
         expect(thrownError).toBeInstanceOf(SDKError);
         expect((thrownError as SDKError).message).toBe(
-          'Failed to update quote request'
+          'Failed to update quote request: Update error'
         );
       }
     });
@@ -706,7 +706,7 @@ describe('Quote Request Customer Functions', () => {
       } catch (thrownError) {
         expect(thrownError).toBeInstanceOf(SDKError);
         expect((thrownError as SDKError).message).toBe(
-          'Failed to update quote request'
+          'Failed to update quote request: Update error'
         );
       }
     });

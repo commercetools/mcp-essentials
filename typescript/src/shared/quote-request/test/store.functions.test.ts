@@ -220,7 +220,7 @@ describe('Quote Request Store Functions', () => {
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
         expect((error as SDKError).message).toBe(
-          'Failed to read quote request'
+          'Failed to read quote request: Store key is required'
         );
       }
     });
@@ -244,7 +244,7 @@ describe('Quote Request Store Functions', () => {
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
         expect((error as SDKError).message).toBe(
-          'Failed to read quote request'
+          'Failed to read quote request: Quote request not found'
         );
       }
     });
@@ -340,7 +340,7 @@ describe('Quote Request Store Functions', () => {
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
         expect((error as SDKError).message).toBe(
-          'Failed to create quote request'
+          'Failed to create quote request: Store key is required'
         );
       }
     });
@@ -368,7 +368,7 @@ describe('Quote Request Store Functions', () => {
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
         expect((error as SDKError).message).toBe(
-          'Failed to create quote request'
+          'Failed to create quote request: Creation failed'
         );
       }
     });
@@ -465,7 +465,7 @@ describe('Quote Request Store Functions', () => {
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
         expect((error as SDKError).message).toBe(
-          'Failed to update quote request'
+          'Failed to update quote request: Store key is required'
         );
       }
     });
@@ -490,7 +490,7 @@ describe('Quote Request Store Functions', () => {
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
         expect((error as SDKError).message).toBe(
-          'Failed to update quote request'
+          'Failed to update quote request: Failed to update quote request'
         );
       }
     });
@@ -521,7 +521,7 @@ describe('Quote Request Store Functions', () => {
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
         expect((error as SDKError).message).toBe(
-          'Failed to update quote request'
+          'Failed to update quote request: Update failed'
         );
       }
     });
@@ -553,7 +553,7 @@ describe('Quote Request Store Functions', () => {
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
         expect((error as SDKError).message).toBe(
-          'Failed to update quote request'
+          'Failed to update quote request: Update failed'
         );
       }
     });

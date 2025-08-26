@@ -287,7 +287,7 @@ describe('Category Customer Functions', () => {
       } catch (thrownError) {
         expect(thrownError).toBeInstanceOf(SDKError);
         expect((thrownError as SDKError).message).toBe(
-          'Failed to read category'
+          'Failed to read category: API error'
         );
       }
     });
@@ -307,7 +307,7 @@ describe('Category Customer Functions', () => {
       } catch (thrownError) {
         expect(thrownError).toBeInstanceOf(SDKError);
         expect((thrownError as SDKError).message).toBe(
-          'Failed to read category'
+          'Failed to read category: Category not found'
         );
       }
     });
@@ -327,7 +327,7 @@ describe('Category Customer Functions', () => {
       } catch (thrownError) {
         expect(thrownError).toBeInstanceOf(SDKError);
         expect((thrownError as SDKError).message).toBe(
-          'Failed to read category'
+          'Failed to read category: Query failed'
         );
       }
     });

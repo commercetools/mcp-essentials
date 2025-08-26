@@ -169,7 +169,7 @@ describe('Quote Associate Functions', () => {
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
         expect((error as SDKError).message).toBe(
-          'Failed to read quote as associate'
+          'Failed to read quote as associate: Customer ID is required'
         );
       }
     });
@@ -191,7 +191,7 @@ describe('Quote Associate Functions', () => {
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
         expect((error as SDKError).message).toBe(
-          'Failed to read quote as associate'
+          'Failed to read quote as associate: Business unit key is required'
         );
       }
     });
@@ -213,7 +213,7 @@ describe('Quote Associate Functions', () => {
       } catch (thrownError) {
         expect(thrownError).toBeInstanceOf(SDKError);
         expect((thrownError as SDKError).message).toBe(
-          'Failed to read quote as associate'
+          'Failed to read quote as associate: API error'
         );
       }
     });
@@ -388,7 +388,7 @@ describe('Quote Associate Functions', () => {
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
         expect((error as SDKError).message).toBe(
-          'Failed to update quote as associate'
+          "Failed to update quote as associate: Action 'transitionState' is not allowed for associates"
         );
       }
     });
@@ -411,7 +411,7 @@ describe('Quote Associate Functions', () => {
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
         expect((error as SDKError).message).toBe(
-          'Failed to update quote as associate'
+          "Failed to update quote as associate: Quote state 'Pending' is not allowed for associates"
         );
       }
     });
@@ -442,7 +442,7 @@ describe('Quote Associate Functions', () => {
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
         expect((error as SDKError).message).toBe(
-          'Failed to update quote as associate'
+          'Failed to update quote as associate: Customer ID is required'
         );
       }
     });
@@ -477,7 +477,7 @@ describe('Quote Associate Functions', () => {
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
         expect((error as SDKError).message).toBe(
-          'Failed to update quote as associate'
+          'Failed to update quote as associate: Business unit key is required'
         );
       }
     });
@@ -502,7 +502,7 @@ describe('Quote Associate Functions', () => {
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
         expect((error as SDKError).message).toBe(
-          'Failed to update quote as associate'
+          'Failed to update quote as associate: Either quote ID or key must be provided'
         );
       }
     });
@@ -533,7 +533,7 @@ describe('Quote Associate Functions', () => {
       } catch (thrownError) {
         expect(thrownError).toBeInstanceOf(SDKError);
         expect((thrownError as SDKError).message).toBe(
-          'Failed to update quote as associate'
+          'Failed to update quote as associate: API error'
         );
       }
     });
@@ -564,7 +564,7 @@ describe('Quote Associate Functions', () => {
       } catch (thrownError) {
         expect(thrownError).toBeInstanceOf(SDKError);
         expect((thrownError as SDKError).message).toBe(
-          'Failed to update quote as associate'
+          'Failed to update quote as associate: API error'
         );
       }
     });
