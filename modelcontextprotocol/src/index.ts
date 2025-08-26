@@ -257,6 +257,8 @@ function createAuthConfig(env: EnvVars): AuthConfig {
     case 'auth_token':
       return {
         type: 'auth_token',
+        clientId: env.clientId!,
+        clientSecret: env.clientSecret!,
         accessToken: env.accessToken!,
         ...baseConfig,
       };
@@ -327,15 +329,18 @@ export async function main() {
 
   const authConfig = createAuthConfig(env);
 
-  const server = await CommercetoolsAgentEssentials.create({
-    authConfig,
-    configuration,
-  });
+  // eslint-disable-next-line require-await
+  async function getServer() {
+    return CommercetoolsAgentEssentials.create({
+      authConfig,
+      configuration,
+    });
+  }
 
   if (env.remote) {
     const streamServer = new CommercetoolsAgentEssentialsStreamable({
-      server,
-      stateless: env.stateless,
+      authConfig,
+      configuration,
       streamableHttpOptions: {
         sessionIdGenerator: undefined,
       },
@@ -343,13 +348,14 @@ export async function main() {
 
     const port = env.port || 8080;
     streamServer.listen(port, function () {
-      console.log(`running on port`, port);
+      console.error(`Stream server listening on`, port);
     });
   } else {
+    const server = await getServer();
     const transport = new StdioServerTransport();
     await server.connect(transport);
+    console.error('MCP server is running...');
   }
-  console.error(green('MCP server is running...'));
 }
 
 if (require.main === module) {

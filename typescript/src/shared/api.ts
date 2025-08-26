@@ -75,11 +75,10 @@ class CommercetoolsAPI {
   }
 
   private async getToken(): Promise<string> {
-    const {clientId, clientSecret} = this.authConfig as ClientCredentialsAuth;
     const authToken = (this.authConfig as ExistingTokenAuth).accessToken;
-
     if (authToken) return Promise.resolve(authToken);
 
+    const {clientId, clientSecret} = this.authConfig as ClientCredentialsAuth;
     const req: ClientRequest = {
       uri: `/oauth/token`,
       method: 'POST' as MethodType,
@@ -122,6 +121,14 @@ class CommercetoolsAPI {
     };
 
     const res = await this.getAuthClient().execute<Introspect>(req);
+
+    // check if token is active/valid
+    if (!res.body?.active) {
+      throw new Error(
+        'Inactive or invalid auth token, please provide a valid token'
+      );
+    }
+
     return res.body?.scope.split(' ').map((scope) => scope.split(':')[0]) || [];
   }
 

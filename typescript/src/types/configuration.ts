@@ -1,5 +1,8 @@
 import {StreamableHTTPServerTransportOptions} from '@modelcontextprotocol/sdk/server/streamableHttp.js';
-import {CommercetoolsAgentEssentials} from '../modelcontextprotocol';
+import {
+  AuthConfig,
+  CommercetoolsAgentEssentials,
+} from '../modelcontextprotocol';
 import {AvailableNamespaces} from './tools';
 import {Express} from 'express';
 
@@ -42,30 +45,22 @@ export type Configuration = {
   context?: Context;
 };
 
-type WithServerInstance = {
-  server: CommercetoolsAgentEssentials;
-  clientId?: string;
-  clientSecret?: string;
-  authUrl?: string;
-  projectKey?: string;
-  apiUrl?: string;
+type IWithServerInstance = {
+  authConfig?: AuthConfig;
   configuration?: Configuration;
+  server: () => Promise<CommercetoolsAgentEssentials>;
   stateless?: boolean;
   streamableHttpOptions: StreamableHTTPServerTransportOptions;
   app?: Express;
 };
 
-type WithServerConfig = {
-  server?: undefined;
-  clientId: string;
-  clientSecret: string;
-  authUrl: string;
-  projectKey: string;
-  apiUrl: string;
+type IWithServerConfig = {
+  authConfig: AuthConfig;
   configuration: Configuration;
+  server?: undefined;
   stateless?: boolean;
   streamableHttpOptions: StreamableHTTPServerTransportOptions;
   app?: Express;
 };
 
-export type StreamServerOptions = WithServerInstance | WithServerConfig;
+export type IStreamServerOptions = IWithServerInstance | IWithServerConfig;
