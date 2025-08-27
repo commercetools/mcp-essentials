@@ -358,12 +358,14 @@ describe('parseArgs function', () => {
       );
       let capturedConfiguration: Configuration;
 
-      mockCommercetoolsAgentEssentials.mockImplementation((options: any) => {
-        capturedConfiguration = options.configuration;
-        return {
-          connect: jest.fn(),
-        } as any;
-      });
+      mockCommercetoolsAgentEssentials.create.mockImplementation(
+        (options: any) => {
+          capturedConfiguration = options.configuration;
+          return {
+            connect: jest.fn(),
+          } as any;
+        }
+      );
 
       // Set up process.argv to simulate command line args
       const originalArgv = process.argv;

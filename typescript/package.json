@@ -63,8 +63,8 @@
     "typescript": "^5.7.2"
   },
   "dependencies": {
-    "@commercetools/platform-sdk": "^8.5.0",
-    "@commercetools/ts-client": "^3.2.0",
+    "@commercetools/platform-sdk": "^8.13.0",
+    "@commercetools/ts-client": "^4.2.0",
     "express": "^5.1.0",
     "zod": "^3.24.2",
     "zod-to-json-schema": "^3.24.3"
