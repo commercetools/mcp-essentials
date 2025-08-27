@@ -3,8 +3,6 @@ interface BaseAuthConfig {
   authUrl: string;
   projectKey: string;
   apiUrl: string;
-  clientId: string;
-  clientSecret: string;
 }
 
 // Client credentials flow - for API Client authentication
@@ -18,6 +16,8 @@ export interface ClientCredentialsAuth extends BaseAuthConfig {
 export interface ExistingTokenAuth extends BaseAuthConfig {
   type: 'auth_token';
   accessToken: string;
+  clientId?: string;
+  clientSecret?: string;
 }
 
 export interface Introspect {

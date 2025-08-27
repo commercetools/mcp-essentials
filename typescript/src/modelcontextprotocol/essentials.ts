@@ -41,18 +41,20 @@ class CommercetoolsAgentEssentials extends McpServer {
       processedConfiguration.context
     );
 
-    // list of scopes' permissions ['view_cart', 'manage_products', '...']
-    const scopes = await _commercetools.introspect();
+    if (this.authConfig?.clientId && this.authConfig?.clientSecret) {
+      // list of scopes' permissions ['view_cart', 'manage_products', '...']
+      const scopes = await _commercetools.introspect();
 
-    // scope based filtering
-    const filteredActions = scopesToActions(scopes, processedConfiguration);
+      // scope based filtering
+      const filteredActions = scopesToActions(scopes, processedConfiguration);
 
-    processedConfiguration = {
-      ...processedConfiguration,
-      actions: {
-        ...filteredActions,
-      },
-    };
+      processedConfiguration = {
+        ...processedConfiguration,
+        actions: {
+          ...filteredActions,
+        },
+      };
+    }
 
     // merge the actions here
     const filteredTools = contextToTools(processedConfiguration.context).filter(

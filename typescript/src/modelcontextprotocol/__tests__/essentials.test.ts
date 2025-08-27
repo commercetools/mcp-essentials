@@ -380,6 +380,21 @@ describe('CommercetoolsAgentEssentials (ModelContextProtocol)', () => {
 
       expect(actions).toEqual(configuredActions.actions);
     });
+
+    it('should not call introspect if `clientId` and `clientSecret` are not provided', () => {
+      CommercetoolsAgentEssentials.create({
+        authConfig: {
+          type: 'auth_token',
+          accessToken: 'access-token',
+          authUrl: 'auth',
+          projectKey: 'key',
+          apiUrl: 'api',
+        },
+        configuration: mockConfiguration,
+      });
+
+      expect(mockCommercetoolsAPIInstance.introspect).toHaveBeenCalledTimes(0);
+    });
   });
 
   describe('::CommercetoolsAgentEssentials []', () => {
