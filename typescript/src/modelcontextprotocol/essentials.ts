@@ -12,7 +12,6 @@ import {AuthConfig} from '../types/auth';
 class CommercetoolsAgentEssentials extends McpServer {
   private authConfig: AuthConfig;
   private configuration: Configuration;
-  private filteredConfig: Configuration = {};
 
   private constructor({
     authConfig,
@@ -61,7 +60,6 @@ class CommercetoolsAgentEssentials extends McpServer {
       (tool) => isToolAllowed(tool, processedConfiguration)
     );
 
-    this.setConfig(processedConfiguration);
     filteredTools.forEach((tool) => {
       this.tool(
         tool.method,
@@ -96,14 +94,6 @@ class CommercetoolsAgentEssentials extends McpServer {
           'Unable to initialze `CommercetoolsAgentEssentials`'
       );
     }
-  }
-
-  getConfig(): Configuration {
-    return this.filteredConfig;
-  }
-
-  setConfig(config: Configuration): void {
-    this.filteredConfig = config;
   }
 }
 
