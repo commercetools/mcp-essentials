@@ -153,7 +153,9 @@ describe('Order Base Functions', () => {
         await readOrderById(mockApiRoot, 'test-project', 'order-123');
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
-        expect((error as SDKError).message).toBe('Failed to read order by ID');
+        expect((error as SDKError).message).toBe(
+          'Failed to read order by ID: Order not found'
+        );
       }
     });
   });
@@ -229,7 +231,7 @@ describe('Order Base Functions', () => {
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
         expect((error as SDKError).message).toBe(
-          'Failed to read order by order number'
+          'Failed to read order by order number: Order not found'
         );
       }
     });
@@ -335,7 +337,7 @@ describe('Order Base Functions', () => {
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
         expect((error as SDKError).message).toBe(
-          'Failed to update order by ID'
+          'Failed to update order by ID: Failed to read order by ID: Order not found'
         );
       }
     });
@@ -442,7 +444,7 @@ describe('Order Base Functions', () => {
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
         expect((error as SDKError).message).toBe(
-          'Failed to update order by order number'
+          'Failed to update order by order number: Failed to read order by order number: Order not found'
         );
       }
     });
@@ -532,7 +534,9 @@ describe('Order Base Functions', () => {
         ]);
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
-        expect((error as SDKError).message).toBe('Failed to query orders');
+        expect((error as SDKError).message).toBe(
+          'Failed to query orders: Query failed'
+        );
       }
     });
   });
@@ -632,7 +636,7 @@ describe('Order Base Functions', () => {
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
         expect((error as SDKError).message).toBe(
-          'Failed to verify order ownership'
+          'Failed to verify order ownership: Either order ID or order number must be provided'
         );
       }
     });
@@ -726,7 +730,7 @@ describe('Order Base Functions', () => {
         } catch (error) {
           expect(error).toBeInstanceOf(SDKError);
           expect((error as SDKError).message).toBe(
-            'Failed to read order by ID as associate'
+            'Failed to read order by ID as associate: Order not found'
           );
         }
       });
@@ -780,7 +784,7 @@ describe('Order Base Functions', () => {
         } catch (error) {
           expect(error).toBeInstanceOf(SDKError);
           expect((error as SDKError).message).toBe(
-            'Failed to read order by order number as associate'
+            'Failed to read order by order number as associate: Order not found'
           );
         }
       });
@@ -875,7 +879,7 @@ describe('Order Base Functions', () => {
         } catch (error) {
           expect(error).toBeInstanceOf(SDKError);
           expect((error as SDKError).message).toBe(
-            'Failed to query orders as associate'
+            'Failed to query orders as associate: Query failed'
           );
         }
       });
@@ -968,7 +972,7 @@ describe('Order Base Functions', () => {
         } catch (error) {
           expect(error).toBeInstanceOf(SDKError);
           expect((error as SDKError).message).toBe(
-            'Failed to create order from cart as associate'
+            'Failed to create order from cart as associate: Creation failed'
           );
         }
       });
@@ -1068,7 +1072,7 @@ describe('Order Base Functions', () => {
         } catch (error) {
           expect(error).toBeInstanceOf(SDKError);
           expect((error as SDKError).message).toBe(
-            'Failed to create order from quote as associate'
+            'Failed to create order from quote as associate: Creation failed'
           );
         }
       });
@@ -1150,7 +1154,7 @@ describe('Order Base Functions', () => {
         } catch (error) {
           expect(error).toBeInstanceOf(SDKError);
           expect((error as SDKError).message).toBe(
-            'Failed to update order by ID as associate'
+            'Failed to update order by ID as associate: Failed to read order by ID as associate: Creation failed'
           );
         }
       });
@@ -1235,7 +1239,7 @@ describe('Order Base Functions', () => {
         } catch (error) {
           expect(error).toBeInstanceOf(SDKError);
           expect((error as SDKError).message).toBe(
-            'Failed to update order by order number as associate'
+            'Failed to update order by order number as associate: Failed to read order by order number as associate: Creation failed'
           );
         }
       });

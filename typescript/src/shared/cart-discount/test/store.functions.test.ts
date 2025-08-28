@@ -220,7 +220,7 @@ describe('Cart Discount Store Functions', () => {
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
         expect((error as SDKError).message).toBe(
-          'Failed to read cart discount'
+          'Failed to read cart discount: Cart discount not found'
         );
       }
     });
@@ -242,7 +242,7 @@ describe('Cart Discount Store Functions', () => {
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
         expect((error as SDKError).message).toBe(
-          'Failed to read cart discount'
+          'Failed to read cart discount: Cart discount not found'
         );
       }
     });
@@ -264,7 +264,7 @@ describe('Cart Discount Store Functions', () => {
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
         expect((error as SDKError).message).toBe(
-          'Failed to read cart discount'
+          'Failed to read cart discount: Query failed'
         );
       }
     });
@@ -398,7 +398,7 @@ describe('Cart Discount Store Functions', () => {
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
         expect((error as SDKError).message).toBe(
-          'Failed to create cart discount'
+          'Failed to create cart discount: Creation failed'
         );
       }
     });
@@ -560,7 +560,7 @@ describe('Cart Discount Store Functions', () => {
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
         expect((error as SDKError).message).toBe(
-          'Failed to update cart discount'
+          'Failed to update cart discount: Either id or key must be provided to update a cart discount'
         );
       }
     });
@@ -591,7 +591,7 @@ describe('Cart Discount Store Functions', () => {
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
         expect((error as SDKError).message).toBe(
-          'Failed to update cart discount'
+          'Failed to update cart discount: Update failed'
         );
       }
     });
@@ -622,7 +622,7 @@ describe('Cart Discount Store Functions', () => {
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
         expect((error as SDKError).message).toBe(
-          'Failed to update cart discount'
+          'Failed to update cart discount: Update failed'
         );
       }
     });

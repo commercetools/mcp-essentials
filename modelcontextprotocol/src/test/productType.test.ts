@@ -1,5 +1,9 @@
-import {main, parseArgs} from '..';
-import {CommercetoolsAgentEssentials} from '@commercetools/agent-essentials/modelcontextprotocol';
+import {main} from '..';
+import {
+  AuthConfig,
+  CommercetoolsAgentEssentials,
+  Configuration,
+} from '@commercetools/agent-essentials/modelcontextprotocol';
 import {StdioServerTransport} from '@modelcontextprotocol/sdk/server/stdio.js';
 
 // Mock these imports
@@ -9,6 +13,14 @@ jest.mock('@modelcontextprotocol/sdk/server/stdio.js');
 describe('Product Type Tools', () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    jest
+      .spyOn(CommercetoolsAgentEssentials, 'create')
+      .mockImplementation(
+        (_: {authConfig: AuthConfig; configuration: Configuration}) =>
+          Promise.resolve<any>({
+            connect: jest.fn(),
+          })
+      );
     process.env = {};
   });
 
@@ -27,7 +39,7 @@ describe('Product Type Tools', () => {
 
     await main();
 
-    expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
+    expect(CommercetoolsAgentEssentials.create).toHaveBeenCalledWith({
       authConfig: {
         type: 'client_credentials',
         clientId: 'test_client_id',
@@ -62,7 +74,7 @@ describe('Product Type Tools', () => {
 
     await main();
 
-    expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
+    expect(CommercetoolsAgentEssentials.create).toHaveBeenCalledWith({
       authConfig: {
         type: 'client_credentials',
         clientId: 'test_client_id',
@@ -95,7 +107,7 @@ describe('Product Type Tools', () => {
 
     await main();
 
-    expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
+    expect(CommercetoolsAgentEssentials.create).toHaveBeenCalledWith({
       authConfig: {
         type: 'client_credentials',
         clientId: 'test_client_id',
@@ -128,7 +140,7 @@ describe('Product Type Tools', () => {
 
     await main();
 
-    expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
+    expect(CommercetoolsAgentEssentials.create).toHaveBeenCalledWith({
       authConfig: {
         type: 'client_credentials',
         clientId: 'test_client_id',
@@ -162,7 +174,7 @@ describe('Product Type Tools', () => {
 
     await main();
 
-    expect(CommercetoolsAgentEssentials).toHaveBeenCalledWith({
+    expect(CommercetoolsAgentEssentials.create).toHaveBeenCalledWith({
       authConfig: {
         type: 'client_credentials',
         clientId: 'test_client_id',

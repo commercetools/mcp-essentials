@@ -127,7 +127,7 @@ describe('Associate Cart Functions', () => {
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
         expect((error as SDKError).message).toBe(
-          'Failed to read associate cart'
+          'Failed to read associate cart: Customer ID is required for associate cart operations'
         );
       }
     });
@@ -147,7 +147,7 @@ describe('Associate Cart Functions', () => {
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
         expect((error as SDKError).message).toBe(
-          'Failed to read associate cart'
+          'Failed to read associate cart: Business Unit Key is required for associate cart operations'
         );
       }
     });
@@ -167,7 +167,7 @@ describe('Associate Cart Functions', () => {
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
         expect((error as SDKError).message).toBe(
-          'Failed to read associate cart'
+          'Failed to read associate cart: Base function error'
         );
       }
     });
@@ -345,7 +345,7 @@ describe('Associate Cart Functions', () => {
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
         expect((error as SDKError).message).toBe(
-          'Failed to update associate cart'
+          'Failed to update associate cart: At least one action is required to update a cart'
         );
       }
     });
@@ -370,7 +370,7 @@ describe('Associate Cart Functions', () => {
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
         expect((error as SDKError).message).toBe(
-          'Failed to update associate cart'
+          'Failed to update associate cart: Either cart ID or key must be provided'
         );
       }
     });

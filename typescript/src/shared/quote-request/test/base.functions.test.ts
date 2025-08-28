@@ -137,7 +137,7 @@ describe('Quote Request Base Functions', () => {
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
         expect((error as SDKError).message).toBe(
-          'Failed to read quote request by ID'
+          'Failed to read quote request by ID: Quote request not found'
         );
       }
     });
@@ -216,7 +216,7 @@ describe('Quote Request Base Functions', () => {
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
         expect((error as SDKError).message).toBe(
-          'Failed to read quote request by key'
+          'Failed to read quote request by key: Quote request not found'
         );
       }
     });
@@ -343,7 +343,7 @@ describe('Quote Request Base Functions', () => {
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
         expect((error as SDKError).message).toBe(
-          'Failed to query quote requests'
+          'Failed to query quote requests: Query failed'
         );
       }
     });
@@ -448,7 +448,7 @@ describe('Quote Request Base Functions', () => {
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
         expect((error as SDKError).message).toBe(
-          'Failed to update quote request by ID'
+          'Failed to update quote request by ID: Failed to read quote request by ID: Query failed'
         );
       }
     });
@@ -557,7 +557,7 @@ describe('Quote Request Base Functions', () => {
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
         expect((error as SDKError).message).toBe(
-          'Failed to update quote request by key'
+          'Failed to update quote request by key: Failed to read quote request by key: Query failed'
         );
       }
     });
@@ -664,7 +664,7 @@ describe('Quote Request Base Functions', () => {
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
         expect((error as SDKError).message).toBe(
-          'Failed to create quote request'
+          'Failed to create quote request: Creation failed'
         );
       }
     });

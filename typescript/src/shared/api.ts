@@ -1,7 +1,10 @@
 import {
   Client,
   ClientBuilder,
+  MethodType,
   HttpMiddlewareOptions,
+  TokenInfo,
+  ClientRequest,
 } from '@commercetools/ts-client';
 import {
   ApiRoot,
@@ -9,16 +12,22 @@ import {
 } from '@commercetools/platform-sdk';
 import {contextToFunctionMapping} from './functions';
 import {CommercetoolsFuncContext, Context} from '../types/configuration';
-import {AuthConfig} from '../types/auth';
+import {
+  AuthConfig,
+  ClientCredentialsAuth,
+  ExistingTokenAuth,
+  Introspect,
+} from '../types/auth';
 
 class CommercetoolsAPI {
   private client: Client | undefined;
+  private authConfig: AuthConfig;
+  private context: Context;
   public apiRoot: ApiRoot;
 
-  constructor(
-    private authConfig: AuthConfig,
-    private context?: Context
-  ) {
+  constructor(authConfig: AuthConfig, context?: Context) {
+    this.context = context!;
+    this.authConfig = authConfig;
     this.client = this.createClient();
 
     if (!this.client) {
@@ -28,7 +37,7 @@ class CommercetoolsAPI {
     this.apiRoot = createApiBuilderFromCtpClient(this.client);
   }
 
-  private createClient(): Client | undefined {
+  private createClient(): Client | never {
     const {authUrl, projectKey, apiUrl} = this.authConfig;
     const httpMiddlewareOptions: HttpMiddlewareOptions = {
       host: apiUrl,
@@ -61,8 +70,66 @@ class CommercetoolsAPI {
     this.handleUnrecognizedAuthConfig(this.authConfig);
   }
 
-  private handleUnrecognizedAuthConfig(authConfig: never) {
+  private handleUnrecognizedAuthConfig(authConfig: AuthConfig): never {
     throw new Error(`Unrecognized auth type: ${JSON.stringify(authConfig)}`);
+  }
+
+  private async getToken(): Promise<string> {
+    const authToken = (this.authConfig as ExistingTokenAuth).accessToken;
+    if (authToken) return Promise.resolve(authToken);
+
+    const {clientId, clientSecret} = this.authConfig as ClientCredentialsAuth;
+    const req: ClientRequest = {
+      uri: `/oauth/token`,
+      method: 'POST' as MethodType,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        Authorization: `Basic ${Buffer.from(
+          `${clientId}:${clientSecret}`
+        ).toString('base64')}`,
+      },
+      body: `grant_type=client_credentials`,
+    };
+
+    const tokenObject = await this.getAuthClient().execute<TokenInfo>(req);
+    return tokenObject.body!.access_token;
+  }
+
+  private getAuthClient(): Client {
+    const middlewareOptions = {
+      host: this.authConfig.authUrl,
+      stringBodyContentTypes: ['application/x-www-form-urlencoded'],
+      httpClient: fetch,
+    };
+    return new ClientBuilder().withHttpMiddleware(middlewareOptions).build();
+  }
+
+  async introspect(): Promise<Array<string>> {
+    const token = await this.getToken();
+    const {clientId, clientSecret} = this.authConfig as ClientCredentialsAuth;
+
+    const req: ClientRequest = {
+      uri: `/oauth/introspect`,
+      method: 'POST' as MethodType,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        Authorization: `Basic ${Buffer.from(
+          `${clientId}:${clientSecret}`
+        ).toString('base64')}`,
+      },
+      body: `token=${token}`,
+    };
+
+    const res = await this.getAuthClient().execute<Introspect>(req);
+
+    // check if token is active/valid
+    if (!res.body?.active) {
+      throw new Error(
+        'Inactive or invalid auth token, please provide a valid token'
+      );
+    }
+
+    return res.body?.scope.split(' ').map((scope) => scope.split(':')[0]) || [];
   }
 
   async run(method: string, arg: any) {

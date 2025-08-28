@@ -1,23 +1,25 @@
 import z from 'zod';
-import {McpServer} from '@modelcontextprotocol/sdk/server/mcp.js';
+import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import CommercetoolsAPI from '../shared/api';
 import {
   isToolAllowed,
   processConfigurationDefaults,
 } from '../shared/configuration';
-import {contextToTools} from '../shared/tools';
-import type {Configuration, Context} from '../types/configuration';
-import {AuthConfig} from '../types/auth';
-import {contextToToolsResourceBasedToolSystem} from '../shared/resource-based-tools-system/tools';
-import {Tool} from '../types/tools';
-import {contextToBulkTools} from '../shared/bulk/tools';
-import {DYNAMIC_TOOL_LOADING_THRESHOLD} from '../shared/constants';
+import { contextToTools } from '../shared/tools';
+import type { Configuration, Context } from '../types/configuration';
+import { scopesToActions } from '../utils/scopes';
+import { AuthConfig } from '../types/auth';
+import { contextToToolsResourceBasedToolSystem } from '../shared/resource-based-tools-system/tools';
+import { Tool } from '../types/tools';
+import { contextToBulkTools } from '../shared/bulk/tools';
+import { DYNAMIC_TOOL_LOADING_THRESHOLD } from '../shared/constants';
 
 class CommercetoolsAgentEssentials extends McpServer {
-  private _commercetools: CommercetoolsAPI;
-  private _processedConfiguration: Configuration;
+  private authConfig: AuthConfig;
+  private configuration: Configuration = {};
+  private commercetoolsAPI: CommercetoolsAPI;
 
-  constructor({
+  private constructor({
     authConfig,
     configuration,
   }: {
@@ -29,37 +31,77 @@ class CommercetoolsAgentEssentials extends McpServer {
       version: '0.4.0',
     });
 
-    this._processedConfiguration = processConfigurationDefaults(configuration);
-    this._commercetools = new CommercetoolsAPI(
-      authConfig,
-      this._processedConfiguration.context
-    );
+    this.authConfig = authConfig;
+    const configurationWithDefaults =
+      processConfigurationDefaults(configuration);
+    this.setConfig(configurationWithDefaults);
 
-    this.initializeTools(this._processedConfiguration.context);
+    this.commercetoolsAPI = new CommercetoolsAPI(
+      this.authConfig,
+      configurationWithDefaults.context
+    );
   }
 
-  private initializeTools(context?: Context): void {
+  public static async create(option: {
+    authConfig: AuthConfig;
+    configuration: Configuration;
+  }) {
+    try {
+      const instance = new CommercetoolsAgentEssentials(option);
+      await instance.init();
+
+      return instance;
+    } catch (err: unknown) {
+      throw new Error(
+        (err as Error).message ??
+        'Unable to initialze `CommercetoolsAgentEssentials`'
+      );
+    }
+  }
+
+  private async init() {
+    const configuration = this.getConfig();
+
+    if (this.authConfig?.clientId && this.authConfig?.clientSecret) {
+      // list of scopes' permissions ['view_cart', 'manage_products', '...']
+      const scopes = await this.commercetoolsAPI.introspect();
+
+      // scope based filtering
+      const filteredActions = scopesToActions(scopes, configuration);
+
+      this.setConfig({
+        ...configuration,
+        actions: {
+          ...filteredActions,
+        },
+      });
+    }
+
+    this.registerTools();
+  }
+
+  private registerTools(): void {
+    const { context } = this.getConfig();
     const filteredTools = this.getFilteredTools();
-    const filteredToolsLength = filteredTools.length;
+
     const dynamicToolLoadingThreshold =
       context?.dynamicToolLoadingThreshold ?? DYNAMIC_TOOL_LOADING_THRESHOLD;
-    const shouldReturnAllTools =
+
+    const shouldRegisterAllTools =
       filteredTools.length <= dynamicToolLoadingThreshold;
 
-    if (shouldReturnAllTools) {
+    if (shouldRegisterAllTools) {
       this.registerAllTools(filteredTools);
     } else {
-      console.error(
-        `Filtered tools (${filteredToolsLength}) > ${DYNAMIC_TOOL_LOADING_THRESHOLD} - Using resource based tool system`
-      );
-
       this.registerResourceBasedToolSystem(filteredTools);
     }
   }
 
   private getFilteredTools() {
-    return contextToTools(this._processedConfiguration.context).filter((tool) =>
-      isToolAllowed(tool, this._processedConfiguration)
+    const configuration = this.getConfig();
+
+    return contextToTools(configuration.context).filter((tool) =>
+      isToolAllowed(tool, configuration)
     );
   }
 
@@ -70,16 +112,24 @@ class CommercetoolsAgentEssentials extends McpServer {
   }
 
   private registerResourceBasedToolSystem(filteredTools: Tool[]): void {
+    const { context } = this.getConfig()
+    const filteredToolsLength = filteredTools.length;
+
+    console.error(
+      `Filtered tools (${filteredToolsLength}) > ${DYNAMIC_TOOL_LOADING_THRESHOLD} - Using resource based tool system`
+    );
+
     const filteredToolsResources = this.filteredResources(filteredTools);
 
-    const {listAvailableTools, injectTools, executeTool} =
+    const { listAvailableTools, injectTools, executeTool } =
       contextToToolsResourceBasedToolSystem(filteredToolsResources);
 
     this.registerSingleTool(listAvailableTools);
     this.registerInjectToolsTool(injectTools, filteredTools);
     this.registerExecuteTool(executeTool);
+
     // Bulk tool is not a resource based tool, so we need to register it separately
-    contextToBulkTools(this._processedConfiguration.context).forEach((tool) => {
+    contextToBulkTools(context).forEach((tool) => {
       this.registerSingleTool(tool);
     });
   }
@@ -101,7 +151,7 @@ class CommercetoolsAgentEssentials extends McpServer {
       tool.description,
       tool.parameters.shape,
       async (args: Record<string, unknown>) => {
-        const result = await this._commercetools.run(tool.method, args);
+        const result = await this.commercetoolsAPI.run(tool.method, args);
         return this.createToolResponse(result);
       }
     );
@@ -142,7 +192,7 @@ class CommercetoolsAgentEssentials extends McpServer {
       executeTool.parameters.shape,
       async (args: ToolShape) => {
         try {
-          const result = await this._commercetools.run(
+          const result = await this.commercetoolsAPI.run(
             args.toolMethod,
             args.arguments || {}
           );
@@ -177,7 +227,6 @@ class CommercetoolsAgentEssentials extends McpServer {
       )
       .join('\n---\n');
   }
-
   private handleToolExecutionError(error: unknown, toolMethod: string) {
     const errorMessage = error instanceof Error ? error.message : String(error);
 
@@ -195,6 +244,14 @@ class CommercetoolsAgentEssentials extends McpServer {
     return this.createToolResponse(
       `Error executing tool '${toolMethod}': ${errorMessage} - ${errorBody}`
     );
+  }
+
+  getConfig(): Configuration {
+    return this.configuration;
+  }
+
+  setConfig(config: Configuration): void {
+    this.configuration = config;
   }
 }
 

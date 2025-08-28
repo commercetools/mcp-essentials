@@ -154,7 +154,9 @@ describe('Store Cart Functions', () => {
         });
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
-        expect((error as SDKError).message).toBe('Failed to read cart');
+        expect((error as SDKError).message).toBe(
+          'Failed to read cart: Store key is required'
+        );
       }
     });
 
@@ -174,7 +176,9 @@ describe('Store Cart Functions', () => {
         await readCart(mockApiRoot, mockContext, {id: 'cart-123'});
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
-        expect((error as SDKError).message).toBe('Failed to read cart');
+        expect((error as SDKError).message).toBe(
+          'Failed to read cart: Cart not found'
+        );
       }
     });
 
@@ -195,7 +199,9 @@ describe('Store Cart Functions', () => {
         await readCart(mockApiRoot, mockContext, {key: 'cart-key'});
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
-        expect((error as SDKError).message).toBe('Failed to read cart');
+        expect((error as SDKError).message).toBe(
+          'Failed to read cart: Cart not found'
+        );
       }
     });
 
@@ -211,7 +217,9 @@ describe('Store Cart Functions', () => {
         await readCart(mockApiRoot, mockContext, {id: 'cart-123'});
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
-        expect((error as SDKError).message).toBe('Failed to read cart');
+        expect((error as SDKError).message).toBe(
+          'Failed to read cart: Base function error'
+        );
       }
     });
   });
@@ -260,7 +268,9 @@ describe('Store Cart Functions', () => {
         });
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
-        expect((error as SDKError).message).toBe('Failed to create cart');
+        expect((error as SDKError).message).toBe(
+          'Failed to create cart: Store key is required'
+        );
       }
     });
 
@@ -276,7 +286,9 @@ describe('Store Cart Functions', () => {
         await createCart(mockApiRoot, mockContext, {currency: 'USD'});
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
-        expect((error as SDKError).message).toBe('Failed to create cart');
+        expect((error as SDKError).message).toBe(
+          'Failed to create cart: Base function error'
+        );
       }
     });
   });
@@ -342,7 +354,9 @@ describe('Store Cart Functions', () => {
         });
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
-        expect((error as SDKError).message).toBe('Failed to replicate cart');
+        expect((error as SDKError).message).toBe(
+          'Failed to replicate cart: Cannot replicate cart: not from this store'
+        );
       }
     });
 
@@ -498,7 +512,9 @@ describe('Store Cart Functions', () => {
         } as any);
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
-        expect((error as SDKError).message).toBe('Failed to update cart');
+        expect((error as SDKError).message).toBe(
+          'Failed to update cart: Either cart ID or key must be provided'
+        );
       }
     });
 
@@ -527,7 +543,9 @@ describe('Store Cart Functions', () => {
         });
       } catch (error) {
         expect(error).toBeInstanceOf(SDKError);
-        expect((error as SDKError).message).toBe('Failed to update cart');
+        expect((error as SDKError).message).toBe(
+          'Failed to update cart: Cannot update cart: not from this store'
+        );
       }
     });
 
