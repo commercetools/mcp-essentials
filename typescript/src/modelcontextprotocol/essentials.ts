@@ -1,18 +1,18 @@
 import z from 'zod';
-import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import {McpServer} from '@modelcontextprotocol/sdk/server/mcp.js';
 import CommercetoolsAPI from '../shared/api';
 import {
   isToolAllowed,
   processConfigurationDefaults,
 } from '../shared/configuration';
-import { contextToTools } from '../shared/tools';
-import type { Configuration, Context } from '../types/configuration';
-import { scopesToActions } from '../utils/scopes';
-import { AuthConfig } from '../types/auth';
-import { contextToToolsResourceBasedToolSystem } from '../shared/resource-based-tools-system/tools';
-import { Tool } from '../types/tools';
-import { contextToBulkTools } from '../shared/bulk/tools';
-import { DYNAMIC_TOOL_LOADING_THRESHOLD } from '../shared/constants';
+import {contextToTools} from '../shared/tools';
+import type {Configuration, Context} from '../types/configuration';
+import {scopesToActions} from '../utils/scopes';
+import {AuthConfig} from '../types/auth';
+import {contextToToolsResourceBasedToolSystem} from '../shared/resource-based-tools-system/tools';
+import {Tool} from '../types/tools';
+import {contextToBulkTools} from '../shared/bulk/tools';
+import {DYNAMIC_TOOL_LOADING_THRESHOLD} from '../shared/constants';
 
 class CommercetoolsAgentEssentials extends McpServer {
   private authConfig: AuthConfig;
@@ -54,7 +54,7 @@ class CommercetoolsAgentEssentials extends McpServer {
     } catch (err: unknown) {
       throw new Error(
         (err as Error).message ??
-        'Unable to initialze `CommercetoolsAgentEssentials`'
+          'Unable to initialze `CommercetoolsAgentEssentials`'
       );
     }
   }
@@ -81,7 +81,7 @@ class CommercetoolsAgentEssentials extends McpServer {
   }
 
   private registerTools(): void {
-    const { context } = this.getConfig();
+    const {context} = this.getConfig();
     const filteredTools = this.getFilteredTools();
 
     const dynamicToolLoadingThreshold =
@@ -112,7 +112,7 @@ class CommercetoolsAgentEssentials extends McpServer {
   }
 
   private registerResourceBasedToolSystem(filteredTools: Tool[]): void {
-    const { context } = this.getConfig()
+    const {context} = this.getConfig();
     const filteredToolsLength = filteredTools.length;
 
     console.error(
@@ -121,7 +121,7 @@ class CommercetoolsAgentEssentials extends McpServer {
 
     const filteredToolsResources = this.filteredResources(filteredTools);
 
-    const { listAvailableTools, injectTools, executeTool } =
+    const {listAvailableTools, injectTools, executeTool} =
       contextToToolsResourceBasedToolSystem(filteredToolsResources);
 
     this.registerSingleTool(listAvailableTools);
