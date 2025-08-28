@@ -70,7 +70,8 @@ Add the following to your `claude_desktop_config.json`. See [here](https://model
         "--clientSecret=CLIENT_SECRET",
         "--authUrl=AUTH_URL",
         "--projectKey=PROJECT_KEY",
-        "--apiUrl=API_URL"
+        "--apiUrl=API_URL",
+        "--dynamicToolLoadingThreshold=30"
       ]
     }
   }

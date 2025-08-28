@@ -1,3 +1,4 @@
+import z from 'zod';
 import {McpServer} from '@modelcontextprotocol/sdk/server/mcp.js';
 import CommercetoolsAPI from '../shared/api';
 import {
@@ -5,14 +6,18 @@ import {
   processConfigurationDefaults,
 } from '../shared/configuration';
 import {contextToTools} from '../shared/tools';
-import type {Configuration} from '../types/configuration';
+import type {Configuration, Context} from '../types/configuration';
 import {scopesToActions} from '../utils/scopes';
 import {AuthConfig} from '../types/auth';
+import {contextToToolsResourceBasedToolSystem} from '../shared/resource-based-tools-system/tools';
+import {Tool} from '../types/tools';
+import {contextToBulkTools} from '../shared/bulk/tools';
+import {DYNAMIC_TOOL_LOADING_THRESHOLD} from '../shared/constants';
 
 class CommercetoolsAgentEssentials extends McpServer {
   private authConfig: AuthConfig;
-  private configuration: Configuration;
-  private filteredConfig: Configuration = {};
+  private configuration: Configuration = {};
+  private commercetoolsAPI: CommercetoolsAPI;
 
   private constructor({
     authConfig,
@@ -27,59 +32,14 @@ class CommercetoolsAgentEssentials extends McpServer {
     });
 
     this.authConfig = authConfig;
-    this.configuration = configuration;
-  }
+    const configurationWithDefaults =
+      processConfigurationDefaults(configuration);
+    this.setConfig(configurationWithDefaults);
 
-  private async init() {
-    // Process configuration to apply smart defaults
-    let processedConfiguration = processConfigurationDefaults(
-      this.configuration
-    );
-
-    const _commercetools = new CommercetoolsAPI(
+    this.commercetoolsAPI = new CommercetoolsAPI(
       this.authConfig,
-      processedConfiguration.context
+      configurationWithDefaults.context
     );
-
-    if (this.authConfig?.clientId && this.authConfig?.clientSecret) {
-      // list of scopes' permissions ['view_cart', 'manage_products', '...']
-      const scopes = await _commercetools.introspect();
-
-      // scope based filtering
-      const filteredActions = scopesToActions(scopes, processedConfiguration);
-
-      processedConfiguration = {
-        ...processedConfiguration,
-        actions: {
-          ...filteredActions,
-        },
-      };
-    }
-
-    // merge the actions here
-    const filteredTools = contextToTools(processedConfiguration.context).filter(
-      (tool) => isToolAllowed(tool, processedConfiguration)
-    );
-
-    this.setConfig(processedConfiguration);
-    filteredTools.forEach((tool) => {
-      this.tool(
-        tool.method,
-        tool.description,
-        tool.parameters.shape,
-        async (arg: any) => {
-          const result = await _commercetools.run(tool.method, arg);
-          return {
-            content: [
-              {
-                type: 'text' as const,
-                text: String(result),
-              },
-            ],
-          };
-        }
-      );
-    });
   }
 
   public static async create(option: {
@@ -89,6 +49,7 @@ class CommercetoolsAgentEssentials extends McpServer {
     try {
       const instance = new CommercetoolsAgentEssentials(option);
       await instance.init();
+
       return instance;
     } catch (err: unknown) {
       throw new Error(
@@ -98,12 +59,199 @@ class CommercetoolsAgentEssentials extends McpServer {
     }
   }
 
+  private async init() {
+    const configuration = this.getConfig();
+
+    if (this.authConfig?.clientId && this.authConfig?.clientSecret) {
+      // list of scopes' permissions ['view_cart', 'manage_products', '...']
+      const scopes = await this.commercetoolsAPI.introspect();
+
+      // scope based filtering
+      const filteredActions = scopesToActions(scopes, configuration);
+
+      this.setConfig({
+        ...configuration,
+        actions: {
+          ...filteredActions,
+        },
+      });
+    }
+
+    this.registerTools();
+  }
+
+  private registerTools(): void {
+    const {context} = this.getConfig();
+    const filteredTools = this.getFilteredTools();
+
+    const dynamicToolLoadingThreshold =
+      context?.dynamicToolLoadingThreshold ?? DYNAMIC_TOOL_LOADING_THRESHOLD;
+
+    const shouldRegisterAllTools =
+      filteredTools.length <= dynamicToolLoadingThreshold;
+
+    if (shouldRegisterAllTools) {
+      this.registerAllTools(filteredTools);
+    } else {
+      this.registerResourceBasedToolSystem(filteredTools);
+    }
+  }
+
+  private getFilteredTools() {
+    const configuration = this.getConfig();
+
+    return contextToTools(configuration.context).filter((tool) =>
+      isToolAllowed(tool, configuration)
+    );
+  }
+
+  private registerAllTools(filteredTools: Tool[]): void {
+    filteredTools.forEach((tool) => {
+      this.registerSingleTool(tool);
+    });
+  }
+
+  private registerResourceBasedToolSystem(filteredTools: Tool[]): void {
+    const {context} = this.getConfig();
+    const filteredToolsLength = filteredTools.length;
+
+    console.error(
+      `Filtered tools (${filteredToolsLength}) > ${DYNAMIC_TOOL_LOADING_THRESHOLD} - Using resource based tool system`
+    );
+
+    const filteredToolsResources = this.filteredResources(filteredTools);
+
+    const {listAvailableTools, injectTools, executeTool} =
+      contextToToolsResourceBasedToolSystem(filteredToolsResources);
+
+    this.registerSingleTool(listAvailableTools);
+    this.registerInjectToolsTool(injectTools, filteredTools);
+    this.registerExecuteTool(executeTool);
+
+    // Bulk tool is not a resource based tool, so we need to register it separately
+    contextToBulkTools(context).forEach((tool) => {
+      this.registerSingleTool(tool);
+    });
+  }
+
+  private filteredResources(filteredTools: Tool[]): string[] {
+    return filteredTools
+      .map((tool) => Object.keys(tool.actions)[0])
+      .filter(Boolean)
+      .map((resourceName) => {
+        return resourceName.replace(/-([a-z])/g, (_, char) =>
+          char.toUpperCase()
+        );
+      });
+  }
+
+  private registerSingleTool(tool: Tool): void {
+    this.tool(
+      tool.method,
+      tool.description,
+      tool.parameters.shape,
+      async (args: Record<string, unknown>) => {
+        const result = await this.commercetoolsAPI.run(tool.method, args);
+        return this.createToolResponse(result);
+      }
+    );
+  }
+
+  private registerInjectToolsTool(
+    injectTools: Tool,
+    filteredTools: Tool[]
+  ): void {
+    type ToolShape = z.infer<typeof injectTools.parameters.shape>;
+
+    this.tool(
+      injectTools.method,
+      injectTools.description,
+      injectTools.parameters.shape,
+      async (arg: ToolShape) => {
+        const toolsToInject = filteredTools.filter((tool) =>
+          arg.toolMethods.includes(tool.method)
+        );
+
+        toolsToInject.forEach((tool) => {
+          this.registerSingleTool(tool);
+        });
+
+        const injectedTools = await this.formatInjectedTools(toolsToInject);
+
+        return this.createToolResponse(`Relevant tools:\n${injectedTools}`);
+      }
+    );
+  }
+
+  private registerExecuteTool(executeTool: Tool): void {
+    type ToolShape = z.infer<typeof executeTool.parameters.shape>;
+
+    this.tool(
+      executeTool.method,
+      executeTool.description,
+      executeTool.parameters.shape,
+      async (args: ToolShape) => {
+        try {
+          const result = await this.commercetoolsAPI.run(
+            args.toolMethod,
+            args.arguments || {}
+          );
+
+          return this.createToolResponse(result);
+        } catch (error) {
+          return this.handleToolExecutionError(error, args.toolMethod);
+        }
+      }
+    );
+  }
+
+  private createToolResponse(result: unknown) {
+    return {
+      content: [
+        {
+          type: 'text' as const,
+          text: String(result),
+        },
+      ],
+    };
+  }
+
+  private formatInjectedTools(toolsToInject: Tool[]): string {
+    return toolsToInject
+      .map((tool) =>
+        [
+          `name: ${tool.name}`,
+          `description: ${tool.description}`,
+          `parameters: ${JSON.stringify(tool.parameters.shape, null, 2)}`,
+        ].join('\n')
+      )
+      .join('\n---\n');
+  }
+  private handleToolExecutionError(error: unknown, toolMethod: string) {
+    const errorMessage = error instanceof Error ? error.message : String(error);
+
+    const errorBody =
+      error instanceof Error && 'body' in error
+        ? JSON.stringify(error.body, null, 2)
+        : String(error);
+
+    console.error('Error executing tool', {
+      toolMethod,
+      errorMessage,
+      errorBody,
+    });
+
+    return this.createToolResponse(
+      `Error executing tool '${toolMethod}': ${errorMessage} - ${errorBody}`
+    );
+  }
+
   getConfig(): Configuration {
-    return this.filteredConfig;
+    return this.configuration;
   }
 
   setConfig(config: Configuration): void {
-    this.filteredConfig = config;
+    this.configuration = config;
   }
 }
 
