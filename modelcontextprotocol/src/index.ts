@@ -8,7 +8,7 @@ import {
   AuthConfig,
 } from '@commercetools/agent-essentials/modelcontextprotocol';
 import {StdioServerTransport} from '@modelcontextprotocol/sdk/server/stdio.js';
-import {red, yellow, green} from 'colors';
+import {red, yellow} from 'colors';
 
 type Options = {
   tools?: string[];
@@ -148,7 +148,10 @@ export function parseArgs(args: string[]): {options: Options; env: EnvVars} {
         options.customerId = value;
       } else if (key == 'isAdmin') {
         options.isAdmin = value === 'true';
-      } else if (key == 'dynamicToolLoadingThreshold') {
+      } else if (
+        key == 'dynamicToolLoadingThreshold' &&
+        options.dynamicToolLoadingThreshold
+      ) {
         options.dynamicToolLoadingThreshold = Number(value);
       } else if (key == 'cartId') {
         options.cartId = value;
@@ -209,6 +212,11 @@ export function parseArgs(args: string[]): {options: Options; env: EnvVars} {
   options.storeKey = options.storeKey || process.env.STORE_KEY;
   options.customerId = options.customerId || process.env.CUSTOMER_ID;
   options.isAdmin = options.isAdmin || process.env.IS_ADMIN === 'true';
+  options.dynamicToolLoadingThreshold =
+    options.dynamicToolLoadingThreshold ||
+    (process.env.DYNAMIC_TOOL_LOADING_THRESHOLD
+      ? Number(process.env.DYNAMIC_TOOL_LOADING_THRESHOLD)
+      : undefined);
   options.cartId = options.cartId || process.env.CART_ID;
 
   // Validate required commercetools credentials based on auth type
@@ -289,10 +297,10 @@ export async function main() {
     context: {
       customerId: options.customerId,
       isAdmin: options.isAdmin,
+      dynamicToolLoadingThreshold: options.dynamicToolLoadingThreshold,
       cartId: options.cartId,
       storeKey: options.storeKey,
       businessUnitKey: options.businessUnitKey,
-      dynamicToolLoadingThreshold: options.dynamicToolLoadingThreshold,
     },
   };
 
