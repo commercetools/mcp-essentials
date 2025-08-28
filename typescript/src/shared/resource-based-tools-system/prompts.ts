@@ -1,29 +1,9 @@
-export const listAvailableToolsPrompt = `
+export const listAvailableToolsPrompt = (resources: string[]) => `
 This tool will list all available tools for a given resource type.
 
 It takes these parameters:
 - resourceType (enum): The type of resource to list available tools for
-  - businessUnit
-  - cart
-  - cartDiscount
-  - category
-  - channel
-  - customer
-  - customerGroup
-  - discountCode
-  - order
-  - inventory
-  - product
-  - project
-  - productSearch
-  - productSelection
-  - quote
-  - quoteRequest
-  - stagedQuote
-  - standalonePrice
-  - productDiscount
-  - productType
-  - store
+  ${resources.map((resource) => `- ${resource}`).join('\n')}
 
 The output will be a list of tools that are available for the given resource type.
 `;

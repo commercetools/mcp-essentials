@@ -70,8 +70,10 @@ class CommercetoolsAgentEssentials extends McpServer {
   }
 
   private registerResourceBasedToolSystem(filteredTools: Tool[]): void {
+    const filteredToolsResources = this.filteredResources(filteredTools);
+
     const {listAvailableTools, injectTools, executeTool} =
-      contextToToolsResourceBasedToolSystem();
+      contextToToolsResourceBasedToolSystem(filteredToolsResources);
 
     this.registerSingleTool(listAvailableTools);
     this.registerInjectToolsTool(injectTools, filteredTools);
@@ -80,6 +82,17 @@ class CommercetoolsAgentEssentials extends McpServer {
     contextToBulkTools(this._processedConfiguration.context).forEach((tool) => {
       this.registerSingleTool(tool);
     });
+  }
+
+  private filteredResources(filteredTools: Tool[]): string[] {
+    return filteredTools
+      .map((tool) => Object.keys(tool.actions)[0])
+      .filter(Boolean)
+      .map((resourceName) => {
+        return resourceName.replace(/-([a-z])/g, (_, char) =>
+          char.toUpperCase()
+        );
+      });
   }
 
   private registerSingleTool(tool: Tool): void {

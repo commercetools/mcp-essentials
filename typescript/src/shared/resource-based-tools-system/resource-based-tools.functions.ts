@@ -11,10 +11,12 @@ import {ApiRoot} from '@commercetools/platform-sdk';
 export const listAvailableTools = async (
   _apiRoot: ApiRoot,
   context: CommercetoolsFuncContext,
-  params: z.infer<typeof listAvailableToolsParameters>
+  params: z.infer<ReturnType<typeof listAvailableToolsParameters>>
 ) => {
   const resourceBasedTools = contextToResourceTools(context);
-  const availableTools = resourceBasedTools[params.resourceType];
+  const resourceType = params.resourceType as keyof typeof resourceBasedTools;
+
+  const availableTools = resourceBasedTools[resourceType];
 
   // eslint-disable-next-line no-return-await
   return await availableTools.map((tool) => {
