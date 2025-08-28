@@ -17,7 +17,6 @@ export const listAvailableTools = async (
   const resourceType = params.resourceType as keyof typeof resourceBasedTools;
 
   const availableTools = resourceBasedTools[resourceType];
-
   // eslint-disable-next-line no-return-await
   return await availableTools.map((tool) => {
     return {
