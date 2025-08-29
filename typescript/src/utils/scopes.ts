@@ -1,3 +1,4 @@
+import pluralize from 'pluralize';
 import {Actions, Configuration} from '../types/configuration';
 
 type Action = {[key: string]: Permission};
@@ -5,8 +6,12 @@ type Permission = {[actions: string]: boolean};
 
 const adminScope = ['manage_project', 'manage_api_clients', 'view_api_clients'];
 
-function normalize(str: string) {
-  return str.replace(/s$/, '').toLowerCase();
+// function normalize(str: string) {
+//   return str.replace(/s$/, '').toLowerCase();
+// }
+
+function normalize(str: string): string {
+  return pluralize.plural(str).toLowerCase();
 }
 
 export function scopesToActions(
