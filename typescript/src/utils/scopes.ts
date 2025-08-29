@@ -6,10 +6,6 @@ type Permission = {[actions: string]: boolean};
 
 const adminScope = ['manage_project', 'manage_api_clients', 'view_api_clients'];
 
-// function normalize(str: string) {
-//   return str.replace(/s$/, '').toLowerCase();
-// }
-
 function normalize(str: string): string {
   return pluralize.plural(str).toLowerCase();
 }
