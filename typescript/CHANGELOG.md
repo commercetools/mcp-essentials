@@ -1,5 +1,25 @@
 # @commercetools/agent-essentials
 
+## 3.0.0
+
+### Major Changes
+
+- [#17](https://github.com/commercetools/mcp-essentials/pull/17) [`3c5e8a9`](https://github.com/commercetools/mcp-essentials/commit/3c5e8a96d282135aa65d0cd02c208bb76b2d1cd7) Thanks [@ajimae](https://github.com/ajimae)! - [Feat][MCP-6] Scope Based Tools Filtering
+
+### Minor Changes
+
+- [#20](https://github.com/commercetools/mcp-essentials/pull/20) [`80996f0`](https://github.com/commercetools/mcp-essentials/commit/80996f0469a23fba77c2ddaccfda397adc3884b6) Thanks [@martinw-ct](https://github.com/martinw-ct)! - The MCP now return more detailed error message
+
+  Before this change:
+  SDKError: Failed to update cart
+
+  After this change:
+  SDKError: Failed to update cart: Failed to update cart by ID: The variant '2' with SKU '<blah>' of product '<blah>' does not contain a price for currency 'EUR' country 'DE', all customer groups and all channels.
+
+### Patch Changes
+
+- [#23](https://github.com/commercetools/mcp-essentials/pull/23) [`f56607f`](https://github.com/commercetools/mcp-essentials/commit/f56607fceb37af6f1d9c21585cf9241d722847e2) Thanks [@ajimae](https://github.com/ajimae)! - [Fix] Scope and Action Case Mismatch
+
 ## 2.0.0
 
 ### Major Changes
