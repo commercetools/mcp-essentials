@@ -46,10 +46,10 @@ Make sure to replace `CLIENT_ID`, `CLIENT_SECRET`, `PROJECT_KEY`, `AUTH_URL`, `A
 
 The MCP server supports two authentication methods:
 
-| Authentication Type | Required Arguments | Description |
-|-------------------|-------------------|-------------|
-| `client_credentials` (default) | `--clientId`, `--clientSecret` | Uses API client credentials for authentication. `--authType=client_credentials` is optional since this is the default |
-| `auth_token` | `--accessToken` | Uses a pre-existing access token for authentication. Requires `--authType=auth_token` |
+| Authentication Type            | Required Arguments                                         | Description                                                                                                                          |
+| ------------------------------ | ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| `client_credentials` (default) | `--clientId`, `--clientSecret`                             | Uses API client credentials for authentication. `--authType=client_credentials` is optional since this is the default                |
+| `auth_token`                   | `--accessToken`, (optional `--clientId`, `--clientSecret`) | Uses a pre-existing access token for authentication. Requires `--authType=auth_token` and optional `--clientId` and `--clientSecret` |
 
 ### Usage with Claude Desktop
 
@@ -212,7 +212,7 @@ Additionally, `configuration` enables you to specify the types of actions that c
 ```typescript
 import { CommercetoolsAgentEssentials } from "@commercetools/agent-essentials/langchain";
 
-const commercetoolsAgentEssentials = new CommercetoolsAgentEssentials({
+const commercetoolsAgentEssentials = await CommercetoolsAgentEssentials.create({
   authConfig: {
     type: 'client_credentials',
     clientId: process.env.CLIENT_ID!,,
@@ -241,9 +241,9 @@ const commercetoolsAgentEssentials = new CommercetoolsAgentEssentials({
 ```typescript
 import { CommercetoolsAgentEssentials } from "@commercetools/agent-essentials/langchain";
 
-const commercetoolsAgentEssentials = new CommercetoolsAgentEssentials({
+const commercetoolsAgentEssentials = await CommercetoolsAgentEssentials.create({
   authConfig: {
-    type: 'auth_token',
+    type: "auth_token",
     accessToken: process.env.ACCESS_TOKEN!,
     projectKey: process.env.PROJECT_KEY!,
     authUrl: process.env.AUTH_URL!,
@@ -293,7 +293,7 @@ The commercetools MCP Essentials also supports setting up your own MCP server. F
 import { CommercetoolsAgentEssentials } from "@commercetools/agent-essentials/modelcontextprotocol";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 
-const server = new CommercetoolsAgentEssentials({
+const server = await CommercetoolsAgentEssentials.create({
   authConfig: {
     type: 'client_credentials',
     clientId: process.env.CLIENT_ID!,,
@@ -334,4 +334,123 @@ Returns the current set of available tools that can be used with LangChain, AI S
 
 ```typescript
 const tools = commercetoolsAgentEssentials.getTools();
+```
+
+### Streamable HTTP MCP server
+
+As of version `v2.0.0` of the `@commercetools/mcp-essentials` MCP server now supports Streamable HTTP (remote) server.
+
+```typescript
+npx -y @commercetools/mcp-essentials \
+  --tools=all \
+  --authType=client_credentials \
+  --clientId=CLIENT_ID \
+  --clientSecret=CLIENT_SECRET \
+  --projectKey=PROJECT_KEY \
+  --authUrl=AUTH_URL \
+  --apiUrl=API_URL \
+  --remote=true \
+  --stateless=true \
+  --port=8888
+```
+
+You can connect to the running remote server using Claude by specifying the below in the `claude_desktop_config.json` file.
+
+```json
+{
+  "mcpServers": {
+    "commercetools": {
+      "command": "npx",
+      "args": ["mcp-remote", "http://localhost:8888/mcp", "..."]
+    }
+  }
+}
+```
+
+You can also use the Streamable HTTP server with the Agent Essentials like an SDK and develop on it.
+
+```typescript
+import express from "express";
+import {
+  CommercetoolsAgentEssentials,
+  CommercetoolsAgentEssentialsStreamable,
+} from "@commercetools/agent-essentials/modelcontextprotocol";
+
+const expressApp = express();
+
+const getAgentServer = async () => {
+  return CommercetoolsAgentEssentials.create({
+    authConfig: {
+      type: "client_credentials",
+      clientId: process.env.CLIENT_ID!,
+      clientSecret: process.env.CLIENT_SECRET!,
+      projectKey: process.env.PROJECT_KEY!,
+      authUrl: process.env.AUTH_URL!,
+      apiUrl: process.env.API_URL!,
+    },
+    configuration: {
+      actions: {
+        products: {
+          read: true,
+        },
+        cart: {
+          read: true,
+          create: true,
+          update: true,
+        },
+      },
+    },
+  });
+};
+
+const serverStreamable = new CommercetoolsAgentEssentialsStreamable({
+  stateless: false, // make the MCP server stateless/stateful
+  server: getAgentServer,
+  app: expressApp, // optional express app instance
+  streamableHttpOptions: {
+    sessionIdGenerator: undefined,
+  },
+});
+
+serverStreamable.listen(8888, function () {
+  console.log("listening on 8888");
+});
+```
+
+Without using the `CommercetoolsAgentEssentials`, you can directly use only the `CommercetoolsAgentEssentialsStreamable` class and the agent server will be bootstrapped internally.
+
+```typescript
+import { CommercetoolsAgentEssentialsStreamable } from "@commercetools/agent-essentials/modelcontextprotocol";
+import express from "express";
+
+const expressApp = express();
+
+const server = new CommercetoolsAgentEssentialsStreamable({
+  authConfig: {
+    type: "client_credentials",
+    clientId: process.env.CLIENT_ID!,
+    clientSecret: process.env.CLIENT_SECRET!,
+    projectKey: process.env.PROJECT_KEY!,
+    authUrl: process.env.AUTH_URL!,
+    apiUrl: process.env.API_URL!,
+  },
+  configuration: {
+    actions: {
+      project: {
+        read: true,
+      },
+      // other tools can go here
+    },
+  },
+
+  stateless: false,
+  app: expressApp,
+  streamableHttpOptions: {
+    sessionIdGenerator: undefined,
+  },
+});
+
+server.listen(8888, function () {
+  console.log("listening on 8888");
+});
 ```
