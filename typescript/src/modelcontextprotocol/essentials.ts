@@ -137,12 +137,6 @@ class CommercetoolsAgentEssentials extends McpServer {
   private filteredResources(filteredTools: Tool[]): string[] {
     const actionResources = filteredTools
       .map((tool) => Object.keys(tool.actions)[0])
-      .filter(Boolean)
-      .map((resourceName) => {
-        return resourceName.replace(/-([a-z])/g, (_, char) =>
-          char.toUpperCase()
-        );
-      })
       .filter(Boolean);
 
     return Array.from(new Set(actionResources));
