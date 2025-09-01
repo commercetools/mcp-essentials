@@ -148,10 +148,7 @@ export function parseArgs(args: string[]): {options: Options; env: EnvVars} {
         options.customerId = value;
       } else if (key == 'isAdmin') {
         options.isAdmin = value === 'true';
-      } else if (
-        key == 'dynamicToolLoadingThreshold' &&
-        options.dynamicToolLoadingThreshold
-      ) {
+      } else if (key == 'dynamicToolLoadingThreshold') {
         options.dynamicToolLoadingThreshold = Number(value);
       } else if (key == 'cartId') {
         options.cartId = value;

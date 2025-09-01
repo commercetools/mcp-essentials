@@ -15,6 +15,10 @@ describe('main function', () => {
   beforeEach(() => {
     jest.clearAllMocks();
     (McpServer as jest.Mock).mockClear();
+    jest.mock('dotenv', () => ({
+      config: jest.fn().mockResolvedValue({}),
+    }));
+    process.env = {};
 
     jest
       .spyOn(CommercetoolsAgentEssentials, 'create')
@@ -1942,6 +1946,10 @@ describe('main function', () => {
   describe('authType CLI argument', () => {
     beforeEach(() => {
       jest.clearAllMocks();
+      jest.mock('dotenv', () => ({
+        config: jest.fn().mockResolvedValue({}),
+      }));
+
       jest
         .spyOn(CommercetoolsAgentEssentials, 'create')
         .mockImplementation(
