@@ -1,6 +1,6 @@
 {
   "name": "@commercetools/agent-essentials",
-  "version": "2.1.0-alpha.1",
+  "version": "3.0.0",
   "homepage": "https://github.com/commercetools/mcp-essentials",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
@@ -66,6 +66,7 @@
     "@commercetools/platform-sdk": "^8.13.0",
     "@commercetools/ts-client": "^4.2.0",
     "express": "^5.1.0",
+    "pluralize": "^8.0.0",
     "zod": "^3.24.2",
     "zod-to-json-schema": "^3.24.3"
   },

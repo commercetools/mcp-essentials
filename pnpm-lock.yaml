@@ -23,6 +23,9 @@ importers:
       '@commercetools/ts-client':
         specifier: ^4.2.0
         version: 4.2.0
+      '@types/pluralize':
+        specifier: ^0.0.33
+        version: 0.0.33
 
   modelcontextprotocol:
     dependencies:
@@ -114,6 +117,9 @@ importers:
       openai:
         specifier: ^4.86.1
         version: 4.104.0(zod@3.25.76)
+      pluralize:
+        specifier: ^8.0.0
+        version: 8.0.0
       zod:
         specifier: ^3.24.2
         version: 3.25.76
@@ -1009,6 +1015,9 @@ packages:
 
   '@types/node@24.3.0':
     resolution: {integrity: sha512-aPTXCrfwnDLj4VvXrm+UUCQjNEvJgNA8s5F1cvwQU+3KNltTOkBm1j30uNLyqqPNe7gE3KFzImYoZEfLhp4Yow==}
+
+  '@types/pluralize@0.0.33':
+    resolution: {integrity: sha512-JOqsl+ZoCpP4e8TDke9W79FDcSgPAR0l6pixx2JHkhnRjvShyYiAYw2LVsnA7K08Y6DeOnaU6ujmENO4os/cYg==}
 
   '@types/qs@6.14.0':
     resolution: {integrity: sha512-eOunJqu0K1923aExK6y8p6fsihYEn/BYuQ4g0CxAAgFc4b/ZLN4CrsRZ55srTdqoiLzU2B2evC+apEIxprEzkQ==}
@@ -2911,6 +2920,10 @@ packages:
   pkg-types@1.3.1:
     resolution: {integrity: sha512-/Jm5M4RvtBFVkKWRu2BLUTNP8/M2a+UwuAX+ae4770q1qVGtfjG+WTCupoZixokjmHiry8uI+dlY8KXYV5HVVQ==}
 
+  pluralize@8.0.0:
+    resolution: {integrity: sha512-Nc3IT5yHzflTfbjgqWcCPpo7DaKy4FnpB0l/zCAW0Tc7jxAiuqSxHasntB3D7887LSrA93kDJ9IXovxJYxyLCA==}
+    engines: {node: '>=4'}
+
   possible-typed-array-names@1.1.0:
     resolution: {integrity: sha512-/+5VFTchJDoVj3bhoqi6UeymcD00DAwb1nJwamzPvHEszJ4FpF6SNNbUbOS8yI56qHzdV8eK0qEfOSiodkTdxg==}
     engines: {node: '>= 0.4'}
@@ -4604,6 +4617,8 @@ snapshots:
     dependencies:
       undici-types: 7.10.0
     optional: true
+
+  '@types/pluralize@0.0.33': {}
 
   '@types/qs@6.14.0': {}
 
@@ -6859,6 +6874,8 @@ snapshots:
       confbox: 0.1.8
       mlly: 1.7.4
       pathe: 2.0.3
+
+  pluralize@8.0.0: {}
 
   possible-typed-array-names@1.1.0: {}
 

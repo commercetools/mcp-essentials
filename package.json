@@ -11,7 +11,8 @@
     "@changesets/cli": "^2.29.4",
     "@commercetools/agent-essentials": "workspace:*",
     "@commercetools/platform-sdk": "^8.13.0",
-    "@commercetools/ts-client": "^4.2.0"
+    "@commercetools/ts-client": "^4.2.0",
+    "@types/pluralize": "^0.0.33"
   },
   "packageManager": "pnpm@9.11.0"
 }

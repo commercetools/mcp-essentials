@@ -34,7 +34,7 @@ class CommercetoolsAgentEssentials extends McpServer {
     this.authConfig = authConfig;
     const configurationWithDefaults =
       processConfigurationDefaults(configuration);
-    this.setConfig(configurationWithDefaults);
+    this.configuration = configurationWithDefaults;
 
     this.commercetoolsAPI = new CommercetoolsAPI(
       this.authConfig,
@@ -60,7 +60,7 @@ class CommercetoolsAgentEssentials extends McpServer {
   }
 
   private async init() {
-    const configuration = this.getConfig();
+    const configuration = this.configuration;
 
     if (this.authConfig?.clientId && this.authConfig?.clientSecret) {
       // list of scopes' permissions ['view_cart', 'manage_products', '...']
@@ -69,19 +69,19 @@ class CommercetoolsAgentEssentials extends McpServer {
       // scope based filtering
       const filteredActions = scopesToActions(scopes, configuration);
 
-      this.setConfig({
+      this.configuration = {
         ...configuration,
         actions: {
           ...filteredActions,
         },
-      });
+      };
     }
 
     this.registerTools();
   }
 
   private registerTools(): void {
-    const {context} = this.getConfig();
+    const {context} = this.configuration;
     const filteredTools = this.getFilteredTools();
 
     const dynamicToolLoadingThreshold =
@@ -98,7 +98,7 @@ class CommercetoolsAgentEssentials extends McpServer {
   }
 
   private getFilteredTools() {
-    const configuration = this.getConfig();
+    const configuration = this.configuration;
 
     return contextToTools(configuration.context).filter((tool) =>
       isToolAllowed(tool, configuration)
@@ -112,7 +112,7 @@ class CommercetoolsAgentEssentials extends McpServer {
   }
 
   private registerResourceBasedToolSystem(filteredTools: Tool[]): void {
-    const {context} = this.getConfig();
+    const {context} = this.configuration;
     const filteredToolsLength = filteredTools.length;
 
     console.error(
@@ -247,14 +247,6 @@ class CommercetoolsAgentEssentials extends McpServer {
     return this.createToolResponse(
       `Error executing tool '${toolMethod}': ${errorMessage} - ${errorBody}`
     );
-  }
-
-  getConfig(): Configuration {
-    return this.configuration;
-  }
-
-  setConfig(config: Configuration): void {
-    this.configuration = config;
   }
 }
 

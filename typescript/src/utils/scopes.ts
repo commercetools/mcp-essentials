@@ -1,9 +1,14 @@
+import pluralize from 'pluralize';
 import {Actions, Configuration} from '../types/configuration';
 
 type Action = {[key: string]: Permission};
 type Permission = {[actions: string]: boolean};
 
 const adminScope = ['manage_project', 'manage_api_clients', 'view_api_clients'];
+
+function normalize(str: string): string {
+  return pluralize.plural(str).toLowerCase();
+}
 
 export function scopesToActions(
   scopes: Array<string>,
@@ -35,6 +40,8 @@ export function scopesToActions(
     }
 
     const resource = resourceParts.join('-');
+    const normalizedResource = normalize(resource);
+
     const permissions =
       // eslint-disable-next-line no-nested-ternary
       type == 'view'
@@ -43,12 +50,16 @@ export function scopesToActions(
           ? ['read', 'create', 'update']
           : [];
 
-    if (!actions[resource]) return acc;
+    const resourceKey = Object.keys(actions).find((key) => {
+      return normalizedResource.startsWith(normalize(key));
+    });
 
-    acc[resource] = acc[resource] || {};
+    if (!resourceKey) return acc;
+
+    acc[resourceKey] = acc[resourceKey] || {};
     permissions.forEach((permission) => {
-      if (permission in actions[resource]) {
-        acc[resource][permission] = actions[resource][permission];
+      if (permission in actions[resourceKey]) {
+        acc[resourceKey][permission] = actions[resourceKey][permission];
       }
     });
 

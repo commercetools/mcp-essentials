@@ -475,7 +475,7 @@ describe('CommercetoolsAgentEssentials (ModelContextProtocol)', () => {
         });
     });
 
-    it('init commercetoolsAgentEssentials', async () => {
+    it('init commercetoolsAgentEssentials', () => {
       const agentEssentials = CommercetoolsAgentEssentials.create({
         authConfig: {
           clientId: 'id',
@@ -489,10 +489,6 @@ describe('CommercetoolsAgentEssentials (ModelContextProtocol)', () => {
       });
 
       expect(_mockCommercetoolsAPIInstance.introspect()).toEqual(['view_cart']);
-      expect((await agentEssentials).getConfig()).toEqual({
-        actions: {cart: {read: true}},
-        context: {isAdmin: true},
-      });
     });
 
     it('should properly handle error', () => {
