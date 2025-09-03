@@ -18,6 +18,7 @@ import {
   ExistingTokenAuth,
   Introspect,
 } from '../types/auth';
+import pkg from '../../package.json';
 
 class CommercetoolsAPI {
   private client: Client | undefined;
@@ -43,10 +44,16 @@ class CommercetoolsAPI {
       host: apiUrl,
     };
 
+    const client = new ClientBuilder()
+      .withHttpMiddleware(httpMiddlewareOptions)
+      .withConcurrentModificationMiddleware()
+      .withUserAgentMiddleware({
+        libraryName: 'ai-gateway-mcp-essentials',
+        libraryVersion: pkg.version,
+      });
+
     if (this.authConfig.type === 'client_credentials') {
-      return new ClientBuilder()
-        .withHttpMiddleware(httpMiddlewareOptions)
-        .withConcurrentModificationMiddleware()
+      return client
         .withClientCredentialsFlow({
           host: authUrl,
           projectKey: projectKey,
@@ -60,9 +67,7 @@ class CommercetoolsAPI {
 
     if (this.authConfig.type === 'auth_token') {
       const authorizationHeader = `Bearer ${this.authConfig.accessToken}`;
-      return new ClientBuilder()
-        .withHttpMiddleware(httpMiddlewareOptions)
-        .withConcurrentModificationMiddleware()
+      return client
         .withExistingTokenFlow(authorizationHeader, {force: true})
         .build();
     }
@@ -96,12 +101,17 @@ class CommercetoolsAPI {
   }
 
   private getAuthClient(): Client {
-    const middlewareOptions = {
-      host: this.authConfig.authUrl,
-      stringBodyContentTypes: ['application/x-www-form-urlencoded'],
-      httpClient: fetch,
-    };
-    return new ClientBuilder().withHttpMiddleware(middlewareOptions).build();
+    return new ClientBuilder()
+      .withUserAgentMiddleware({
+        libraryName: 'ai-gateway-mcp-essentials',
+        libraryVersion: pkg.version,
+      })
+      .withHttpMiddleware({
+        host: this.authConfig.authUrl,
+        stringBodyContentTypes: ['application/x-www-form-urlencoded'],
+        httpClient: fetch,
+      })
+      .build();
   }
 
   async introspect(): Promise<Array<string>> {

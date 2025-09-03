@@ -2,6 +2,7 @@ import CommercetoolsAPI from '../api';
 import {ClientBuilder} from '@commercetools/ts-client';
 import {createApiBuilderFromCtpClient} from '@commercetools/platform-sdk';
 import {contextToFunctionMapping} from '../functions';
+import pkg from '../../../package.json';
 
 // Mock the dependencies
 jest.mock('@commercetools/ts-client');
@@ -19,6 +20,7 @@ describe('CommercetoolsAPI', () => {
     withHttpMiddleware: jest.fn().mockReturnThis(),
     withConcurrentModificationMiddleware: jest.fn().mockReturnThis(),
     withClientCredentialsFlow: jest.fn().mockReturnThis(),
+    withUserAgentMiddleware: jest.fn().mockReturnThis(),
     build: jest.fn().mockReturnValue(mockClient),
   };
 
@@ -93,6 +95,21 @@ describe('CommercetoolsAPI', () => {
       (contextToFunctionMapping as jest.Mock).mockReturnValue({
         testMethod: mockFunction,
       });
+    });
+
+    it('should call `withUserAgentMiddleware`', async () => {
+      const {withUserAgentMiddleware} = mockClientBuilder;
+      const mockResult = {id: 'test-id', name: 'test-name'};
+
+      mockFunction.mockResolvedValue(mockResult);
+
+      await api.run('testMethod', {param: 'value'});
+      expect(withUserAgentMiddleware).toHaveBeenCalled();
+      expect(withUserAgentMiddleware).toHaveBeenCalledWith(
+        expect.objectContaining({
+          libraryVersion: pkg.version,
+        })
+      );
     });
 
     it('should execute a valid method successfully', async () => {
