@@ -173,9 +173,12 @@ class CommercetoolsAgentEssentials extends McpServer {
           this.registerSingleTool(tool);
         });
 
-        const injectedTools = await this.formatInjectedTools(toolsToInject);
+        const injectedTools = this.formatInjectedTools(toolsToInject);
 
-        return this.createToolResponse(`Relevant tools:\n${injectedTools}`);
+        // eslint-disable-next-line no-return-await -- #tool method signature requires
+        return await this.createToolResponse(
+          `Relevant tools:\n${injectedTools}`
+        );
       }
     );
   }
