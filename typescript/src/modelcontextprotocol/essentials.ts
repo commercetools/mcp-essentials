@@ -85,7 +85,7 @@ class CommercetoolsAgentEssentials extends McpServer {
     const filteredTools = this.getFilteredTools();
 
     const dynamicToolLoadingThreshold =
-      context?.dynamicToolLoadingThreshold ?? DYNAMIC_TOOL_LOADING_THRESHOLD;
+      context?.dynamicToolLoadingThreshold || DYNAMIC_TOOL_LOADING_THRESHOLD;
 
     const shouldRegisterAllTools =
       filteredTools.length <= dynamicToolLoadingThreshold;
