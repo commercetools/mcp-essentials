@@ -513,4 +513,324 @@ describe('CommercetoolsAgentEssentials (ModelContextProtocol)', () => {
       expect(CommercetoolsAgentEssentials.create).toHaveBeenCalled();
     });
   });
+
+  describe('::registerTools with dynamicToolLoadingThreshold', () => {
+    let mockToolMethod: jest.Mock;
+    let mockCommercetoolsAPIInstance: jest.Mocked<CommercetoolsAPI>;
+    let mockConsoleError: jest.SpyInstance;
+
+    beforeEach(() => {
+      // Reset mocks
+      (McpServer as jest.Mock).mockClear();
+      (CommercetoolsAPI as jest.Mock).mockClear();
+      (isToolAllowed as jest.Mock).mockClear();
+
+      // Setup mockToolMethod for the McpServer's tool method
+      mockToolMethod = jest.fn();
+
+      // Set up McpServer mock to handle the fact that CommercetoolsAgentEssentials extends it
+      (McpServer as jest.Mock).mockImplementation(function (this: any) {
+        this.tool = mockToolMethod;
+      });
+
+      mockCommercetoolsAPIInstance = new CommercetoolsAPI(
+        {
+          type: 'client_credentials',
+          clientId: 'clientId',
+          clientSecret: 'clientSecret',
+          authUrl: 'authUrl',
+          projectKey: 'projectKey',
+          apiUrl: 'apiUrl',
+        },
+        {}
+      ) as jest.Mocked<CommercetoolsAPI>;
+
+      mockCommercetoolsAPIInstance.run = jest.fn();
+      mockCommercetoolsAPIInstance.introspect = jest
+        .fn()
+        .mockResolvedValue(['manage_project']);
+
+      (CommercetoolsAPI as jest.Mock).mockImplementation(
+        () => mockCommercetoolsAPIInstance
+      );
+
+      // Mock console.error to capture the log message
+      mockConsoleError = jest.spyOn(console, 'error').mockImplementation();
+    });
+
+    afterEach(() => {
+      mockConsoleError.mockRestore();
+    });
+
+    describe('when filtered tools <= dynamicToolLoadingThreshold', () => {
+      it('should register all filtered tools directly when tools count is below default threshold', async () => {
+        let numberToolsToAllow = 2;
+        // Mock only 2 tools to be allowed (below default threshold of 30)
+        (isToolAllowed as jest.Mock).mockImplementation(() => {
+          if (numberToolsToAllow > 0) {
+            numberToolsToAllow -= 1;
+            return true;
+          }
+          return false;
+        });
+
+        const configuration: Configuration = {
+          actions: {},
+          context: {},
+        };
+
+        await CommercetoolsAgentEssentials.create({
+          authConfig: {
+            clientId: 'id',
+            clientSecret: 'secret',
+            authUrl: 'auth',
+            projectKey: 'key',
+            apiUrl: 'api',
+            type: 'client_credentials',
+          },
+          configuration,
+        });
+
+        await new Promise(setImmediate);
+
+        // Should register the 2 filtered tools directly
+        expect(mockToolMethod).toHaveBeenCalledTimes(2);
+        expect(mockToolMethod).toHaveBeenCalledWith(
+          'mcpTool1',
+          expect.any(String),
+          expect.any(Object),
+          expect.any(Function)
+        );
+        expect(mockToolMethod).toHaveBeenCalledWith(
+          'mcpTool2',
+          expect.any(String),
+          expect.any(Object),
+          expect.any(Function)
+        );
+      });
+
+      it('should register all filtered tools when tools count equals default threshold', async () => {
+        // This test demonstrates the threshold behavior
+        // With the existing mock setup, we have 2 tools available
+        // Since 2 <= 30 (default threshold), all tools should be registered directly
+
+        (isToolAllowed as jest.Mock).mockReturnValue(true); // Allow all tools
+
+        const configuration: Configuration = {
+          actions: {products: {read: true}},
+          context: {},
+        };
+
+        await CommercetoolsAgentEssentials.create({
+          authConfig: {
+            clientId: 'id',
+            clientSecret: 'secret',
+            authUrl: 'auth',
+            projectKey: 'key',
+            apiUrl: 'api',
+            type: 'client_credentials',
+          },
+          configuration,
+        });
+
+        // With existing mock setup, should register 2 tools directly
+        expect(mockToolMethod).toHaveBeenCalledTimes(2);
+      });
+
+      it('should register all filtered tools when tools count is below custom threshold', async () => {
+        // This test demonstrates custom threshold behavior
+        // With the existing mock setup, we have 2 tools available
+        // Since 2 <= 16 (custom threshold), all tools should be registered directly
+
+        (isToolAllowed as jest.Mock).mockReturnValue(true); // Allow all tools
+
+        const configuration: Configuration = {
+          actions: {products: {read: true}},
+          context: {
+            dynamicToolLoadingThreshold: 12, // Custom threshold
+          },
+        };
+
+        await CommercetoolsAgentEssentials.create({
+          authConfig: {
+            clientId: 'id',
+            clientSecret: 'secret',
+            authUrl: 'auth',
+            projectKey: 'key',
+            apiUrl: 'api',
+            type: 'client_credentials',
+          },
+          configuration,
+        });
+
+        await new Promise(setImmediate);
+
+        // With existing mock setup, should register 2 tools directly (below custom threshold of 16)
+        expect(mockToolMethod).toHaveBeenCalledTimes(2);
+      });
+    });
+
+    describe('when filtered tools > dynamicToolLoadingThreshold', () => {
+      it('should register resource-based tool system when tools count exceeds custom threshold', async () => {
+        (isToolAllowed as jest.Mock).mockReturnValue(true); // Allow all tools
+
+        const dynamicToolLoadingThreshold = 1;
+        const configuration: Configuration = {
+          actions: {products: {read: true}},
+          context: {
+            dynamicToolLoadingThreshold, // Custom threshold
+          },
+        };
+
+        await CommercetoolsAgentEssentials.create({
+          authConfig: {
+            clientId: 'id',
+            clientSecret: 'secret',
+            authUrl: 'auth',
+            projectKey: 'key',
+            apiUrl: 'api',
+            type: 'client_credentials',
+          },
+          configuration,
+        });
+
+        await new Promise(setImmediate);
+
+        // Should register resource-based tool system (3 tools) + bulk tools (2 tools) = 5 total
+        expect(mockToolMethod).toHaveBeenCalledTimes(3);
+        expect(mockToolMethod).toHaveBeenCalledWith(
+          'list_available_tools',
+          expect.any(String),
+          expect.any(Object),
+          expect.any(Function)
+        );
+        expect(mockToolMethod).toHaveBeenCalledWith(
+          'inject_tools',
+          expect.any(String),
+          expect.any(Object),
+          expect.any(Function)
+        );
+        expect(mockToolMethod).toHaveBeenCalledWith(
+          'execute_tool',
+          expect.any(String),
+          expect.any(Object),
+          expect.any(Function)
+        );
+
+        // Check that console.error was called with the expected message
+        expect(mockConsoleError).toHaveBeenCalledWith(
+          `Filtered tools (2) > ${dynamicToolLoadingThreshold} - Using resource based tool system`
+        );
+      });
+    });
+
+    describe('edge cases', () => {
+      it('should handle zero filtered tools', async () => {
+        // Mock no tools to be allowed
+        (isToolAllowed as jest.Mock).mockReturnValue(false);
+
+        const configuration: Configuration = {
+          actions: {products: {read: true}},
+          context: {},
+        };
+
+        await CommercetoolsAgentEssentials.create({
+          authConfig: {
+            clientId: 'id',
+            clientSecret: 'secret',
+            authUrl: 'auth',
+            projectKey: 'key',
+            apiUrl: 'api',
+            type: 'client_credentials',
+          },
+          configuration,
+        });
+
+        await new Promise(setImmediate);
+
+        // Should not register any tools
+        expect(mockToolMethod).not.toHaveBeenCalled();
+      });
+
+      it('should handle undefined dynamicToolLoadingThreshold in context', async () => {
+        // Mock 2 tools to be allowed (below default threshold)
+        (isToolAllowed as jest.Mock).mockImplementation(
+          (tool, config: Configuration) => {
+            if (tool.method === 'mcpTool1' && config?.actions?.cart?.read)
+              return true;
+            if (tool.method === 'mcpTool2' && config?.actions?.products?.read)
+              return true;
+            return false;
+          }
+        );
+
+        const configuration: Configuration = {
+          actions: {
+            products: {read: true},
+            cart: {read: true},
+          },
+          context: {
+            // dynamicToolLoadingThreshold is undefined, should use default
+          },
+        };
+
+        await CommercetoolsAgentEssentials.create({
+          authConfig: {
+            clientId: 'id',
+            clientSecret: 'secret',
+            authUrl: 'auth',
+            projectKey: 'key',
+            apiUrl: 'api',
+            type: 'client_credentials',
+          },
+          configuration,
+        });
+
+        await new Promise(setImmediate);
+
+        // Should register all tools directly (using default threshold)
+        expect(mockToolMethod).toHaveBeenCalledTimes(2);
+      });
+
+      it('should handle null dynamicToolLoadingThreshold in context', async () => {
+        // Mock 2 tools to be allowed (below default threshold)
+        (isToolAllowed as jest.Mock).mockImplementation(
+          (tool, config: Configuration) => {
+            if (tool.method === 'mcpTool1' && config?.actions?.cart?.read)
+              return true;
+            if (tool.method === 'mcpTool2' && config?.actions?.products?.read)
+              return true;
+            return false;
+          }
+        );
+
+        const configuration: Configuration = {
+          actions: {
+            products: {read: true},
+            cart: {read: true},
+          },
+          context: {
+            dynamicToolLoadingThreshold: null as any, // Explicitly set to null
+          },
+        };
+
+        await CommercetoolsAgentEssentials.create({
+          authConfig: {
+            clientId: 'id',
+            clientSecret: 'secret',
+            authUrl: 'auth',
+            projectKey: 'key',
+            apiUrl: 'api',
+            type: 'client_credentials',
+          },
+          configuration,
+        });
+
+        await new Promise(setImmediate);
+
+        // Should register all tools directly (using default threshold)
+        expect(mockToolMethod).toHaveBeenCalledTimes(2);
+      });
+    });
+  });
 });

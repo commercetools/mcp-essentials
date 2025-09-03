@@ -93,7 +93,10 @@ class CommercetoolsAgentEssentials extends McpServer {
     if (shouldRegisterAllTools) {
       this.registerAllTools(filteredTools);
     } else {
-      this.registerResourceBasedToolSystem(filteredTools);
+      this.registerResourceBasedToolSystem(
+        filteredTools,
+        dynamicToolLoadingThreshold
+      );
     }
   }
 
@@ -111,12 +114,15 @@ class CommercetoolsAgentEssentials extends McpServer {
     });
   }
 
-  private registerResourceBasedToolSystem(filteredTools: Tool[]): void {
+  private registerResourceBasedToolSystem(
+    filteredTools: Tool[],
+    dynamicToolLoadingThreshold: number
+  ): void {
     const {context} = this.configuration;
     const filteredToolsLength = filteredTools.length;
 
     console.error(
-      `Filtered tools (${filteredToolsLength}) > ${DYNAMIC_TOOL_LOADING_THRESHOLD} - Using resource based tool system`
+      `Filtered tools (${filteredToolsLength}) > ${dynamicToolLoadingThreshold} - Using resource based tool system`
     );
 
     const filteredToolsResources = this.filteredResources(filteredTools);
