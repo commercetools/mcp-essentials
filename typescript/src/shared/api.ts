@@ -48,7 +48,7 @@ class CommercetoolsAPI {
       .withHttpMiddleware(httpMiddlewareOptions)
       .withConcurrentModificationMiddleware()
       .withUserAgentMiddleware({
-        libraryName: 'ai-gateway-mcp-essentials',
+        libraryName: 'mcp-essentials',
         libraryVersion: pkg.version,
       });
 
@@ -103,7 +103,7 @@ class CommercetoolsAPI {
   private getAuthClient(): Client {
     return new ClientBuilder()
       .withUserAgentMiddleware({
-        libraryName: 'ai-gateway-mcp-essentials',
+        libraryName: 'mcp-essentials',
         libraryVersion: pkg.version,
       })
       .withHttpMiddleware({
