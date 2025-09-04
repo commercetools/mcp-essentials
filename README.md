@@ -70,7 +70,8 @@ Add the following to your `claude_desktop_config.json`. See [here](https://model
         "--clientSecret=CLIENT_SECRET",
         "--authUrl=AUTH_URL",
         "--projectKey=PROJECT_KEY",
-        "--apiUrl=API_URL"
+        "--apiUrl=API_URL",
+        "--dynamicToolLoadingThreshold=30"
       ]
     }
   }
@@ -179,6 +180,55 @@ Add the following to your `claude_desktop_config.json`. See [here](https://model
 | `business-unit.update`     | [Update business unit](https://docs.commercetools.com/api/projects/business-units#update-businessunit)               |
 
 To view information on how to develop the MCP server, see [this README](/modelcontextprotocol/README.md).
+
+## Dynamic Tool Loading
+
+The MCP server includes a dynamic tool loading feature that automatically switches to a more efficient loading strategy when the number of enabled tools exceeds a configurable threshold. This helps optimize performance and reduce context usage when working with large numbers of tools.
+
+### How it works
+
+- **Default threshold**: 30 tools
+- **Behavior**: When the number of enabled tools exceeds the threshold, the server switches to dynamic tool loading
+
+### Configuration
+
+You can configure the dynamic tool loading threshold in two ways:
+
+#### Command Line Argument
+
+```bash
+npx -y @commercetools/mcp-essentials --tools=all --dynamicToolLoadingThreshold=50 --clientId=CLIENT_ID --clientSecret=CLIENT_SECRET --projectKey=PROJECT_KEY --authUrl=AUTH_URL --apiUrl=API_URL
+```
+
+#### Environment Variable
+
+```bash
+export DYNAMIC_TOOL_LOADING_THRESHOLD=50
+npx -y @commercetools/mcp-essentials --tools=all --clientId=CLIENT_ID --clientSecret=CLIENT_SECRET --projectKey=PROJECT_KEY --authUrl=AUTH_URL --apiUrl=API_URL
+```
+
+### Example with Claude Desktop
+
+```json
+{
+  "mcpServers": {
+    "commercetools": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@commercetools/mcp-essentials@latest",
+        "--tools=all",
+        "--clientId=CLIENT_ID",
+        "--clientSecret=CLIENT_SECRET",
+        "--authUrl=AUTH_URL",
+        "--projectKey=PROJECT_KEY",
+        "--apiUrl=API_URL",
+        "--dynamicToolLoadingThreshold=25"
+      ]
+    }
+  }
+}
+```
 
 # MCP Essentials
 

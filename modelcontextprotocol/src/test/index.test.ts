@@ -11,6 +11,14 @@ jest.mock('@modelcontextprotocol/sdk/server/stdio.js');
 
 describe('parseArgs function', () => {
   describe('success cases', () => {
+    beforeEach(() => {
+      jest.clearAllMocks();
+      jest.mock('dotenv', () => ({
+        config: jest.fn().mockResolvedValue({}),
+      }));
+      process.env = {};
+    });
+
     it('should parse all arguments correctly', () => {
       const args = [
         '--tools=all',
@@ -420,6 +428,14 @@ describe('parseArgs function', () => {
   });
 
   describe('error cases', () => {
+    beforeEach(() => {
+      jest.clearAllMocks();
+      jest.mock('dotenv', () => ({
+        config: jest.fn().mockResolvedValue({}),
+      }));
+      process.env = {};
+    });
+
     it('should throw an error if tools argument is not provided', () => {
       const args = [
         '--clientId=test_client_id',

@@ -22,29 +22,34 @@ import {contextToInventoryTools} from './inventory/tools';
 import {contextToStoreTools} from './store/tools';
 import {Context} from '../types/configuration';
 
+export const contextToResourceTools = (context?: Context) => {
+  return {
+    'business-unit': contextToBusinessUnitTools(context),
+    cart: contextToCartTools(context),
+    'cart-discount': contextToCartDiscountTools(context),
+    category: contextToCategoryTools(context),
+    channel: contextToChannelTools(context),
+    customer: contextToCustomerTools(context),
+    'customer-group': contextToCustomerGroupTools(context),
+    'discount-code': contextToDiscountCodeTools(context),
+    order: contextToOrderTools(context),
+    inventory: contextToInventoryTools(context),
+    products: contextToProductsTools(context),
+    project: contextToProjectTools(context),
+    'product-search': contextToProductSearchTools(context),
+    'product-selection': contextToProductSelectionTools(context),
+    quote: contextToQuoteTools(context),
+    'quote-request': contextToQuoteRequestTools(context),
+    'staged-quote': contextToStagedQuoteTools(context),
+    'standalone-price': contextToStandalonePriceTools(context),
+    'product-discount': contextToProductDiscountTools(context),
+    'product-type': contextToProductTypeTools(context),
+    store: contextToStoreTools(context),
+    bulk: contextToBulkTools(context),
+  };
+};
 export const contextToTools = (context?: Context) => {
-  return [
-    ...contextToBusinessUnitTools(context),
-    ...contextToCartTools(context),
-    ...contextToCartDiscountTools(context),
-    ...contextToCategoryTools(context),
-    ...contextToChannelTools(context),
-    ...contextToCustomerTools(context),
-    ...contextToCustomerGroupTools(context),
-    ...contextToDiscountCodeTools(context),
-    ...contextToOrderTools(context),
-    ...contextToInventoryTools(context),
-    ...contextToProductsTools(context),
-    ...contextToProjectTools(context),
-    ...contextToProductSearchTools(context),
-    ...contextToProductSelectionTools(context),
-    ...contextToQuoteTools(context),
-    ...contextToQuoteRequestTools(context),
-    ...contextToStagedQuoteTools(context),
-    ...contextToStandalonePriceTools(context),
-    ...contextToProductDiscountTools(context),
-    ...contextToProductTypeTools(context),
-    ...contextToStoreTools(context),
-    ...contextToBulkTools(context),
-  ];
+  const resourceTools = contextToResourceTools(context);
+
+  return Object.values(resourceTools).flat();
 };

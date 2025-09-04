@@ -21,6 +21,9 @@ describe('Product Type Tools', () => {
             connect: jest.fn(),
           })
       );
+    jest.mock('dotenv', () => ({
+      config: jest.fn().mockResolvedValue({}),
+    }));
     process.env = {};
   });
 
