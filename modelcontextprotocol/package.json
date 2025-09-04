@@ -1,6 +1,6 @@
 {
   "name": "@commercetools/mcp-essentials",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "homepage": "https://github.com/commercetools/mcp-essentials",
   "description": "A command line tool for setting up commercetools MCP server",
   "bin": "dist/index.js",

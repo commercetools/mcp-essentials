@@ -1,5 +1,21 @@
 # @commercetools/agent-essentials
 
+## 3.1.0
+
+### Minor Changes
+
+- [#25](https://github.com/commercetools/mcp-essentials/pull/25) [`b16df24`](https://github.com/commercetools/mcp-essentials/commit/b16df24a9d81c384fbb37b0c9cccaafc8c5616dc) Thanks [@ajimae](https://github.com/ajimae)! - [Feat] Add User Agent to MCP Essentials
+
+- [#22](https://github.com/commercetools/mcp-essentials/pull/22) [`733f7fc`](https://github.com/commercetools/mcp-essentials/commit/733f7fc382fe1e87b3009f978201190f1fb198d2) Thanks [@islam3zzat](https://github.com/islam3zzat)! - Add dynamic tool loading feature.
+  In this feature, if the number available tools exceeded `DYNAMIC_TOOL_LOADING_THRESHOLD` we'll only expose 5 tools:
+  1. list_tools
+  2. inject_tool
+  3. execute_tool
+  4. bulk_create
+  5. bulk_update
+
+  This will drastically reduce the amount of context we take from the client's LLM for tools' description and schema.
+
 ## 3.0.0
 
 ### Major Changes
