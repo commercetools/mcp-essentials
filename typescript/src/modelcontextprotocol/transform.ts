@@ -12,7 +12,7 @@ export const transformData = (
   data: Record<string, unknown>,
   key?: string
 ): string => {
-  let transformedData = key ? `${key}\n` : '';
+  let transformedData = key ? `${key}: \n` : '';
   Object.keys(data).forEach((key) => {
     const transformedValue = transformPropertyValue(data[key]);
     if (transformedValue !== null) {
@@ -20,15 +20,15 @@ export const transformData = (
     }
   });
 
-  return transformedData;
+  return transformedData.substring(0, transformedData.length - 1);
 };
 
 const transformPropertyValue = (data: any): string | null => {
+  if (isPropertyTypeToBeIgnored(data)) {
+    //check function/undefined
+    return null;
+  }
   switch (typeof data) {
-    case 'undefined':
-    case 'function': {
-      return null;
-    }
     case 'string': {
       if (data === '') {
         return '""';
@@ -51,16 +51,46 @@ const transformPropertyValue = (data: any): string | null => {
         // handle array
         return transformArray(data);
       }
-      if (Object.keys(data).length === 0) {
-        // handle empty object
-        return emptyObjectTransformValue;
+      // handle "typical" object
+      const transformedObject = transformObject(data);
+      if (transformedObject === emptyObjectTransformValue) {
+        return transformedObject;
       }
-      // TODO handle full object and rest
-      // TODO check object isn't empty after transformation
+      return `\n${transformedObject}`;
     }
     default:
-      return '';
+      return null;
   }
+};
+
+const transformObject = (object: Record<string, any>): string => {
+  if (Object.keys(object).length === 0) {
+    // handle empty object
+    return emptyObjectTransformValue;
+  }
+
+  let transformedObject = '';
+  let nestedObjectsAndArrays: Record<string, any> = {};
+
+  Object.keys(object).forEach((key) => {
+    if (
+      typeof object[key] === 'object' &&
+      (Array.isArray(object[key]) || object[key] !== null)
+    ) {
+      nestedObjectsAndArrays[key] = object[key];
+    } else {
+      // basic type
+      if (!isPropertyTypeToBeIgnored(object[key])) {
+        transformedObject += `- ${transformPropertyName(key)}: ${object[key]}\n`;
+      }
+    }
+  });
+
+  //TODO handle nestedObjectsAndArrays
+
+  return transformedObject !== ''
+    ? transformedObject.substring(0, transformedObject.length - 1)
+    : emptyObjectTransformValue;
 };
 
 const transformArray = (array: Array<any>): string => {
@@ -81,32 +111,39 @@ const transformArray = (array: Array<any>): string => {
   if (!isArrayWithObjectsOrArrays) {
     return array.reduce((aggregate, currentItem) => {
       const newValue = transformPropertyValue(currentItem);
-      return newValue !== null
-        ? aggregate
-          ? `${aggregate}, ${newValue}`
-          : newValue
-        : aggregate;
+      if (newValue === null) {
+        return aggregate;
+      }
+      if (!aggregate) {
+        return newValue;
+      }
+      return `${aggregate}, ${newValue}`;
     }, '');
-    // return array
-    //   .map((item) => transformPropertyValue(item))
-    //   .filter((value) => value !== null)
-    //   .join(', ');
-  } else {
-    // TODO handle complex arrays
-    throw new Error('Not yet implemented');
   }
+
+  // TODO handle complex arrays
+  throw new Error('Not yet implemented');
 };
 
+const isPropertyTypeToBeIgnored = (data: any): boolean =>
+  typeof data === 'undefined' || typeof data === 'function';
+
+const isUpperCase = (str: string): boolean => str !== str.toLowerCase();
+
 const transformPropertyName = (propertyName: string): string => {
-  //handle snake_case and kebab-case and _others
+  if (!propertyName) {
+    return '';
+  }
+  //handle snake_case, kebab-case, and _others
   propertyName = propertyName.replaceAll(/[_-]+/g, ' ').trim();
   // start new property name with capitalised first letter
   let newPropertyName = propertyName.charAt(0).toLocaleUpperCase();
   // handle PascalCase and camelCase
   for (let n = 1; n < propertyName.length; n++) {
     let char = propertyName.charAt(n);
-    if (char === char.toLowerCase()) {
-      // if lower case
+    // if lower case
+    if (!isUpperCase(char)) {
+      // if space precedes current character
       if (propertyName.charAt(n - 1) === ' ') {
         // upper case letter if space precedes
         if (char !== ' ') {
@@ -116,20 +153,19 @@ const transformPropertyName = (propertyName: string): string => {
         newPropertyName += char;
       }
     } else {
-      // is upper case
+      // else is upper case
       if (propertyName.charAt(n - 1) !== ' ') {
         newPropertyName += ' ';
       }
       newPropertyName += char;
       let i = 1;
       let nextChar = propertyName.charAt(n + i);
-      if (nextChar !== nextChar.toLowerCase()) {
-        // handle acronym
+      // handle acronym
+      if (isUpperCase(nextChar)) {
         do {
           nextChar = propertyName.charAt(n + i);
-          if (nextChar !== nextChar.toLowerCase()) {
+          if (isUpperCase(nextChar)) {
             newPropertyName += nextChar;
-            //i++;
             n++;
           }
         } while (nextChar !== nextChar.toLowerCase());
