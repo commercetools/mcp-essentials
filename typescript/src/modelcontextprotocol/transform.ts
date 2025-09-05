@@ -86,7 +86,7 @@ const transformObject = (object: Record<string, any>): string => {
     }
   });
 
-  //TODO handle nestedObjectsAndArrays
+  //TODO handle collected nestedObjectsAndArrays
 
   return transformedObject !== ''
     ? transformedObject.substring(0, transformedObject.length - 1)
@@ -121,7 +121,27 @@ const transformArray = (array: Array<any>): string => {
     }, '');
   }
 
-  // TODO handle complex arrays
+  if (isArrayWithConsistentObjectTypes(array)) {
+    // TODO handle array of consistent objects
+  }
+
+  if (isArrayOfArrays(array)) {
+    // TODO handle array of arrays
+  }
+
+  // TODO handle complex/weird arrays
+  return '';
+};
+
+const isArrayWithConsistentObjectTypes = (
+  array: Array<Record<string, any>>
+): boolean => {
+  // TODO
+  throw new Error('Not yet implemented');
+};
+
+const isArrayOfArrays = (array: Array<Record<string, any>>): boolean => {
+  // TODO
   throw new Error('Not yet implemented');
 };
 
