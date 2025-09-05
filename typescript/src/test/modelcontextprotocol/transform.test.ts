@@ -1,4 +1,5 @@
 import {transformData} from '../../modelcontextprotocol/transform';
+import {complexObject} from './transform.mock-data';
 
 describe('transform', () => {
   describe('transformData', () => {
@@ -186,16 +187,16 @@ describe('transform', () => {
       expect(transformedData).toBe(expectedTransformedData);
     });
 
-    // test('// TODO complex arrays', () => {
-    //   const testObj = {
-    //     testNull: null,
-    //   };
+    test('transforms complex arrays as expected', () => {
+      const testObj = {
+        facets: complexObject.facets,
+      };
 
-    //   const transformedData = transformData(testObj);
-    //   const expectedTransformedData = `TODO`;
+      const transformedData = transformData(testObj);
+      const expectedTransformedData = `TODO`;
 
-    //   expect(transformedData).toBe(expectedTransformedData);
-    // });
+      expect(transformedData).toBe(expectedTransformedData);
+    });
 
     test('transforms properties containing empty objects, or only functions or undefined values to key/value pair with "no properties" value', () => {
       let testObj: Record<string, any> = {
