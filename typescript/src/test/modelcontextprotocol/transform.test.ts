@@ -187,17 +187,51 @@ describe('transform', () => {
       expect(transformedData).toBe(expectedTransformedData);
     });
 
-    test('transforms arrays of objects with consistent property names as expected', () => {
+    test('transforms arrays of objects with consistent property names and without nested objects or arrays as expected', () => {
+      let facets = complexObject.facets;
+      facets.forEach((facet) => {
+        delete facet.terms;
+      });
       const testObj = {
-        facets: complexObject.facets,
+        facets: facets,
       };
 
       const transformedData = transformData(testObj);
-      const expectedTransformedData = `Facets: TODO`;
+      const expectedTransformedData = `Facets:
+|Type|Identifier|Label|Key|Selected|Min|Max|
+|---|---|---|---|---|---|---|
+|term|variants.attributes.color-code|Color Code|variants.attributes.color-code|No|---|---|
+|term|variants.attributes.finish-code|Finish Color Code|variants.attributes.finish-code|No|---|---|
+|term|variants.attributes.size|Size|variants.attributes.size|No|---|---|
+|range|variants.prices|---|variants.prices|No|0|9007199254740991|
+|term|variants.attributes.search-color|Search Color|variants.attributes.search-color|No|---|---|`;
 
-      console.log(transformedData);
       expect(transformedData).toBe(expectedTransformedData);
     });
+
+    // test('transforms arrays of objects with consistent property names, without nested arrays but with objects as expected', () => {
+    //   const testObj = {
+    //     facets: complexObject.facets,
+    //   };
+
+    //   const transformedData = transformData(testObj);
+    //   const expectedTransformedData = `Facets: TODO`;
+
+    //   console.log(transformedData);
+    //   expect(transformedData).toBe(expectedTransformedData);
+    // });
+
+    // test('transforms arrays of objects with consistent property names, without nested objects but with arrays as expected', () => {
+    //   const testObj = {
+    //     facets: complexObject.facets,
+    //   };
+
+    //   const transformedData = transformData(testObj);
+    //   const expectedTransformedData = `Facets: TODO`;
+
+    //   console.log(transformedData);
+    //   expect(transformedData).toBe(expectedTransformedData);
+    // });
 
     test('transforms arrays of arrays as expected', () => {
       const testObj = {
