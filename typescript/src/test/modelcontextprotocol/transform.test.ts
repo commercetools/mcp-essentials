@@ -209,19 +209,19 @@ describe('transform', () => {
       expect(transformedData).toBe(expectedTransformedData);
     });
 
-    // test('transforms arrays of objects with consistent property names, without nested arrays but with objects as expected', () => {
-    //   const testObj = {
-    //     facets: complexObject.facets,
-    //   };
+    test('transforms arrays of objects with consistent property names, without nested arrays but with nested objects as expected', () => {
+      const testObj = {
+        facets: [],
+      };
 
-    //   const transformedData = transformData(testObj);
-    //   const expectedTransformedData = `Facets: TODO`;
+      const transformedData = transformData(testObj);
+      const expectedTransformedData = `Facets: TODO`;
 
-    //   console.log(transformedData);
-    //   expect(transformedData).toBe(expectedTransformedData);
-    // });
+      console.log(transformedData);
+      expect(transformedData).toBe(expectedTransformedData);
+    });
 
-    // test('transforms arrays of objects with consistent property names, without nested objects but with arrays as expected', () => {
+    // test('transforms arrays of objects with consistent property names, without nested objects but with nested arrays as expected', () => {
     //   const testObj = {
     //     facets: complexObject.facets,
     //   };
