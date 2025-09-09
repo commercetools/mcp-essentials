@@ -142,7 +142,17 @@ class CommercetoolsAPI {
     return res.body?.scope.split(' ').map((scope) => scope.split(':')[0]) || [];
   }
 
-  async run(method: string, arg: any) {
+  async run(
+    method: string,
+    arg: any,
+    execute?: (args: Record<string, unknown>, api: ApiRoot) => Promise<string>
+  ) {
+    // handle custom tool execution
+    if (execute && typeof execute == 'function') {
+      return JSON.stringify(await execute(arg, this.apiRoot));
+    }
+
+    // handle core tool execution
     const functionMap = contextToFunctionMapping(this.context) as Record<
       string,
       any
