@@ -35,7 +35,7 @@ const transformPropertyValue = (
   indentSpaces = ''
 ): string | null => {
   if (isPropertyTypeToBeIgnored(data)) {
-    //check function/undefined
+    // check function/undefined
     return null;
   }
   switch (typeof data) {
@@ -87,7 +87,7 @@ const transformObject = (
       typeof object[key] === 'object' &&
       (Array.isArray(object[key]) || object[key] !== null)
     ) {
-      //TODO handle collected nestedObjectsAndArrays
+      // TODO handle collected nestedObjectsAndArrays
       // nested objects and arrays
       transformedObject += `${indentSpaces}- ${transformPropertyName(key)}: ${transformPropertyValue(object[key], incrementIndent(indentSpaces))}\n`;
     } else {
@@ -111,7 +111,7 @@ const transformArray = (
   if (array.length === 0) {
     return emptyArrayTransformValue;
   }
-  let isBasicArray = isArrayWithOnlyBasicTypes(array);
+  const isBasicArray = isArrayWithOnlyBasicTypes(array);
 
   // if array is of basic types only, format and return
   if (isBasicArray) {
@@ -133,7 +133,7 @@ const transformArray = (
     isArrayWithConsistentObjectProperties(arrayConsistencyEval)
   ) {
     // handle array of consistent objects
-    let propertyNames = arrayConsistencyEval.map(
+    const propertyNames = arrayConsistencyEval.map(
       (arrayEval) => arrayEval.propName
     );
     return transformArrayOfConsistentObjects(
@@ -170,7 +170,7 @@ const transformArrayOfConsistentObjects = (
     aggregatedArrayString += `\n|`;
     properyNames.forEach((propName) => {
       if (typeof element[propName] === 'object' && element[propName] !== null) {
-        //TODO handle nested object/array
+        // TODO handle nested object/array
         aggregatedArrayString += `OBJECT OR ARRAY|`;
       } else {
         const transformedPropertyValue = transformPropertyValue(
@@ -235,7 +235,8 @@ const evaluateObjectArrayConsistency = (
       numberOfOccurances: 1,
     }));
   }
-  let propertyOccurances: {propName: string; numberOfOccurances: number}[] = [];
+  const propertyOccurances: {propName: string; numberOfOccurances: number}[] =
+    [];
 
   for (let n = 0; n < array.length; n++) {
     // if any element is not an object, return null
