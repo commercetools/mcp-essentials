@@ -187,13 +187,102 @@ describe('transform', () => {
       expect(transformedData).toBe(expectedTransformedData);
     });
 
-    test('transforms complex arrays as expected', () => {
+    test('transforms arrays of objects with consistent property names as expected', () => {
       const testObj = {
         facets: complexObject.facets,
       };
 
       const transformedData = transformData(testObj);
-      const expectedTransformedData = `TODO`;
+      const expectedTransformedData = `Facets: TODO`;
+
+      console.log(transformedData);
+      expect(transformedData).toBe(expectedTransformedData);
+    });
+
+    test('transforms arrays of arrays as expected', () => {
+      const testObj = {
+        facets: complexObject.facets,
+      };
+
+      const transformedData = transformData(testObj);
+      const expectedTransformedData = `Facets: TODO`;
+      //TODO
+      //expect(transformedData).toBe(expectedTransformedData);
+    });
+
+    test('transforms inconsistent arrays as expected', () => {
+      const testObj = {
+        arrayOfInconsistentTypes: [
+          false,
+          {
+            differentNameStringProp: 'differentNameStringProp',
+            differentNameBoolProp: false,
+          },
+          'some string',
+          null,
+          undefined,
+          [
+            true,
+            'test',
+            [true, {prop: 'string'}],
+            {someProp: "What's a data structure?"},
+          ],
+          'Some other string',
+        ],
+      };
+
+      const transformedData = transformData(testObj);
+      const expectedTransformedData = `Array Of Inconsistent Types:
+0: No
+1:
+- Different Name String Prop: differentNameStringProp
+- Different Name Bool Prop: No
+2: some string
+3: null
+4: null
+5:
+ 0: Yes
+ 1: test
+ 2:
+  0: Yes
+  1:
+  - Prop: string
+ 3:
+ - Some Prop: What's a data structure?
+6: Some other string`;
+
+      expect(transformedData).toBe(expectedTransformedData);
+    });
+
+    test('transforms arrays of inconsistent objects as expected', () => {
+      const testObj = {
+        arrayOfInconsistentObjects: [
+          {
+            stringProp: 'stringProp',
+            boolProp: true,
+          },
+          {
+            differentNameStringProp: 'differentNameStringProp',
+            differentNameBoolProp: false,
+          },
+          {
+            anotherNameStringProp: 'anotherNameStringProp',
+            anotherNameBoolProp: true,
+          },
+        ],
+      };
+
+      const transformedData = transformData(testObj);
+      const expectedTransformedData = `Array Of Inconsistent Objects:
+0:
+- String Prop: stringProp
+- Bool Prop: Yes
+1:
+- Different Name String Prop: differentNameStringProp
+- Different Name Bool Prop: No
+2:
+- Another Name String Prop: anotherNameStringProp
+- Another Name Bool Prop: Yes`;
 
       expect(transformedData).toBe(expectedTransformedData);
     });
@@ -240,29 +329,45 @@ describe('transform', () => {
           firstName: 'Example',
           lastName: 'Name',
           email: 'example.name@example.com',
+          isActive: true,
         },
       };
 
       const transformedData = transformData(testObj);
-      const expectedTransformedData = `Customer: 
+      const expectedTransformedData = `Customer:
 - Customer Id: 12345
 - First Name: Example
 - Last Name: Name
-- Email: example.name@example.com`;
+- Email: example.name@example.com
+- Is Active: Yes`;
 
       expect(transformedData).toBe(expectedTransformedData);
     });
 
-    // test('// TODO object with complex property types', () => {
-    //   const testObj = {
-    //     testNull: null,
-    //   };
+    test('converts objects with nested objects and arrays as expected', () => {
+      const testObj = {
+        firstTestObject: {
+          testNestedArray: [
+            {
+              firstName: 'First name',
+              lastName: 'Last name',
+              isActive: true,
+            },
+            {
+              firstName: 'First name 2',
+              lastName: 'Last name 2',
+            },
+          ],
+          testNestedObject: {email: 'Test Email', company: 'Test Company'},
+        },
+      };
 
-    //   const transformedData = transformData(testObj);
-    //   const expectedTransformedData = `TODO`;
-
-    //   expect(transformedData).toBe(expectedTransformedData);
-    // });
+      const transformedData = transformData(testObj);
+      const expectedTransformedData = `TODO`;
+      //TODO
+      //console.log(transformedData);
+      //expect(transformedData).toBe(expectedTransformedData);
+    });
 
     test('transforms camel case property names as expected', () => {
       const camelCase = {propertyName: 'camelCase'};
