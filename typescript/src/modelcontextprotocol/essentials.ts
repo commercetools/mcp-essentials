@@ -78,6 +78,9 @@ class CommercetoolsAgentEssentials extends McpServer {
     }
 
     this.registerTools();
+    if (configuration.customTools) {
+      this.registerCustomTools(configuration.customTools);
+    }
   }
 
   private registerTools(): void {
@@ -189,6 +192,34 @@ class CommercetoolsAgentEssentials extends McpServer {
     );
   }
 
+  private registerGenericTool(tool: Tool): void {
+    if (!tool.execute) {
+      throw new Error(
+        `Tool Error: Please provide an 'execute' function for '${tool.name}' tool.`
+      );
+    }
+
+    this.tool(
+      tool.method,
+      tool.description,
+      tool.parameters.shape,
+      async (args: Record<string, unknown>) => {
+        const result = await tool.execute!(args, this.commercetoolsAPI.apiRoot);
+        return this.createToolResponse(result);
+      }
+    );
+  }
+
+  private registerCustomTools(tools: Tool[]) {
+    if (!Array.isArray(tools)) {
+      throw new Error(`Tool Error: 'customTools' must be an array of tools`);
+    }
+
+    tools.forEach((tool) => {
+      this.registerGenericTool(tool);
+    });
+  }
+
   private registerExecuteTool(executeTool: Tool): void {
     type ToolShape = z.infer<typeof executeTool.parameters.shape>;
 
@@ -233,6 +264,7 @@ class CommercetoolsAgentEssentials extends McpServer {
       )
       .join('\n---\n');
   }
+
   private handleToolExecutionError(error: unknown, toolMethod: string) {
     const errorMessage = error instanceof Error ? error.message : String(error);
 
