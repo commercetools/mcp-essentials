@@ -631,6 +631,40 @@ describe('CommercetoolsAgentEssentials (ModelContextProtocol)', () => {
         `Tool Error: Please provide an 'execute' function for '${customTools[0].name}' tool.`
       );
     });
+
+    it(`should throw an error if a tool's 'execute' property is not a function`, () => {
+      const customTools = [
+        {
+          name: 'custom-tool-no-exec-fn',
+          method: 'custom-test-tool-exec-fn',
+          description: 'custom tool description',
+          parameters: {shape: {key: 'unique-key'}},
+          execute: 'not-a-function',
+        },
+      ];
+
+      const getConfig = (opt: object) => ({..._mockConfiguration, ...opt});
+      const config = getConfig({customTools});
+
+      jest.spyOn(CommercetoolsAgentEssentials, 'create');
+
+      expect(CommercetoolsAgentEssentials.create).toHaveBeenCalled();
+      expect(
+        CommercetoolsAgentEssentials.create({
+          authConfig: {
+            clientId: 'id',
+            clientSecret: 'secret',
+            authUrl: 'auth',
+            projectKey: 'key',
+            apiUrl: 'api',
+            type: 'client_credentials',
+          },
+          configuration: config,
+        })
+      ).rejects.toThrow(
+        `Tool Error: Please provide an 'execute' function for '${customTools[0].name}' tool.`
+      );
+    });
   });
 
   describe('::registerTools with dynamicToolLoadingThreshold', () => {

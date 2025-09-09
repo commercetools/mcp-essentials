@@ -193,7 +193,7 @@ class CommercetoolsAgentEssentials extends McpServer {
   }
 
   private registerGenericTool(tool: Tool): void {
-    if (!tool.execute) {
+    if (!tool.execute || typeof tool.execute != 'function') {
       throw new Error(
         `Tool Error: Please provide an 'execute' function for '${tool.name}' tool.`
       );
