@@ -1,12 +1,7 @@
-export const reduceData = <T extends Record<string, unknown>>(
-  data: T
-): Partial<T> => {
-  // TODO
-  throw new Error('Not yet implemented.');
-};
-
 const emptyObjectTransformValue = 'no properties';
 const emptyArrayTransformValue = 'none';
+
+const incrementIndent = (indent: string) => indent + ' ';
 
 export const transformData = (
   data: Record<string, unknown>,
@@ -16,14 +11,29 @@ export const transformData = (
   Object.keys(data).forEach((key) => {
     const transformedValue = transformPropertyValue(data[key]);
     if (transformedValue !== null) {
-      transformedData += `${transformPropertyName(key)}: ${transformPropertyValue(data[key])}\n`;
+      transformedData += `${transformPropertyName(key)}:`;
+      if (
+        (Array.isArray(data[key]) && isArrayWithOnlyBasicTypes(data[key])) ||
+        typeof data[key] !== 'object' ||
+        transformedValue === emptyObjectTransformValue ||
+        transformedValue === emptyArrayTransformValue ||
+        transformedValue === 'null'
+      ) {
+        // add a space between the key and value if property type is not array/object, or empty
+        // array/object, or array with only basic types
+        transformedData += ' ';
+      }
+      transformedData += `${transformPropertyValue(data[key])}\n`;
     }
   });
 
   return transformedData.substring(0, transformedData.length - 1);
 };
 
-const transformPropertyValue = (data: any): string | null => {
+const transformPropertyValue = (
+  data: any,
+  indentSpaces = ''
+): string | null => {
   if (isPropertyTypeToBeIgnored(data)) {
     //check function/undefined
     return null;
@@ -33,7 +43,7 @@ const transformPropertyValue = (data: any): string | null => {
       if (data === '') {
         return '""';
       }
-      // else fallthough to number/bigint handling
+      return data;
     }
     case 'number':
     case 'bigint': {
@@ -44,15 +54,13 @@ const transformPropertyValue = (data: any): string | null => {
     }
     case 'object': {
       if (data === null) {
-        // handle null
         return 'null';
       }
       if (Array.isArray(data)) {
-        // handle array
-        return transformArray(data);
+        return transformArray(data, indentSpaces);
       }
       // handle "typical" object
-      const transformedObject = transformObject(data);
+      const transformedObject = transformObject(data, indentSpaces);
       if (transformedObject === emptyObjectTransformValue) {
         return transformedObject;
       }
@@ -63,40 +71,148 @@ const transformPropertyValue = (data: any): string | null => {
   }
 };
 
-const transformObject = (object: Record<string, any>): string => {
+const transformObject = (
+  object: Record<string, any>,
+  indentSpaces = ''
+): string => {
   if (Object.keys(object).length === 0) {
     // handle empty object
     return emptyObjectTransformValue;
   }
 
   let transformedObject = '';
-  let nestedObjectsAndArrays: Record<string, any> = {};
 
   Object.keys(object).forEach((key) => {
     if (
       typeof object[key] === 'object' &&
       (Array.isArray(object[key]) || object[key] !== null)
     ) {
-      nestedObjectsAndArrays[key] = object[key];
+      //TODO handle collected nestedObjectsAndArrays
+      // nested objects and arrays
+      transformedObject += `${indentSpaces}- ${transformPropertyName(key)}: ${transformPropertyValue(object[key], incrementIndent(indentSpaces))}\n`;
     } else {
       // basic type
       if (!isPropertyTypeToBeIgnored(object[key])) {
-        transformedObject += `- ${transformPropertyName(key)}: ${object[key]}\n`;
+        transformedObject += `${indentSpaces}- ${transformPropertyName(key)}: ${transformPropertyValue(object[key], indentSpaces)}\n`;
       }
     }
   });
-
-  //TODO handle collected nestedObjectsAndArrays
 
   return transformedObject !== ''
     ? transformedObject.substring(0, transformedObject.length - 1)
     : emptyObjectTransformValue;
 };
 
-const transformArray = (array: Array<any>): string => {
+const transformArray = (
+  array: Array<any>,
+  indentSpaces = '',
+  commaSeperated = true
+): string => {
   if (array.length === 0) {
     return emptyArrayTransformValue;
   }
+  let isBasicArray = isArrayWithOnlyBasicTypes(array);
+
+  // if array is of basic types only, format and return
+  if (isBasicArray) {
+    return array.reduce((aggregate, currentItem) => {
+      if (isPropertyTypeToBeIgnored(currentItem)) {
+        return aggregate;
+      }
+      const newValue = transformPropertyValue(currentItem);
+      if (!aggregate) {
+        return newValue;
+      }
+      return `${aggregate}${commaSeperated ? ', ' : ''}${newValue}`;
+    }, '');
+  }
+
+  const arrayConsistencyEval = evaluateObjectArrayConsistency(array);
+  if (
+    arrayConsistencyEval !== null &&
+    isArrayWithConsistentObjectProperties(arrayConsistencyEval)
+  ) {
+    // handle array of consistent objects
+    let propertyNames = arrayConsistencyEval.map(
+      (arrayEval) => arrayEval.propName
+    );
+    return transformArrayOfConsistentObjects(
+      array,
+      propertyNames,
+      indentSpaces
+    );
+  }
+
+  if (isArrayOfArrays(array)) {
+    // TODO handle array of arrays
+  }
+
+  // if no prior conditions are met, handle remaining arrays with inconsistent property
+  // types and arrays of objects with inconsistent property names
+  return transformInconsistentArrays(array, indentSpaces);
+};
+
+const transformArrayOfConsistentObjects = (
+  array: Record<string, any>[],
+  properyNames: string[],
+  indentSpaces = ''
+): string => {
+  let aggregatedArrayString = '\n|';
+
+  properyNames.forEach((propName) => {
+    aggregatedArrayString += `${transformPropertyName(propName)}|`;
+  });
+  aggregatedArrayString += '\n|';
+  for (let n = 0; n < properyNames.length; n++) {
+    aggregatedArrayString += '---|';
+  }
+  array.forEach((element) => {
+    aggregatedArrayString += `\n|`;
+    properyNames.forEach((propName) => {
+      if (typeof element[propName] === 'object' && element[propName] !== null) {
+        //TODO handle nested object/array
+        aggregatedArrayString += `OBJECT OR ARRAY|`;
+      } else {
+        const transformedPropertyValue = transformPropertyValue(
+          element[propName],
+          indentSpaces
+        );
+        aggregatedArrayString += `${transformedPropertyValue === null ? '---' : transformedPropertyValue}|`;
+      }
+    });
+  });
+  return aggregatedArrayString;
+};
+
+const transformInconsistentArrays = (
+  array: Array<any>,
+  indentSpaces = ''
+): string => {
+  return transformArray(
+    array.map((value, n) => {
+      let stringValue = `\n${indentSpaces + n}:`;
+      if (
+        value === null ||
+        typeof value !== 'object' ||
+        (Array.isArray(value) && isArrayWithOnlyBasicTypes(value))
+      ) {
+        stringValue += ' ';
+      }
+      if (Array.isArray(value)) {
+        stringValue += `${transformArray(value, incrementIndent(indentSpaces))}`;
+      } else {
+        stringValue += `${transformPropertyValue(value, indentSpaces)}`;
+      }
+      return stringValue;
+    }),
+    indentSpaces,
+    false
+  );
+};
+
+const isArrayWithOnlyBasicTypes = (
+  array: Array<Record<string, any>>
+): boolean => {
   let isArrayWithObjectsOrArrays = false;
   for (let n = 0; n < array.length; n++) {
     if (
@@ -107,42 +223,63 @@ const transformArray = (array: Array<any>): string => {
       n = array.length;
     }
   }
-
-  if (!isArrayWithObjectsOrArrays) {
-    return array.reduce((aggregate, currentItem) => {
-      const newValue = transformPropertyValue(currentItem);
-      if (newValue === null) {
-        return aggregate;
-      }
-      if (!aggregate) {
-        return newValue;
-      }
-      return `${aggregate}, ${newValue}`;
-    }, '');
-  }
-
-  if (isArrayWithConsistentObjectTypes(array)) {
-    // TODO handle array of consistent objects
-  }
-
-  if (isArrayOfArrays(array)) {
-    // TODO handle array of arrays
-  }
-
-  // TODO handle complex/weird arrays
-  return '';
+  return !isArrayWithObjectsOrArrays;
 };
 
-const isArrayWithConsistentObjectTypes = (
+const evaluateObjectArrayConsistency = (
   array: Array<Record<string, any>>
+): {propName: string; numberOfOccurances: number}[] | null => {
+  if (array.length === 1 && typeof array[0] === 'object' && array[0] !== null) {
+    return Object.keys(array).map((key) => ({
+      propName: key,
+      numberOfOccurances: 1,
+    }));
+  }
+  let propertyOccurances: {propName: string; numberOfOccurances: number}[] = [];
+
+  for (let n = 0; n < array.length; n++) {
+    // if any element is not an object, return null
+    if (typeof array[n] !== 'object' || array[n] === null) {
+      n = array.length;
+      return null;
+    }
+
+    Object.keys(array[n]).forEach((key) => {
+      let index = propertyOccurances.findIndex((prop) => prop.propName === key);
+      if (index === -1) {
+        propertyOccurances.push({propName: key, numberOfOccurances: 1});
+      } else {
+        propertyOccurances[index].numberOfOccurances += 1;
+      }
+    });
+  }
+
+  return propertyOccurances;
+};
+
+const isArrayWithConsistentObjectProperties = (
+  propertyOccurances: {propName: string; numberOfOccurances: number}[] | null
 ): boolean => {
-  // TODO
-  throw new Error('Not yet implemented');
+  // TODO reevaluate this criteria before submission
+  // return true if more than half of the properties have more than a single occurance
+  if (propertyOccurances === null || propertyOccurances.length === 0) {
+    return false;
+  }
+  return (
+    propertyOccurances.filter((prop) => prop.numberOfOccurances === 1).length <
+    propertyOccurances.length / 2
+  );
 };
 
 const isArrayOfArrays = (array: Array<Record<string, any>>): boolean => {
-  // TODO
-  throw new Error('Not yet implemented');
+  let hasValuesOtherThanArrays = false;
+  for (let n = 0; n < array.length; n++) {
+    if (!Array.isArray(array[n])) {
+      hasValuesOtherThanArrays = true;
+      n = array.length;
+    }
+  }
+  return hasValuesOtherThanArrays;
 };
 
 const isPropertyTypeToBeIgnored = (data: any): boolean =>
