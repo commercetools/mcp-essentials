@@ -253,36 +253,39 @@ const transformInconsistentArrays = (args: {
   format: Format;
 }): string => {
   const {array, indentSpaces, format} = args;
+
+  const transformedArray = array.reduce((aggregate, currentvalue) => {
+    let stringValue = `\n${indentSpaces + aggregate.length}:`;
+    if (
+      currentvalue === null ||
+      typeof currentvalue !== 'object' ||
+      (Array.isArray(currentvalue) && isArrayWithOnlyBasicTypes(currentvalue))
+    ) {
+      stringValue += ' ';
+    }
+    if (Array.isArray(currentvalue)) {
+      stringValue += transformArray({
+        array: currentvalue,
+        indentSpaces: incrementIndent(indentSpaces),
+        format,
+      });
+    } else {
+      const transformedValue = transformPropertyValue({
+        data: currentvalue,
+        indentSpaces,
+        format,
+      });
+      if (transformedValue === null) {
+        return aggregate;
+      }
+      stringValue += transformedValue;
+    }
+    aggregate.push(stringValue);
+    return aggregate;
+  }, [] as string[]);
+
   return transformArray({
-    array: array.map((value, n) => {
-      let stringValue = `\n${indentSpaces + n}:`;
-      if (
-        value === null ||
-        typeof value !== 'object' ||
-        (Array.isArray(value) && isArrayWithOnlyBasicTypes(value))
-      ) {
-        stringValue += ' ';
-      }
-      if (Array.isArray(value)) {
-        stringValue += transformArray({
-          array: value,
-          indentSpaces: incrementIndent(indentSpaces),
-          format,
-        });
-      } else {
-        // if (newVal === null) {
-        //   console.log('newVal === null');
-        //   return '';
-        // }
-        // stringValue += newVal;
-        stringValue += transformPropertyValue({
-          data: value,
-          indentSpaces,
-          format,
-        });
-      }
-      return stringValue;
-    }),
+    array: transformedArray,
     indentSpaces,
     commaSeperated: false,
     format,
