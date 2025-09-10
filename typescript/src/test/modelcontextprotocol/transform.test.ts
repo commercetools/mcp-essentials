@@ -6,56 +6,56 @@ describe('transform', () => {
     test('transforms camel case property names as expected', () => {
       const camelCase = {propertyName: 'camelCase'};
       const expectedOutput = 'Property Name: camelCase';
-      const actualOutput = transformData(camelCase);
+      const actualOutput = transformData({data: camelCase});
       expect(actualOutput).toBe(expectedOutput);
     });
 
     test('transforms camel case property names with acronyms as expected', () => {
       const camelCaseWithAronym = {propertyNameSDK: 'camelCaseWithAronym'};
       const expectedOutput = 'Property Name SDK: camelCaseWithAronym';
-      const actualOutput = transformData(camelCaseWithAronym);
+      const actualOutput = transformData({data: camelCaseWithAronym});
       expect(actualOutput).toBe(expectedOutput);
     });
 
     test('transforms snake case property names as expected', () => {
       const snakeCase = {propertyName: 'snakeCase'};
       const expectedOutput = 'Property Name: snakeCase';
-      const actualOutput = transformData(snakeCase);
+      const actualOutput = transformData({data: snakeCase});
       expect(actualOutput).toBe(expectedOutput);
     });
 
     test('transforms snake case property names with acronyms as expected', () => {
       const snakeCaseWithAronym = {property_name_SDK: 'snakeCaseWithAronym'};
       const expectedOutput = 'Property Name SDK: snakeCaseWithAronym';
-      const actualOutput = transformData(snakeCaseWithAronym);
+      const actualOutput = transformData({data: snakeCaseWithAronym});
       expect(actualOutput).toBe(expectedOutput);
     });
 
     test('transforms kebab case property names as expected', () => {
       const kebabCase = {'property-name': 'kebabCase'};
       const expectedOutput = 'Property Name: kebabCase';
-      const actualOutput = transformData(kebabCase);
+      const actualOutput = transformData({data: kebabCase});
       expect(actualOutput).toBe(expectedOutput);
     });
 
     test('transforms kebab case property names with acronyms as expected', () => {
       const kebabCaseWithAronym = {'property-name-SDK': 'kebabCaseWithAronym'};
       const expectedOutput = 'Property Name SDK: kebabCaseWithAronym';
-      const actualOutput = transformData(kebabCaseWithAronym);
+      const actualOutput = transformData({data: kebabCaseWithAronym});
       expect(actualOutput).toBe(expectedOutput);
     });
 
     test('transforms pascal case property names as expected', () => {
       const pascalCase = {PropertyName: 'pascalCase'};
       const expectedOutput = 'Property Name: pascalCase';
-      const actualOutput = transformData(pascalCase);
+      const actualOutput = transformData({data: pascalCase});
       expect(actualOutput).toBe(expectedOutput);
     });
 
     test('transforms pascal case property names with acronyms as expected', () => {
       const pascalCaseWithAronym = {PropertyNameSDK: 'pascalCaseWithAronym'};
       const expectedOutput = 'Property Name SDK: pascalCaseWithAronym';
-      const actualOutput = transformData(pascalCaseWithAronym);
+      const actualOutput = transformData({data: pascalCaseWithAronym});
       expect(actualOutput).toBe(expectedOutput);
     });
 
@@ -64,19 +64,19 @@ describe('transform', () => {
         '_Unusual-Case_SDK': '_Unusual-Case_SDK',
       };
       let expectedOutput = 'Unusual Case SDK: _Unusual-Case_SDK';
-      let actualOutput = transformData(unusualCasing);
+      let actualOutput = transformData({data: unusualCasing});
       expect(actualOutput).toBe(expectedOutput);
 
       unusualCasing = {'_unusualCase-_-234SDK': '_unusualCase-_-234SDK'};
       expectedOutput = 'Unusual Case 234 SDK: _unusualCase-_-234SDK';
-      actualOutput = transformData(unusualCasing);
+      actualOutput = transformData({data: unusualCasing});
       expect(actualOutput).toBe(expectedOutput);
     });
 
     test('transforms edge case property names as expected', () => {
       const edgeCase = {' edge  Case ': ' edge  Case '};
       const expectedOutput = 'Edge Case:  edge  Case ';
-      const actualOutput = transformData(edgeCase);
+      const actualOutput = transformData({data: edgeCase});
       expect(actualOutput).toBe(expectedOutput);
     });
 
@@ -85,7 +85,7 @@ describe('transform', () => {
         testNull: null,
       };
 
-      const transformedData = transformData(testObj);
+      const transformedData = transformData({data: testObj});
       const expectedTransformedData = `TODO`;
 
       // TODO
@@ -100,7 +100,7 @@ describe('transform', () => {
         testUndefined2: undefined,
       };
 
-      let transformedData = transformData(testObj);
+      let transformedData = transformData({data: testObj});
       let expectedTransformedData = ``;
 
       expect(transformedData).toBe(expectedTransformedData);
@@ -111,7 +111,7 @@ describe('transform', () => {
         testVal: 'string',
       };
 
-      transformedData = transformData(testObj);
+      transformedData = transformData({data: testObj});
       expectedTransformedData = `Test Val: string`;
 
       expect(transformedData).toBe(expectedTransformedData);
@@ -122,7 +122,7 @@ describe('transform', () => {
         testfunction: () => 'function',
       };
 
-      let transformedData = transformData(testObj);
+      let transformedData = transformData({data: testObj});
       let expectedTransformedData = ``;
 
       expect(transformedData).toBe(expectedTransformedData);
@@ -132,7 +132,7 @@ describe('transform', () => {
         testVal: 'string',
       };
 
-      transformedData = transformData(testObj);
+      transformedData = transformData({data: testObj});
       expectedTransformedData = `Test Val: string`;
 
       expect(transformedData).toBe(expectedTransformedData);
@@ -144,7 +144,7 @@ describe('transform', () => {
         testNull2: null,
       };
 
-      const transformedData = transformData(testObj);
+      const transformedData = transformData({data: testObj});
       const expectedTransformedData = `Test Null: null\nTest Null2: null`;
 
       expect(transformedData).toBe(expectedTransformedData);
@@ -156,7 +156,7 @@ describe('transform', () => {
         testBool2: false,
       };
 
-      const transformedData = transformData(testObj);
+      const transformedData = transformData({data: testObj});
       const expectedTransformedData = `Test Bool1: Yes\nTest Bool2: No`;
 
       expect(transformedData).toBe(expectedTransformedData);
@@ -179,7 +179,7 @@ describe('transform', () => {
           },
         },
       };
-      const transformedData = transformData(testObj);
+      const transformedData = transformData({data: testObj});
       const expectedTransformedData = 'TODO';
 
       // TODO
@@ -192,7 +192,7 @@ describe('transform', () => {
         testString2: '',
       };
 
-      const transformedData = transformData(testObj);
+      const transformedData = transformData({data: testObj});
       const expectedTransformedData = `Test String1: ""\nTest String2: ""`;
 
       expect(transformedData).toBe(expectedTransformedData);
@@ -204,7 +204,7 @@ describe('transform', () => {
         testString2: '2nd test string',
       };
 
-      const transformedData = transformData(testObj);
+      const transformedData = transformData({data: testObj});
       const expectedTransformedData = `Test String1: Test string one\nTest String2: 2nd test string`;
 
       expect(transformedData).toBe(expectedTransformedData);
@@ -216,7 +216,7 @@ describe('transform', () => {
         testNumber2: 0.2342,
       };
 
-      const transformedData = transformData(testObj);
+      const transformedData = transformData({data: testObj});
       const expectedTransformedData = `Test Number1: 360\nTest Number2: 0.2342`;
 
       expect(transformedData).toBe(expectedTransformedData);
@@ -228,7 +228,7 @@ describe('transform', () => {
         testBigInt2: BigInt('0o377777777777777777'),
       };
 
-      const transformedData = transformData(testObj);
+      const transformedData = transformData({data: testObj});
       const expectedTransformedData = `Test Big Int1: 9007199254740991\nTest Big Int2: 9007199254740991`;
 
       expect(transformedData).toBe(expectedTransformedData);
@@ -241,7 +241,7 @@ describe('transform', () => {
         testNegativeInfinity: -Infinity,
       };
 
-      const transformedData = transformData(testObj);
+      const transformedData = transformData({data: testObj});
       const expectedTransformedData = `Test Na N: NaN\nTest Infinity: Infinity\nTest Negative Infinity: -Infinity`;
 
       expect(transformedData).toBe(expectedTransformedData);
@@ -252,7 +252,7 @@ describe('transform', () => {
         testEmptyArray: [],
       };
 
-      const transformedData = transformData(testObj);
+      const transformedData = transformData({data: testObj});
       const expectedTransformedData = `Test Empty Array: none`;
 
       expect(transformedData).toBe(expectedTransformedData);
@@ -273,7 +273,7 @@ describe('transform', () => {
         ],
       };
 
-      const transformedData = transformData(testObj);
+      const transformedData = transformData({data: testObj});
       const expectedTransformedData = `Basic Array Values: true, Yes, No, 2345, 66573478589565456346675464, null, ""`;
 
       expect(transformedData).toBe(expectedTransformedData);
@@ -300,7 +300,7 @@ describe('transform', () => {
         ],
       };
 
-      const transformedData = transformData(testObj);
+      const transformedData = transformData({data: testObj});
       const expectedTransformedData = `Array Of Inconsistent Types:
 0: No
 1:
@@ -341,7 +341,7 @@ describe('transform', () => {
         ],
       };
 
-      const transformedData = transformData(testObj);
+      const transformedData = transformData({data: testObj});
       const expectedTransformedData = `Array Of Inconsistent Objects:
 0:
 - String Prop: stringProp
@@ -361,7 +361,7 @@ describe('transform', () => {
         emptyObject: {},
       };
 
-      let transformedData = transformData(testObj);
+      let transformedData = transformData({data: testObj});
       let expectedTransformedData = `Empty Object: no properties`;
 
       expect(transformedData).toBe(expectedTransformedData);
@@ -372,7 +372,7 @@ describe('transform', () => {
         },
       };
 
-      transformedData = transformData(testObj);
+      transformedData = transformData({data: testObj});
       expectedTransformedData = `Object With Only Undefined: no properties`;
 
       expect(transformedData).toBe(expectedTransformedData);
@@ -385,7 +385,7 @@ describe('transform', () => {
         },
       };
 
-      transformedData = transformData(testObj);
+      transformedData = transformData({data: testObj});
       expectedTransformedData = `Object With Only Functions: no properties`;
 
       expect(transformedData).toBe(expectedTransformedData);
@@ -402,7 +402,7 @@ describe('transform', () => {
         },
       };
 
-      const transformedData = transformData(testObj);
+      const transformedData = transformData({data: testObj});
       const expectedTransformedData = `Customer:
 - Customer Id: 12345
 - First Name: Example
@@ -424,7 +424,7 @@ describe('transform', () => {
           facets: facets,
         };
 
-        const transformedData = transformData(testObj);
+        const transformedData = transformData({data: testObj});
         const expectedTransformedData = `Facets:
 |Type|Identifier|Label|Key|Selected|Min|Max|
 |---|---|---|---|---|---|---|
@@ -442,7 +442,7 @@ describe('transform', () => {
           facets: [],
         };
 
-        const transformedData = transformData(testObj);
+        const transformedData = transformData({data: testObj});
         const expectedTransformedData = `Facets: TODO`;
         // TODO
         // console.log(transformedData);
@@ -454,7 +454,7 @@ describe('transform', () => {
           facets: complexObject.facets,
         };
 
-        const transformedData = transformData(testObj);
+        const transformedData = transformData({data: testObj});
         const expectedTransformedData = `Facets: TODO`;
 
         console.log(transformedData);
@@ -468,7 +468,7 @@ describe('transform', () => {
           facets: complexObject.facets,
         };
 
-        const transformedData = transformData(testObj);
+        const transformedData = transformData({data: testObj});
         const expectedTransformedData = `Facets: TODO`;
 
         // TODO
@@ -493,7 +493,7 @@ describe('transform', () => {
           },
         };
 
-        const transformedData = transformData(testObj);
+        const transformedData = transformData({data: testObj});
         const expectedTransformedData = `TODO`;
 
         // TODO
@@ -513,11 +513,13 @@ describe('transform', () => {
           facets: facets,
         };
 
-        const transformedData = transformData(testObj);
+        const transformedData = transformData({
+          data: testObj,
+          format: 'tabular',
+        });
         const expectedTransformedData = `Facets: todo`;
 
-        // TODO
-        // expect(transformedData).toBe(expectedTransformedData);
+        expect(transformedData).toBe(expectedTransformedData);
       });
 
       test('transforms arrays of objects with consistent property names, without nested arrays but with nested objects as expected', () => {
@@ -525,7 +527,10 @@ describe('transform', () => {
           facets: [],
         };
 
-        const transformedData = transformData(testObj);
+        const transformedData = transformData({
+          data: testObj,
+          format: 'tabular',
+        });
         const expectedTransformedData = `Facets: TODO`;
 
         console.log(transformedData);
@@ -539,7 +544,10 @@ describe('transform', () => {
           facets: complexObject.facets,
         };
 
-        const transformedData = transformData(testObj);
+        const transformedData = transformData({
+          data: testObj,
+          format: 'tabular',
+        });
         const expectedTransformedData = `Facets: TODO`;
 
         // TODO
@@ -552,7 +560,10 @@ describe('transform', () => {
           facets: complexObject.facets,
         };
 
-        const transformedData = transformData(testObj);
+        const transformedData = transformData({
+          data: testObj,
+          format: 'tabular',
+        });
         const expectedTransformedData = `Facets: TODO`;
 
         // TODO
@@ -564,7 +575,10 @@ describe('transform', () => {
           facets: complexObject.facets,
         };
 
-        const transformedData = transformData(testObj);
+        const transformedData = transformData({
+          data: testObj,
+          format: 'tabular',
+        });
         const expectedTransformedData = `Facets: TODO`;
 
         // TODO
@@ -589,7 +603,10 @@ describe('transform', () => {
           },
         };
 
-        const transformedData = transformData(testObj);
+        const transformedData = transformData({
+          data: testObj,
+          format: 'tabular',
+        });
         const expectedTransformedData = `TODO`;
 
         // TODO
