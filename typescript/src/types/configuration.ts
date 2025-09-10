@@ -4,7 +4,7 @@ import {
   CommercetoolsAgentEssentials,
 } from '../modelcontextprotocol';
 import {AvailableNamespaces} from './tools';
-import {Express} from 'express';
+import {IncomingMessage, ServerResponse} from 'node:http';
 
 // Actions restrict the subset of API calls that can be made. They should
 // be used in conjunction with Restricted API Keys. Setting a permission to false
@@ -46,13 +46,34 @@ export type Configuration = {
   context?: Context;
 };
 
+type IRequest = {
+  headers: Record<string, string | string[] | undefined>;
+  body: unknown;
+} & IncomingMessage;
+
+type IResponse = {
+  headersSent: boolean;
+  status: (code: number) => IResponse;
+  json: (data: unknown) => void;
+  on: (event: string, listener: (...args: unknown[]) => void) => void;
+} & ServerResponse<IncomingMessage>;
+export interface IApp {
+  use: (middleware: any) => void;
+  post: (
+    path: string,
+    handler: (req: IRequest, res: IResponse) => void
+  ) => void;
+  get: (path: string, handler: (req: IRequest, res: IResponse) => void) => void;
+  listen: (port: number, cb?: () => void) => void;
+}
+
 type IWithServerInstance = {
   authConfig?: AuthConfig;
   configuration?: Configuration;
   server: () => Promise<CommercetoolsAgentEssentials>;
   stateless?: boolean;
   streamableHttpOptions: StreamableHTTPServerTransportOptions;
-  app?: Express;
+  app?: IApp;
 };
 
 type IWithServerConfig = {
@@ -61,7 +82,7 @@ type IWithServerConfig = {
   server?: undefined;
   stateless?: boolean;
   streamableHttpOptions: StreamableHTTPServerTransportOptions;
-  app?: Express;
+  app?: IApp;
 };
 
 export type IStreamServerOptions = IWithServerInstance | IWithServerConfig;
