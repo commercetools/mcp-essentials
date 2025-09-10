@@ -2,9 +2,100 @@ import {transformData} from '../../modelcontextprotocol/transform';
 import {complexObject} from './transform.mock-data';
 
 describe('transform', () => {
+  describe('transformPropertyName', () => {
+    test('transforms camel case property names as expected', () => {
+      const camelCase = {propertyName: 'camelCase'};
+      const expectedOutput = 'Property Name: camelCase';
+      const actualOutput = transformData(camelCase);
+      expect(actualOutput).toBe(expectedOutput);
+    });
+
+    test('transforms camel case property names with acronyms as expected', () => {
+      const camelCaseWithAronym = {propertyNameSDK: 'camelCaseWithAronym'};
+      const expectedOutput = 'Property Name SDK: camelCaseWithAronym';
+      const actualOutput = transformData(camelCaseWithAronym);
+      expect(actualOutput).toBe(expectedOutput);
+    });
+
+    test('transforms snake case property names as expected', () => {
+      const snakeCase = {propertyName: 'snakeCase'};
+      const expectedOutput = 'Property Name: snakeCase';
+      const actualOutput = transformData(snakeCase);
+      expect(actualOutput).toBe(expectedOutput);
+    });
+
+    test('transforms snake case property names with acronyms as expected', () => {
+      const snakeCaseWithAronym = {property_name_SDK: 'snakeCaseWithAronym'};
+      const expectedOutput = 'Property Name SDK: snakeCaseWithAronym';
+      const actualOutput = transformData(snakeCaseWithAronym);
+      expect(actualOutput).toBe(expectedOutput);
+    });
+
+    test('transforms kebab case property names as expected', () => {
+      const kebabCase = {'property-name': 'kebabCase'};
+      const expectedOutput = 'Property Name: kebabCase';
+      const actualOutput = transformData(kebabCase);
+      expect(actualOutput).toBe(expectedOutput);
+    });
+
+    test('transforms kebab case property names with acronyms as expected', () => {
+      const kebabCaseWithAronym = {'property-name-SDK': 'kebabCaseWithAronym'};
+      const expectedOutput = 'Property Name SDK: kebabCaseWithAronym';
+      const actualOutput = transformData(kebabCaseWithAronym);
+      expect(actualOutput).toBe(expectedOutput);
+    });
+
+    test('transforms pascal case property names as expected', () => {
+      const pascalCase = {PropertyName: 'pascalCase'};
+      const expectedOutput = 'Property Name: pascalCase';
+      const actualOutput = transformData(pascalCase);
+      expect(actualOutput).toBe(expectedOutput);
+    });
+
+    test('transforms pascal case property names with acronyms as expected', () => {
+      const pascalCaseWithAronym = {PropertyNameSDK: 'pascalCaseWithAronym'};
+      const expectedOutput = 'Property Name SDK: pascalCaseWithAronym';
+      const actualOutput = transformData(pascalCaseWithAronym);
+      expect(actualOutput).toBe(expectedOutput);
+    });
+
+    test('transforms unusual property name casings as expected', () => {
+      let unusualCasing: Record<string, string> = {
+        '_Unusual-Case_SDK': '_Unusual-Case_SDK',
+      };
+      let expectedOutput = 'Unusual Case SDK: _Unusual-Case_SDK';
+      let actualOutput = transformData(unusualCasing);
+      expect(actualOutput).toBe(expectedOutput);
+
+      unusualCasing = {'_unusualCase-_-234SDK': '_unusualCase-_-234SDK'};
+      expectedOutput = 'Unusual Case 234 SDK: _unusualCase-_-234SDK';
+      actualOutput = transformData(unusualCasing);
+      expect(actualOutput).toBe(expectedOutput);
+    });
+
+    test('transforms edge case property names as expected', () => {
+      const edgeCase = {' edge  Case ': ' edge  Case '};
+      const expectedOutput = 'Edge Case:  edge  Case ';
+      const actualOutput = transformData(edgeCase);
+      expect(actualOutput).toBe(expectedOutput);
+    });
+
+    test('removes and handles duplicated property names after transformation', () => {
+      const testObj = {
+        testNull: null,
+      };
+
+      const transformedData = transformData(testObj);
+      const expectedTransformedData = `TODO`;
+
+      // TODO
+      // expect(transformedData).toBe(expectedTransformedData);
+    });
+  });
+
   describe('transformData', () => {
     test('ignores undefined values', () => {
-      let testObj: any = {
+      let testObj: Record<string, any> = {
         testUndefined1: undefined,
         testUndefined2: undefined,
       };
@@ -27,7 +118,7 @@ describe('transform', () => {
     });
 
     test('ignores function values', () => {
-      let testObj: any = {
+      let testObj: Record<string, any> = {
         testfunction: () => 'function',
       };
 
@@ -72,25 +163,26 @@ describe('transform', () => {
     });
 
     test('transforms boolean type values to Yes/No in nested objects and arrays', () => {
+      const testObj = {
+        nest: {
+          testBool1: false,
+          testBool2: true,
+          nest2: {
+            testBool2: true,
+            array1: [true, false, 'string', false],
+            array2: [
+              {
+                testBool1: true,
+                testBool2: false,
+              },
+            ],
+          },
+        },
+      };
+      const transformedData = transformData(testObj);
+      const expectedTransformedData = 'TODO';
+
       // TODO
-      // const testObj = {
-      //   nest: {
-      //     testBool1: false,
-      //     testBool2: true,
-      //     nest2: {
-      //       testBool2: true,
-      //       array1: [true, false, 'string', false],
-      //       array2: [
-      //         {
-      //           testBool1: true,
-      //           testBool2: false,
-      //         },
-      //       ],
-      //     },
-      //   },
-      // };
-      // const transformedData = transformData(testObj);
-      // const expectedTransformedData = 'TODO';
       // expect(transformedData).toBe(expectedTransformedData);
     });
 
@@ -185,63 +277,6 @@ describe('transform', () => {
       const expectedTransformedData = `Basic Array Values: true, Yes, No, 2345, 66573478589565456346675464, null, ""`;
 
       expect(transformedData).toBe(expectedTransformedData);
-    });
-
-    test('transforms arrays of objects with consistent property names and without nested objects or arrays as expected', () => {
-      let facets = complexObject.facets;
-      facets.forEach((facet) => {
-        delete facet.terms;
-      });
-      const testObj = {
-        facets: facets,
-      };
-
-      const transformedData = transformData(testObj);
-      const expectedTransformedData = `Facets:
-|Type|Identifier|Label|Key|Selected|Min|Max|
-|---|---|---|---|---|---|---|
-|term|variants.attributes.color-code|Color Code|variants.attributes.color-code|No|---|---|
-|term|variants.attributes.finish-code|Finish Color Code|variants.attributes.finish-code|No|---|---|
-|term|variants.attributes.size|Size|variants.attributes.size|No|---|---|
-|range|variants.prices|---|variants.prices|No|0|9007199254740991|
-|term|variants.attributes.search-color|Search Color|variants.attributes.search-color|No|---|---|`;
-
-      expect(transformedData).toBe(expectedTransformedData);
-    });
-
-    test('transforms arrays of objects with consistent property names, without nested arrays but with nested objects as expected', () => {
-      const testObj = {
-        facets: [],
-      };
-
-      const transformedData = transformData(testObj);
-      const expectedTransformedData = `Facets: TODO`;
-
-      console.log(transformedData);
-      expect(transformedData).toBe(expectedTransformedData);
-    });
-
-    // test('transforms arrays of objects with consistent property names, without nested objects but with nested arrays as expected', () => {
-    //   const testObj = {
-    //     facets: complexObject.facets,
-    //   };
-
-    //   const transformedData = transformData(testObj);
-    //   const expectedTransformedData = `Facets: TODO`;
-
-    //   console.log(transformedData);
-    //   expect(transformedData).toBe(expectedTransformedData);
-    // });
-
-    test('transforms arrays of arrays as expected', () => {
-      const testObj = {
-        facets: complexObject.facets,
-      };
-
-      const transformedData = transformData(testObj);
-      const expectedTransformedData = `Facets: TODO`;
-      //TODO
-      //expect(transformedData).toBe(expectedTransformedData);
     });
 
     test('transforms inconsistent arrays as expected', () => {
@@ -378,117 +413,189 @@ describe('transform', () => {
       expect(transformedData).toBe(expectedTransformedData);
     });
 
-    test('converts objects with nested objects and arrays as expected', () => {
-      const testObj = {
-        firstTestObject: {
-          testNestedArray: [
-            {
-              firstName: 'First name',
-              lastName: 'Last name',
-              isActive: true,
-            },
-            {
-              firstName: 'First name 2',
-              lastName: 'Last name 2',
-            },
-          ],
-          testNestedObject: {email: 'Test Email', company: 'Test Company'},
-        },
-      };
+    describe('format: tables', () => {
+      test('transforms arrays of objects with consistent property names and without nested objects or arrays as expected', () => {
+        let facets = complexObject.facets;
+        // delete array parameters within array
+        facets.forEach((facet) => {
+          delete facet.terms;
+        });
+        const testObj = {
+          facets: facets,
+        };
 
-      const transformedData = transformData(testObj);
-      const expectedTransformedData = `TODO`;
-      //TODO
-      //console.log(transformedData);
-      //expect(transformedData).toBe(expectedTransformedData);
+        const transformedData = transformData(testObj);
+        const expectedTransformedData = `Facets:
+|Type|Identifier|Label|Key|Selected|Min|Max|
+|---|---|---|---|---|---|---|
+|term|variants.attributes.color-code|Color Code|variants.attributes.color-code|No|---|---|
+|term|variants.attributes.finish-code|Finish Color Code|variants.attributes.finish-code|No|---|---|
+|term|variants.attributes.size|Size|variants.attributes.size|No|---|---|
+|range|variants.prices|---|variants.prices|No|0|9007199254740991|
+|term|variants.attributes.search-color|Search Color|variants.attributes.search-color|No|---|---|`;
+
+        expect(transformedData).toBe(expectedTransformedData);
+      });
+
+      test('transforms arrays of objects with consistent property names, without nested arrays but with nested objects as expected', () => {
+        const testObj = {
+          facets: [],
+        };
+
+        const transformedData = transformData(testObj);
+        const expectedTransformedData = `Facets: TODO`;
+        // TODO
+        // console.log(transformedData);
+        // expect(transformedData).toBe(expectedTransformedData);
+      });
+
+      test('transforms arrays of objects with consistent property names, without nested objects but with nested arrays as expected', () => {
+        const testObj = {
+          facets: complexObject.facets,
+        };
+
+        const transformedData = transformData(testObj);
+        const expectedTransformedData = `Facets: TODO`;
+
+        console.log(transformedData);
+
+        // TODO
+        // expect(transformedData).toBe(expectedTransformedData);
+      });
+
+      test('transforms arrays of arrays as expected', () => {
+        const testObj = {
+          facets: complexObject.facets,
+        };
+
+        const transformedData = transformData(testObj);
+        const expectedTransformedData = `Facets: TODO`;
+
+        // TODO
+        // expect(transformedData).toBe(expectedTransformedData);
+      });
+
+      test('converts objects with nested objects and arrays as expected', () => {
+        const testObj = {
+          firstTestObject: {
+            testNestedArray: [
+              {
+                firstName: 'First name',
+                lastName: 'Last name',
+                isActive: true,
+              },
+              {
+                firstName: 'First name 2',
+                lastName: 'Last name 2',
+              },
+            ],
+            testNestedObject: {email: 'Test Email', company: 'Test Company'},
+          },
+        };
+
+        const transformedData = transformData(testObj);
+        const expectedTransformedData = `TODO`;
+
+        // TODO
+        // console.log(transformedData);
+        // expect(transformedData).toBe(expectedTransformedData);
+      });
     });
 
-    test('transforms camel case property names as expected', () => {
-      const camelCase = {propertyName: 'camelCase'};
-      const expectedOutput = 'Property Name: camelCase';
-      const actualOutput = transformData(camelCase);
-      expect(actualOutput).toBe(expectedOutput);
+    describe('format: tabular', () => {
+      test('transforms arrays of objects with consistent property names and without nested objects or arrays as expected', () => {
+        let facets = complexObject.facets;
+        // delete array parameters within array
+        facets.forEach((facet) => {
+          delete facet.terms;
+        });
+        const testObj = {
+          facets: facets,
+        };
+
+        const transformedData = transformData(testObj);
+        const expectedTransformedData = `Facets: todo`;
+
+        // TODO
+        // expect(transformedData).toBe(expectedTransformedData);
+      });
+
+      test('transforms arrays of objects with consistent property names, without nested arrays but with nested objects as expected', () => {
+        const testObj = {
+          facets: [],
+        };
+
+        const transformedData = transformData(testObj);
+        const expectedTransformedData = `Facets: TODO`;
+
+        console.log(transformedData);
+
+        // TODO
+        // expect(transformedData).toBe(expectedTransformedData);
+      });
+
+      test('transforms arrays of objects with consistent property names, without nested objects but with nested arrays as expected', () => {
+        const testObj = {
+          facets: complexObject.facets,
+        };
+
+        const transformedData = transformData(testObj);
+        const expectedTransformedData = `Facets: TODO`;
+
+        // TODO
+        // console.log(transformedData);
+        // expect(transformedData).toBe(expectedTransformedData);
+      });
+
+      test('transforms arrays of arrays as expected', () => {
+        const testObj = {
+          facets: complexObject.facets,
+        };
+
+        const transformedData = transformData(testObj);
+        const expectedTransformedData = `Facets: TODO`;
+
+        // TODO
+        // expect(transformedData).toBe(expectedTransformedData);
+      });
+
+      test('transforms arrays of arrays as expected', () => {
+        const testObj = {
+          facets: complexObject.facets,
+        };
+
+        const transformedData = transformData(testObj);
+        const expectedTransformedData = `Facets: TODO`;
+
+        // TODO
+        // expect(transformedData).toBe(expectedTransformedData);
+      });
+
+      test('converts objects with nested objects and arrays as expected', () => {
+        const testObj = {
+          firstTestObject: {
+            testNestedArray: [
+              {
+                firstName: 'First name',
+                lastName: 'Last name',
+                isActive: true,
+              },
+              {
+                firstName: 'First name 2',
+                lastName: 'Last name 2',
+              },
+            ],
+            testNestedObject: {email: 'Test Email', company: 'Test Company'},
+          },
+        };
+
+        const transformedData = transformData(testObj);
+        const expectedTransformedData = `TODO`;
+
+        // TODO
+        // console.log(transformedData);
+        // expect(transformedData).toBe(expectedTransformedData);
+      });
     });
-
-    test('transforms camel case property names with acronyms as expected', () => {
-      const camelCaseWithAronym = {propertyNameSDK: 'camelCaseWithAronym'};
-      const expectedOutput = 'Property Name SDK: camelCaseWithAronym';
-      const actualOutput = transformData(camelCaseWithAronym);
-      expect(actualOutput).toBe(expectedOutput);
-    });
-
-    test('transforms snake case property names as expected', () => {
-      const snakeCase = {propertyName: 'snakeCase'};
-      const expectedOutput = 'Property Name: snakeCase';
-      const actualOutput = transformData(snakeCase);
-      expect(actualOutput).toBe(expectedOutput);
-    });
-
-    test('transforms snake case property names with acronyms as expected', () => {
-      const snakeCaseWithAronym = {property_name_SDK: 'snakeCaseWithAronym'};
-      const expectedOutput = 'Property Name SDK: snakeCaseWithAronym';
-      const actualOutput = transformData(snakeCaseWithAronym);
-      expect(actualOutput).toBe(expectedOutput);
-    });
-
-    test('transforms kebab case property names as expected', () => {
-      const kebabCase = {'property-name': 'kebabCase'};
-      const expectedOutput = 'Property Name: kebabCase';
-      const actualOutput = transformData(kebabCase);
-      expect(actualOutput).toBe(expectedOutput);
-    });
-
-    test('transforms kebab case property names with acronyms as expected', () => {
-      const kebabCaseWithAronym = {'property-name-SDK': 'kebabCaseWithAronym'};
-      const expectedOutput = 'Property Name SDK: kebabCaseWithAronym';
-      const actualOutput = transformData(kebabCaseWithAronym);
-      expect(actualOutput).toBe(expectedOutput);
-    });
-
-    test('transforms pascal case property names as expected', () => {
-      const pascalCase = {PropertyName: 'pascalCase'};
-      const expectedOutput = 'Property Name: pascalCase';
-      const actualOutput = transformData(pascalCase);
-      expect(actualOutput).toBe(expectedOutput);
-    });
-
-    test('transforms pascal case property names with acronyms as expected', () => {
-      const pascalCaseWithAronym = {PropertyNameSDK: 'pascalCaseWithAronym'};
-      const expectedOutput = 'Property Name SDK: pascalCaseWithAronym';
-      const actualOutput = transformData(pascalCaseWithAronym);
-      expect(actualOutput).toBe(expectedOutput);
-    });
-
-    test('transforms unusual property name casings as expected', () => {
-      let unusualCasing: Record<string, string> = {
-        '_Unusual-Case_SDK': '_Unusual-Case_SDK',
-      };
-      let expectedOutput = 'Unusual Case SDK: _Unusual-Case_SDK';
-      let actualOutput = transformData(unusualCasing);
-      expect(actualOutput).toBe(expectedOutput);
-
-      unusualCasing = {'_unusualCase-_-234SDK': '_unusualCase-_-234SDK'};
-      expectedOutput = 'Unusual Case 234 SDK: _unusualCase-_-234SDK';
-      actualOutput = transformData(unusualCasing);
-      expect(actualOutput).toBe(expectedOutput);
-    });
-
-    test('transforms edge case property names as expected', () => {
-      const edgeCase = {' edge  Case ': ' edge  Case '};
-      const expectedOutput = 'Edge Case:  edge  Case ';
-      const actualOutput = transformData(edgeCase);
-      expect(actualOutput).toBe(expectedOutput);
-    });
-
-    // test('//TODO removes and handles duplicated property names after transformation', () => {
-    //   const testObj = {
-    //     testNull: null,
-    //   };
-
-    //   const transformedData = transformData(testObj);
-    //   const expectedTransformedData = `TODO`;
-
-    //   expect(transformedData).toBe(expectedTransformedData);
-    // });
   });
 });

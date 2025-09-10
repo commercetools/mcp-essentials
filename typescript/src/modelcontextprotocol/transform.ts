@@ -1,15 +1,22 @@
 const emptyObjectTransformValue = 'no properties';
 const emptyArrayTransformValue = 'none';
 
+type Format = 'tables' | 'tabular';
+
 const incrementIndent = (indent: string) => indent + ' ';
 
 export const transformData = (
   data: Record<string, unknown>,
-  key?: string
+  key?: string,
+  format: Format = 'tables'
 ): string => {
   let transformedData = key ? `${key}: \n` : '';
   Object.keys(data).forEach((key) => {
-    const transformedValue = transformPropertyValue(data[key]);
+    const transformedValue = transformPropertyValue(
+      data[key],
+      undefined,
+      format
+    );
     if (transformedValue !== null) {
       transformedData += `${transformPropertyName(key)}:`;
       if (
@@ -32,7 +39,8 @@ export const transformData = (
 
 const transformPropertyValue = (
   data: any,
-  indentSpaces = ''
+  indentSpaces = '',
+  format: Format = 'tables'
 ): string | null => {
   if (isPropertyTypeToBeIgnored(data)) {
     // check function/undefined
@@ -57,7 +65,7 @@ const transformPropertyValue = (
         return 'null';
       }
       if (Array.isArray(data)) {
-        return transformArray(data, indentSpaces);
+        return transformArray(data, indentSpaces, undefined, format);
       }
       // handle "typical" object
       const transformedObject = transformObject(data, indentSpaces);
@@ -106,7 +114,8 @@ const transformObject = (
 const transformArray = (
   array: Array<any>,
   indentSpaces = '',
-  commaSeperated = true
+  commaSeperated = true,
+  format: Format = 'tables'
 ): string => {
   if (array.length === 0) {
     return emptyArrayTransformValue;
@@ -136,7 +145,7 @@ const transformArray = (
     const propertyNames = arrayConsistencyEval.map(
       (arrayEval) => arrayEval.propName
     );
-    return transformArrayOfConsistentObjects(
+    return transformArrayOfConsistentObjectTypes(
       array,
       propertyNames,
       indentSpaces
@@ -152,7 +161,27 @@ const transformArray = (
   return transformInconsistentArrays(array, indentSpaces);
 };
 
-const transformArrayOfConsistentObjects = (
+const transformArrayOfConsistentObjectTypes = (
+  array: Record<string, any>[],
+  properyNames: string[],
+  indentSpaces = '',
+  format: Format = 'tables'
+): string => {
+  if (format === 'tables') {
+    return transformArrayOfConsistentObjectTypesToTables(
+      array,
+      properyNames,
+      indentSpaces
+    );
+  }
+  return transformArrayOfConsistentObjectTypesToTabular(
+    array,
+    properyNames,
+    indentSpaces
+  );
+};
+
+const transformArrayOfConsistentObjectTypesToTables = (
   array: Record<string, any>[],
   properyNames: string[],
   indentSpaces = ''
@@ -182,6 +211,14 @@ const transformArrayOfConsistentObjects = (
     });
   });
   return aggregatedArrayString;
+};
+
+const transformArrayOfConsistentObjectTypesToTabular = (
+  array: Record<string, any>[],
+  properyNames: string[],
+  indentSpaces = ''
+): string => {
+  // TODO
 };
 
 const transformInconsistentArrays = (
