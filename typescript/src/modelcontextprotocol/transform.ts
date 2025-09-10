@@ -175,7 +175,11 @@ const transformArray = (args: {
 
   // if no prior conditions are met, handle remaining arrays with inconsistent property
   // types and arrays of objects with inconsistent property names
-  return transformInconsistentArrays({array, indentSpaces, format});
+  return transformArrayOfConsistentObjectTypesToTabular({
+    array,
+    indentSpaces,
+    format,
+  });
 };
 
 const transformArrayOfConsistentObjectTypes = (args: {
@@ -195,7 +199,6 @@ const transformArrayOfConsistentObjectTypes = (args: {
   }
   return transformArrayOfConsistentObjectTypesToTabular({
     array,
-    propertyNames,
     indentSpaces,
     format,
   });
@@ -237,17 +240,6 @@ const transformArrayOfConsistentObjectTypesToTables = (args: {
 };
 
 const transformArrayOfConsistentObjectTypesToTabular = (args: {
-  array: Record<string, any>[];
-  propertyNames: string[];
-  indentSpaces: string;
-  format: Format;
-}): string => {
-  const {array, propertyNames, indentSpaces, format} = args;
-  // TODO
-  return 'Not yet implemented';
-};
-
-const transformInconsistentArrays = (args: {
   array: Array<any>;
   indentSpaces: string;
   format: Format;
