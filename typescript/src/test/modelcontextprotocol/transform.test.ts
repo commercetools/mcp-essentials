@@ -289,7 +289,9 @@ describe('transform', () => {
           },
           'some string',
           null,
+          // undefined and function below expected to be removed
           undefined,
+          () => 'func',
           [
             true,
             'test',
@@ -308,8 +310,7 @@ describe('transform', () => {
 - Different Name Bool Prop: No
 2: some string
 3: null
-4: null
-5:
+4:
  0: Yes
  1: test
  2:
@@ -318,7 +319,7 @@ describe('transform', () => {
   - Prop: string
  3:
  - Some Prop: What's a data structure?
-6: Some other string`;
+5: Some other string`;
 
       expect(transformedData).toBe(expectedTransformedData);
     });
@@ -457,9 +458,8 @@ describe('transform', () => {
         const transformedData = transformData({data: testObj});
         const expectedTransformedData = `Facets: TODO`;
 
-        console.log(transformedData);
-
         // TODO
+        // console.log(transformedData);
         // expect(transformedData).toBe(expectedTransformedData);
       });
 
@@ -519,6 +519,7 @@ describe('transform', () => {
         });
         const expectedTransformedData = `Facets: todo`;
 
+        console.log(transformedData);
         expect(transformedData).toBe(expectedTransformedData);
       });
 
@@ -533,9 +534,8 @@ describe('transform', () => {
         });
         const expectedTransformedData = `Facets: TODO`;
 
-        console.log(transformedData);
-
         // TODO
+        // console.log(transformedData);
         // expect(transformedData).toBe(expectedTransformedData);
       });
 
