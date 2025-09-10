@@ -517,9 +517,39 @@ describe('transform', () => {
           data: testObj,
           format: 'tabular',
         });
-        const expectedTransformedData = `Facets: todo`;
+        const expectedTransformedData = `Facets:
+0:
+- Type: term
+- Identifier: variants.attributes.color-code
+- Label: Color Code
+- Key: variants.attributes.color-code
+- Selected: No
+1:
+- Type: term
+- Identifier: variants.attributes.finish-code
+- Label: Finish Color Code
+- Key: variants.attributes.finish-code
+- Selected: No
+2:
+- Type: term
+- Identifier: variants.attributes.size
+- Label: Size
+- Key: variants.attributes.size
+- Selected: No
+3:
+- Type: range
+- Identifier: variants.prices
+- Key: variants.prices
+- Min: 0
+- Max: 9007199254740991
+- Selected: No
+4:
+- Type: term
+- Identifier: variants.attributes.search-color
+- Label: Search Color
+- Key: variants.attributes.search-color
+- Selected: No`;
 
-        console.log(transformedData);
         expect(transformedData).toBe(expectedTransformedData);
       });
 
