@@ -1,18 +1,18 @@
 const emptyObjectTransformValue = 'no properties';
 const emptyArrayTransformValue = 'none';
 
-type Format = 'tables' | 'tabular';
+type Format = 'tabled' | 'tabular';
 
 const incrementIndent = (indent: string) => indent + ' ';
 
 export const transformData = (args: {
   data: Record<string, unknown>;
-  key?: string;
+  title?: string;
   format?: Format;
 }): string => {
-  let {data, key, format} = args;
-  format = format ?? 'tables';
-  let transformedData = key ? `${key}: \n` : '';
+  let {data, title, format} = args;
+  format = format ?? 'tabled';
+  let transformedData = title ? `${transformPropertyName(title)}:\n` : '';
 
   Object.keys(data).forEach((key) => {
     const transformedValue = transformPropertyValue({
@@ -21,9 +21,13 @@ export const transformData = (args: {
       format,
     });
     if (transformedValue !== null) {
+      if (title) {
+        transformedData += '- ';
+      }
       transformedData += `${transformPropertyName(key)}:`;
       if (
-        (Array.isArray(data[key]) && isArrayWithOnlyBasicTypes(data[key])) ||
+        (Array.isArray(data[key]) &&
+          isArrayWithoutObjectsOrArrays(data[key])) ||
         typeof data[key] !== 'object' ||
         transformedValue === emptyObjectTransformValue ||
         transformedValue === emptyArrayTransformValue ||
@@ -102,12 +106,16 @@ const transformObject = (args: {
 
   Object.keys(object).forEach((key) => {
     if (
-      typeof object[key] === 'object' &&
-      (Array.isArray(object[key]) || object[key] !== null)
+      (typeof object[key] === 'object' && object[key] !== null) ||
+      Array.isArray(object[key])
     ) {
-      // TODO handle collected nestedObjectsAndArrays
       // nested objects and arrays
-      transformedObject += `${indentSpaces}- ${transformPropertyName(key)}: ${transformPropertyValue({data: object[key], indentSpaces: incrementIndent(indentSpaces), format})}\n`;
+      transformedObject += `${indentSpaces}- ${transformPropertyName(key)}:`;
+      const isBasicArray = isArrayWithoutObjectsOrArrays(object[key]);
+      if (isBasicArray) {
+        transformedObject += ' ';
+      }
+      transformedObject += `${transformPropertyValue({data: object[key], indentSpaces: isBasicArray ? indentSpaces : incrementIndent(indentSpaces), format})}\n`;
     } else {
       // basic type
       if (!isPropertyTypeToBeIgnored(object[key])) {
@@ -132,11 +140,11 @@ const transformArray = (args: {
   if (array.length === 0) {
     return emptyArrayTransformValue;
   }
-  const isBasicArray = isArrayWithOnlyBasicTypes(array);
+  const isWithoutObjectsOrArrays = isArrayWithoutObjectsOrArrays(array);
 
   // if array is of basic types only, format and return
-  if (isBasicArray) {
-    return array.reduce((aggregate, currentItem) => {
+  if (isWithoutObjectsOrArrays) {
+    const transformedArray = array.reduce((aggregate, currentItem) => {
       if (isPropertyTypeToBeIgnored(currentItem)) {
         return aggregate;
       }
@@ -150,15 +158,17 @@ const transformArray = (args: {
       }
       return `${aggregate}${commaSeperated ? ', ' : ''}${newValue}`;
     }, '');
+
+    return transformedArray ? transformedArray : emptyArrayTransformValue;
   }
 
-  const arrayConsistencyEval = evaluateObjectArrayConsistency(array);
+  const propertyQuantities = seperatePropertyQuantitiesWithinObjectArray(array);
   if (
-    arrayConsistencyEval !== null &&
-    isArrayWithConsistentObjectProperties(arrayConsistencyEval)
+    propertyQuantities !== null &&
+    isArrayWithConsistentObjectProperties(propertyQuantities)
   ) {
     // handle array of consistent objects
-    const propertyNames = arrayConsistencyEval.map(
+    const propertyNames = propertyQuantities.map(
       (arrayEval) => arrayEval.propName
     );
     return transformArrayOfConsistentObjectTypes({
@@ -169,12 +179,13 @@ const transformArray = (args: {
     });
   }
 
-  if (isArrayOfArrays(array)) {
-    // TODO handle array of arrays
+  if (isArrayOfArrays(array) && format === 'tabled') {
+    // TODO handle array of arrays for tabled format
   }
 
-  // if no prior conditions are met, handle remaining arrays with inconsistent property
-  // types and arrays of objects with inconsistent property names
+  // As no prior conditions are met, this leaves arrays of arrays, and arrays with
+  // inconsistent contents. These are handled the same way, as this inconsistency is
+  // incompatible with tabled format
   return transformArrayOfConsistentObjectTypesToTabular({
     array,
     indentSpaces,
@@ -189,7 +200,7 @@ const transformArrayOfConsistentObjectTypes = (args: {
   format: Format;
 }): string => {
   const {array, propertyNames, indentSpaces, format} = args;
-  if (format === 'tables') {
+  if (format === 'tabled') {
     return transformArrayOfConsistentObjectTypesToTables({
       array,
       propertyNames,
@@ -251,7 +262,8 @@ const transformArrayOfConsistentObjectTypesToTabular = (args: {
     if (
       currentvalue === null ||
       typeof currentvalue !== 'object' ||
-      (Array.isArray(currentvalue) && isArrayWithOnlyBasicTypes(currentvalue))
+      (Array.isArray(currentvalue) &&
+        isArrayWithoutObjectsOrArrays(currentvalue))
     ) {
       stringValue += ' ';
     }
@@ -284,23 +296,23 @@ const transformArrayOfConsistentObjectTypesToTabular = (args: {
   });
 };
 
-const isArrayWithOnlyBasicTypes = (
+const isArrayWithoutObjectsOrArrays = (
   array: Array<Record<string, any>>
 ): boolean => {
-  let isArrayWithObjectsOrArrays = false;
+  let hasObjectsOrArrays = false;
   for (let n = 0; n < array.length; n++) {
     if (
-      typeof array[n] === 'object' &&
-      (Array.isArray(array[n]) || array[n] !== null)
+      (typeof array[n] === 'object' && array[n] !== null) ||
+      Array.isArray(array[n])
     ) {
-      isArrayWithObjectsOrArrays = true;
+      hasObjectsOrArrays = true;
       n = array.length;
     }
   }
-  return !isArrayWithObjectsOrArrays;
+  return !hasObjectsOrArrays;
 };
 
-const evaluateObjectArrayConsistency = (
+const seperatePropertyQuantitiesWithinObjectArray = (
   array: Array<Record<string, any>>
 ): {propName: string; numberOfOccurances: number}[] | null => {
   if (array.length === 1 && typeof array[0] === 'object' && array[0] !== null) {
@@ -332,13 +344,16 @@ const evaluateObjectArrayConsistency = (
   return propertyOccurances;
 };
 
+// TODO reevaluate this criteria before submission, currently returns true if more
+// than half of the properties have more than a single occurance or array length of 1
 const isArrayWithConsistentObjectProperties = (
   propertyOccurances: {propName: string; numberOfOccurances: number}[] | null
 ): boolean => {
-  // TODO reevaluate this criteria before submission
-  // return true if more than half of the properties have more than a single occurance
   if (propertyOccurances === null || propertyOccurances.length === 0) {
     return false;
+  }
+  if (propertyOccurances.length === 1) {
+    return true;
   }
   return (
     propertyOccurances.filter((prop) => prop.numberOfOccurances === 1).length <
