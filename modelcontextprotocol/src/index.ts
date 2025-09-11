@@ -144,8 +144,6 @@ export function parseArgs(args: string[]): {options: Options; env: EnvVars} {
         env.remote = value == 'true';
       } else if (key == 'stateless') {
         env.stateless = value == 'true';
-      } else if (key == 'log') {
-        env.logging = value == 'true';
       } else if (key == 'port') {
         env.port = Number(value);
       } else if (key == 'customerId') {
@@ -154,6 +152,8 @@ export function parseArgs(args: string[]): {options: Options; env: EnvVars} {
         options.isAdmin = value === 'true';
       } else if (key == 'dynamicToolLoadingThreshold') {
         options.dynamicToolLoadingThreshold = Number(value);
+      } else if (key == 'logging') {
+        options.logging = value == 'true';
       } else if (key == 'cartId') {
         options.cartId = value;
       } else if (key == 'storeKey') {
@@ -205,7 +205,7 @@ export function parseArgs(args: string[]): {options: Options; env: EnvVars} {
   env.apiUrl = env.apiUrl || process.env.API_URL;
 
   env.remote = env.remote || process.env.REMOTE == 'true';
-  env.logging = env.logging || process.env.LOG == 'true';
+  env.logging = env.logging || process.env.LOGGING == 'true';
   env.stateless = env.stateless || process.env.STATELESS == 'true';
   env.port = env.port || Number(process.env.PORT);
 
@@ -214,13 +214,13 @@ export function parseArgs(args: string[]): {options: Options; env: EnvVars} {
   options.storeKey = options.storeKey || process.env.STORE_KEY;
   options.customerId = options.customerId || process.env.CUSTOMER_ID;
   options.isAdmin = options.isAdmin || process.env.IS_ADMIN === 'true';
+  options.logging = options.logging || process.env.LOGGING == 'true';
   options.dynamicToolLoadingThreshold =
     options.dynamicToolLoadingThreshold ||
     (process.env.DYNAMIC_TOOL_LOADING_THRESHOLD
       ? Number(process.env.DYNAMIC_TOOL_LOADING_THRESHOLD)
       : undefined);
   options.cartId = options.cartId || process.env.CART_ID;
-  options.logging = env.logging || process.env.LOG == 'true';
 
   // Validate required commercetools credentials based on auth type
   if (!env.authUrl || !env.projectKey || !env.apiUrl) {

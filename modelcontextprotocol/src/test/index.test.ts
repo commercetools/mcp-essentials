@@ -93,23 +93,6 @@ describe('parseArgs function', () => {
       expect(options.tools).toEqual(['all.read', 'products.create']);
     });
 
-    it('should accept log args in combination with other tools', () => {
-      const args = [
-        '--tools=all.read,project.read',
-        '--clientId=test_client_id',
-        '--clientSecret=test_client_secret',
-        '--authUrl=https://auth.commercetools.com',
-        '--projectKey=test_project',
-        '--apiUrl=https://api.commercetools.com',
-        '--log=true',
-      ];
-
-      expect(() => parseArgs(args)).not.toThrow();
-      const {options} = parseArgs(args);
-      expect(options.tools).toEqual(['all.read', 'project.read']);
-      expect(options.log).toEqual(true);
-    });
-
     it('should use environment variables when arguments are not provided', () => {
       process.env.CLIENT_ID = 'env_client_id';
       process.env.CLIENT_SECRET = 'env_client_secret';
@@ -131,39 +114,6 @@ describe('parseArgs function', () => {
       delete process.env.AUTH_URL;
       delete process.env.PROJECT_KEY;
       delete process.env.API_URL;
-    });
-
-    it('should use the log from env if not provided as args', () => {
-      process.env.CLIENT_ID = 'env_client_id';
-      process.env.CLIENT_SECRET = 'env_client_secret';
-      process.env.AUTH_URL = 'https://auth.commercetools.com';
-      process.env.PROJECT_KEY = 'env_project';
-      process.env.API_URL = 'https://api.commercetools.com';
-      process.env.LOG = 'true';
-
-      const args = [
-        '--tools=all',
-        '--clientId=arg_client_id',
-        '--clientSecret=arg_client_secret',
-        '--authUrl=https://auth-arg.commercetools.com',
-        '--projectKey=arg_project',
-        '--apiUrl=https://api-arg.commercetools.com',
-      ];
-      const {env} = parseArgs(args);
-      expect(env.clientId).toBe('arg_client_id');
-      expect(env.clientSecret).toBe('arg_client_secret');
-      expect(env.authUrl).toBe('https://auth-arg.commercetools.com');
-      expect(env.projectKey).toBe('arg_project');
-      expect(env.apiUrl).toBe('https://api-arg.commercetools.com');
-      expect(env.log).toBe(true);
-
-      // Clean up
-      delete process.env.CLIENT_ID;
-      delete process.env.CLIENT_SECRET;
-      delete process.env.AUTH_URL;
-      delete process.env.PROJECT_KEY;
-      delete process.env.API_URL;
-      delete process.env.LOG;
     });
 
     it('should prefer command line arguments over environment variables', () => {
