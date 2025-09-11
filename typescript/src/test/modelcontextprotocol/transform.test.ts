@@ -1,6 +1,9 @@
 import {transformData} from '../../modelcontextprotocol/transform';
 import {complexObject} from './transform.mock-data';
 
+const emptyObjectTransformValue = 'no properties';
+const emptyArrayTransformValue = 'none';
+
 describe('transform', () => {
   describe('transformPropertyName', () => {
     test('transforms camel case property names as expected', () => {
@@ -247,13 +250,13 @@ describe('transform', () => {
       expect(transformedData).toBe(expectedTransformedData);
     });
 
-    test('transforms empty arrays to key/value pair with "none" as value', () => {
+    test(`transforms empty arrays to key/value pair with "${emptyArrayTransformValue}" as value`, () => {
       const testObj = {
         testEmptyArray: [],
       };
 
       const transformedData = transformData({data: testObj});
-      const expectedTransformedData = `Test Empty Array: none`;
+      const expectedTransformedData = `Test Empty Array: ${emptyArrayTransformValue}`;
 
       expect(transformedData).toBe(expectedTransformedData);
     });
@@ -357,13 +360,13 @@ describe('transform', () => {
       expect(transformedData).toBe(expectedTransformedData);
     });
 
-    test('transforms properties containing empty objects, or only functions or undefined values to key/value pair with "no properties" value', () => {
+    test(`transforms properties containing empty objects, or only functions or undefined values to key/value pair with "${emptyObjectTransformValue}" value`, () => {
       let testObj: Record<string, any> = {
         emptyObject: {},
       };
 
       let transformedData = transformData({data: testObj});
-      let expectedTransformedData = `Empty Object: no properties`;
+      let expectedTransformedData = `Empty Object: ${emptyObjectTransformValue}`;
 
       expect(transformedData).toBe(expectedTransformedData);
 
@@ -374,7 +377,7 @@ describe('transform', () => {
       };
 
       transformedData = transformData({data: testObj});
-      expectedTransformedData = `Object With Only Undefined: no properties`;
+      expectedTransformedData = `Object With Only Undefined: ${emptyObjectTransformValue}`;
 
       expect(transformedData).toBe(expectedTransformedData);
 
@@ -387,12 +390,12 @@ describe('transform', () => {
       };
 
       transformedData = transformData({data: testObj});
-      expectedTransformedData = `Object With Only Functions: no properties`;
+      expectedTransformedData = `Object With Only Functions: ${emptyObjectTransformValue}`;
 
       expect(transformedData).toBe(expectedTransformedData);
     });
 
-    test('converts objects with basic property types as expected', () => {
+    test('transforms objects with basic property types as expected', () => {
       let testObj = {
         customer: {
           customerId: 12345,
@@ -438,31 +441,6 @@ describe('transform', () => {
         expect(transformedData).toBe(expectedTransformedData);
       });
 
-      test('transforms arrays of objects with consistent property names, without nested arrays but with nested objects as expected', () => {
-        const testObj = {
-          facets: [],
-        };
-
-        const transformedData = transformData({data: testObj});
-        const expectedTransformedData = `Facets: TODO`;
-        // TODO
-        // console.log(transformedData);
-        // expect(transformedData).toBe(expectedTransformedData);
-      });
-
-      test('transforms arrays of objects with consistent property names, without nested objects but with nested arrays as expected', () => {
-        const testObj = {
-          facets: complexObject.facets,
-        };
-
-        const transformedData = transformData({data: testObj});
-        const expectedTransformedData = `Facets: TODO`;
-
-        // TODO
-        // console.log(transformedData);
-        // expect(transformedData).toBe(expectedTransformedData);
-      });
-
       test('transforms arrays of arrays as expected', () => {
         const testObj = {
           facets: complexObject.facets,
@@ -475,23 +453,8 @@ describe('transform', () => {
         // expect(transformedData).toBe(expectedTransformedData);
       });
 
-      test('converts objects with nested objects and arrays as expected', () => {
-        const testObj = {
-          firstTestObject: {
-            testNestedArray: [
-              {
-                firstName: 'First name',
-                lastName: 'Last name',
-                isActive: true,
-              },
-              {
-                firstName: 'First name 2',
-                lastName: 'Last name 2',
-              },
-            ],
-            testNestedObject: {email: 'Test Email', company: 'Test Company'},
-          },
-        };
+      test('transforms objects with nested objects and arrays as expected', () => {
+        const testObj = complexObject;
 
         const transformedData = transformData({data: testObj});
         const expectedTransformedData = `TODO`;
@@ -553,95 +516,72 @@ describe('transform', () => {
         expect(transformedData).toBe(expectedTransformedData);
       });
 
-      test('transforms arrays of objects with consistent property names, without nested arrays but with nested objects as expected', () => {
+      test('transforms arrays of arrays with nested objects, arrays, and basic types as expected', () => {
         const testObj = {
-          facets: [],
-        };
-
-        const transformedData = transformData({
-          data: testObj,
-          format: 'tabular',
-        });
-        const expectedTransformedData = `Facets: TODO`;
-
-        // TODO
-        // console.log(transformedData);
-        // expect(transformedData).toBe(expectedTransformedData);
-      });
-
-      test('transforms arrays of objects with consistent property names, without nested objects but with nested arrays as expected', () => {
-        const testObj = {
-          facets: complexObject.facets,
-        };
-
-        const transformedData = transformData({
-          data: testObj,
-          format: 'tabular',
-        });
-        const expectedTransformedData = `Facets: TODO`;
-
-        // TODO
-        // console.log(transformedData);
-        // expect(transformedData).toBe(expectedTransformedData);
-      });
-
-      test('transforms arrays of arrays as expected', () => {
-        const testObj = {
-          facets: complexObject.facets,
-        };
-
-        const transformedData = transformData({
-          data: testObj,
-          format: 'tabular',
-        });
-        const expectedTransformedData = `Facets: TODO`;
-
-        // TODO
-        // expect(transformedData).toBe(expectedTransformedData);
-      });
-
-      test('transforms arrays of arrays as expected', () => {
-        const testObj = {
-          facets: complexObject.facets,
-        };
-
-        const transformedData = transformData({
-          data: testObj,
-          format: 'tabular',
-        });
-        const expectedTransformedData = `Facets: TODO`;
-
-        // TODO
-        // expect(transformedData).toBe(expectedTransformedData);
-      });
-
-      test('converts objects with nested objects and arrays as expected', () => {
-        const testObj = {
-          firstTestObject: {
-            testNestedArray: [
+          someOtherProp: 'someOtherProp',
+          myArray: [
+            [0, 2, 45, 345, undefined],
+            [() => 'sdf'],
+            [
+              {prop1: 'prop1', prop2: 11111},
+              {prop1: 'prop1 obj2', prop2: 22222},
+              {prop1: 'prop1 obj3', prop2: 33333, someFunc: () => 'hello'},
               {
-                firstName: 'First name',
-                lastName: 'Last name',
-                isActive: true,
-              },
-              {
-                firstName: 'First name 2',
-                lastName: 'Last name 2',
+                prop1: 'prop1 obj4',
+                anotherNestedArray: [2, 6, 23, 63, 3, undefined],
+                anotherNestedObjArray: [{myProp: 4, myProp2: null}],
               },
             ],
-            testNestedObject: {email: 'Test Email', company: 'Test Company'},
-          },
+          ],
+          anotherProp: 'anotherProp',
         };
 
         const transformedData = transformData({
           data: testObj,
+          title: 'my data title',
           format: 'tabular',
         });
-        const expectedTransformedData = `TODO`;
+        const expectedTransformedData = `My Data Title:
+- Some Other Prop: someOtherProp
+- My Array:
+0: 0, 2, 45, 345
+1: ${emptyArrayTransformValue}
+2:
+ 0:
+ - Prop1: prop1
+ - Prop2: 11111
+ 1:
+ - Prop1: prop1 obj2
+ - Prop2: 22222
+ 2:
+ - Prop1: prop1 obj3
+ - Prop2: 33333
+ 3:
+ - Prop1: prop1 obj4
+ - Another Nested Array: 2, 6, 23, 63, 3
+ - Another Nested Obj Array:
+  0:
+  - My Prop: 4
+  - My Prop2: null
+- Another Prop: anotherProp`;
 
-        // TODO
-        // console.log(transformedData);
-        // expect(transformedData).toBe(expectedTransformedData);
+        expect(transformedData).toBe(expectedTransformedData);
+      });
+
+      test('transforms objects with nested objects and arrays as expected', () => {
+        const testObj = {
+          todo: 'todo',
+        };
+
+        const transformedData = transformData({
+          title: 'Title of data',
+          data: testObj,
+          format: 'tabular',
+        });
+        const expectedTransformedData = 'TODO';
+
+        console.log(transformedData);
+        expect(transformedData).toBe(expectedTransformedData);
       });
     });
   });
