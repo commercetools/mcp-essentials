@@ -272,6 +272,11 @@ describe('CommercetoolsAgentEssentialsStreamable', () => {
       (isInitializeRequest as unknown as jest.Mock).mockReturnValue(true);
 
       await postHandler(mockReq, mockRes);
+      const transportCall = (StreamableHTTPServerTransport as jest.Mock).mock
+        .calls[0][0];
+
+      transportCall.onsessioninitialized('existing-session-id');
+      await new Promise(setImmediate);
 
       expect(StreamableHTTPServerTransport).toHaveBeenCalledWith({
         sessionIdGenerator: mockStreamableHttpOptions.sessionIdGenerator,
@@ -366,17 +371,61 @@ describe('CommercetoolsAgentEssentialsStreamable', () => {
       expect(result).toBe(mockCommercetoolsServer);
     });
 
+    test('should return provided server with session ID', async () => {
+      const instance = new CommercetoolsAgentEssentialsStreamable({
+        authConfig: mockAuthConfig,
+        configuration: mockConfiguration,
+        server: mockServer,
+      } as any);
+
+      const result = await (instance as any).getServer('test-session-id');
+
+      expect(mockServer).toHaveBeenCalled();
+      expect(result).toBe(mockCommercetoolsServer);
+    });
+
     test('should create server when not provided', async () => {
       const instance = new CommercetoolsAgentEssentialsStreamable({
         authConfig: mockAuthConfig,
         configuration: mockConfiguration,
+        stateless: false,
+      } as any);
+
+      const result = await (instance as any).getServer('session-123');
+
+      expect(CommercetoolsAgentEssentials.create).toHaveBeenCalledWith({
+        authConfig: mockAuthConfig,
+        configuration: {
+          ...mockConfiguration,
+          context: {
+            ...mockConfiguration.context,
+            mode: 'stateful',
+            sessionId: 'session-123',
+          },
+        },
+      });
+      expect(result).toBe(mockCommercetoolsServer);
+    });
+
+    test('should create server with stateless mode', async () => {
+      const instance = new CommercetoolsAgentEssentialsStreamable({
+        authConfig: mockAuthConfig,
+        configuration: mockConfiguration,
+        stateless: true,
       } as any);
 
       const result = await (instance as any).getServer();
 
       expect(CommercetoolsAgentEssentials.create).toHaveBeenCalledWith({
         authConfig: mockAuthConfig,
-        configuration: mockConfiguration,
+        configuration: {
+          ...mockConfiguration,
+          context: {
+            ...mockConfiguration.context,
+            mode: 'stateless',
+            sessionId: undefined,
+          },
+        },
       });
       expect(result).toBe(mockCommercetoolsServer);
     });

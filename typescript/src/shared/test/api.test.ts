@@ -21,6 +21,8 @@ describe('CommercetoolsAPI', () => {
     withConcurrentModificationMiddleware: jest.fn().mockReturnThis(),
     withClientCredentialsFlow: jest.fn().mockReturnThis(),
     withUserAgentMiddleware: jest.fn().mockReturnThis(),
+    withCorrelationIdMiddleware: jest.fn().mockReturnThis(),
+    withLoggerMiddleware: jest.fn().mockReturnThis(),
     build: jest.fn().mockReturnValue(mockClient),
   };
 
@@ -75,6 +77,42 @@ describe('CommercetoolsAPI', () => {
       );
 
       expect(api).toBeDefined();
+    });
+
+    it('should generate a correctionId', () => {
+      const context = {isAdmin: true, storeKey: 'test-store'};
+      const api = new CommercetoolsAPI(
+        {
+          type: 'client_credentials',
+          clientId: 'client-id',
+          clientSecret: 'client-secret',
+          authUrl: 'https://auth.commercetools.com',
+          projectKey: 'test-project',
+          apiUrl: 'https://api.commercetools.com',
+        },
+        context
+      );
+
+      expect(api).toBeDefined();
+      expect(mockClientBuilder.withCorrelationIdMiddleware).toHaveBeenCalled();
+    });
+
+    it('should call the logger middleware', () => {
+      const context = {isAdmin: true, storeKey: 'test-store'};
+      const api = new CommercetoolsAPI(
+        {
+          type: 'client_credentials',
+          clientId: 'client-id',
+          clientSecret: 'client-secret',
+          authUrl: 'https://auth.commercetools.com',
+          projectKey: 'test-project',
+          apiUrl: 'https://api.commercetools.com',
+        },
+        context
+      );
+
+      expect(api).toBeDefined();
+      expect(mockClientBuilder.withLoggerMiddleware).toHaveBeenCalled();
     });
   });
 

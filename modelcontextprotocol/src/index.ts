@@ -18,6 +18,7 @@ type Options = {
   storeKey?: string;
   businessUnitKey?: string;
   dynamicToolLoadingThreshold?: number;
+  logging?: boolean;
 };
 
 type EnvVars = {
@@ -29,6 +30,7 @@ type EnvVars = {
   remote?: boolean;
   stateless?: boolean;
   port?: number;
+  logging?: boolean;
   accessToken?: string;
   authType?: 'client_credentials' | 'auth_token';
 };
@@ -142,6 +144,8 @@ export function parseArgs(args: string[]): {options: Options; env: EnvVars} {
         env.remote = value == 'true';
       } else if (key == 'stateless') {
         env.stateless = value == 'true';
+      } else if (key == 'log') {
+        env.logging = value == 'true';
       } else if (key == 'port') {
         env.port = Number(value);
       } else if (key == 'customerId') {
@@ -201,6 +205,7 @@ export function parseArgs(args: string[]): {options: Options; env: EnvVars} {
   env.apiUrl = env.apiUrl || process.env.API_URL;
 
   env.remote = env.remote || process.env.REMOTE == 'true';
+  env.logging = env.logging || process.env.LOG == 'true';
   env.stateless = env.stateless || process.env.STATELESS == 'true';
   env.port = env.port || Number(process.env.PORT);
 
@@ -215,6 +220,7 @@ export function parseArgs(args: string[]): {options: Options; env: EnvVars} {
       ? Number(process.env.DYNAMIC_TOOL_LOADING_THRESHOLD)
       : undefined);
   options.cartId = options.cartId || process.env.CART_ID;
+  options.logging = env.logging || process.env.LOG == 'true';
 
   // Validate required commercetools credentials based on auth type
   if (!env.authUrl || !env.projectKey || !env.apiUrl) {
@@ -298,6 +304,7 @@ export async function main() {
       cartId: options.cartId,
       storeKey: options.storeKey,
       businessUnitKey: options.businessUnitKey,
+      logging: options.logging,
     },
   };
 
@@ -353,6 +360,7 @@ export async function main() {
     const streamServer = new CommercetoolsAgentEssentialsStreamable({
       authConfig,
       configuration,
+      stateless: env.stateless,
       streamableHttpOptions: {
         sessionIdGenerator: undefined,
       },

@@ -33,6 +33,9 @@ export type Context = {
   cartId?: string;
   businessUnitKey?: string;
   dynamicToolLoadingThreshold?: number;
+  sessionId?: string;
+  mode?: string;
+  logging?: boolean;
 };
 
 export type CommercetoolsFuncContext = Context & {
