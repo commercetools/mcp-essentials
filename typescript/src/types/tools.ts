@@ -1,4 +1,5 @@
 import {z} from 'zod';
+import {ApiRoot} from '@commercetools/platform-sdk';
 
 export enum AvailableNamespaces {
   BusinessUnit = 'business-unit',
@@ -26,6 +27,7 @@ export type Tool = {
   name: string;
   description: string;
   parameters: z.ZodObject<any, any, any, any>;
+  execute?: (args: Record<string, unknown>, api?: ApiRoot) => Promise<string>;
   actions: {
     [key: string]: {
       [action: string]: boolean;

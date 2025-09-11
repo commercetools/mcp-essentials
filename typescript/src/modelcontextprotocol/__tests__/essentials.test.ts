@@ -229,7 +229,8 @@ describe('CommercetoolsAgentEssentials (ModelContextProtocol)', () => {
 
     expect(mockCommercetoolsAPIInstance.run).toHaveBeenCalledWith(
       toolMethod,
-      handlerArg
+      handlerArg,
+      undefined
     );
     expect(result).toEqual({
       content: [
@@ -419,6 +420,8 @@ describe('CommercetoolsAgentEssentials (ModelContextProtocol)', () => {
       },
     };
 
+    const getConfig = (opt: object) => ({..._mockConfiguration, ...opt});
+
     beforeEach(() => {
       // Reset mocks
       (McpServer as jest.Mock).mockClear();
@@ -467,7 +470,9 @@ describe('CommercetoolsAgentEssentials (ModelContextProtocol)', () => {
       );
     });
 
-    afterAll(() => {
+    afterEach(() => {
+      (McpServer as jest.Mock).mockClear();
+      (CommercetoolsAgentEssentials as unknown as jest.Mock).mockClear();
       _mockCommercetoolsAPIInstance.introspect = jest
         .fn()
         .mockImplementation(function () {
@@ -511,6 +516,159 @@ describe('CommercetoolsAgentEssentials (ModelContextProtocol)', () => {
         })
       ).rejects.toThrow(/Simulated error in the instropsect method/);
       expect(CommercetoolsAgentEssentials.create).toHaveBeenCalled();
+    });
+
+    describe('::CustomTools', () => {
+      it(`should not register custom tools if 'customTools' is not provided`, async () => {
+        const config = getConfig({});
+        await CommercetoolsAgentEssentials.create({
+          authConfig: {
+            clientId: 'id',
+            clientSecret: 'secret',
+            authUrl: 'auth',
+            projectKey: 'key',
+            apiUrl: 'api',
+            type: 'client_credentials',
+          },
+          configuration: config,
+        });
+
+        expect(_mockToolMethod).toHaveBeenCalled();
+        expect(_mockToolMethod).toHaveBeenCalledTimes(1);
+
+        expect(_mockToolMethod).toHaveBeenCalledWith(
+          'mcpTool1',
+          expect.any(String),
+          expect.any(Object),
+          expect.any(Function)
+        );
+      });
+
+      it('should register custom tools if provided', async () => {
+        const customTools = [
+          {
+            name: 'custom-tool',
+            method: 'custom-test-tool',
+            description: 'custom tool description',
+            parameters: {shape: {key: 'unique-key'}},
+            execute: jest.fn(),
+          },
+        ];
+
+        const config = getConfig({customTools});
+
+        await CommercetoolsAgentEssentials.create({
+          authConfig: {
+            clientId: 'id',
+            clientSecret: 'secret',
+            authUrl: 'auth',
+            projectKey: 'key',
+            apiUrl: 'api',
+            type: 'client_credentials',
+          },
+          configuration: config,
+        });
+
+        expect(_mockToolMethod).toHaveBeenCalled();
+        expect(_mockToolMethod).toHaveBeenCalledTimes(2);
+        expect(_mockToolMethod).toHaveBeenCalledWith(
+          'custom-test-tool',
+          expect.any(String),
+          expect.any(Object),
+          expect.any(Function)
+        );
+      });
+
+      it('should throw an error if the `customTools` provided is not an array', () => {
+        const customTools = {};
+        const config = getConfig({customTools});
+
+        jest.spyOn(CommercetoolsAgentEssentials, 'create');
+
+        expect(CommercetoolsAgentEssentials.create).toHaveBeenCalled();
+        expect(
+          CommercetoolsAgentEssentials.create({
+            authConfig: {
+              clientId: 'id',
+              clientSecret: 'secret',
+              authUrl: 'auth',
+              projectKey: 'key',
+              apiUrl: 'api',
+              type: 'client_credentials',
+            },
+            configuration: config,
+          })
+        ).rejects.toThrow(
+          `Tool Error: 'customTools' must be an array of tools`
+        );
+      });
+
+      it(`should throw an error if a tool's 'execute' function is not provided`, () => {
+        const customTools = [
+          {
+            name: 'custom-tool-no-exec-fn',
+            method: 'custom-test-tool-exec-fn',
+            description: 'custom tool description',
+            parameters: {shape: {key: 'unique-key'}},
+          },
+        ];
+
+        const getConfig = (opt: object) => ({..._mockConfiguration, ...opt});
+        const config = getConfig({customTools});
+
+        jest.spyOn(CommercetoolsAgentEssentials, 'create');
+
+        expect(CommercetoolsAgentEssentials.create).toHaveBeenCalled();
+        expect(
+          CommercetoolsAgentEssentials.create({
+            authConfig: {
+              clientId: 'id',
+              clientSecret: 'secret',
+              authUrl: 'auth',
+              projectKey: 'key',
+              apiUrl: 'api',
+              type: 'client_credentials',
+            },
+            configuration: config,
+          })
+        ).rejects.toThrow(
+          `Tool Error: Please provide an 'execute' function for '${customTools[0].name}' tool.`
+        );
+      });
+
+      it(`should throw an error if a tool's 'execute' property is not a function`, () => {
+        const customTools = [
+          {
+            name: 'custom-tool-no-exec-fn',
+            method: 'custom-test-tool-exec-fn',
+            description: 'custom tool description',
+            parameters: {shape: {key: 'unique-key'}},
+            execute: 'not-a-function',
+          },
+        ];
+
+        const getConfig = (opt: object) => ({..._mockConfiguration, ...opt});
+        const config = getConfig({customTools});
+
+        jest.spyOn(CommercetoolsAgentEssentials, 'create');
+
+        expect(CommercetoolsAgentEssentials.create).toHaveBeenCalled();
+        expect(
+          CommercetoolsAgentEssentials.create({
+            authConfig: {
+              clientId: 'id',
+              clientSecret: 'secret',
+              authUrl: 'auth',
+              projectKey: 'key',
+              apiUrl: 'api',
+              type: 'client_credentials',
+            },
+            configuration: config,
+          })
+        ).rejects.toThrow(
+          `Tool Error: Please provide an 'execute' function for '${customTools[0].name}' tool.`
+        );
+      });
     });
   });
 
