@@ -102,10 +102,26 @@ class CommercetoolsAgentEssentials extends McpServer {
 
   private getFilteredTools() {
     const configuration = this.configuration;
+    const customTools = configuration.customTools || [];
 
-    return contextToTools(configuration.context).filter((tool) =>
-      isToolAllowed(tool, configuration)
-    );
+    if (!Array.isArray(customTools)) {
+      throw new Error(`Tool Error: 'customTools' must be an array of tools`);
+    }
+
+    customTools.forEach((tool) => {
+      if (!tool.execute || typeof tool.execute != 'function') {
+        throw new Error(
+          `Tool Error: Please provide an 'execute' function for '${tool.name}' tool.`
+        );
+      }
+    });
+
+    return [
+      ...customTools,
+      ...contextToTools(configuration.context).filter((tool) =>
+        isToolAllowed(tool, configuration)
+      ),
+    ];
   }
 
   private registerAllTools(filteredTools: Tool[]): void {
@@ -149,12 +165,13 @@ class CommercetoolsAgentEssentials extends McpServer {
   }
 
   private registerSingleTool(tool: Tool): void {
+    const {method, execute} = tool;
     this.tool(
       tool.method,
       tool.description,
       tool.parameters.shape,
       async (args: Record<string, unknown>) => {
-        const result = await this.commercetoolsAPI.run(tool.method, args);
+        const result = await this.commercetoolsAPI.run(method, args, execute);
         return this.createToolResponse(result);
       }
     );
@@ -233,6 +250,7 @@ class CommercetoolsAgentEssentials extends McpServer {
       )
       .join('\n---\n');
   }
+
   private handleToolExecutionError(error: unknown, toolMethod: string) {
     const errorMessage = error instanceof Error ? error.message : String(error);
 

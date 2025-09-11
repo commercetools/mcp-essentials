@@ -3,7 +3,7 @@ import {
   AuthConfig,
   CommercetoolsAgentEssentials,
 } from '../modelcontextprotocol';
-import {AvailableNamespaces} from './tools';
+import {AvailableNamespaces, Tool} from './tools';
 import {Express} from 'express';
 
 // Actions restrict the subset of API calls that can be made. They should
@@ -42,6 +42,7 @@ export type CommercetoolsFuncContext = Context & {
 // Configuration provides various settings and options for the integration
 // to tune and manage how it behaves.
 export type Configuration = {
+  customTools?: Array<Tool>;
   actions?: Actions;
   context?: Context;
 };
