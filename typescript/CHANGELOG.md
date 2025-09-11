@@ -1,5 +1,11 @@
 # @commercetools/agent-essentials
 
+## 3.2.0
+
+### Minor Changes
+
+- [#27](https://github.com/commercetools/mcp-essentials/pull/27) [`899d731`](https://github.com/commercetools/mcp-essentials/commit/899d7319cd5c7f29bcefb45e5db5aa88c38bfe3c) Thanks [@ajimae](https://github.com/ajimae)! - [Feat][MCP-8] Add custom (generic) tools
+
 ## 3.1.0
 
 ### Minor Changes
