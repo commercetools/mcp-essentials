@@ -1,5 +1,5 @@
 import {randomUUID} from 'node:crypto';
-import express, {Express, Request, Response} from 'express';
+import express from 'express';
 import {
   AuthConfig,
   CommercetoolsAgentEssentials,
@@ -7,11 +7,11 @@ import {
 } from '../modelcontextprotocol';
 import {StreamableHTTPServerTransport} from '@modelcontextprotocol/sdk/server/streamableHttp.js';
 import {isInitializeRequest} from '@modelcontextprotocol/sdk/types.js';
-import {IStreamServerOptions} from '../types/configuration';
+import {IApp, IStreamServerOptions} from '../types/configuration';
 import {ExistingTokenAuth as E} from '../types/auth';
 
 export default class CommercetoolsAgentEssentialsStreamable {
-  private app: Express;
+  private app: IApp;
   private authConfig: AuthConfig;
   private server: () => Promise<CommercetoolsAgentEssentials>;
   private transports: {[sessionId: string]: StreamableHTTPServerTransport} = {};
@@ -38,10 +38,11 @@ export default class CommercetoolsAgentEssentialsStreamable {
     /**
      * streambale endpoint
      */
-    this.app.post('/mcp', async (req: Request, res: Response) => {
+    this.app.post('/mcp', async (req, res) => {
       try {
         let transport: StreamableHTTPServerTransport;
-        const token = req.headers.authorization?.split(' ')[1] as string;
+        const authHeader = req.headers.authorization as string | undefined;
+        const token = authHeader?.split(' ')[1] as string;
         /**
          * if token already exists in the config,
          * use it else use header provided token
@@ -131,7 +132,7 @@ export default class CommercetoolsAgentEssentialsStreamable {
      * TODO:
      * decide on how to handle SSE requests
      */
-    this.app.get('/mcp', async (req: Request, res: Response) => {
+    this.app.get('/mcp', async (req, res) => {
       /* noop */
     });
   }
