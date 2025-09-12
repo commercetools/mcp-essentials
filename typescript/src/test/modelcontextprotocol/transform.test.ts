@@ -183,10 +183,29 @@ describe('transform', () => {
         },
       };
       const transformedData = transformData({data: testObj});
-      const expectedTransformedData = 'TODO';
+      const current = `Nest:
+- Test Bool1: No
+- Test Bool2: Yes
+- Nest2:
+ - Test Bool2: Yes
+ - Array1: Yes, No, string, No
+ - Array2:
+ - Test Bool1: Yes
+ - Test Bool2: No`;
 
-      // TODO
-      // expect(transformedData).toBe(expectedTransformedData);
+      const expectedTransformedData = `Nest:
+- Test Bool1: No
+- Test Bool2: Yes
+- Nest2:
+ - Test Bool2: Yes
+ - Array1: Yes, No, string, No
+ - Array2:
+  - 0:
+   - Test Bool1: Yes
+   - Test Bool2: No`;
+
+      console.log(transformedData);
+      expect(transformedData).toBe(expectedTransformedData);
     });
 
     test('transforms empty string values to key/value pair with "" as value', () => {
@@ -529,9 +548,17 @@ describe('transform', () => {
               {
                 prop1: 'prop1 obj4',
                 anotherNestedArray: [2, 6, 23, 63, 3, undefined],
-                anotherNestedObjArray: [{myProp: 4, myProp2: null}],
+                anotherNestedObjArray: [
+                  {myProp: 4, myProp2: null, arr: [{prop: true}]},
+                ],
               },
             ],
+          ],
+          matrixArray: [
+            [1, 2, 3, 4],
+            [1, 2, 3, 4],
+            [1, 2, 3, 4],
+            [1, 2, 3, 4],
           ],
           anotherProp: 'anotherProp',
         };
@@ -563,14 +590,37 @@ describe('transform', () => {
   0:
   - My Prop: 4
   - My Prop2: null
+  - Arr:
+   0
+   - Prop: Yes
+- Matrix Array:
+0: 1, 2, 3, 4
+1: 1, 2, 3, 4
+2: 1, 2, 3, 4
+3: 1, 2, 3, 4
 - Another Prop: anotherProp`;
 
+        console.log(transformedData);
         expect(transformedData).toBe(expectedTransformedData);
       });
 
       test('transforms objects with nested objects and arrays as expected', () => {
         const testObj = {
-          todo: 'todo',
+          myString: 'myString',
+          myBool: true,
+          myObject: {
+            myNestedString: 'myNestedString',
+            myNestedBool: false,
+            myNestedObj: {
+              myNestedObjString: 'myNestedObjString',
+              myNestedNestedObj: {myNestedNestedObjBool: true, func: () => {}},
+            },
+            myNestedEmptyObject: {},
+            myNestedObjectWithOnlyIgnoredTypes: {
+              und: undefined,
+              func: () => {},
+            },
+          },
         };
 
         const transformedData = transformData({
@@ -578,9 +628,19 @@ describe('transform', () => {
           data: testObj,
           format: 'tabular',
         });
-        const expectedTransformedData = 'TODO';
+        const expectedTransformedData = `Title Of Data:
+- My String: myString
+- My Bool: Yes
+- My Object:
+- My Nested String: myNestedString
+- My Nested Bool: No
+- My Nested Obj:
+ - My Nested Obj String: myNestedObjString
+ - My Nested Nested Obj:
+  - My Nested Nested Obj Bool: Yes
+- My Nested Empty Object: no properties
+- My Nested Object With Only Ignored Types: no properties`;
 
-        console.log(transformedData);
         expect(transformedData).toBe(expectedTransformedData);
       });
     });

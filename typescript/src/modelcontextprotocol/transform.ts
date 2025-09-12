@@ -70,21 +70,19 @@ const transformPropertyValue = (args: {
     }
     case 'object': {
       if (data === null) {
+        // handle null
         return 'null';
       }
       if (Array.isArray(data)) {
+        // handle array
         return transformArray({array: data, indentSpaces, format});
       }
-      // handle "typical" object
-      const transformedObject = transformObject({
+      // handle object/Record<string, any> (remaining possible condition)
+      return transformObject({
         object: data,
         indentSpaces,
         format,
       });
-      if (transformedObject === emptyObjectTransformValue) {
-        return transformedObject;
-      }
-      return `\n${transformedObject}`;
     }
     default:
       return null;
@@ -102,31 +100,56 @@ const transformObject = (args: {
     return emptyObjectTransformValue;
   }
 
-  let transformedObject = '';
+  let transformedObject = '\n';
 
   Object.keys(object).forEach((key) => {
-    if (
-      (typeof object[key] === 'object' && object[key] !== null) ||
-      Array.isArray(object[key])
-    ) {
-      // nested objects and arrays
-      transformedObject += `${indentSpaces}- ${transformPropertyName(key)}:`;
-      const isBasicArray = isArrayWithoutObjectsOrArrays(object[key]);
-      if (isBasicArray) {
-        transformedObject += ' ';
+    if (isObject(object[key]) || Array.isArray(object[key])) {
+      if (isObject(object[key])) {
+        // handle object properties
+        const transformedObjectValue = transformObject({
+          object: object[key],
+          indentSpaces: incrementIndent(indentSpaces),
+          format,
+        });
+        transformedObject += `${indentSpaces}- ${transformPropertyName(key)}:`;
+        if (transformedObjectValue === emptyObjectTransformValue) {
+          transformedObject += ' ';
+        }
+        transformedObject += `${transformedObjectValue}\n`;
+      } else {
+        // handle arrays
+        const isBasicArray = isArrayWithoutObjectsOrArrays(object[key]);
+        transformedObject += `${indentSpaces}- ${transformPropertyName(key)}:`;
+
+        if (isBasicArray) {
+          // add a space between key and value for nested basic arrays
+          transformedObject += ' ';
+        }
+        // handle arrays/objects
+        transformedObject +=
+          transformArray({
+            array: object[key],
+            indentSpaces: isBasicArray
+              ? indentSpaces
+              : incrementIndent(indentSpaces),
+            format,
+          }) + '\n';
       }
-      transformedObject += `${transformPropertyValue({data: object[key], indentSpaces: isBasicArray ? indentSpaces : incrementIndent(indentSpaces), format})}\n`;
     } else {
-      // basic type
+      // handle basic types
       if (!isPropertyTypeToBeIgnored(object[key])) {
-        transformedObject += `${indentSpaces}- ${transformPropertyName(key)}: ${transformPropertyValue({data: object[key], indentSpaces, format})}\n`;
+        transformedObject +=
+          `${indentSpaces}- ${transformPropertyName(key)}: ` +
+          `${transformPropertyValue({data: object[key], indentSpaces, format})}\n`;
       }
     }
   });
-
-  return transformedObject !== ''
-    ? transformedObject.substring(0, transformedObject.length - 1)
-    : emptyObjectTransformValue;
+  // if nothing was added to '\n' starting string then object had only properties which are ignored,
+  // so return emptyObjectTransformValue. Otherwise return the transformed object with the
+  // last \n removed
+  return transformedObject === '\n'
+    ? emptyObjectTransformValue
+    : transformedObject.substring(0, transformedObject.length - 1);
 };
 
 const transformArray = (args: {
@@ -140,10 +163,9 @@ const transformArray = (args: {
   if (array.length === 0) {
     return emptyArrayTransformValue;
   }
-  const isWithoutObjectsOrArrays = isArrayWithoutObjectsOrArrays(array);
 
-  // if array is of basic types only, format and return
-  if (isWithoutObjectsOrArrays) {
+  // if array is of basic types only, comma seperate and return as single line formatted string
+  if (isArrayWithoutObjectsOrArrays(array)) {
     const transformedArray = array.reduce((aggregate, currentItem) => {
       if (isPropertyTypeToBeIgnored(currentItem)) {
         return aggregate;
@@ -183,10 +205,10 @@ const transformArray = (args: {
     // TODO handle array of arrays for tabled format
   }
 
-  // As no prior conditions are met, this leaves arrays of arrays, and arrays with
+  // If no prior conditions are met, this leaves arrays of arrays, and arrays with
   // inconsistent contents. These are handled the same way, as this inconsistency is
   // incompatible with tabled format
-  return transformArrayOfConsistentObjectTypesToTabular({
+  return transformArraysOfArraysAndObjectsToTabular({
     array,
     indentSpaces,
     format,
@@ -201,21 +223,22 @@ const transformArrayOfConsistentObjectTypes = (args: {
 }): string => {
   const {array, propertyNames, indentSpaces, format} = args;
   if (format === 'tabled') {
-    return transformArrayOfConsistentObjectTypesToTables({
+    return transformArrayOfConsistentObjectTypesToTabled({
       array,
       propertyNames,
       indentSpaces,
       format,
     });
   }
-  return transformArrayOfConsistentObjectTypesToTabular({
+  // object/array consistency isn't important in tabular format
+  return transformArraysOfArraysAndObjectsToTabular({
     array,
     indentSpaces,
     format,
   });
 };
 
-const transformArrayOfConsistentObjectTypesToTables = (args: {
+const transformArrayOfConsistentObjectTypesToTabled = (args: {
   array: Record<string, any>[];
   propertyNames: string[];
   indentSpaces: string;
@@ -234,7 +257,7 @@ const transformArrayOfConsistentObjectTypesToTables = (args: {
   array.forEach((element) => {
     aggregatedArrayString += `\n|`;
     propertyNames.forEach((propName) => {
-      if (typeof element[propName] === 'object' && element[propName] !== null) {
+      if (isObject(element[propName])) {
         // TODO handle nested object/array
         aggregatedArrayString += `OBJECT OR ARRAY|`;
       } else {
@@ -250,7 +273,7 @@ const transformArrayOfConsistentObjectTypesToTables = (args: {
   return aggregatedArrayString;
 };
 
-const transformArrayOfConsistentObjectTypesToTabular = (args: {
+const transformArraysOfArraysAndObjectsToTabular = (args: {
   array: Array<any>;
   indentSpaces: string;
   format: Format;
@@ -259,15 +282,16 @@ const transformArrayOfConsistentObjectTypesToTabular = (args: {
 
   const transformedArray = array.reduce((aggregate, currentvalue) => {
     let stringValue = `\n${indentSpaces + aggregate.length}:`;
+
     if (
-      currentvalue === null ||
-      typeof currentvalue !== 'object' ||
+      !isObject(currentvalue) ||
       (Array.isArray(currentvalue) &&
         isArrayWithoutObjectsOrArrays(currentvalue))
     ) {
       stringValue += ' ';
     }
     if (Array.isArray(currentvalue)) {
+      //TODO debug here for failing tests
       stringValue += transformArray({
         array: currentvalue,
         indentSpaces: incrementIndent(indentSpaces),
@@ -296,15 +320,18 @@ const transformArrayOfConsistentObjectTypesToTabular = (args: {
   });
 };
 
+const isObject = (data: any): data is Record<string, any> =>
+  typeof data === 'object' && data !== null && !Array.isArray(data);
+
 const isArrayWithoutObjectsOrArrays = (
   array: Array<Record<string, any>>
 ): boolean => {
+  if (array.length === 1) {
+    return true;
+  }
   let hasObjectsOrArrays = false;
   for (let n = 0; n < array.length; n++) {
-    if (
-      (typeof array[n] === 'object' && array[n] !== null) ||
-      Array.isArray(array[n])
-    ) {
+    if (isObject(array[n]) || Array.isArray(array[n])) {
       hasObjectsOrArrays = true;
       n = array.length;
     }
@@ -315,7 +342,7 @@ const isArrayWithoutObjectsOrArrays = (
 const seperatePropertyQuantitiesWithinObjectArray = (
   array: Array<Record<string, any>>
 ): {propName: string; numberOfOccurances: number}[] | null => {
-  if (array.length === 1 && typeof array[0] === 'object' && array[0] !== null) {
+  if (array.length === 1 && isObject(array[0])) {
     return Object.keys(array).map((key) => ({
       propName: key,
       numberOfOccurances: 1,
@@ -326,7 +353,7 @@ const seperatePropertyQuantitiesWithinObjectArray = (
 
   for (let n = 0; n < array.length; n++) {
     // if any element is not an object, return null
-    if (typeof array[n] !== 'object' || array[n] === null) {
+    if (!isObject(array[0])) {
       n = array.length;
       return null;
     }
