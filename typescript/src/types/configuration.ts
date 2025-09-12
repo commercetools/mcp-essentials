@@ -34,7 +34,7 @@ export type Context = {
   businessUnitKey?: string;
   dynamicToolLoadingThreshold?: number;
   sessionId?: string;
-  mode?: string;
+  mode?: 'stateless' | 'stateful';
   logging?: boolean;
 };
 
