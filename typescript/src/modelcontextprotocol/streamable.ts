@@ -43,9 +43,9 @@ export default class CommercetoolsAgentEssentialsStreamable {
     this.app.post('/mcp', async (req, res) => {
       try {
         let transport: StreamableHTTPServerTransport;
+        let serverInstance = await this.getServer();
         const authHeader = req.headers.authorization as string | undefined;
         const token = authHeader?.split(' ')[1] as string;
-        const serverInstance = await this.getServer();
         /**
          * if token already exists in the config,
          * use it else use header provided token
@@ -89,6 +89,7 @@ export default class CommercetoolsAgentEssentialsStreamable {
                 this.transports[sessionId] = transport;
 
                 // connect server to the transport
+                serverInstance = await this.getServer(sessionId);
                 await serverInstance.connect(transport);
               },
             });
