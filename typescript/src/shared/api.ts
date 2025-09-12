@@ -47,9 +47,6 @@ class CommercetoolsAPI {
     const client = new ClientBuilder()
       .withHttpMiddleware(httpMiddlewareOptions)
       .withConcurrentModificationMiddleware()
-      // .withCorrelationIdMiddleware(
-      //   correlationId ? {generate: () => sessionId} : {}
-      // )
       .withCorrelationIdMiddleware()
       .withUserAgentMiddleware({
         libraryName: 'mcp-essentials',
