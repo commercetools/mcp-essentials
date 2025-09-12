@@ -55,6 +55,7 @@ describe('Product Type Tools', () => {
         actions: {'product-type': {read: true}},
         context: {
           isAdmin: true,
+          logging: false,
         },
       },
     });
@@ -90,6 +91,7 @@ describe('Product Type Tools', () => {
         actions: {'product-type': {create: true}},
         context: {
           isAdmin: true,
+          logging: false,
         },
       },
     });
@@ -123,6 +125,7 @@ describe('Product Type Tools', () => {
         actions: {'product-type': {update: true}},
         context: {
           isAdmin: true,
+          logging: false,
         },
       },
     });
@@ -156,6 +159,7 @@ describe('Product Type Tools', () => {
         actions: {'product-type': {read: true, create: true, update: true}},
         context: {
           isAdmin: true,
+          logging: false,
         },
       },
     });
@@ -191,6 +195,7 @@ describe('Product Type Tools', () => {
         context: {
           customerId: 'xxx',
           isAdmin: true,
+          logging: false,
         },
       },
     });

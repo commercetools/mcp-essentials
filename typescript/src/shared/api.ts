@@ -47,9 +47,24 @@ class CommercetoolsAPI {
     const client = new ClientBuilder()
       .withHttpMiddleware(httpMiddlewareOptions)
       .withConcurrentModificationMiddleware()
+      .withCorrelationIdMiddleware()
       .withUserAgentMiddleware({
         libraryName: 'mcp-essentials',
         libraryVersion: pkg.version,
+      })
+      .withLoggerMiddleware({
+        loggerFn: ({headers}) => {
+          const {sessionId, mode} = this.context;
+          // eslint-disable-next-line
+          this.context.logging &&
+            console.error(
+              JSON.stringify({
+                mode,
+                ...(mode == 'stateful' && {sessionId}),
+                correlationId: `${headers?.['x-correlation-id']}`,
+              })
+            );
+        },
       });
 
     if (this.authConfig.type === 'client_credentials') {

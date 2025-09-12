@@ -18,6 +18,7 @@ type Options = {
   storeKey?: string;
   businessUnitKey?: string;
   dynamicToolLoadingThreshold?: number;
+  logging?: boolean;
 };
 
 type EnvVars = {
@@ -29,6 +30,7 @@ type EnvVars = {
   remote?: boolean;
   stateless?: boolean;
   port?: number;
+  logging?: boolean;
   accessToken?: string;
   authType?: 'client_credentials' | 'auth_token';
 };
@@ -150,6 +152,8 @@ export function parseArgs(args: string[]): {options: Options; env: EnvVars} {
         options.isAdmin = value === 'true';
       } else if (key == 'dynamicToolLoadingThreshold') {
         options.dynamicToolLoadingThreshold = Number(value);
+      } else if (key == 'logging') {
+        options.logging = value == 'true';
       } else if (key == 'cartId') {
         options.cartId = value;
       } else if (key == 'storeKey') {
@@ -201,6 +205,7 @@ export function parseArgs(args: string[]): {options: Options; env: EnvVars} {
   env.apiUrl = env.apiUrl || process.env.API_URL;
 
   env.remote = env.remote || process.env.REMOTE == 'true';
+  env.logging = env.logging || process.env.LOGGING == 'true';
   env.stateless = env.stateless || process.env.STATELESS == 'true';
   env.port = env.port || Number(process.env.PORT);
 
@@ -209,6 +214,7 @@ export function parseArgs(args: string[]): {options: Options; env: EnvVars} {
   options.storeKey = options.storeKey || process.env.STORE_KEY;
   options.customerId = options.customerId || process.env.CUSTOMER_ID;
   options.isAdmin = options.isAdmin || process.env.IS_ADMIN === 'true';
+  options.logging = options.logging || process.env.LOGGING == 'true';
   options.dynamicToolLoadingThreshold =
     options.dynamicToolLoadingThreshold ||
     (process.env.DYNAMIC_TOOL_LOADING_THRESHOLD
@@ -298,6 +304,7 @@ export async function main() {
       cartId: options.cartId,
       storeKey: options.storeKey,
       businessUnitKey: options.businessUnitKey,
+      logging: options.logging,
     },
   };
 
@@ -353,6 +360,7 @@ export async function main() {
     const streamServer = new CommercetoolsAgentEssentialsStreamable({
       authConfig,
       configuration,
+      stateless: env.stateless,
       streamableHttpOptions: {
         sessionIdGenerator: undefined,
       },

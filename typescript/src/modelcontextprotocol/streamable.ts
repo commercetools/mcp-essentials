@@ -15,6 +15,7 @@ export default class CommercetoolsAgentEssentialsStreamable {
   private authConfig: AuthConfig;
   private server: () => Promise<CommercetoolsAgentEssentials>;
   private transports: {[sessionId: string]: StreamableHTTPServerTransport} = {};
+  private stateless: boolean;
 
   private configuration: Configuration;
 
@@ -30,6 +31,7 @@ export default class CommercetoolsAgentEssentialsStreamable {
     this.server = server!;
     this.authConfig = authConfig!;
     this.configuration = configuration!;
+    this.stateless = stateless;
 
     // initialize express app
     this.app = app ?? express();
@@ -43,6 +45,7 @@ export default class CommercetoolsAgentEssentialsStreamable {
         let transport: StreamableHTTPServerTransport;
         const authHeader = req.headers.authorization as string | undefined;
         const token = authHeader?.split(' ')[1] as string;
+        const serverInstance = await this.getServer();
         /**
          * if token already exists in the config,
          * use it else use header provided token
@@ -53,21 +56,21 @@ export default class CommercetoolsAgentEssentialsStreamable {
           accessToken: token || (this.authConfig as E)?.accessToken,
         } as E;
 
-        // if stateless then close each transport and server after use
         if (stateless) {
           transport = new StreamableHTTPServerTransport({
             ...streamableHttpOptions,
             sessionIdGenerator: undefined,
           });
 
+          // if stateless then close each transport and server after use
           res.on('close', async () => {
             // close the transport and server
             await transport.close();
-            await (await this.getServer()).close();
+            await serverInstance.close();
           });
 
           // connect server to the transport
-          await (await this.getServer()).connect(transport);
+          await serverInstance.connect(transport);
         } else {
           const sessionId = req.headers['mcp-session-id'] as string | undefined;
           if (sessionId && this.transports[sessionId]) {
@@ -81,9 +84,12 @@ export default class CommercetoolsAgentEssentialsStreamable {
 
             transport = new StreamableHTTPServerTransport({
               sessionIdGenerator: generator,
-              onsessioninitialized: (sessionId) => {
+              onsessioninitialized: async (sessionId) => {
                 // Store the transport by session ID
                 this.transports[sessionId] = transport;
+
+                // connect server to the transport
+                await serverInstance.connect(transport);
               },
             });
 
@@ -93,9 +99,6 @@ export default class CommercetoolsAgentEssentialsStreamable {
                 delete this.transports[transport.sessionId];
               }
             };
-
-            // connect server to the transport
-            await (await this.getServer()).connect(transport);
           } else {
             return res.status(400).json({
               jsonrpc: '2.0',
@@ -138,11 +141,18 @@ export default class CommercetoolsAgentEssentialsStreamable {
   }
 
   // eslint-disable-next-line require-await
-  private async getServer(): Promise<CommercetoolsAgentEssentials> {
+  private async getServer(id?: string): Promise<CommercetoolsAgentEssentials> {
     if (this.server) return this.server();
     return CommercetoolsAgentEssentials.create({
       authConfig: this.authConfig,
-      configuration: this.configuration,
+      configuration: {
+        ...this.configuration,
+        context: {
+          ...this.configuration.context,
+          mode: this.stateless ? 'stateless' : 'stateful',
+          sessionId: id,
+        },
+      },
     });
   }
 

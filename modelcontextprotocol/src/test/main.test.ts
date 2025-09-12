@@ -84,6 +84,81 @@ describe('main function', () => {
           storeKey: undefined,
           cartId: undefined,
           customerId: undefined,
+          logging: false,
+        },
+      },
+    });
+
+    expect(StdioServerTransport).toHaveBeenCalled();
+  });
+
+  it('should initialize the server with logging option (logging=false)', async () => {
+    process.argv = [
+      'node',
+      'index.js',
+      '--tools=products.read',
+      '--clientId=test_client_id',
+      '--clientSecret=test_client_secret',
+      '--authUrl=https://auth.commercetools.com',
+      '--projectKey=test_project',
+      '--apiUrl=https://api.commercetools.com',
+      '--isAdmin=true',
+      '--logging=false',
+    ];
+
+    await main();
+
+    expect(CommercetoolsAgentEssentials.create).toHaveBeenCalledWith({
+      authConfig: {
+        type: 'client_credentials',
+        clientId: 'test_client_id',
+        clientSecret: 'test_client_secret',
+        authUrl: 'https://auth.commercetools.com',
+        projectKey: 'test_project',
+        apiUrl: 'https://api.commercetools.com',
+      },
+      configuration: {
+        actions: {products: {read: true}},
+        context: {
+          isAdmin: true,
+          logging: false,
+        },
+      },
+    });
+
+    expect(StdioServerTransport).toHaveBeenCalled();
+  });
+
+  it('should initialize the server with logging option (logging=true)', async () => {
+    process.argv = [
+      'node',
+      'index.js',
+      '--tools=products.read',
+      '--clientId=test_client_id',
+      '--clientSecret=test_client_secret',
+      '--authUrl=https://auth.commercetools.com',
+      '--projectKey=test_project',
+      '--apiUrl=https://api.commercetools.com',
+      '--isAdmin=true',
+      '--logging=true',
+    ];
+
+    await main();
+
+    expect(CommercetoolsAgentEssentials.create).toHaveBeenCalledWith({
+      authConfig: {
+        type: 'client_credentials',
+        clientId: 'test_client_id',
+        clientSecret: 'test_client_secret',
+        authUrl: 'https://auth.commercetools.com',
+        projectKey: 'test_project',
+        apiUrl: 'https://api.commercetools.com',
+      },
+      configuration: {
+        actions: {products: {read: true}},
+        context: {
+          isAdmin: true,
+          logging: true,
         },
       },
     });
@@ -119,6 +194,7 @@ describe('main function', () => {
         actions: {products: {read: true}},
         context: {
           isAdmin: true,
+          logging: false,
         },
       },
     });
@@ -154,6 +230,7 @@ describe('main function', () => {
         actions: {products: {create: true}},
         context: {
           isAdmin: true,
+          logging: false,
         },
       },
     });
@@ -189,6 +266,7 @@ describe('main function', () => {
         actions: {products: {update: true}},
         context: {
           isAdmin: true,
+          logging: false,
         },
       },
     });
@@ -224,6 +302,7 @@ describe('main function', () => {
         actions: {project: {read: true}},
         context: {
           isAdmin: true,
+          logging: false,
         },
       },
     });
@@ -259,6 +338,7 @@ describe('main function', () => {
         actions: {'product-search': {read: true}},
         context: {
           isAdmin: true,
+          logging: false,
         },
       },
     });
@@ -294,6 +374,7 @@ describe('main function', () => {
         actions: {category: {read: true}},
         context: {
           isAdmin: true,
+          logging: false,
         },
       },
     });
@@ -329,6 +410,7 @@ describe('main function', () => {
         actions: {category: {create: true}},
         context: {
           isAdmin: true,
+          logging: false,
         },
       },
     });
@@ -364,6 +446,7 @@ describe('main function', () => {
         actions: {category: {update: true}},
         context: {
           isAdmin: true,
+          logging: false,
         },
       },
     });
@@ -399,6 +482,7 @@ describe('main function', () => {
         actions: {'product-selection': {read: true}},
         context: {
           isAdmin: true,
+          logging: false,
         },
       },
     });
@@ -434,6 +518,7 @@ describe('main function', () => {
         actions: {'product-selection': {create: true}},
         context: {
           isAdmin: true,
+          logging: false,
         },
       },
     });
@@ -469,6 +554,7 @@ describe('main function', () => {
         actions: {'product-selection': {update: true}},
         context: {
           isAdmin: true,
+          logging: false,
         },
       },
     });
@@ -504,6 +590,7 @@ describe('main function', () => {
         actions: {order: {read: true}},
         context: {
           isAdmin: true,
+          logging: false,
         },
       },
     });
@@ -539,6 +626,7 @@ describe('main function', () => {
         actions: {order: {create: true}},
         context: {
           isAdmin: true,
+          logging: false,
         },
       },
     });
@@ -574,6 +662,7 @@ describe('main function', () => {
         actions: {order: {update: true}},
         context: {
           isAdmin: true,
+          logging: false,
         },
       },
     });
@@ -609,6 +698,7 @@ describe('main function', () => {
         actions: {cart: {read: true}},
         context: {
           isAdmin: true,
+          logging: false,
         },
       },
     });
@@ -644,6 +734,7 @@ describe('main function', () => {
         actions: {cart: {create: true}},
         context: {
           isAdmin: true,
+          logging: false,
         },
       },
     });
@@ -679,6 +770,7 @@ describe('main function', () => {
         actions: {cart: {update: true}},
         context: {
           isAdmin: true,
+          logging: false,
         },
       },
     });
@@ -714,6 +806,7 @@ describe('main function', () => {
         actions: {customer: {create: true}},
         context: {
           isAdmin: true,
+          logging: false,
         },
       },
     });
@@ -749,6 +842,7 @@ describe('main function', () => {
         actions: {customer: {read: true}},
         context: {
           isAdmin: true,
+          logging: false,
         },
       },
     });
@@ -784,6 +878,7 @@ describe('main function', () => {
         actions: {customer: {update: true}},
         context: {
           isAdmin: true,
+          logging: false,
         },
       },
     });
@@ -819,6 +914,7 @@ describe('main function', () => {
         actions: {'customer-group': {read: true}},
         context: {
           isAdmin: true,
+          logging: false,
         },
       },
     });
@@ -854,6 +950,7 @@ describe('main function', () => {
         actions: {'customer-group': {create: true}},
         context: {
           isAdmin: true,
+          logging: false,
         },
       },
     });
@@ -889,6 +986,7 @@ describe('main function', () => {
         actions: {'customer-group': {update: true}},
         context: {
           isAdmin: true,
+          logging: false,
         },
       },
     });
@@ -924,6 +1022,7 @@ describe('main function', () => {
         actions: {'standalone-price': {read: true}},
         context: {
           isAdmin: true,
+          logging: false,
         },
       },
     });
@@ -959,6 +1058,7 @@ describe('main function', () => {
         actions: {'standalone-price': {create: true}},
         context: {
           isAdmin: true,
+          logging: false,
         },
       },
     });
@@ -994,6 +1094,7 @@ describe('main function', () => {
         actions: {'standalone-price': {update: true}},
         context: {
           isAdmin: true,
+          logging: false,
         },
       },
     });
@@ -1029,6 +1130,7 @@ describe('main function', () => {
         actions: {'product-discount': {read: true}},
         context: {
           isAdmin: true,
+          logging: false,
         },
       },
     });
@@ -1064,6 +1166,7 @@ describe('main function', () => {
         actions: {'product-discount': {create: true}},
         context: {
           isAdmin: true,
+          logging: false,
         },
       },
     });
@@ -1099,6 +1202,7 @@ describe('main function', () => {
         actions: {'product-discount': {update: true}},
         context: {
           isAdmin: true,
+          logging: false,
         },
       },
     });
@@ -1134,6 +1238,7 @@ describe('main function', () => {
         actions: {'cart-discount': {read: true}},
         context: {
           isAdmin: true,
+          logging: false,
         },
       },
     });
@@ -1169,6 +1274,7 @@ describe('main function', () => {
         actions: {'cart-discount': {create: true}},
         context: {
           isAdmin: true,
+          logging: false,
         },
       },
     });
@@ -1204,6 +1310,7 @@ describe('main function', () => {
         actions: {'cart-discount': {update: true}},
         context: {
           isAdmin: true,
+          logging: false,
         },
       },
     });
@@ -1239,6 +1346,7 @@ describe('main function', () => {
         actions: {'discount-code': {read: true}},
         context: {
           isAdmin: true,
+          logging: false,
         },
       },
     });
@@ -1274,6 +1382,7 @@ describe('main function', () => {
         actions: {'discount-code': {create: true}},
         context: {
           isAdmin: true,
+          logging: false,
         },
       },
     });
@@ -1309,6 +1418,7 @@ describe('main function', () => {
         actions: {'discount-code': {update: true}},
         context: {
           isAdmin: true,
+          logging: false,
         },
       },
     });
@@ -1344,6 +1454,7 @@ describe('main function', () => {
         actions: {bulk: {create: true}},
         context: {
           isAdmin: true,
+          logging: false,
         },
       },
     });
@@ -1379,6 +1490,7 @@ describe('main function', () => {
         actions: {bulk: {update: true}},
         context: {
           isAdmin: true,
+          logging: false,
         },
       },
     });
@@ -1414,6 +1526,7 @@ describe('main function', () => {
         actions: {inventory: {read: true}},
         context: {
           isAdmin: true,
+          logging: false,
         },
       },
     });
@@ -1449,6 +1562,7 @@ describe('main function', () => {
         actions: {inventory: {create: true}},
         context: {
           isAdmin: true,
+          logging: false,
         },
       },
     });
@@ -1484,6 +1598,7 @@ describe('main function', () => {
         actions: {inventory: {update: true}},
         context: {
           isAdmin: true,
+          logging: false,
         },
       },
     });
@@ -1519,6 +1634,7 @@ describe('main function', () => {
         actions: {store: {read: true}},
         context: {
           isAdmin: true,
+          logging: false,
         },
       },
     });
@@ -1554,6 +1670,7 @@ describe('main function', () => {
         actions: {store: {create: true}},
         context: {
           isAdmin: true,
+          logging: false,
         },
       },
     });
@@ -1589,6 +1706,7 @@ describe('main function', () => {
         actions: {store: {update: true}},
         context: {
           isAdmin: true,
+          logging: false,
         },
       },
     });
@@ -1624,6 +1742,7 @@ describe('main function', () => {
         actions: {quote: {read: true}},
         context: {
           isAdmin: true,
+          logging: false,
         },
       },
     });
@@ -1659,6 +1778,7 @@ describe('main function', () => {
         actions: {quote: {create: true}},
         context: {
           isAdmin: true,
+          logging: false,
         },
       },
     });
@@ -1694,6 +1814,7 @@ describe('main function', () => {
         actions: {quote: {update: true}},
         context: {
           isAdmin: true,
+          logging: false,
         },
       },
     });
@@ -1729,6 +1850,7 @@ describe('main function', () => {
         actions: {'staged-quote': {read: true}},
         context: {
           isAdmin: true,
+          logging: false,
         },
       },
     });
@@ -1764,6 +1886,7 @@ describe('main function', () => {
         actions: {'staged-quote': {create: true}},
         context: {
           isAdmin: true,
+          logging: false,
         },
       },
     });
@@ -1799,6 +1922,7 @@ describe('main function', () => {
         actions: {'staged-quote': {update: true}},
         context: {
           isAdmin: true,
+          logging: false,
         },
       },
     });
@@ -1841,6 +1965,7 @@ describe('main function', () => {
         context: {
           customerId: 'xxx',
           isAdmin: true,
+          logging: false,
           businessUnitKey: 'yyy',
         },
       },
@@ -1899,6 +2024,7 @@ describe('main function', () => {
           actions: {products: {read: true}},
           context: {
             isAdmin: true,
+            logging: false,
           },
         },
       });
@@ -1935,6 +2061,7 @@ describe('main function', () => {
         actions: {products: {read: true}},
         context: {
           isAdmin: true,
+          logging: false,
         },
       },
     });
@@ -2010,6 +2137,7 @@ describe('main function', () => {
             actions: {products: {read: true}},
             context: {
               isAdmin: true,
+              logging: false,
             },
           },
         });
@@ -2066,6 +2194,7 @@ describe('main function', () => {
           actions: {products: {read: true}},
           context: {
             isAdmin: true,
+            logging: false,
           },
         },
       });
