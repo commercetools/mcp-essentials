@@ -80,7 +80,7 @@ const transformPropertyValue = (args: {
       // handle object/Record<string, any> (remaining possible condition)
       return transformObject({
         object: data,
-        indentSpaces,
+        indentSpaces: indentSpaces,
         format,
       });
     }
@@ -111,7 +111,7 @@ const transformObject = (args: {
           indentSpaces: incrementIndent(indentSpaces),
           format,
         });
-        transformedObject += `${indentSpaces}- ${transformPropertyName(key)}:`;
+        transformedObject += `${incrementIndent(indentSpaces)}- ${transformPropertyName(key)}:`;
         if (transformedObjectValue === emptyObjectTransformValue) {
           transformedObject += ' ';
         }
@@ -326,7 +326,7 @@ const isObject = (data: any): data is Record<string, any> =>
 const isArrayWithoutObjectsOrArrays = (
   array: Array<Record<string, any>>
 ): boolean => {
-  if (array.length === 1) {
+  if (array?.length === 0) {
     return true;
   }
   let hasObjectsOrArrays = false;
