@@ -167,10 +167,10 @@ describe('transform', () => {
 
     test('transforms boolean type values to Yes/No in nested objects and arrays', () => {
       const testObj = {
-        nest: {
+        obj: {
           testBool1: false,
           testBool2: true,
-          nest2: {
+          nest: {
             testBool2: true,
             array1: [true, false, 'string', false],
             array2: [
@@ -184,18 +184,17 @@ describe('transform', () => {
       };
       const transformedData = transformData({data: testObj});
 
-      const expectedTransformedData = `Nest:
+      const expectedTransformedData = `Obj:
 - Test Bool1: No
 - Test Bool2: Yes
-- Nest2:
+- Nest:
  - Test Bool2: Yes
  - Array1: Yes, No, string, No
  - Array2:
-  - 0:
-   - Test Bool1: Yes
-   - Test Bool2: No`;
+  0:
+  - Test Bool1: Yes
+  - Test Bool2: No`;
 
-      console.log(transformedData);
       expect(transformedData).toBe(expectedTransformedData);
     });
 
@@ -470,7 +469,6 @@ describe('transform', () => {
         const expectedTransformedData = `TODO`;
 
         // TODO
-        // console.log(transformedData);
         // expect(transformedData).toBe(expectedTransformedData);
       });
     });
@@ -591,7 +589,6 @@ describe('transform', () => {
 3: 1, 2, 3, 4
 - Another Prop: anotherProp`;
 
-        console.log(transformedData);
         expect(transformedData).toBe(expectedTransformedData);
       });
 
