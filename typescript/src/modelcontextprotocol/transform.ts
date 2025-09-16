@@ -111,7 +111,7 @@ const transformObject = (args: {
           indentSpaces: incrementIndent(indentSpaces),
           format,
         });
-        transformedObject += `${incrementIndent(indentSpaces)}- ${transformPropertyName(key)}:`;
+        transformedObject += `${indentSpaces}- ${transformPropertyName(key)}:`;
         if (transformedObjectValue === emptyObjectTransformValue) {
           transformedObject += ' ';
         }
