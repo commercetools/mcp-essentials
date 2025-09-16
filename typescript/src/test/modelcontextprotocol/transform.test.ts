@@ -183,15 +183,6 @@ describe('transform', () => {
         },
       };
       const transformedData = transformData({data: testObj});
-      const current = `Nest:
-- Test Bool1: No
-- Test Bool2: Yes
-- Nest2:
- - Test Bool2: Yes
- - Array1: Yes, No, string, No
- - Array2:
- - Test Bool1: Yes
- - Test Bool2: No`;
 
       const expectedTransformedData = `Nest:
 - Test Bool1: No
@@ -591,7 +582,7 @@ describe('transform', () => {
   - My Prop: 4
   - My Prop2: null
   - Arr:
-   0
+   0:
    - Prop: Yes
 - Matrix Array:
 0: 1, 2, 3, 4
@@ -632,14 +623,14 @@ describe('transform', () => {
 - My String: myString
 - My Bool: Yes
 - My Object:
-- My Nested String: myNestedString
-- My Nested Bool: No
-- My Nested Obj:
- - My Nested Obj String: myNestedObjString
- - My Nested Nested Obj:
-  - My Nested Nested Obj Bool: Yes
-- My Nested Empty Object: no properties
-- My Nested Object With Only Ignored Types: no properties`;
+ - My Nested String: myNestedString
+ - My Nested Bool: No
+ - My Nested Obj:
+  - My Nested Obj String: myNestedObjString
+  - My Nested Nested Obj:
+   - My Nested Nested Obj Bool: Yes
+ - My Nested Empty Object: no properties
+ - My Nested Object With Only Ignored Types: no properties`;
 
         expect(transformedData).toBe(expectedTransformedData);
       });
