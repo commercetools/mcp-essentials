@@ -18,6 +18,35 @@ export const searchProductsParameters = z.object({
           .enum(['min', 'max'])
           .optional()
           .describe('The sorting mode for multi-valued fields'),
+        fieldType: z
+          .enum([
+            'boolean',
+            'text',
+            'ltext',
+            'enum',
+            'lenum',
+            'number',
+            'money',
+            'date',
+            'datetime',
+            'time',
+            'reference',
+            'set_boolean',
+            'set_text',
+            'set_ltext',
+            'set_enum',
+            'set_lenum',
+            'set_number',
+            'set_money',
+            'set_date',
+            'set_datetime',
+            'set_time',
+            'set_reference',
+          ])
+          .optional()
+          .describe(
+            'The data type of the field. Must be provided when field is a non-standard field on a resource, like a Product Attribute'
+          ),
       })
     )
     .optional()
