@@ -343,7 +343,7 @@ const seperatePropertyQuantitiesWithinObjectArray = (
   array: Array<Record<string, any>>
 ): {propName: string; numberOfOccurances: number}[] | null => {
   if (array.length === 1 && isObject(array[0])) {
-    return Object.keys(array).map((key) => ({
+    return Object.keys(array[0]).map((key) => ({
       propName: key,
       numberOfOccurances: 1,
     }));
@@ -353,7 +353,7 @@ const seperatePropertyQuantitiesWithinObjectArray = (
 
   for (let n = 0; n < array.length; n++) {
     // if any element is not an object, return null
-    if (!isObject(array[0])) {
+    if (!isObject(array[n])) {
       n = array.length;
       return null;
     }
