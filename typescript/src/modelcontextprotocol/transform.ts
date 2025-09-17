@@ -280,26 +280,27 @@ const transformArraysOfArraysAndObjectsToTabular = (args: {
 }): string => {
   const {array, indentSpaces, format} = args;
 
-  const transformedArray = array.reduce((aggregate, currentvalue) => {
+  const transformedArray = array.reduce((aggregate, currentValue) => {
     let stringValue = `\n${indentSpaces + aggregate.length}:`;
 
     if (
-      !isObject(currentvalue) ||
-      (Array.isArray(currentvalue) &&
-        isArrayWithoutObjectsOrArrays(currentvalue))
+      !isObject(currentValue) ||
+      (Array.isArray(currentValue) &&
+        isArrayWithoutObjectsOrArrays(currentValue))
     ) {
+      // TODO debug here for failing tests
       stringValue += ' ';
     }
-    if (Array.isArray(currentvalue)) {
-      //TODO debug here for failing tests
+
+    if (Array.isArray(currentValue)) {
       stringValue += transformArray({
-        array: currentvalue,
+        array: currentValue,
         indentSpaces: incrementIndent(indentSpaces),
         format,
       });
     } else {
       const transformedValue = transformPropertyValue({
-        data: currentvalue,
+        data: currentValue,
         indentSpaces,
         format,
       });
@@ -329,14 +330,14 @@ const isArrayWithoutObjectsOrArrays = (
   if (array?.length === 0) {
     return true;
   }
-  let hasObjectsOrArrays = false;
+  let containsObjectsOrArrays = false;
   for (let n = 0; n < array.length; n++) {
     if (isObject(array[n]) || Array.isArray(array[n])) {
-      hasObjectsOrArrays = true;
+      containsObjectsOrArrays = true;
       n = array.length;
     }
   }
-  return !hasObjectsOrArrays;
+  return !containsObjectsOrArrays;
 };
 
 const seperatePropertyQuantitiesWithinObjectArray = (
