@@ -284,11 +284,10 @@ const transformArraysOfArraysAndObjectsToTabular = (args: {
     let stringValue = `\n${indentSpaces + aggregate.length}:`;
 
     if (
-      !isObject(currentValue) ||
+      (!isObject(currentValue) && !Array.isArray(currentValue)) ||
       (Array.isArray(currentValue) &&
         isArrayWithoutObjectsOrArrays(currentValue))
     ) {
-      // TODO debug here for failing tests
       stringValue += ' ';
     }
 
@@ -397,7 +396,7 @@ const isArrayOfArrays = (array: Array<Record<string, any>>): boolean => {
       n = array.length;
     }
   }
-  return hasValuesOtherThanArrays;
+  return !hasValuesOtherThanArrays;
 };
 
 const isPropertyTypeToBeIgnored = (data: any): boolean =>
