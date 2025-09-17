@@ -320,25 +320,6 @@ const transformArraysOfArraysAndObjectsToTabular = (args: {
   });
 };
 
-const isObject = (data: any): data is Record<string, any> =>
-  typeof data === 'object' && data !== null && !Array.isArray(data);
-
-const isArrayWithoutObjectsOrArrays = (
-  array: Array<Record<string, any>>
-): boolean => {
-  if (array?.length === 0) {
-    return true;
-  }
-  let containsObjectsOrArrays = false;
-  for (let n = 0; n < array.length; n++) {
-    if (isObject(array[n]) || Array.isArray(array[n])) {
-      containsObjectsOrArrays = true;
-      n = array.length;
-    }
-  }
-  return !containsObjectsOrArrays;
-};
-
 const seperatePropertyQuantitiesWithinObjectArray = (
   array: Array<Record<string, any>>
 ): {propName: string; numberOfOccurances: number}[] | null => {
@@ -389,15 +370,37 @@ const isArrayWithConsistentObjectProperties = (
 };
 
 const isArrayOfArrays = (array: Array<Record<string, any>>): boolean => {
-  let hasValuesOtherThanArrays = false;
+  if (array?.length === 0) {
+    return false;
+  }
+  let isArrayArray = true;
   for (let n = 0; n < array.length; n++) {
     if (!Array.isArray(array[n])) {
-      hasValuesOtherThanArrays = true;
+      isArrayArray = false;
       n = array.length;
     }
   }
-  return !hasValuesOtherThanArrays;
+  return isArrayArray;
 };
+
+const isArrayWithoutObjectsOrArrays = (
+  array: Array<Record<string, any>>
+): boolean => {
+  if (array?.length === 0) {
+    return true;
+  }
+  let hasNoObjectsOrArrays = true;
+  for (let n = 0; n < array.length; n++) {
+    if (isObject(array[n]) || Array.isArray(array[n])) {
+      hasNoObjectsOrArrays = false;
+      n = array.length;
+    }
+  }
+  return hasNoObjectsOrArrays;
+};
+
+const isObject = (data: any): data is Record<string, any> =>
+  typeof data === 'object' && data !== null && !Array.isArray(data);
 
 const isPropertyTypeToBeIgnored = (data: any): boolean =>
   typeof data === 'undefined' || typeof data === 'function';
