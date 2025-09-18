@@ -13,7 +13,7 @@ import {ExistingTokenAuth as E} from '../types/auth';
 export default class CommercetoolsAgentEssentialsStreamable {
   private app: IApp;
   private authConfig: AuthConfig;
-  private server: (sessionId?: string) => Promise<CommercetoolsAgentEssentials>;
+  private server: () => Promise<CommercetoolsAgentEssentials>;
   private transports: {[sessionId: string]: StreamableHTTPServerTransport} = {};
   private stateless: boolean;
 
@@ -143,7 +143,7 @@ export default class CommercetoolsAgentEssentialsStreamable {
 
   // eslint-disable-next-line require-await
   private async getServer(id?: string): Promise<CommercetoolsAgentEssentials> {
-    if (this.server) return this.server(id);
+    if (this.server) return this.server();
     return CommercetoolsAgentEssentials.create({
       authConfig: this.authConfig,
       configuration: {

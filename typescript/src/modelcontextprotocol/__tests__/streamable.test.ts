@@ -371,23 +371,6 @@ describe('CommercetoolsAgentEssentialsStreamable', () => {
       expect(result).toBe(mockCommercetoolsServer);
     });
 
-    test('should call provided server with the sessionId', async () => {
-      const _mockServer = jest
-        .fn()
-        .mockImplementation((sessionId: string) => mockServer);
-      const instance = new CommercetoolsAgentEssentialsStreamable({
-        authConfig: mockAuthConfig,
-        configuration: mockConfiguration,
-        server: _mockServer,
-      } as any);
-
-      const sessionId = 'test-session-id';
-      await (instance as any).getServer(sessionId);
-
-      expect(_mockServer).toHaveBeenCalled();
-      expect(_mockServer).toHaveBeenCalledWith(sessionId);
-    });
-
     test('should return provided server with session ID', async () => {
       const instance = new CommercetoolsAgentEssentialsStreamable({
         authConfig: mockAuthConfig,

@@ -74,7 +74,7 @@ export interface IApp {
 type IWithServerInstance = {
   authConfig?: AuthConfig;
   configuration?: Configuration;
-  server: (sessionId?: string) => Promise<CommercetoolsAgentEssentials>;
+  server: () => Promise<CommercetoolsAgentEssentials>;
   stateless?: boolean;
   streamableHttpOptions: StreamableHTTPServerTransportOptions;
   app?: IApp;
