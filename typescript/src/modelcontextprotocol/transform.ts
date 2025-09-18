@@ -26,15 +26,16 @@ export const transformData = (args: {
       }
       transformedData += `${transformPropertyName(key)}:`;
       if (
-        (Array.isArray(data[key]) &&
-          isArrayWithoutObjectsOrArrays(data[key])) ||
         typeof data[key] !== 'object' ||
+        transformedValue === 'null' ||
+        isArrayWithoutObjectsOrArrays(data[key]) ||
         transformedValue === emptyObjectTransformValue ||
-        transformedValue === emptyArrayTransformValue ||
-        transformedValue === 'null'
+        transformedValue === emptyArrayTransformValue
       ) {
-        // add a space between the key and value if property type is not array/object, or empty
-        // array/object, or array with only basic types
+        // add a space between the key and value if property type is not object,
+        // value is not null, is array with only basic types that'll sit on one
+        // line, or an empty object/array - the transform value of which will sit
+        // on one line
         transformedData += ' ';
       }
       transformedData += `${transformedValue}\n`;
@@ -125,7 +126,6 @@ const transformObject = (args: {
           // add a space between key and value for nested basic arrays
           transformedObject += ' ';
         }
-        // handle arrays/objects
         transformedObject +=
           transformArray({
             array: object[key],
@@ -285,8 +285,7 @@ const transformArraysOfArraysAndObjectsToTabular = (args: {
 
     if (
       (!isObject(currentValue) && !Array.isArray(currentValue)) ||
-      (Array.isArray(currentValue) &&
-        isArrayWithoutObjectsOrArrays(currentValue))
+      isArrayWithoutObjectsOrArrays(currentValue)
     ) {
       stringValue += ' ';
     }
@@ -383,17 +382,18 @@ const isArrayOfArrays = (array: Array<Record<string, any>>): boolean => {
   return isArrayArray;
 };
 
-const isArrayWithoutObjectsOrArrays = (
-  array: Array<Record<string, any>>
-): boolean => {
-  if (array?.length === 0) {
+const isArrayWithoutObjectsOrArrays = (data: any): boolean => {
+  if (!Array.isArray(data)) {
+    return false;
+  }
+  if (data.length === 0) {
     return true;
   }
   let hasNoObjectsOrArrays = true;
-  for (let n = 0; n < array.length; n++) {
-    if (isObject(array[n]) || Array.isArray(array[n])) {
+  for (let n = 0; n < data.length; n++) {
+    if (isObject(data[n]) || Array.isArray(data[n])) {
       hasNoObjectsOrArrays = false;
-      n = array.length;
+      n = data.length;
     }
   }
   return hasNoObjectsOrArrays;
