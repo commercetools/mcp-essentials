@@ -1,5 +1,20 @@
 # @commercetools/mcp-essentials
 
+## 2.3.0
+
+### Minor Changes
+
+- [#31](https://github.com/commercetools/mcp-essentials/pull/31) [`e21e319`](https://github.com/commercetools/mcp-essentials/commit/e21e3193baa3a2d83eafcea22d5c9181d8fea2f1) Thanks [@ajimae](https://github.com/ajimae)! - [Feat][MCP-8] Improve Tracing in MCP Server
+
+- [#34](https://github.com/commercetools/mcp-essentials/pull/34) [`7736450`](https://github.com/commercetools/mcp-essentials/commit/773645010a8006b5f952fbbbc0c729d95ab45c4f) Thanks [@martinw-ct](https://github.com/martinw-ct)! - Added [fieldType](https://docs.commercetools.com/api/search-query-language#ctp:api:type:SearchFieldType) to search_products
+
+  Necessary when sorting by attributes to avoid errors like: `SDKError: Failed to search products Field [variants.attributes.weight]: Type is missing`
+
+### Patch Changes
+
+- Updated dependencies [[`a82601b`](https://github.com/commercetools/mcp-essentials/commit/a82601b8ffe345d83db0c9d93bb70c411ba89f3d), [`e21e319`](https://github.com/commercetools/mcp-essentials/commit/e21e3193baa3a2d83eafcea22d5c9181d8fea2f1), [`1971f11`](https://github.com/commercetools/mcp-essentials/commit/1971f11cc5a5a702c055615e2804ccf4d996e08c), [`7736450`](https://github.com/commercetools/mcp-essentials/commit/773645010a8006b5f952fbbbc0c729d95ab45c4f)]:
+  - @commercetools/agent-essentials@3.3.0
+
 ## 2.2.1
 
 ### Patch Changes
