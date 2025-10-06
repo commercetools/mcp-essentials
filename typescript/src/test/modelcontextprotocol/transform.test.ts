@@ -3,6 +3,7 @@ import {complexObject} from './transform.mock-data';
 
 const emptyObjectTransformValue = 'no properties';
 const emptyArrayTransformValue = 'none';
+const indent = ' ';
 
 describe('transform', () => {
   describe('transformPropertyName', () => {
@@ -188,12 +189,12 @@ describe('transform', () => {
 - Test Bool1: No
 - Test Bool2: Yes
 - Nest:
- - Test Bool2: Yes
- - Array1: Yes, No, string, No
- - Array2:
-  0:
-  - Test Bool1: Yes
-  - Test Bool2: No`;
+${indent}- Test Bool2: Yes
+${indent}- Array1: Yes, No, string, No
+${indent}- Array2:
+${indent}${indent}0:
+${indent}${indent}- Test Bool1: Yes
+${indent}${indent}- Test Bool2: No`;
 
       expect(transformedData).toBe(expectedTransformedData);
     });
@@ -323,14 +324,14 @@ describe('transform', () => {
 2: some string
 3: null
 4:
- 0: Yes
- 1: test
- 2:
-  0: Yes
-  1:
-  - Prop: string
- 3:
- - Some Prop: What's a data structure?
+${indent}0: Yes
+${indent}1: test
+${indent}2:
+${indent}${indent}0: Yes
+${indent}${indent}1:
+${indent}${indent}- Prop: string
+${indent}3:
+${indent}- Some Prop: What's a data structure?
 5: Some other string`;
 
       expect(transformedData).toBe(expectedTransformedData);
@@ -563,25 +564,25 @@ describe('transform', () => {
 0: 0, 2, 45, 345
 1: ${emptyArrayTransformValue}
 2:
- 0:
- - Prop1: prop1
- - Prop2: 11111
- 1:
- - Prop1: prop1 obj2
- - Prop2: 22222
- 2:
- - Prop1: prop1 obj3
- - Prop2: 33333
- 3:
- - Prop1: prop1 obj4
- - Another Nested Array: 2, 6, 23, 63, 3
- - Another Nested Obj Array:
-  0:
-  - My Prop: 4
-  - My Prop2: null
-  - Arr:
-   0:
-   - Prop: Yes
+${indent}0:
+${indent}- Prop1: prop1
+${indent}- Prop2: 11111
+${indent}1:
+${indent}- Prop1: prop1 obj2
+${indent}- Prop2: 22222
+${indent}2:
+${indent}- Prop1: prop1 obj3
+${indent}- Prop2: 33333
+${indent}3:
+${indent}- Prop1: prop1 obj4
+${indent}- Another Nested Array: 2, 6, 23, 63, 3
+${indent}- Another Nested Obj Array:
+${indent}${indent}0:
+${indent}${indent}- My Prop: 4
+${indent}${indent}- My Prop2: null
+${indent}${indent}- Arr:
+${indent}${indent}${indent}0:
+${indent}${indent}${indent}- Prop: Yes
 - Matrix Array:
 0: 1, 2, 3, 4
 1: 1, 2, 3, 4
@@ -620,14 +621,14 @@ describe('transform', () => {
 - My String: myString
 - My Bool: Yes
 - My Object:
- - My Nested String: myNestedString
- - My Nested Bool: No
- - My Nested Obj:
-  - My Nested Obj String: myNestedObjString
-  - My Nested Nested Obj:
-   - My Nested Nested Obj Bool: Yes
- - My Nested Empty Object: no properties
- - My Nested Object With Only Ignored Types: no properties`;
+${indent}- My Nested String: myNestedString
+${indent}- My Nested Bool: No
+${indent}- My Nested Obj:
+${indent}${indent}- My Nested Obj String: myNestedObjString
+${indent}${indent}- My Nested Nested Obj:
+${indent}${indent}${indent}- My Nested Nested Obj Bool: Yes
+${indent}- My Nested Empty Object: no properties
+${indent}- My Nested Object With Only Ignored Types: no properties`;
 
         expect(transformedData).toBe(expectedTransformedData);
       });
