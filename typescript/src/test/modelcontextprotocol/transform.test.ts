@@ -83,18 +83,6 @@ describe('transform', () => {
       const actualOutput = transformData({data: edgeCase});
       expect(actualOutput).toBe(expectedOutput);
     });
-
-    test('removes and handles duplicated property names after transformation', () => {
-      const testObj = {
-        testNull: null,
-      };
-
-      const transformedData = transformData({data: testObj});
-      const expectedTransformedData = `TODO`;
-
-      // TODO
-      // expect(transformedData).toBe(expectedTransformedData);
-    });
   });
 
   describe('transformData', () => {
@@ -451,27 +439,27 @@ ${indent}- Some Prop: What's a data structure?
         expect(transformedData).toBe(expectedTransformedData);
       });
 
-      test('transforms arrays of arrays as expected', () => {
-        const testObj = {
-          facets: complexObject.facets,
-        };
+      // TODO
+      // test('transforms arrays of arrays as expected', () => {
+      //   const testObj = {
+      //     facets: complexObject.facets,
+      //   };
 
-        const transformedData = transformData({data: testObj});
-        const expectedTransformedData = `Facets: TODO`;
+      //   const transformedData = transformData({data: testObj});
+      //   const expectedTransformedData = `Facets: TODO`;
 
-        // TODO
-        // expect(transformedData).toBe(expectedTransformedData);
-      });
+      //   // expect(transformedData).toBe(expectedTransformedData);
+      // });
 
-      test('transforms objects with nested objects and arrays as expected', () => {
-        const testObj = complexObject;
+      // TODO
+      // test('transforms objects with nested objects and arrays as expected', () => {
+      //   const testObj = complexObject;
 
-        const transformedData = transformData({data: testObj});
-        const expectedTransformedData = `TODO`;
+      //   const transformedData = transformData({data: testObj});
+      //   const expectedTransformedData = `TODO`;
 
-        // TODO
-        // expect(transformedData).toBe(expectedTransformedData);
-      });
+      //   // expect(transformedData).toBe(expectedTransformedData);
+      // });
     });
 
     describe('format: tabular', () => {

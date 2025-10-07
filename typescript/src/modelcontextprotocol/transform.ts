@@ -19,6 +19,7 @@ export const transformData = (args: {
       data: data[key],
       indentSpaces: '',
       format,
+      hasTitle: !!title,
     });
     if (transformedValue !== null) {
       if (title) {
@@ -49,8 +50,9 @@ const transformPropertyValue = (args: {
   data: any;
   indentSpaces: string;
   format: Format;
+  hasTitle?: boolean;
 }): string | null => {
-  const {data, indentSpaces, format} = args;
+  const {data, indentSpaces, format, hasTitle} = args;
   if (isPropertyTypeToBeIgnored(data)) {
     // check function/undefined
     return null;
@@ -81,7 +83,7 @@ const transformPropertyValue = (args: {
       // handle object/Record<string, any> (remaining possible condition)
       return transformObject({
         object: data,
-        indentSpaces: indentSpaces,
+        indentSpaces: hasTitle ? ' ' : indentSpaces,
         format,
       });
     }
