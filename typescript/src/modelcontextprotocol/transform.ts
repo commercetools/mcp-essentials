@@ -10,7 +10,8 @@ export const transformData = (args: {
   title?: string;
   format?: Format;
 }): string => {
-  let {data, title, format} = args;
+  let {format} = args;
+  const {data, title} = args;
   format = format ?? 'tabled';
   let transformedData = title ? `${transformPropertyName(title)}:\n` : '';
 
@@ -160,7 +161,8 @@ const transformArray = (args: {
   commaSeperated?: boolean;
   format: Format;
 }): string => {
-  let {array, indentSpaces, commaSeperated, format} = args;
+  let {commaSeperated} = args;
+  const {array, indentSpaces, format} = args;
   commaSeperated = commaSeperated ?? true;
   if (array.length === 0) {
     return emptyArrayTransformValue;
@@ -341,7 +343,9 @@ const seperatePropertyQuantitiesWithinObjectArray = (
     }
 
     Object.keys(array[n]).forEach((key) => {
-      let index = propertyOccurances.findIndex((prop) => prop.propName === key);
+      const index = propertyOccurances.findIndex(
+        (prop) => prop.propName === key
+      );
       if (index === -1) {
         propertyOccurances.push({propName: key, numberOfOccurances: 1});
       } else {
