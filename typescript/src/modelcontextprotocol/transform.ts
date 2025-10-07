@@ -417,13 +417,13 @@ const transformPropertyName = (propertyName: string): string => {
   if (!propertyName) {
     return '';
   }
-  //handle snake_case, kebab-case, and _others
+  // handle snake_case, kebab-case, and _others
   propertyName = propertyName.replaceAll(/[_-]+/g, ' ').trim();
   // start new property name with capitalised first letter
   let newPropertyName = propertyName.charAt(0).toLocaleUpperCase();
   // handle PascalCase and camelCase
   for (let n = 1; n < propertyName.length; n++) {
-    let char = propertyName.charAt(n);
+    const char = propertyName.charAt(n);
     // if lower case
     if (!isUpperCase(char)) {
       // if space precedes current character
@@ -441,7 +441,7 @@ const transformPropertyName = (propertyName: string): string => {
         newPropertyName += ' ';
       }
       newPropertyName += char;
-      let i = 1;
+      const i = 1;
       let nextChar = propertyName.charAt(n + i);
       // handle acronym
       if (isUpperCase(nextChar)) {
