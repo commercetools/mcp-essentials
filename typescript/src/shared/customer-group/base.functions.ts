@@ -11,7 +11,7 @@ import {
 import {SDKError} from '../errors/sdkError';
 
 // Export the CustomerGroupUpdateAction type for use in tests
-export {CustomerGroupUpdateAction};
+export type {CustomerGroupUpdateAction};
 
 /**
  * Fetches a customer group by its ID

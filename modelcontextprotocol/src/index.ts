@@ -116,6 +116,22 @@ export const ACCEPTED_TOOLS = [
   'review.read',
   'review.create',
   'review.update',
+
+  'tax-category.read',
+  'tax-category.create',
+  'tax-category.update',
+
+  'shipping-methods.read',
+  'shipping-methods.create',
+  'shipping-methods.update',
+
+  'payments.read',
+  'payments.create',
+  'payments.update',
+
+  'zone.read',
+  'zone.create',
+  'zone.update',
 ];
 
 // eslint-disable-next-line complexity

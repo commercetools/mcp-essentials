@@ -79,6 +79,10 @@ describe('main function', () => {
           review: {read: true, create: true, update: true},
           bulk: {create: true, update: true},
           'business-unit': {read: true, create: true, update: true},
+          payments: {read: true, create: true, update: true},
+          'shipping-methods': {read: true, create: true, update: true},
+          'tax-category': {read: true, create: true, update: true},
+          zone: {read: true, create: true, update: true},
         },
         context: {
           isAdmin: true,

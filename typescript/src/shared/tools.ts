@@ -21,6 +21,10 @@ import {contextToBulkTools} from './bulk/tools';
 import {contextToInventoryTools} from './inventory/tools';
 import {contextToStoreTools} from './store/tools';
 import {contextToReviewTools} from './reviews/tools';
+import {contextToPaymentTools} from './payments/tools';
+import {contextToShippingMethodTools} from './shipping-methods/tools';
+import {contextToTaxCategoryTools} from './tax-category/tools';
+import {contextToZoneTools} from './zones/tools';
 import {Context} from '../types/configuration';
 
 export const contextToResourceTools = (context?: Context) => {
@@ -48,6 +52,10 @@ export const contextToResourceTools = (context?: Context) => {
     'product-type': contextToProductTypeTools(context),
     store: contextToStoreTools(context),
     bulk: contextToBulkTools(context),
+    payments: contextToPaymentTools(context),
+    'shipping-methods': contextToShippingMethodTools(context),
+    'tax-category': contextToTaxCategoryTools(context),
+    zone: contextToZoneTools(context),
   };
 };
 export const contextToTools = (context?: Context) => {

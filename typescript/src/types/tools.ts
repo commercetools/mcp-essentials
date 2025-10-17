@@ -21,6 +21,11 @@ export enum AvailableNamespaces {
   Inventory = 'inventory',
   Store = 'store',
   Review = 'review',
+
+  TaxCategory = 'tax-category',
+  ShippingMethods = 'shipping-methods',
+  Payments = 'payments',
+  Zones = 'zones',
 }
 
 export type Tool = {
@@ -28,7 +33,7 @@ export type Tool = {
   name: string;
   description: string;
   parameters: z.ZodObject<any, any, any, any>;
-  execute?: (args: Record<string, unknown>, api?: ApiRoot) => Promise<string>;
+  execute?: <T = any, R = string>(args: T, api?: ApiRoot) => Promise<R>;
   actions: {
     [key: string]: {
       [action: string]: boolean;
