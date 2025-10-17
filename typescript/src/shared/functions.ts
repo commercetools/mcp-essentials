@@ -23,6 +23,10 @@ import {contextToStagedQuoteFunctionMapping} from './staged-quote/functions';
 import {contextToStandalonePriceFunctionMapping} from './standalone-price/functions';
 import {contextToStoreFunctionMapping} from './store/functions';
 import {contextToResourceBasedToolSystemFunctionMapping} from './resource-based-tools-system/functions';
+import {contextToPaymentFunctionMapping} from './payments/functions';
+import {contextToShippingMethodFunctionMapping} from './shipping-methods/functions';
+import {contextToTaxCategoryFunctionMapping} from './tax-category/functions';
+import {contextToZoneFunctionMapping} from './zones/functions';
 
 export const contextToFunctionMapping = (
   context?: Context
@@ -58,5 +62,9 @@ export const contextToFunctionMapping = (
     ...contextToStoreFunctionMapping(context),
     ...contextToBulkFunctionMapping(context),
     ...contextToResourceBasedToolSystemFunctionMapping(context),
+    ...contextToPaymentFunctionMapping(context),
+    ...contextToShippingMethodFunctionMapping(context),
+    ...contextToTaxCategoryFunctionMapping(context),
+    ...contextToZoneFunctionMapping(context),
   };
 };
