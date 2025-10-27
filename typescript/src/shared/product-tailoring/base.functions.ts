@@ -276,7 +276,6 @@ export async function createProductTailoring(
         .execute();
     }
 
-    console.log('response', response);
     return response?.body ?? null;
   } catch (error) {
     throw new SDKError('Error creating product tailoring', error);
