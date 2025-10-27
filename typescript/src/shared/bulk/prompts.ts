@@ -23,7 +23,11 @@ Supported entity types:
 - standalone-price
 - inventory
 - store
+<<<<<<< HEAD
 - review
+=======
+- shopping-lists
+>>>>>>> 500162a (feat(mcp-essentials): add additional tools)
 
 Parameters:
 - items: An array of objects, each containing:
@@ -204,6 +208,7 @@ Supported entity types:
 - product-selection
 - product-type
 - store
+- shopping-lists
 
 Parameters:
 - items: An array of objects, each containing:

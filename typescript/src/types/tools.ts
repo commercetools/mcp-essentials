@@ -26,6 +26,13 @@ export enum AvailableNamespaces {
   ShippingMethods = 'shipping-methods',
   Payments = 'payments',
   Zones = 'zones',
+
+  ProductTailoring = 'product-tailoring',
+  PaymentMethods = 'payment-methods',
+  RecurringOrders = 'recurring-orders',
+  ShoppingLists = 'shopping-lists',
+  Extensions = 'extensions',
+  Subscriptions = 'subscriptions',
 }
 
 export type Tool = {

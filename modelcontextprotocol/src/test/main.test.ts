@@ -243,6 +243,42 @@ describe('main function', () => {
     expect(StdioServerTransport).toHaveBeenCalled();
   });
 
+  it('should initialize the server with specific tools correctly (shopping-lists.create)', async () => {
+    process.argv = [
+      'node',
+      'index.js',
+      '--tools=shopping-lists.create',
+      '--clientId=test_client_id',
+      '--clientSecret=test_client_secret',
+      '--authUrl=https://auth.commercetools.com',
+      '--projectKey=test_project',
+      '--apiUrl=https://api.commercetools.com',
+      '--isAdmin=true',
+    ];
+
+    await main();
+
+    expect(CommercetoolsAgentEssentials.create).toHaveBeenCalledWith({
+      authConfig: {
+        type: 'client_credentials',
+        clientId: 'test_client_id',
+        clientSecret: 'test_client_secret',
+        authUrl: 'https://auth.commercetools.com',
+        projectKey: 'test_project',
+        apiUrl: 'https://api.commercetools.com',
+      },
+      configuration: {
+        actions: {'shopping-lists': {create: true}},
+        context: {
+          isAdmin: true,
+          logging: false,
+        },
+      },
+    });
+
+    expect(StdioServerTransport).toHaveBeenCalled();
+  });
+
   it('should initialize the server with specific tools correctly (products.update)', async () => {
     process.argv = [
       'node',

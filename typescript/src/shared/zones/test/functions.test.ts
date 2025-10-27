@@ -24,30 +24,6 @@ describe('zone functions', () => {
   });
 
   describe('contextToZoneFunctionMapping', () => {
-    it('should return customer functions when customerId is present', () => {
-      const context: Context = {customerId: 'customer-123'};
-
-      const result = contextToZoneFunctionMapping(context);
-
-      expect(result).toEqual({
-        read_zone: expect.any(Function),
-        create_zone: expect.any(Function),
-        update_zone: expect.any(Function),
-      });
-    });
-
-    it('should return store functions when storeKey is present', () => {
-      const context: Context = {storeKey: 'store-123'};
-
-      const result = contextToZoneFunctionMapping(context);
-
-      expect(result).toEqual({
-        read_zone: expect.any(Function),
-        create_zone: expect.any(Function),
-        update_zone: expect.any(Function),
-      });
-    });
-
     it('should return admin functions when isAdmin is true', () => {
       const context: Context = {isAdmin: true};
 

@@ -25,6 +25,12 @@ import {contextToPaymentTools} from './payments/tools';
 import {contextToShippingMethodTools} from './shipping-methods/tools';
 import {contextToTaxCategoryTools} from './tax-category/tools';
 import {contextToZoneTools} from './zones/tools';
+import {contextToProductTailoringTools} from './product-tailoring/tools';
+import {contextToPaymentMethodTools} from './payment-methods/tools';
+import {contextToRecurringOrderTools} from './recurring-orders/tools';
+import {contextToShoppingListTools} from './shopping-lists/tools';
+import {contextToExtensionTools} from './extensions/tools';
+import {contextToSubscriptionTools} from './subscriptions/tools';
 import {Context} from '../types/configuration';
 
 export const contextToResourceTools = (context?: Context) => {
@@ -56,6 +62,12 @@ export const contextToResourceTools = (context?: Context) => {
     'shipping-methods': contextToShippingMethodTools(context),
     'tax-category': contextToTaxCategoryTools(context),
     zone: contextToZoneTools(context),
+    'product-tailoring': contextToProductTailoringTools(context),
+    'payment-methods': contextToPaymentMethodTools(context),
+    'recurring-orders': contextToRecurringOrderTools(context),
+    'shopping-lists': contextToShoppingListTools(context),
+    extension: contextToExtensionTools(context),
+    subscription: contextToSubscriptionTools(context),
   };
 };
 export const contextToTools = (context?: Context) => {

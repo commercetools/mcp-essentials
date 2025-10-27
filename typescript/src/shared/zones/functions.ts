@@ -6,8 +6,6 @@ import {
   updateZoneParameters,
 } from './parameters';
 import * as admin from './admin.functions';
-import * as customer from './customer.functions';
-import * as store from './store.functions';
 import {CommercetoolsFuncContext, Context} from '../../types/configuration';
 
 export const contextToZoneFunctionMapping = (
@@ -20,20 +18,6 @@ export const contextToZoneFunctionMapping = (
     params: any
   ) => Promise<any>
 > => {
-  if (context?.customerId) {
-    return {
-      read_zone: customer.readZone,
-      create_zone: customer.createZone,
-      update_zone: customer.updateZone,
-    };
-  }
-  if (context?.storeKey) {
-    return {
-      read_zone: store.readZone,
-      create_zone: store.createZone,
-      update_zone: store.updateZone,
-    };
-  }
   if (context?.isAdmin) {
     return {
       read_zone: admin.readZone,

@@ -190,6 +190,24 @@ Add the following to your `claude_desktop_config.json`. See [here](https://model
 | `zones.read`               | [Read zone information](https://docs.commercetools.com/api/projects/zones#get-zone-by-id)                                |
 | `zones.create`             | [Create zone](https://docs.commercetools.com/api/projects/zones#create-zone)                                             |
 | `zones.update`             | [Update zone information](https://docs.commercetools.com/api/projects/zones#update-zone)                                 |
+| `recurring-orders.read`    | [Read recurring order information](https://docs.commercetools.com/api/projects/recurring-orders#get-recurringorder-by-id) |
+| `recurring-orders.create`  | [Create recurring order](https://docs.commercetools.com/api/projects/recurring-orders#create-recurringorder)              |
+| `recurring-orders.update`  | [Update recurring order information](https://docs.commercetools.com/api/projects/recurring-orders#update-recurringorder) |
+| `shopping-lists.read`      | [Read shopping list information](https://docs.commercetools.com/api/projects/shoppingLists#get-shoppinglist-by-id)     |
+| `shopping-lists.create`    | [Create shopping list](https://docs.commercetools.com/api/projects/shoppingLists#create-shoppinglist)                     |
+| `shopping-lists.update`    | [Update shopping list information](https://docs.commercetools.com/api/projects/shoppingLists#update-shoppinglist)        |
+| `extensions.read`          | [Read extension information](https://docs.commercetools.com/api/projects/extensions#get-extension-by-id)              |
+| `extensions.create`        | [Create extension](https://docs.commercetools.com/api/projects/extensions#create-an-extension)                           |
+| `extensions.update`        | [Update extension information](https://docs.commercetools.com/api/projects/extensions#update-an-extension)               |
+| `subscriptions.read`       | [Read subscription information](https://docs.commercetools.com/api/projects/subscriptions#get-subscription-by-id)        |
+| `subscriptions.create`     | [Create subscription](https://docs.commercetools.com/api/projects/subscriptions#create-a-subscription)                   |
+| `subscriptions.update`     | [Update subscription information](https://docs.commercetools.com/api/projects/subscriptions#update-subscription)        |
+| `payment-methods.read`    | [Read payment method information](https://docs.commercetools.com/api/projects/paymentMethods#get-paymentmethod-by-id)  |
+| `payment-methods.create`   | [Create payment method](https://docs.commercetools.com/api/projects/paymentMethods#create-paymentmethod)                  |
+| `payment-methods.update`   | [Update payment method information](https://docs.commercetools.com/api/projects/paymentMethods#update-paymentmethod)      |
+| `product-tailoring.read`  | [Read product tailoring information](https://docs.commercetools.com/api/projects/productTailoring#get-producttailoring-by-id) |
+| `product-tailoring.create`| [Create product tailoring](https://docs.commercetools.com/api/projects/productTailoring#create-producttailoring)         |
+| `product-tailoring.update`| [Update product tailoring information](https://docs.commercetools.com/api/projects/productTailoring#update-producttailoring)|
 
 To view information on how to develop the MCP server, see [this README](/modelcontextprotocol/README.md).
 

@@ -132,6 +132,30 @@ export const ACCEPTED_TOOLS = [
   'zone.read',
   'zone.create',
   'zone.update',
+
+  'product-tailoring.read',
+  'product-tailoring.create',
+  'product-tailoring.update',
+
+  'payment-methods.read',
+  'payment-methods.create',
+  'payment-methods.update',
+
+  'recurring-orders.read',
+  'recurring-orders.create',
+  'recurring-orders.update',
+
+  'shopping-lists.read',
+  'shopping-lists.create',
+  'shopping-lists.update',
+
+  'extensions.read',
+  'extensions.create',
+  'extensions.update',
+
+  'subscriptions.read',
+  'subscriptions.create',
+  'subscriptions.update',
 ];
 
 // eslint-disable-next-line complexity

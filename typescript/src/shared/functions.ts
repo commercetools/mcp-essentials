@@ -28,6 +28,12 @@ import {contextToPaymentFunctionMapping} from './payments/functions';
 import {contextToShippingMethodFunctionMapping} from './shipping-methods/functions';
 import {contextToTaxCategoryFunctionMapping} from './tax-category/functions';
 import {contextToZoneFunctionMapping} from './zones/functions';
+import {contextToProductTailoringFunctionMapping} from './product-tailoring/functions';
+import {contextToPaymentMethodFunctionMapping} from './payment-methods/functions';
+import {contextToRecurringOrderFunctionMapping} from './recurring-orders/functions';
+import {contextToShoppingListFunctionMapping} from './shopping-lists/functions';
+import {contextToExtensionFunctionMapping} from './extensions/functions';
+import {contextToSubscriptionFunctionMapping} from './subscriptions/functions';
 
 export const contextToFunctionMapping = (
   context?: Context
@@ -68,5 +74,11 @@ export const contextToFunctionMapping = (
     ...contextToShippingMethodFunctionMapping(context),
     ...contextToTaxCategoryFunctionMapping(context),
     ...contextToZoneFunctionMapping(context),
+    ...contextToProductTailoringFunctionMapping(context),
+    ...contextToPaymentMethodFunctionMapping(context),
+    ...contextToRecurringOrderFunctionMapping(context),
+    ...contextToShoppingListFunctionMapping(context),
+    ...contextToExtensionFunctionMapping(context),
+    ...contextToSubscriptionFunctionMapping(context),
   };
 };
