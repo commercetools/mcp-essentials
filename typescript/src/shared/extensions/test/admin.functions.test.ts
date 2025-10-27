@@ -27,9 +27,17 @@ describe('Extension Admin Functions', () => {
         .mockResolvedValue(mockResponse);
 
       const params = {id: 'extension-123'};
-      const result = await admin.readExtension(mockApiRoot, mockContext, params);
+      const result = await admin.readExtension(
+        mockApiRoot,
+        mockContext,
+        params
+      );
 
-      expect(base.readExtensionById).toHaveBeenCalledWith(mockApiRoot, mockContext.projectKey, params);
+      expect(base.readExtensionById).toHaveBeenCalledWith(
+        mockApiRoot,
+        mockContext.projectKey,
+        params
+      );
       expect(result).toEqual(mockResponse);
     });
 
@@ -44,9 +52,17 @@ describe('Extension Admin Functions', () => {
         .mockResolvedValue(mockResponse);
 
       const params = {key: 'my-extension'};
-      const result = await admin.readExtension(mockApiRoot, mockContext, params);
+      const result = await admin.readExtension(
+        mockApiRoot,
+        mockContext,
+        params
+      );
 
-      expect(base.readExtensionByKey).toHaveBeenCalledWith(mockApiRoot, mockContext.projectKey, params);
+      expect(base.readExtensionByKey).toHaveBeenCalledWith(
+        mockApiRoot,
+        mockContext.projectKey,
+        params
+      );
       expect(result).toEqual(mockResponse);
     });
 
@@ -60,9 +76,17 @@ describe('Extension Admin Functions', () => {
         .mockResolvedValue(mockResponse);
 
       const params = {limit: 20, offset: 0};
-      const result = await admin.readExtension(mockApiRoot, mockContext, params);
+      const result = await admin.readExtension(
+        mockApiRoot,
+        mockContext,
+        params
+      );
 
-      expect(base.queryExtensions).toHaveBeenCalledWith(mockApiRoot, mockContext.projectKey, params);
+      expect(base.queryExtensions).toHaveBeenCalledWith(
+        mockApiRoot,
+        mockContext.projectKey,
+        params
+      );
       expect(result).toEqual(mockResponse);
     });
   });
@@ -92,9 +116,17 @@ describe('Extension Admin Functions', () => {
         ],
       };
 
-      const result = await admin.createExtension(mockApiRoot, mockContext, params);
+      const result = await admin.createExtension(
+        mockApiRoot,
+        mockContext,
+        params
+      );
 
-      expect(base.createExtension).toHaveBeenCalledWith(mockApiRoot, mockContext.projectKey, params);
+      expect(base.createExtension).toHaveBeenCalledWith(
+        mockApiRoot,
+        mockContext.projectKey,
+        params
+      );
       expect(result).toEqual(mockResponse);
     });
   });
@@ -121,13 +153,21 @@ describe('Extension Admin Functions', () => {
         ],
       };
 
-      const result = await admin.updateExtension(mockApiRoot, mockContext, params);
+      const result = await admin.updateExtension(
+        mockApiRoot,
+        mockContext,
+        params
+      );
 
-      expect(base.updateExtensionById).toHaveBeenCalledWith(mockApiRoot, mockContext.projectKey, {
-        id: 'extension-123',
-        version: 1,
-        actions: params.actions,
-      });
+      expect(base.updateExtensionById).toHaveBeenCalledWith(
+        mockApiRoot,
+        mockContext.projectKey,
+        {
+          id: 'extension-123',
+          version: 1,
+          actions: params.actions,
+        }
+      );
       expect(result).toEqual(mockResponse);
     });
 
@@ -153,13 +193,21 @@ describe('Extension Admin Functions', () => {
         ],
       };
 
-      const result = await admin.updateExtension(mockApiRoot, mockContext, params);
+      const result = await admin.updateExtension(
+        mockApiRoot,
+        mockContext,
+        params
+      );
 
-      expect(base.updateExtensionByKey).toHaveBeenCalledWith(mockApiRoot, mockContext.projectKey, {
-        key: 'my-extension',
-        version: 1,
-        actions: params.actions,
-      });
+      expect(base.updateExtensionByKey).toHaveBeenCalledWith(
+        mockApiRoot,
+        mockContext.projectKey,
+        {
+          key: 'my-extension',
+          version: 1,
+          actions: params.actions,
+        }
+      );
       expect(result).toEqual(mockResponse);
     });
 
@@ -178,9 +226,10 @@ describe('Extension Admin Functions', () => {
         await admin.updateExtension(mockApiRoot, mockContext, params as any);
         fail('Expected updateExtension to throw an error');
       } catch (error: any) {
-        expect(error.message).toContain('Either id or key must be provided for updating an extension');
+        expect(error.message).toContain(
+          'Either id or key must be provided for updating an extension'
+        );
       }
     });
   });
 });
-

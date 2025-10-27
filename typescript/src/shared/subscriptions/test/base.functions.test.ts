@@ -14,7 +14,10 @@ describe('Subscription Base Functions', () => {
       const mockResponse = {
         id: 'subscription-123',
         key: 'my-subscription',
-        destination: {type: 'SQS', queueUrl: 'https://sqs.amazonaws.com/my-queue'},
+        destination: {
+          type: 'SQS',
+          queueUrl: 'https://sqs.amazonaws.com/my-queue',
+        },
         changes: [
           {
             resourceTypeId: 'cart',
@@ -22,17 +25,15 @@ describe('Subscription Base Functions', () => {
         ],
       };
 
-      (mockApiRoot.withProjectKey as jest.Mock) = jest
-        .fn()
-        .mockReturnValue({
-          subscriptions: jest.fn().mockReturnValue({
-            withId: jest.fn().mockReturnValue({
-              get: jest.fn().mockReturnValue({
-                execute: jest.fn().mockResolvedValue({body: mockResponse}),
-              }),
+      (mockApiRoot.withProjectKey as jest.Mock) = jest.fn().mockReturnValue({
+        subscriptions: jest.fn().mockReturnValue({
+          withId: jest.fn().mockReturnValue({
+            get: jest.fn().mockReturnValue({
+              execute: jest.fn().mockResolvedValue({body: mockResponse}),
             }),
           }),
-        });
+        }),
+      });
 
       const result = await base.readSubscriptionById(mockApiRoot, projectKey, {
         id: 'subscription-123',
@@ -44,20 +45,20 @@ describe('Subscription Base Functions', () => {
     it('should handle errors when reading by ID', async () => {
       const mockError = new Error('Subscription not found');
 
-      (mockApiRoot.withProjectKey as jest.Mock) = jest
-        .fn()
-        .mockReturnValue({
-          subscriptions: jest.fn().mockReturnValue({
-            withId: jest.fn().mockReturnValue({
-              get: jest.fn().mockReturnValue({
-                execute: jest.fn().mockRejectedValue(mockError),
-              }),
+      (mockApiRoot.withProjectKey as jest.Mock) = jest.fn().mockReturnValue({
+        subscriptions: jest.fn().mockReturnValue({
+          withId: jest.fn().mockReturnValue({
+            get: jest.fn().mockReturnValue({
+              execute: jest.fn().mockRejectedValue(mockError),
             }),
           }),
-        });
+        }),
+      });
 
       await expect(
-        base.readSubscriptionById(mockApiRoot, projectKey, {id: 'subscription-123'})
+        base.readSubscriptionById(mockApiRoot, projectKey, {
+          id: 'subscription-123',
+        })
       ).rejects.toThrow('Error reading subscription by ID');
     });
   });
@@ -67,7 +68,10 @@ describe('Subscription Base Functions', () => {
       const mockResponse = {
         id: 'subscription-123',
         key: 'my-subscription',
-        destination: {type: 'SNS', topicArn: 'arn:aws:sns:us-east-1:123456789012:my-topic'},
+        destination: {
+          type: 'SNS',
+          topicArn: 'arn:aws:sns:us-east-1:123456789012:my-topic',
+        },
         messages: [
           {
             resourceTypeId: 'order',
@@ -76,17 +80,15 @@ describe('Subscription Base Functions', () => {
         ],
       };
 
-      (mockApiRoot.withProjectKey as jest.Mock) = jest
-        .fn()
-        .mockReturnValue({
-          subscriptions: jest.fn().mockReturnValue({
-            withKey: jest.fn().mockReturnValue({
-              get: jest.fn().mockReturnValue({
-                execute: jest.fn().mockResolvedValue({body: mockResponse}),
-              }),
+      (mockApiRoot.withProjectKey as jest.Mock) = jest.fn().mockReturnValue({
+        subscriptions: jest.fn().mockReturnValue({
+          withKey: jest.fn().mockReturnValue({
+            get: jest.fn().mockReturnValue({
+              execute: jest.fn().mockResolvedValue({body: mockResponse}),
             }),
           }),
-        });
+        }),
+      });
 
       const result = await base.readSubscriptionByKey(mockApiRoot, projectKey, {
         key: 'my-subscription',
@@ -98,20 +100,20 @@ describe('Subscription Base Functions', () => {
     it('should handle errors when reading by key', async () => {
       const mockError = new Error('Subscription not found');
 
-      (mockApiRoot.withProjectKey as jest.Mock) = jest
-        .fn()
-        .mockReturnValue({
-          subscriptions: jest.fn().mockReturnValue({
-            withKey: jest.fn().mockReturnValue({
-              get: jest.fn().mockReturnValue({
-                execute: jest.fn().mockRejectedValue(mockError),
-              }),
+      (mockApiRoot.withProjectKey as jest.Mock) = jest.fn().mockReturnValue({
+        subscriptions: jest.fn().mockReturnValue({
+          withKey: jest.fn().mockReturnValue({
+            get: jest.fn().mockReturnValue({
+              execute: jest.fn().mockRejectedValue(mockError),
             }),
           }),
-        });
+        }),
+      });
 
       await expect(
-        base.readSubscriptionByKey(mockApiRoot, projectKey, {key: 'my-subscription'})
+        base.readSubscriptionByKey(mockApiRoot, projectKey, {
+          key: 'my-subscription',
+        })
       ).rejects.toThrow('Error reading subscription by key');
     });
   });
@@ -137,15 +139,13 @@ describe('Subscription Base Functions', () => {
         total: 2,
       };
 
-      (mockApiRoot.withProjectKey as jest.Mock) = jest
-        .fn()
-        .mockReturnValue({
-          subscriptions: jest.fn().mockReturnValue({
-            get: jest.fn().mockReturnValue({
-              execute: jest.fn().mockResolvedValue({body: mockResponse}),
-            }),
+      (mockApiRoot.withProjectKey as jest.Mock) = jest.fn().mockReturnValue({
+        subscriptions: jest.fn().mockReturnValue({
+          get: jest.fn().mockReturnValue({
+            execute: jest.fn().mockResolvedValue({body: mockResponse}),
           }),
-        });
+        }),
+      });
 
       const result = await base.querySubscriptions(mockApiRoot, projectKey, {
         limit: 20,
@@ -159,15 +159,13 @@ describe('Subscription Base Functions', () => {
     it('should handle errors when querying', async () => {
       const mockError = new Error('Query failed');
 
-      (mockApiRoot.withProjectKey as jest.Mock) = jest
-        .fn()
-        .mockReturnValue({
-          subscriptions: jest.fn().mockReturnValue({
-            get: jest.fn().mockReturnValue({
-              execute: jest.fn().mockRejectedValue(mockError),
-            }),
+      (mockApiRoot.withProjectKey as jest.Mock) = jest.fn().mockReturnValue({
+        subscriptions: jest.fn().mockReturnValue({
+          get: jest.fn().mockReturnValue({
+            execute: jest.fn().mockRejectedValue(mockError),
           }),
-        });
+        }),
+      });
 
       await expect(
         base.querySubscriptions(mockApiRoot, projectKey, {limit: 20})
@@ -180,7 +178,11 @@ describe('Subscription Base Functions', () => {
       const mockResponse = {
         id: 'new-subscription-123',
         key: 'new-subscription',
-        destination: {type: 'SQS', queueUrl: 'https://sqs.amazonaws.com/my-queue', region: 'us-east-1'},
+        destination: {
+          type: 'SQS',
+          queueUrl: 'https://sqs.amazonaws.com/my-queue',
+          region: 'us-east-1',
+        },
         changes: [
           {
             resourceTypeId: 'order',
@@ -188,15 +190,13 @@ describe('Subscription Base Functions', () => {
         ],
       };
 
-      (mockApiRoot.withProjectKey as jest.Mock) = jest
-        .fn()
-        .mockReturnValue({
-          subscriptions: jest.fn().mockReturnValue({
-            post: jest.fn().mockReturnValue({
-              execute: jest.fn().mockResolvedValue({body: mockResponse}),
-            }),
+      (mockApiRoot.withProjectKey as jest.Mock) = jest.fn().mockReturnValue({
+        subscriptions: jest.fn().mockReturnValue({
+          post: jest.fn().mockReturnValue({
+            execute: jest.fn().mockResolvedValue({body: mockResponse}),
           }),
-        });
+        }),
+      });
 
       const params = {
         key: 'new-subscription',
@@ -212,7 +212,11 @@ describe('Subscription Base Functions', () => {
         ],
       };
 
-      const result = await base.createSubscription(mockApiRoot, projectKey, params);
+      const result = await base.createSubscription(
+        mockApiRoot,
+        projectKey,
+        params
+      );
 
       expect(result).toEqual(mockResponse);
     });
@@ -220,15 +224,13 @@ describe('Subscription Base Functions', () => {
     it('should handle errors when creating', async () => {
       const mockError = new Error('Creation failed');
 
-      (mockApiRoot.withProjectKey as jest.Mock) = jest
-        .fn()
-        .mockReturnValue({
-          subscriptions: jest.fn().mockReturnValue({
-            post: jest.fn().mockReturnValue({
-              execute: jest.fn().mockRejectedValue(mockError),
-            }),
+      (mockApiRoot.withProjectKey as jest.Mock) = jest.fn().mockReturnValue({
+        subscriptions: jest.fn().mockReturnValue({
+          post: jest.fn().mockReturnValue({
+            execute: jest.fn().mockRejectedValue(mockError),
           }),
-        });
+        }),
+      });
 
       const params = {
         destination: {
@@ -257,17 +259,15 @@ describe('Subscription Base Functions', () => {
         version: 2,
       };
 
-      (mockApiRoot.withProjectKey as jest.Mock) = jest
-        .fn()
-        .mockReturnValue({
-          subscriptions: jest.fn().mockReturnValue({
-            withId: jest.fn().mockReturnValue({
-              post: jest.fn().mockReturnValue({
-                execute: jest.fn().mockResolvedValue({body: mockResponse}),
-              }),
+      (mockApiRoot.withProjectKey as jest.Mock) = jest.fn().mockReturnValue({
+        subscriptions: jest.fn().mockReturnValue({
+          withId: jest.fn().mockReturnValue({
+            post: jest.fn().mockReturnValue({
+              execute: jest.fn().mockResolvedValue({body: mockResponse}),
             }),
           }),
-        });
+        }),
+      });
 
       const params = {
         id: 'subscription-123',
@@ -280,7 +280,11 @@ describe('Subscription Base Functions', () => {
         ],
       };
 
-      const result = await base.updateSubscriptionById(mockApiRoot, projectKey, params);
+      const result = await base.updateSubscriptionById(
+        mockApiRoot,
+        projectKey,
+        params
+      );
 
       expect(result).toEqual(mockResponse);
     });
@@ -288,17 +292,15 @@ describe('Subscription Base Functions', () => {
     it('should handle errors when updating by ID', async () => {
       const mockError = new Error('Update failed');
 
-      (mockApiRoot.withProjectKey as jest.Mock) = jest
-        .fn()
-        .mockReturnValue({
-          subscriptions: jest.fn().mockReturnValue({
-            withId: jest.fn().mockReturnValue({
-              post: jest.fn().mockReturnValue({
-                execute: jest.fn().mockRejectedValue(mockError),
-              }),
+      (mockApiRoot.withProjectKey as jest.Mock) = jest.fn().mockReturnValue({
+        subscriptions: jest.fn().mockReturnValue({
+          withId: jest.fn().mockReturnValue({
+            post: jest.fn().mockReturnValue({
+              execute: jest.fn().mockRejectedValue(mockError),
             }),
           }),
-        });
+        }),
+      });
 
       const params = {
         id: 'subscription-123',
@@ -325,17 +327,15 @@ describe('Subscription Base Functions', () => {
         version: 2,
       };
 
-      (mockApiRoot.withProjectKey as jest.Mock) = jest
-        .fn()
-        .mockReturnValue({
-          subscriptions: jest.fn().mockReturnValue({
-            withKey: jest.fn().mockReturnValue({
-              post: jest.fn().mockReturnValue({
-                execute: jest.fn().mockResolvedValue({body: mockResponse}),
-              }),
+      (mockApiRoot.withProjectKey as jest.Mock) = jest.fn().mockReturnValue({
+        subscriptions: jest.fn().mockReturnValue({
+          withKey: jest.fn().mockReturnValue({
+            post: jest.fn().mockReturnValue({
+              execute: jest.fn().mockResolvedValue({body: mockResponse}),
             }),
           }),
-        });
+        }),
+      });
 
       const params = {
         key: 'my-subscription',
@@ -352,7 +352,11 @@ describe('Subscription Base Functions', () => {
         ],
       };
 
-      const result = await base.updateSubscriptionByKey(mockApiRoot, projectKey, params);
+      const result = await base.updateSubscriptionByKey(
+        mockApiRoot,
+        projectKey,
+        params
+      );
 
       expect(result).toEqual(mockResponse);
     });
@@ -360,17 +364,15 @@ describe('Subscription Base Functions', () => {
     it('should handle errors when updating by key', async () => {
       const mockError = new Error('Update failed');
 
-      (mockApiRoot.withProjectKey as jest.Mock) = jest
-        .fn()
-        .mockReturnValue({
-          subscriptions: jest.fn().mockReturnValue({
-            withKey: jest.fn().mockReturnValue({
-              post: jest.fn().mockReturnValue({
-                execute: jest.fn().mockRejectedValue(mockError),
-              }),
+      (mockApiRoot.withProjectKey as jest.Mock) = jest.fn().mockReturnValue({
+        subscriptions: jest.fn().mockReturnValue({
+          withKey: jest.fn().mockReturnValue({
+            post: jest.fn().mockReturnValue({
+              execute: jest.fn().mockRejectedValue(mockError),
             }),
           }),
-        });
+        }),
+      });
 
       const params = {
         key: 'my-subscription',
@@ -393,4 +395,3 @@ describe('Subscription Base Functions', () => {
     });
   });
 });
-

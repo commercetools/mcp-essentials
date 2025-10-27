@@ -35,31 +35,49 @@ describe('Shopping List Store Functions', () => {
   describe('readShoppingList', () => {
     it('should read shopping list by ID in store', async () => {
       const mockResponse = {id: 'test-id', name: {en: 'Store Shopping List'}};
-      (base.readShoppingListByIdInStore as jest.Mock).mockResolvedValue(mockResponse);
+      (base.readShoppingListByIdInStore as jest.Mock).mockResolvedValue(
+        mockResponse
+      );
 
       const result = await store.readShoppingList(mockApiRoot, mockContext, {
         id: 'test-id',
       });
 
-      expect(base.readShoppingListByIdInStore).toHaveBeenCalledWith(mockApiRoot, mockContext.projectKey, mockContext.storeKey, {
-        id: 'test-id',
-        expand: undefined,
-      });
+      expect(base.readShoppingListByIdInStore).toHaveBeenCalledWith(
+        mockApiRoot,
+        mockContext.projectKey,
+        mockContext.storeKey,
+        {
+          id: 'test-id',
+          expand: undefined,
+        }
+      );
       expect(result).toEqual(mockResponse);
     });
 
     it('should read shopping list by key in store', async () => {
-      const mockResponse = {id: 'test-id', key: 'test-key', name: {en: 'Store Shopping List'}};
-      (base.readShoppingListByKeyInStore as jest.Mock).mockResolvedValue(mockResponse);
+      const mockResponse = {
+        id: 'test-id',
+        key: 'test-key',
+        name: {en: 'Store Shopping List'},
+      };
+      (base.readShoppingListByKeyInStore as jest.Mock).mockResolvedValue(
+        mockResponse
+      );
 
       const result = await store.readShoppingList(mockApiRoot, mockContext, {
         key: 'test-key',
       });
 
-      expect(base.readShoppingListByKeyInStore).toHaveBeenCalledWith(mockApiRoot, mockContext.projectKey, mockContext.storeKey, {
-        key: 'test-key',
-        expand: undefined,
-      });
+      expect(base.readShoppingListByKeyInStore).toHaveBeenCalledWith(
+        mockApiRoot,
+        mockContext.projectKey,
+        mockContext.storeKey,
+        {
+          key: 'test-key',
+          expand: undefined,
+        }
+      );
       expect(result).toEqual(mockResponse);
     });
 
@@ -70,7 +88,9 @@ describe('Shopping List Store Functions', () => {
           {id: 'test-id-2', name: {en: 'Store Shopping List 2'}},
         ],
       };
-      (base.queryShoppingListsInStore as jest.Mock).mockResolvedValue(mockResponse);
+      (base.queryShoppingListsInStore as jest.Mock).mockResolvedValue(
+        mockResponse
+      );
 
       const result = await store.readShoppingList(mockApiRoot, mockContext, {
         limit: 10,
@@ -80,28 +100,42 @@ describe('Shopping List Store Functions', () => {
         expand: ['customer'],
       });
 
-      expect(base.queryShoppingListsInStore).toHaveBeenCalledWith(mockApiRoot, mockContext.projectKey, mockContext.storeKey, {
-        limit: 10,
-        offset: 0,
-        sort: ['name asc'],
-        where: ['customer(id="customer-123")'],
-        expand: ['customer'],
-      });
+      expect(base.queryShoppingListsInStore).toHaveBeenCalledWith(
+        mockApiRoot,
+        mockContext.projectKey,
+        mockContext.storeKey,
+        {
+          limit: 10,
+          offset: 0,
+          sort: ['name asc'],
+          where: ['customer(id="customer-123")'],
+          expand: ['customer'],
+        }
+      );
       expect(result).toEqual(mockResponse);
     });
   });
 
   describe('createShoppingList', () => {
     it('should create shopping list in store and set store', async () => {
-      const mockResponse = {id: 'new-id', name: {en: 'New Store Shopping List'}};
-      (base.createShoppingListInStore as jest.Mock).mockResolvedValue(mockResponse);
+      const mockResponse = {
+        id: 'new-id',
+        name: {en: 'New Store Shopping List'},
+      };
+      (base.createShoppingListInStore as jest.Mock).mockResolvedValue(
+        mockResponse
+      );
 
       const params = {
         name: {en: 'New Store Shopping List'},
         key: 'new-key',
       };
 
-      const result = await store.createShoppingList(mockApiRoot, mockContext, params);
+      const result = await store.createShoppingList(
+        mockApiRoot,
+        mockContext,
+        params
+      );
 
       expect(base.createShoppingListInStore).toHaveBeenCalledWith(
         mockApiRoot,
@@ -119,8 +153,13 @@ describe('Shopping List Store Functions', () => {
     });
 
     it('should not override existing store in params', async () => {
-      const mockResponse = {id: 'new-id', name: {en: 'New Store Shopping List'}};
-      (base.createShoppingListInStore as jest.Mock).mockResolvedValue(mockResponse);
+      const mockResponse = {
+        id: 'new-id',
+        name: {en: 'New Store Shopping List'},
+      };
+      (base.createShoppingListInStore as jest.Mock).mockResolvedValue(
+        mockResponse
+      );
 
       const params = {
         name: {en: 'New Store Shopping List'},
@@ -131,7 +170,11 @@ describe('Shopping List Store Functions', () => {
         },
       };
 
-      const result = await store.createShoppingList(mockApiRoot, mockContext, params);
+      const result = await store.createShoppingList(
+        mockApiRoot,
+        mockContext,
+        params
+      );
 
       expect(base.createShoppingListInStore).toHaveBeenCalledWith(
         mockApiRoot,
@@ -160,16 +203,22 @@ describe('Shopping List Store Functions', () => {
         key: 'new-key',
       };
 
-      await expect(store.createShoppingList(mockApiRoot, contextWithoutStore, params)).rejects.toThrow(
-        'Store key is required for store-specific operations'
-      );
+      await expect(
+        store.createShoppingList(mockApiRoot, contextWithoutStore, params)
+      ).rejects.toThrow('Store key is required for store-specific operations');
     });
   });
 
   describe('updateShoppingList', () => {
     it('should update shopping list by ID in store', async () => {
-      const mockResponse = {id: 'test-id', version: 2, name: {en: 'Updated Store Shopping List'}};
-      (base.updateShoppingListByIdInStore as jest.Mock).mockResolvedValue(mockResponse);
+      const mockResponse = {
+        id: 'test-id',
+        version: 2,
+        name: {en: 'Updated Store Shopping List'},
+      };
+      (base.updateShoppingListByIdInStore as jest.Mock).mockResolvedValue(
+        mockResponse
+      );
 
       const params = {
         id: 'test-id',
@@ -182,7 +231,11 @@ describe('Shopping List Store Functions', () => {
         ],
       };
 
-      const result = await store.updateShoppingList(mockApiRoot, mockContext, params);
+      const result = await store.updateShoppingList(
+        mockApiRoot,
+        mockContext,
+        params
+      );
 
       expect(base.updateShoppingListByIdInStore).toHaveBeenCalledWith(
         mockApiRoot,
@@ -203,8 +256,14 @@ describe('Shopping List Store Functions', () => {
     });
 
     it('should update shopping list by key in store', async () => {
-      const mockResponse = {id: 'test-id', version: 2, name: {en: 'Updated Store Shopping List'}};
-      (base.updateShoppingListByKeyInStore as jest.Mock).mockResolvedValue(mockResponse);
+      const mockResponse = {
+        id: 'test-id',
+        version: 2,
+        name: {en: 'Updated Store Shopping List'},
+      };
+      (base.updateShoppingListByKeyInStore as jest.Mock).mockResolvedValue(
+        mockResponse
+      );
 
       const params = {
         key: 'test-key',
@@ -217,7 +276,11 @@ describe('Shopping List Store Functions', () => {
         ],
       };
 
-      const result = await store.updateShoppingList(mockApiRoot, mockContext, params);
+      const result = await store.updateShoppingList(
+        mockApiRoot,
+        mockContext,
+        params
+      );
 
       expect(base.updateShoppingListByKeyInStore).toHaveBeenCalledWith(
         mockApiRoot,
@@ -248,7 +311,9 @@ describe('Shopping List Store Functions', () => {
         ],
       };
 
-      await expect(store.updateShoppingList(mockApiRoot, mockContext, params)).rejects.toThrow(
+      await expect(
+        store.updateShoppingList(mockApiRoot, mockContext, params)
+      ).rejects.toThrow(
         'Either id or key must be provided for updating a shopping list'
       );
     });
@@ -271,9 +336,9 @@ describe('Shopping List Store Functions', () => {
         ],
       };
 
-      await expect(store.updateShoppingList(mockApiRoot, contextWithoutStore, params)).rejects.toThrow(
-        'Store key is required for store-specific operations'
-      );
+      await expect(
+        store.updateShoppingList(mockApiRoot, contextWithoutStore, params)
+      ).rejects.toThrow('Store key is required for store-specific operations');
     });
   });
 });

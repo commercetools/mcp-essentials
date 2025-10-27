@@ -52,7 +52,11 @@ describe('Extension Functions', () => {
       const params = {id: 'extension-123'};
       const result = await readExtension(mockApiRoot, mockContext, params);
 
-      expect(admin.readExtension).toHaveBeenCalledWith(mockApiRoot, mockContext, params);
+      expect(admin.readExtension).toHaveBeenCalledWith(
+        mockApiRoot,
+        mockContext,
+        params
+      );
       expect(result).toEqual(mockResponse);
     });
   });
@@ -79,7 +83,11 @@ describe('Extension Functions', () => {
 
       const result = await createExtension(mockApiRoot, mockContext, params);
 
-      expect(admin.createExtension).toHaveBeenCalledWith(mockApiRoot, mockContext, params);
+      expect(admin.createExtension).toHaveBeenCalledWith(
+        mockApiRoot,
+        mockContext,
+        params
+      );
       expect(result).toEqual(mockResponse);
     });
   });
@@ -104,9 +112,12 @@ describe('Extension Functions', () => {
 
       const result = await updateExtension(mockApiRoot, mockContext, params);
 
-      expect(admin.updateExtension).toHaveBeenCalledWith(mockApiRoot, mockContext, params);
+      expect(admin.updateExtension).toHaveBeenCalledWith(
+        mockApiRoot,
+        mockContext,
+        params
+      );
       expect(result).toEqual(mockResponse);
     });
   });
 });
-

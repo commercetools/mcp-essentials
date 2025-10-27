@@ -27,9 +27,17 @@ describe('Subscription Admin Functions', () => {
         .mockResolvedValue(mockResponse);
 
       const params = {id: 'subscription-123'};
-      const result = await admin.readSubscription(mockApiRoot, mockContext, params);
+      const result = await admin.readSubscription(
+        mockApiRoot,
+        mockContext,
+        params
+      );
 
-      expect(base.readSubscriptionById).toHaveBeenCalledWith(mockApiRoot, mockContext.projectKey, params);
+      expect(base.readSubscriptionById).toHaveBeenCalledWith(
+        mockApiRoot,
+        mockContext.projectKey,
+        params
+      );
       expect(result).toEqual(mockResponse);
     });
 
@@ -44,9 +52,17 @@ describe('Subscription Admin Functions', () => {
         .mockResolvedValue(mockResponse);
 
       const params = {key: 'my-subscription'};
-      const result = await admin.readSubscription(mockApiRoot, mockContext, params);
+      const result = await admin.readSubscription(
+        mockApiRoot,
+        mockContext,
+        params
+      );
 
-      expect(base.readSubscriptionByKey).toHaveBeenCalledWith(mockApiRoot, mockContext.projectKey, params);
+      expect(base.readSubscriptionByKey).toHaveBeenCalledWith(
+        mockApiRoot,
+        mockContext.projectKey,
+        params
+      );
       expect(result).toEqual(mockResponse);
     });
 
@@ -60,9 +76,17 @@ describe('Subscription Admin Functions', () => {
         .mockResolvedValue(mockResponse);
 
       const params = {limit: 20, offset: 0};
-      const result = await admin.readSubscription(mockApiRoot, mockContext, params);
+      const result = await admin.readSubscription(
+        mockApiRoot,
+        mockContext,
+        params
+      );
 
-      expect(base.querySubscriptions).toHaveBeenCalledWith(mockApiRoot, mockContext.projectKey, params);
+      expect(base.querySubscriptions).toHaveBeenCalledWith(
+        mockApiRoot,
+        mockContext.projectKey,
+        params
+      );
       expect(result).toEqual(mockResponse);
     });
   });
@@ -72,7 +96,10 @@ describe('Subscription Admin Functions', () => {
       const mockResponse = {
         id: 'new-subscription',
         key: 'my-subscription',
-        destination: {type: 'SQS', queueUrl: 'https://sqs.amazonaws.com/my-queue'},
+        destination: {
+          type: 'SQS',
+          queueUrl: 'https://sqs.amazonaws.com/my-queue',
+        },
       };
 
       (base.createSubscription as jest.Mock) = jest
@@ -92,9 +119,17 @@ describe('Subscription Admin Functions', () => {
         ],
       };
 
-      const result = await admin.createSubscription(mockApiRoot, mockContext, params);
+      const result = await admin.createSubscription(
+        mockApiRoot,
+        mockContext,
+        params
+      );
 
-      expect(base.createSubscription).toHaveBeenCalledWith(mockApiRoot, mockContext.projectKey, params);
+      expect(base.createSubscription).toHaveBeenCalledWith(
+        mockApiRoot,
+        mockContext.projectKey,
+        params
+      );
       expect(result).toEqual(mockResponse);
     });
   });
@@ -124,13 +159,21 @@ describe('Subscription Admin Functions', () => {
         ],
       };
 
-      const result = await admin.updateSubscription(mockApiRoot, mockContext, params);
+      const result = await admin.updateSubscription(
+        mockApiRoot,
+        mockContext,
+        params
+      );
 
-      expect(base.updateSubscriptionById).toHaveBeenCalledWith(mockApiRoot, mockContext.projectKey, {
-        id: 'subscription-123',
-        version: 1,
-        actions: params.actions,
-      });
+      expect(base.updateSubscriptionById).toHaveBeenCalledWith(
+        mockApiRoot,
+        mockContext.projectKey,
+        {
+          id: 'subscription-123',
+          version: 1,
+          actions: params.actions,
+        }
+      );
       expect(result).toEqual(mockResponse);
     });
 
@@ -156,13 +199,21 @@ describe('Subscription Admin Functions', () => {
         ],
       };
 
-      const result = await admin.updateSubscription(mockApiRoot, mockContext, params);
+      const result = await admin.updateSubscription(
+        mockApiRoot,
+        mockContext,
+        params
+      );
 
-      expect(base.updateSubscriptionByKey).toHaveBeenCalledWith(mockApiRoot, mockContext.projectKey, {
-        key: 'my-subscription',
-        version: 1,
-        actions: params.actions,
-      });
+      expect(base.updateSubscriptionByKey).toHaveBeenCalledWith(
+        mockApiRoot,
+        mockContext.projectKey,
+        {
+          key: 'my-subscription',
+          version: 1,
+          actions: params.actions,
+        }
+      );
       expect(result).toEqual(mockResponse);
     });
 
@@ -181,9 +232,10 @@ describe('Subscription Admin Functions', () => {
         await admin.updateSubscription(mockApiRoot, mockContext, params as any);
         fail('Expected updateSubscription to throw an error');
       } catch (error: any) {
-        expect(error.message).toContain('Either id or key must be provided for updating a subscription');
+        expect(error.message).toContain(
+          'Either id or key must be provided for updating a subscription'
+        );
       }
     });
   });
 });
-

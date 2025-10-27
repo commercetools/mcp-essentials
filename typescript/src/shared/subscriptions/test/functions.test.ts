@@ -1,5 +1,9 @@
 import {contextToSubscriptionFunctionMapping} from '../functions';
-import {readSubscription, createSubscription, updateSubscription} from '../functions';
+import {
+  readSubscription,
+  createSubscription,
+  updateSubscription,
+} from '../functions';
 import * as admin from '../admin.functions';
 
 // Mock the admin functions
@@ -52,7 +56,11 @@ describe('Subscription Functions', () => {
       const params = {id: 'subscription-123'};
       const result = await readSubscription(mockApiRoot, mockContext, params);
 
-      expect(admin.readSubscription).toHaveBeenCalledWith(mockApiRoot, mockContext, params);
+      expect(admin.readSubscription).toHaveBeenCalledWith(
+        mockApiRoot,
+        mockContext,
+        params
+      );
       expect(result).toEqual(mockResponse);
     });
   });
@@ -79,7 +87,11 @@ describe('Subscription Functions', () => {
 
       const result = await createSubscription(mockApiRoot, mockContext, params);
 
-      expect(admin.createSubscription).toHaveBeenCalledWith(mockApiRoot, mockContext, params);
+      expect(admin.createSubscription).toHaveBeenCalledWith(
+        mockApiRoot,
+        mockContext,
+        params
+      );
       expect(result).toEqual(mockResponse);
     });
   });
@@ -108,9 +120,12 @@ describe('Subscription Functions', () => {
 
       const result = await updateSubscription(mockApiRoot, mockContext, params);
 
-      expect(admin.updateSubscription).toHaveBeenCalledWith(mockApiRoot, mockContext, params);
+      expect(admin.updateSubscription).toHaveBeenCalledWith(
+        mockApiRoot,
+        mockContext,
+        params
+      );
       expect(result).toEqual(mockResponse);
     });
   });
 });
-

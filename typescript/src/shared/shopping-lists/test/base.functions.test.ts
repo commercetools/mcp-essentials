@@ -42,7 +42,11 @@ describe('Shopping List Base Functions', () => {
   describe('readShoppingListById', () => {
     it('should read a shopping list by ID', async () => {
       const mockResponse = {
-        body: {id: 'test-id', key: 'test-key', name: {en: 'Test Shopping List'}},
+        body: {
+          id: 'test-id',
+          key: 'test-key',
+          name: {en: 'Test Shopping List'},
+        },
       };
       mockExecute.mockResolvedValue(mockResponse);
 
@@ -77,7 +81,11 @@ describe('Shopping List Base Functions', () => {
   describe('readShoppingListByKey', () => {
     it('should read a shopping list by key', async () => {
       const mockResponse = {
-        body: {id: 'test-id', key: 'test-key', name: {en: 'Test Shopping List'}},
+        body: {
+          id: 'test-id',
+          key: 'test-key',
+          name: {en: 'Test Shopping List'},
+        },
       };
       mockExecute.mockResolvedValue(mockResponse);
 
@@ -138,9 +146,7 @@ describe('Shopping List Base Functions', () => {
     it('should query shopping lists in store', async () => {
       const mockResponse = {
         body: {
-          results: [
-            {id: 'test-id-1', name: {en: 'Store Shopping List 1'}},
-          ],
+          results: [{id: 'test-id-1', name: {en: 'Store Shopping List 1'}}],
         },
       };
       mockExecute.mockResolvedValue(mockResponse);
@@ -156,7 +162,9 @@ describe('Shopping List Base Functions', () => {
       );
 
       expect(mockWithProjectKey).toHaveBeenCalledWith({projectKey});
-      expect(mockInStoreKeyWithStoreKeyValue).toHaveBeenCalledWith({storeKey: 'store-key'});
+      expect(mockInStoreKeyWithStoreKeyValue).toHaveBeenCalledWith({
+        storeKey: 'store-key',
+      });
       expect(mockShoppingLists).toHaveBeenCalled();
       expect(mockGet).toHaveBeenCalledWith({
         queryArgs: {
@@ -188,7 +196,11 @@ describe('Shopping List Base Functions', () => {
         },
       };
 
-      const result = await base.createShoppingList(mockApiRoot, projectKey, params);
+      const result = await base.createShoppingList(
+        mockApiRoot,
+        projectKey,
+        params
+      );
 
       expect(mockWithProjectKey).toHaveBeenCalledWith({projectKey});
       expect(mockShoppingLists).toHaveBeenCalled();
@@ -219,7 +231,11 @@ describe('Shopping List Base Functions', () => {
   describe('createShoppingListInStore', () => {
     it('should create a shopping list in store', async () => {
       const mockResponse = {
-        body: {id: 'new-id', key: 'new-key', name: {en: 'New Store Shopping List'}},
+        body: {
+          id: 'new-id',
+          key: 'new-key',
+          name: {en: 'New Store Shopping List'},
+        },
       };
       mockExecute.mockResolvedValue(mockResponse);
 
@@ -240,7 +256,9 @@ describe('Shopping List Base Functions', () => {
       );
 
       expect(mockWithProjectKey).toHaveBeenCalledWith({projectKey});
-      expect(mockInStoreKeyWithStoreKeyValue).toHaveBeenCalledWith({storeKey: 'store-key'});
+      expect(mockInStoreKeyWithStoreKeyValue).toHaveBeenCalledWith({
+        storeKey: 'store-key',
+      });
       expect(mockShoppingLists).toHaveBeenCalled();
       expect(mockPost).toHaveBeenCalledWith({
         body: {
@@ -284,7 +302,11 @@ describe('Shopping List Base Functions', () => {
         ],
       };
 
-      const result = await base.updateShoppingListById(mockApiRoot, projectKey, params);
+      const result = await base.updateShoppingListById(
+        mockApiRoot,
+        projectKey,
+        params
+      );
 
       expect(mockWithProjectKey).toHaveBeenCalledWith({projectKey});
       expect(mockShoppingLists).toHaveBeenCalled();
@@ -323,7 +345,11 @@ describe('Shopping List Base Functions', () => {
         ],
       };
 
-      const result = await base.updateShoppingListByKey(mockApiRoot, projectKey, params);
+      const result = await base.updateShoppingListByKey(
+        mockApiRoot,
+        projectKey,
+        params
+      );
 
       expect(mockWithProjectKey).toHaveBeenCalledWith({projectKey});
       expect(mockShoppingLists).toHaveBeenCalled();
@@ -347,7 +373,11 @@ describe('Shopping List Base Functions', () => {
   describe('updateShoppingListByIdInStore', () => {
     it('should update a shopping list by ID in store', async () => {
       const mockResponse = {
-        body: {id: 'test-id', version: 2, name: {en: 'Updated Store Shopping List'}},
+        body: {
+          id: 'test-id',
+          version: 2,
+          name: {en: 'Updated Store Shopping List'},
+        },
       };
       mockExecute.mockResolvedValue(mockResponse);
 
@@ -370,7 +400,9 @@ describe('Shopping List Base Functions', () => {
       );
 
       expect(mockWithProjectKey).toHaveBeenCalledWith({projectKey});
-      expect(mockInStoreKeyWithStoreKeyValue).toHaveBeenCalledWith({storeKey: 'store-key'});
+      expect(mockInStoreKeyWithStoreKeyValue).toHaveBeenCalledWith({
+        storeKey: 'store-key',
+      });
       expect(mockShoppingLists).toHaveBeenCalled();
       expect(mockWithId).toHaveBeenCalledWith({ID: 'test-id'});
       expect(mockPost).toHaveBeenCalledWith({
@@ -392,7 +424,11 @@ describe('Shopping List Base Functions', () => {
   describe('updateShoppingListByKeyInStore', () => {
     it('should update a shopping list by key in store', async () => {
       const mockResponse = {
-        body: {id: 'test-id', version: 2, name: {en: 'Updated Store Shopping List'}},
+        body: {
+          id: 'test-id',
+          version: 2,
+          name: {en: 'Updated Store Shopping List'},
+        },
       };
       mockExecute.mockResolvedValue(mockResponse);
 
@@ -415,7 +451,9 @@ describe('Shopping List Base Functions', () => {
       );
 
       expect(mockWithProjectKey).toHaveBeenCalledWith({projectKey});
-      expect(mockInStoreKeyWithStoreKeyValue).toHaveBeenCalledWith({storeKey: 'store-key'});
+      expect(mockInStoreKeyWithStoreKeyValue).toHaveBeenCalledWith({
+        storeKey: 'store-key',
+      });
       expect(mockShoppingLists).toHaveBeenCalled();
       expect(mockWithKey).toHaveBeenCalledWith({key: 'test-key'});
       expect(mockPost).toHaveBeenCalledWith({

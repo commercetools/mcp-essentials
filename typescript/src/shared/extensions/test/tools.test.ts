@@ -40,7 +40,7 @@ describe('Extension Tools', () => {
       expect(readTool).toHaveProperty('description');
       expect(readTool).toHaveProperty('actions');
       expect(readTool.actions).toHaveProperty('extensions');
-      expect(readTool.actions['extensions']).toHaveProperty('read', true);
+      expect(readTool.actions.extensions).toHaveProperty('read', true);
 
       // Check create tool
       const createTool = tools[1];
@@ -50,7 +50,7 @@ describe('Extension Tools', () => {
       expect(createTool).toHaveProperty('description');
       expect(createTool).toHaveProperty('actions');
       expect(createTool.actions).toHaveProperty('extensions');
-      expect(createTool.actions['extensions']).toHaveProperty('create', true);
+      expect(createTool.actions.extensions).toHaveProperty('create', true);
 
       // Check update tool
       const updateTool = tools[2];
@@ -60,8 +60,7 @@ describe('Extension Tools', () => {
       expect(updateTool).toHaveProperty('description');
       expect(updateTool).toHaveProperty('actions');
       expect(updateTool.actions).toHaveProperty('extensions');
-      expect(updateTool.actions['extensions']).toHaveProperty('update', true);
+      expect(updateTool.actions.extensions).toHaveProperty('update', true);
     });
   });
 });
-

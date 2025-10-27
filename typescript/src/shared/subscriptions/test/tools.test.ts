@@ -40,7 +40,7 @@ describe('Subscription Tools', () => {
       expect(readTool).toHaveProperty('description');
       expect(readTool).toHaveProperty('actions');
       expect(readTool.actions).toHaveProperty('subscriptions');
-      expect(readTool.actions['subscriptions']).toHaveProperty('read', true);
+      expect(readTool.actions.subscriptions).toHaveProperty('read', true);
 
       // Check create tool
       const createTool = tools[1];
@@ -50,7 +50,7 @@ describe('Subscription Tools', () => {
       expect(createTool).toHaveProperty('description');
       expect(createTool).toHaveProperty('actions');
       expect(createTool.actions).toHaveProperty('subscriptions');
-      expect(createTool.actions['subscriptions']).toHaveProperty('create', true);
+      expect(createTool.actions.subscriptions).toHaveProperty('create', true);
 
       // Check update tool
       const updateTool = tools[2];
@@ -60,8 +60,7 @@ describe('Subscription Tools', () => {
       expect(updateTool).toHaveProperty('description');
       expect(updateTool).toHaveProperty('actions');
       expect(updateTool.actions).toHaveProperty('subscriptions');
-      expect(updateTool.actions['subscriptions']).toHaveProperty('update', true);
+      expect(updateTool.actions.subscriptions).toHaveProperty('update', true);
     });
   });
 });
-

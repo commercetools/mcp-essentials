@@ -23,17 +23,15 @@ describe('Extension Base Functions', () => {
         ],
       };
 
-      (mockApiRoot.withProjectKey as jest.Mock) = jest
-        .fn()
-        .mockReturnValue({
-          extensions: jest.fn().mockReturnValue({
-            withId: jest.fn().mockReturnValue({
-              get: jest.fn().mockReturnValue({
-                execute: jest.fn().mockResolvedValue({body: mockResponse}),
-              }),
+      (mockApiRoot.withProjectKey as jest.Mock) = jest.fn().mockReturnValue({
+        extensions: jest.fn().mockReturnValue({
+          withId: jest.fn().mockReturnValue({
+            get: jest.fn().mockReturnValue({
+              execute: jest.fn().mockResolvedValue({body: mockResponse}),
             }),
           }),
-        });
+        }),
+      });
 
       const result = await base.readExtensionById(mockApiRoot, projectKey, {
         id: 'extension-123',
@@ -45,17 +43,15 @@ describe('Extension Base Functions', () => {
     it('should handle errors when reading by ID', async () => {
       const mockError = new Error('Extension not found');
 
-      (mockApiRoot.withProjectKey as jest.Mock) = jest
-        .fn()
-        .mockReturnValue({
-          extensions: jest.fn().mockReturnValue({
-            withId: jest.fn().mockReturnValue({
-              get: jest.fn().mockReturnValue({
-                execute: jest.fn().mockRejectedValue(mockError),
-              }),
+      (mockApiRoot.withProjectKey as jest.Mock) = jest.fn().mockReturnValue({
+        extensions: jest.fn().mockReturnValue({
+          withId: jest.fn().mockReturnValue({
+            get: jest.fn().mockReturnValue({
+              execute: jest.fn().mockRejectedValue(mockError),
             }),
           }),
-        });
+        }),
+      });
 
       await expect(
         base.readExtensionById(mockApiRoot, projectKey, {id: 'extension-123'})
@@ -77,17 +73,15 @@ describe('Extension Base Functions', () => {
         ],
       };
 
-      (mockApiRoot.withProjectKey as jest.Mock) = jest
-        .fn()
-        .mockReturnValue({
-          extensions: jest.fn().mockReturnValue({
-            withKey: jest.fn().mockReturnValue({
-              get: jest.fn().mockReturnValue({
-                execute: jest.fn().mockResolvedValue({body: mockResponse}),
-              }),
+      (mockApiRoot.withProjectKey as jest.Mock) = jest.fn().mockReturnValue({
+        extensions: jest.fn().mockReturnValue({
+          withKey: jest.fn().mockReturnValue({
+            get: jest.fn().mockReturnValue({
+              execute: jest.fn().mockResolvedValue({body: mockResponse}),
             }),
           }),
-        });
+        }),
+      });
 
       const result = await base.readExtensionByKey(mockApiRoot, projectKey, {
         key: 'my-extension',
@@ -99,17 +93,15 @@ describe('Extension Base Functions', () => {
     it('should handle errors when reading by key', async () => {
       const mockError = new Error('Extension not found');
 
-      (mockApiRoot.withProjectKey as jest.Mock) = jest
-        .fn()
-        .mockReturnValue({
-          extensions: jest.fn().mockReturnValue({
-            withKey: jest.fn().mockReturnValue({
-              get: jest.fn().mockReturnValue({
-                execute: jest.fn().mockRejectedValue(mockError),
-              }),
+      (mockApiRoot.withProjectKey as jest.Mock) = jest.fn().mockReturnValue({
+        extensions: jest.fn().mockReturnValue({
+          withKey: jest.fn().mockReturnValue({
+            get: jest.fn().mockReturnValue({
+              execute: jest.fn().mockRejectedValue(mockError),
             }),
           }),
-        });
+        }),
+      });
 
       await expect(
         base.readExtensionByKey(mockApiRoot, projectKey, {key: 'my-extension'})
@@ -133,15 +125,13 @@ describe('Extension Base Functions', () => {
         total: 1,
       };
 
-      (mockApiRoot.withProjectKey as jest.Mock) = jest
-        .fn()
-        .mockReturnValue({
-          extensions: jest.fn().mockReturnValue({
-            get: jest.fn().mockReturnValue({
-              execute: jest.fn().mockResolvedValue({body: mockResponse}),
-            }),
+      (mockApiRoot.withProjectKey as jest.Mock) = jest.fn().mockReturnValue({
+        extensions: jest.fn().mockReturnValue({
+          get: jest.fn().mockReturnValue({
+            execute: jest.fn().mockResolvedValue({body: mockResponse}),
           }),
-        });
+        }),
+      });
 
       const result = await base.queryExtensions(mockApiRoot, projectKey, {
         limit: 20,
@@ -155,15 +145,13 @@ describe('Extension Base Functions', () => {
     it('should handle errors when querying', async () => {
       const mockError = new Error('Query failed');
 
-      (mockApiRoot.withProjectKey as jest.Mock) = jest
-        .fn()
-        .mockReturnValue({
-          extensions: jest.fn().mockReturnValue({
-            get: jest.fn().mockReturnValue({
-              execute: jest.fn().mockRejectedValue(mockError),
-            }),
+      (mockApiRoot.withProjectKey as jest.Mock) = jest.fn().mockReturnValue({
+        extensions: jest.fn().mockReturnValue({
+          get: jest.fn().mockReturnValue({
+            execute: jest.fn().mockRejectedValue(mockError),
           }),
-        });
+        }),
+      });
 
       await expect(
         base.queryExtensions(mockApiRoot, projectKey, {limit: 20})
@@ -185,15 +173,13 @@ describe('Extension Base Functions', () => {
         ],
       };
 
-      (mockApiRoot.withProjectKey as jest.Mock) = jest
-        .fn()
-        .mockReturnValue({
-          extensions: jest.fn().mockReturnValue({
-            post: jest.fn().mockReturnValue({
-              execute: jest.fn().mockResolvedValue({body: mockResponse}),
-            }),
+      (mockApiRoot.withProjectKey as jest.Mock) = jest.fn().mockReturnValue({
+        extensions: jest.fn().mockReturnValue({
+          post: jest.fn().mockReturnValue({
+            execute: jest.fn().mockResolvedValue({body: mockResponse}),
           }),
-        });
+        }),
+      });
 
       const params = {
         key: 'new-extension',
@@ -222,15 +208,13 @@ describe('Extension Base Functions', () => {
     it('should handle errors when creating', async () => {
       const mockError = new Error('Creation failed');
 
-      (mockApiRoot.withProjectKey as jest.Mock) = jest
-        .fn()
-        .mockReturnValue({
-          extensions: jest.fn().mockReturnValue({
-            post: jest.fn().mockReturnValue({
-              execute: jest.fn().mockRejectedValue(mockError),
-            }),
+      (mockApiRoot.withProjectKey as jest.Mock) = jest.fn().mockReturnValue({
+        extensions: jest.fn().mockReturnValue({
+          post: jest.fn().mockReturnValue({
+            execute: jest.fn().mockRejectedValue(mockError),
           }),
-        });
+        }),
+      });
 
       const params = {
         destination: {
@@ -259,17 +243,15 @@ describe('Extension Base Functions', () => {
         version: 2,
       };
 
-      (mockApiRoot.withProjectKey as jest.Mock) = jest
-        .fn()
-        .mockReturnValue({
-          extensions: jest.fn().mockReturnValue({
-            withId: jest.fn().mockReturnValue({
-              post: jest.fn().mockReturnValue({
-                execute: jest.fn().mockResolvedValue({body: mockResponse}),
-              }),
+      (mockApiRoot.withProjectKey as jest.Mock) = jest.fn().mockReturnValue({
+        extensions: jest.fn().mockReturnValue({
+          withId: jest.fn().mockReturnValue({
+            post: jest.fn().mockReturnValue({
+              execute: jest.fn().mockResolvedValue({body: mockResponse}),
             }),
           }),
-        });
+        }),
+      });
 
       const params = {
         id: 'extension-123',
@@ -282,7 +264,11 @@ describe('Extension Base Functions', () => {
         ],
       };
 
-      const result = await base.updateExtensionById(mockApiRoot, projectKey, params);
+      const result = await base.updateExtensionById(
+        mockApiRoot,
+        projectKey,
+        params
+      );
 
       expect(result).toEqual(mockResponse);
     });
@@ -290,17 +276,15 @@ describe('Extension Base Functions', () => {
     it('should handle errors when updating by ID', async () => {
       const mockError = new Error('Update failed');
 
-      (mockApiRoot.withProjectKey as jest.Mock) = jest
-        .fn()
-        .mockReturnValue({
-          extensions: jest.fn().mockReturnValue({
-            withId: jest.fn().mockReturnValue({
-              post: jest.fn().mockReturnValue({
-                execute: jest.fn().mockRejectedValue(mockError),
-              }),
+      (mockApiRoot.withProjectKey as jest.Mock) = jest.fn().mockReturnValue({
+        extensions: jest.fn().mockReturnValue({
+          withId: jest.fn().mockReturnValue({
+            post: jest.fn().mockReturnValue({
+              execute: jest.fn().mockRejectedValue(mockError),
             }),
           }),
-        });
+        }),
+      });
 
       const params = {
         id: 'extension-123',
@@ -327,17 +311,15 @@ describe('Extension Base Functions', () => {
         version: 2,
       };
 
-      (mockApiRoot.withProjectKey as jest.Mock) = jest
-        .fn()
-        .mockReturnValue({
-          extensions: jest.fn().mockReturnValue({
-            withKey: jest.fn().mockReturnValue({
-              post: jest.fn().mockReturnValue({
-                execute: jest.fn().mockResolvedValue({body: mockResponse}),
-              }),
+      (mockApiRoot.withProjectKey as jest.Mock) = jest.fn().mockReturnValue({
+        extensions: jest.fn().mockReturnValue({
+          withKey: jest.fn().mockReturnValue({
+            post: jest.fn().mockReturnValue({
+              execute: jest.fn().mockResolvedValue({body: mockResponse}),
             }),
           }),
-        });
+        }),
+      });
 
       const params = {
         key: 'my-extension',
@@ -350,7 +332,11 @@ describe('Extension Base Functions', () => {
         ],
       };
 
-      const result = await base.updateExtensionByKey(mockApiRoot, projectKey, params);
+      const result = await base.updateExtensionByKey(
+        mockApiRoot,
+        projectKey,
+        params
+      );
 
       expect(result).toEqual(mockResponse);
     });
@@ -358,17 +344,15 @@ describe('Extension Base Functions', () => {
     it('should handle errors when updating by key', async () => {
       const mockError = new Error('Update failed');
 
-      (mockApiRoot.withProjectKey as jest.Mock) = jest
-        .fn()
-        .mockReturnValue({
-          extensions: jest.fn().mockReturnValue({
-            withKey: jest.fn().mockReturnValue({
-              post: jest.fn().mockReturnValue({
-                execute: jest.fn().mockRejectedValue(mockError),
-              }),
+      (mockApiRoot.withProjectKey as jest.Mock) = jest.fn().mockReturnValue({
+        extensions: jest.fn().mockReturnValue({
+          withKey: jest.fn().mockReturnValue({
+            post: jest.fn().mockReturnValue({
+              execute: jest.fn().mockRejectedValue(mockError),
             }),
           }),
-        });
+        }),
+      });
 
       const params = {
         key: 'my-extension',
@@ -387,4 +371,3 @@ describe('Extension Base Functions', () => {
     });
   });
 });
-
