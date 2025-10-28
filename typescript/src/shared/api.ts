@@ -160,11 +160,11 @@ class CommercetoolsAPI {
   async run(
     method: string,
     arg: any,
-    execute?: (args: Record<string, unknown>, api: ApiRoot) => Promise<string>
-  ) {
+    execute?: (args: Record<string, unknown>, api: ApiRoot) => Promise<unknown>
+  ): Promise<unknown> {
     // handle custom tool execution
     if (execute && typeof execute == 'function') {
-      return JSON.stringify(await execute(arg, this.apiRoot));
+      return execute(arg, this.apiRoot);
     }
 
     // handle core tool execution
@@ -178,18 +178,14 @@ class CommercetoolsAPI {
       throw new Error('Invalid method ' + method);
     }
 
-    const output = JSON.stringify(
-      await func(
-        this.apiRoot,
-        {
-          projectKey: this.authConfig.projectKey,
-          ...this.context,
-        } as CommercetoolsFuncContext,
-        arg
-      )
+    return func(
+      this.apiRoot,
+      {
+        projectKey: this.authConfig.projectKey,
+        ...this.context,
+      } as CommercetoolsFuncContext,
+      arg
     );
-
-    return output;
   }
 }
 
