@@ -1,25 +1,40 @@
 const emptyObjectTransformValue = 'no properties';
 const emptyArrayTransformValue = 'none';
 
-type Format = 'tabled' | 'tabular';
+type Format = 'tabular' | 'json';
 
 const incrementIndent = (indent: string) => indent + ' ';
 
-export const transformData = (args: {
+/**
+ * The method to strigify tool output into a LLM friendly and optimised format.
+ *
+ * @param {Record<string, unknown>} args.data - The response of a tool's output, in the format of an object.
+ * @param {string} [args.title] - An optional string, the title or description to give the data for LLM context.
+ * @param {Format} [args.format] - An optional string of either "tabular" or "JSON" defining the format output, default "tabular".
+ *
+ * @returns {string} The LLM optimised tool string output.
+ */
+export const transformToolOutput = (args: {
   data: Record<string, unknown>;
   title?: string;
   format?: Format;
 }): string => {
   let {format} = args;
   const {data, title} = args;
-  format = format ?? 'tabled';
+  if (format === 'json') {
+    // if requested format is JSON, simply stringify and return the data
+    if (title) {
+      return JSON.stringify({[title]: data});
+    }
+    JSON.stringify(data);
+  }
+
   let transformedData = title ? `${transformPropertyName(title)}:\n` : '';
 
   Object.keys(data).forEach((key) => {
     const transformedValue = transformPropertyValue({
       data: data[key],
       indentSpaces: '',
-      format,
       hasTitle: !!title,
     });
     if (transformedValue !== null) {
@@ -50,10 +65,9 @@ export const transformData = (args: {
 const transformPropertyValue = (args: {
   data: any;
   indentSpaces: string;
-  format: Format;
   hasTitle?: boolean;
 }): string | null => {
-  const {data, indentSpaces, format, hasTitle} = args;
+  const {data, indentSpaces, hasTitle} = args;
   if (isPropertyTypeToBeIgnored(data)) {
     // check function/undefined
     return null;
@@ -79,13 +93,12 @@ const transformPropertyValue = (args: {
       }
       if (Array.isArray(data)) {
         // handle array
-        return transformArray({array: data, indentSpaces, format});
+        return transformArray({array: data, indentSpaces});
       }
       // handle object/Record<string, any> (remaining possible condition)
       return transformObject({
         object: data,
         indentSpaces: hasTitle ? ' ' : indentSpaces,
-        format,
       });
     }
     default:
@@ -96,9 +109,8 @@ const transformPropertyValue = (args: {
 const transformObject = (args: {
   object: Record<string, any>;
   indentSpaces: string;
-  format: Format;
 }): string => {
-  const {object, indentSpaces, format} = args;
+  const {object, indentSpaces} = args;
   if (Object.keys(object).length === 0) {
     // handle empty object
     return emptyObjectTransformValue;
@@ -113,7 +125,6 @@ const transformObject = (args: {
         const transformedObjectValue = transformObject({
           object: object[key],
           indentSpaces: incrementIndent(indentSpaces),
-          format,
         });
         transformedObject += `${indentSpaces}- ${transformPropertyName(key)}:`;
         if (transformedObjectValue === emptyObjectTransformValue) {
@@ -135,7 +146,6 @@ const transformObject = (args: {
             indentSpaces: isBasicArray
               ? indentSpaces
               : incrementIndent(indentSpaces),
-            format,
           }) + '\n';
       }
     } else {
@@ -143,7 +153,7 @@ const transformObject = (args: {
       if (!isPropertyTypeToBeIgnored(object[key])) {
         transformedObject +=
           `${indentSpaces}- ${transformPropertyName(key)}: ` +
-          `${transformPropertyValue({data: object[key], indentSpaces, format})}\n`;
+          `${transformPropertyValue({data: object[key], indentSpaces})}\n`;
       }
     }
   });
@@ -159,10 +169,9 @@ const transformArray = (args: {
   array: Array<any>;
   indentSpaces: string;
   commaSeperated?: boolean;
-  format: Format;
 }): string => {
   let {commaSeperated} = args;
-  const {array, indentSpaces, format} = args;
+  const {array, indentSpaces} = args;
   commaSeperated = commaSeperated ?? true;
   if (array.length === 0) {
     return emptyArrayTransformValue;
@@ -177,7 +186,6 @@ const transformArray = (args: {
       const newValue = transformPropertyValue({
         data: currentItem,
         indentSpaces,
-        format,
       });
       if (!aggregate) {
         return newValue;
@@ -188,101 +196,17 @@ const transformArray = (args: {
     return transformedArray ? transformedArray : emptyArrayTransformValue;
   }
 
-  const propertyQuantities = seperatePropertyQuantitiesWithinObjectArray(array);
-  if (
-    propertyQuantities !== null &&
-    isArrayWithConsistentObjectProperties(propertyQuantities)
-  ) {
-    // handle array of consistent objects
-    const propertyNames = propertyQuantities.map(
-      (arrayEval) => arrayEval.propName
-    );
-    return transformArrayOfConsistentObjectTypes({
-      array,
-      propertyNames,
-      indentSpaces,
-      format,
-    });
-  }
-
-  if (isArrayOfArrays(array) && format === 'tabled') {
-    // TODO handle array of arrays for tabled format
-  }
-
-  // If no prior conditions are met, this leaves arrays of arrays, and arrays with
-  // inconsistent contents. These are handled the same way, as this inconsistency is
-  // incompatible with tabled format
   return transformArraysOfArraysAndObjectsToTabular({
     array,
     indentSpaces,
-    format,
   });
-};
-
-const transformArrayOfConsistentObjectTypes = (args: {
-  array: Record<string, any>[];
-  propertyNames: string[];
-  indentSpaces: string;
-  format: Format;
-}): string => {
-  const {array, propertyNames, indentSpaces, format} = args;
-  if (format === 'tabled') {
-    return transformArrayOfConsistentObjectTypesToTabled({
-      array,
-      propertyNames,
-      indentSpaces,
-      format,
-    });
-  }
-  // object/array consistency isn't important in tabular format
-  return transformArraysOfArraysAndObjectsToTabular({
-    array,
-    indentSpaces,
-    format,
-  });
-};
-
-const transformArrayOfConsistentObjectTypesToTabled = (args: {
-  array: Record<string, any>[];
-  propertyNames: string[];
-  indentSpaces: string;
-  format: Format;
-}): string => {
-  const {array, propertyNames, indentSpaces, format} = args;
-  let aggregatedArrayString = '\n|';
-
-  propertyNames.forEach((propName) => {
-    aggregatedArrayString += `${transformPropertyName(propName)}|`;
-  });
-  aggregatedArrayString += '\n|';
-  for (let n = 0; n < propertyNames.length; n++) {
-    aggregatedArrayString += '---|';
-  }
-  array.forEach((element) => {
-    aggregatedArrayString += `\n|`;
-    propertyNames.forEach((propName) => {
-      if (isObject(element[propName])) {
-        // TODO handle nested object/array
-        aggregatedArrayString += `OBJECT OR ARRAY|`;
-      } else {
-        const transformedPropertyValue = transformPropertyValue({
-          data: element[propName],
-          indentSpaces,
-          format,
-        });
-        aggregatedArrayString += `${transformedPropertyValue === null ? '---' : transformedPropertyValue}|`;
-      }
-    });
-  });
-  return aggregatedArrayString;
 };
 
 const transformArraysOfArraysAndObjectsToTabular = (args: {
   array: Array<any>;
   indentSpaces: string;
-  format: Format;
 }): string => {
-  const {array, indentSpaces, format} = args;
+  const {array, indentSpaces} = args;
 
   const transformedArray = array.reduce((aggregate, currentValue) => {
     let stringValue = `\n${indentSpaces + aggregate.length}:`;
@@ -298,13 +222,11 @@ const transformArraysOfArraysAndObjectsToTabular = (args: {
       stringValue += transformArray({
         array: currentValue,
         indentSpaces: incrementIndent(indentSpaces),
-        format,
       });
     } else {
       const transformedValue = transformPropertyValue({
         data: currentValue,
         indentSpaces,
-        format,
       });
       if (transformedValue === null) {
         return aggregate;
@@ -319,73 +241,7 @@ const transformArraysOfArraysAndObjectsToTabular = (args: {
     array: transformedArray,
     indentSpaces,
     commaSeperated: false,
-    format,
   });
-};
-
-const seperatePropertyQuantitiesWithinObjectArray = (
-  array: Array<Record<string, any>>
-): {propName: string; numberOfOccurances: number}[] | null => {
-  if (array.length === 1 && isObject(array[0])) {
-    return Object.keys(array[0]).map((key) => ({
-      propName: key,
-      numberOfOccurances: 1,
-    }));
-  }
-  const propertyOccurances: {propName: string; numberOfOccurances: number}[] =
-    [];
-
-  for (let n = 0; n < array.length; n++) {
-    // if any element is not an object, return null
-    if (!isObject(array[n])) {
-      n = array.length;
-      return null;
-    }
-
-    Object.keys(array[n]).forEach((key) => {
-      const index = propertyOccurances.findIndex(
-        (prop) => prop.propName === key
-      );
-      if (index === -1) {
-        propertyOccurances.push({propName: key, numberOfOccurances: 1});
-      } else {
-        propertyOccurances[index].numberOfOccurances += 1;
-      }
-    });
-  }
-
-  return propertyOccurances;
-};
-
-// TODO reevaluate this criteria before submission, currently returns true if more
-// than half of the properties have more than a single occurance or array length of 1
-const isArrayWithConsistentObjectProperties = (
-  propertyOccurances: {propName: string; numberOfOccurances: number}[] | null
-): boolean => {
-  if (propertyOccurances === null || propertyOccurances.length === 0) {
-    return false;
-  }
-  if (propertyOccurances.length === 1) {
-    return true;
-  }
-  return (
-    propertyOccurances.filter((prop) => prop.numberOfOccurances === 1).length <
-    propertyOccurances.length / 2
-  );
-};
-
-const isArrayOfArrays = (array: Array<Record<string, any>>): boolean => {
-  if (array?.length === 0) {
-    return false;
-  }
-  let isArrayArray = true;
-  for (let n = 0; n < array.length; n++) {
-    if (!Array.isArray(array[n])) {
-      isArrayArray = false;
-      n = array.length;
-    }
-  }
-  return isArrayArray;
 };
 
 const isArrayWithoutObjectsOrArrays = (data: any): boolean => {
