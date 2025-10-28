@@ -13,6 +13,7 @@ import {contextToToolsResourceBasedToolSystem} from '../shared/resource-based-to
 import {Tool} from '../types/tools';
 import {contextToBulkTools} from '../shared/bulk/tools';
 import {DYNAMIC_TOOL_LOADING_THRESHOLD} from '../shared/constants';
+import {transformToolOutput} from './transform';
 
 class CommercetoolsAgentEssentials extends McpServer {
   private authConfig: AuthConfig;
@@ -172,7 +173,12 @@ class CommercetoolsAgentEssentials extends McpServer {
       tool.parameters.shape,
       async (args: Record<string, unknown>) => {
         const result = await this.commercetoolsAPI.run(method, args, execute);
-        return this.createToolResponse(result);
+        return this.createToolResponse(
+          transformToolOutput({
+            data: {data: result},
+            title: `${tool.method} result`,
+          })
+        );
       }
     );
   }
@@ -220,7 +226,12 @@ class CommercetoolsAgentEssentials extends McpServer {
             args.arguments || {}
           );
 
-          return this.createToolResponse(result);
+          return this.createToolResponse(
+            transformToolOutput({
+              data: {data: result},
+              title: `${args.toolMethod} result`,
+            })
+          );
         } catch (error) {
           return this.handleToolExecutionError(error, args.toolMethod);
         }
@@ -228,12 +239,14 @@ class CommercetoolsAgentEssentials extends McpServer {
     );
   }
 
-  private createToolResponse(result: unknown) {
+  private createToolResponse(result: string): {
+    content: Array<{type: 'text'; text: string}>;
+  } {
     return {
       content: [
         {
-          type: 'text' as const,
-          text: String(result),
+          type: 'text',
+          text: result,
         },
       ],
     };

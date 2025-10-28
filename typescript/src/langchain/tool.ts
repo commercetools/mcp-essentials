@@ -3,6 +3,7 @@ import {DynamicStructuredTool} from '@langchain/core/tools';
 import {CallbackManagerForToolRun} from '@langchain/core/callbacks/manager';
 import {RunnableConfig} from '@langchain/core/runnables';
 import CommercetoolsAPI from '../shared/api';
+import {transformToolOutput} from '../modelcontextprotocol/transform';
 
 export default function CommercetoolsTool(
   commercetoolsAPI: CommercetoolsAPI,
@@ -20,7 +21,10 @@ export default function CommercetoolsTool(
       _config?: RunnableConfig
     ): Promise<string> => {
       const result = await commercetoolsAPI.run(method, arg);
-      return JSON.stringify(result);
+      return transformToolOutput({
+        title: `${method} result`,
+        data: {data: result},
+      });
     },
   });
 }
