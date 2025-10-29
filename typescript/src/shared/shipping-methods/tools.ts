@@ -55,6 +55,8 @@ export const contextToShippingMethodTools = (context?: Context) => {
       tools.update_shipping_methods,
     ];
   }
-
-  return [tools.read_shipping_methods];
+  if (context?.customerId) {
+    return [tools.read_shipping_methods];
+  }
+  return [];
 };

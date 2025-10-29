@@ -105,20 +105,15 @@ export async function createRecurringOrder(
   params: z.infer<typeof createRecurringOrderParameters>
 ) {
   try {
-    const recurringOrderDraft = {
-      key: params.key,
-      customerId: params.customerId,
-      orderNumber: params.orderNumber,
-      originOrder: params.originOrder,
-      cart: params.cart,
-      cartVersion: params.cartVersion,
-      schedule: params.schedule,
-      startsAt: params.startsAt,
-      expiresAt: params.expiresAt,
-      store: params.store,
-      businessUnit: params.businessUnit,
-      state: params.state,
-      custom: params.custom,
+    const recurringOrderDraft: any = {
+      ...(params.key && {key: params.key}),
+      ...(params.cart && {cart: params.cart}),
+      ...(params.cartVersion && {cartVersion: params.cartVersion}),
+      ...(params.schedule && {schedule: params.schedule}),
+      ...(params.startsAt && {startsAt: params.startsAt}),
+      ...(params.expiresAt && {expiresAt: params.expiresAt}),
+      ...(params.state && {state: params.state}),
+      ...(params.custom && {custom: params.custom}),
     };
 
     const recurringOrderRequest = apiRoot

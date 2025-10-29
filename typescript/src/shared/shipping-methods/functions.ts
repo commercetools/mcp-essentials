@@ -1,3 +1,5 @@
+import * as customer from './customer.functions';
+import * as admin from './admin.functions';
 import {ApiRoot} from '@commercetools/platform-sdk';
 import {z} from 'zod';
 import {
@@ -5,7 +7,6 @@ import {
   readShippingMethodParameters,
   updateShippingMethodParameters,
 } from './parameters';
-import * as admin from './admin.functions';
 import {CommercetoolsFuncContext, Context} from '../../types/configuration';
 
 export const contextToShippingMethodFunctionMapping = (
@@ -15,9 +16,14 @@ export const contextToShippingMethodFunctionMapping = (
   (
     apiRoot: ApiRoot,
     context: CommercetoolsFuncContext,
-    params: z.infer<any>
+    params: any
   ) => Promise<any>
 > => {
+  if (context?.customerId) {
+    return {
+      read_shipping_methods: customer.readCustomerShippingMethod,
+    };
+  }
   if (context?.isAdmin) {
     return {
       read_shipping_methods: admin.readShippingMethod,
@@ -37,14 +43,13 @@ export const contextToShippingMethodFunctionMapping = (
  */
 export function readShippingMethod(
   apiRoot: ApiRoot,
-  context: {projectKey: string},
+  context: any,
   params: z.infer<typeof readShippingMethodParameters>
 ) {
-  return admin.readShippingMethod(
-    apiRoot,
-    {...context, projectKey: context.projectKey},
-    params
-  );
+  if (context?.customerId) {
+    return customer.readCustomerShippingMethod(apiRoot, context, params);
+  }
+  return admin.readShippingMethod(apiRoot, context, params);
 }
 
 /**
@@ -52,14 +57,10 @@ export function readShippingMethod(
  */
 export function createShippingMethod(
   apiRoot: ApiRoot,
-  context: {projectKey: string},
+  context: any,
   params: z.infer<typeof createShippingMethodParameters>
 ) {
-  return admin.createShippingMethod(
-    apiRoot,
-    {...context, projectKey: context.projectKey},
-    params
-  );
+  return admin.createShippingMethod(apiRoot, context, params);
 }
 
 /**
@@ -70,12 +71,8 @@ export function createShippingMethod(
  */
 export function updateShippingMethod(
   apiRoot: ApiRoot,
-  context: {projectKey: string},
+  context: any,
   params: z.infer<typeof updateShippingMethodParameters>
 ) {
-  return admin.updateShippingMethod(
-    apiRoot,
-    {...context, projectKey: context.projectKey},
-    params
-  );
+  return admin.updateShippingMethod(apiRoot, context, params);
 }

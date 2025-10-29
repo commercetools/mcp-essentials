@@ -39,13 +39,13 @@ export async function readShippingMethodById(
 export async function readShippingMethodByKey(
   apiRoot: ApiRoot,
   projectKey: string,
-  params: z.infer<typeof readShippingMethodParameters>
+  params: {key: string; expand?: string[]}
 ) {
   try {
     const shippingMethodRequest = apiRoot
       .withProjectKey({projectKey})
       .shippingMethods()
-      .withKey({key: params.key as string})
+      .withKey({key: params.key})
       .get({
         queryArgs: {
           expand: params.expand,
@@ -65,7 +65,13 @@ export async function readShippingMethodByKey(
 export async function queryShippingMethods(
   apiRoot: ApiRoot,
   projectKey: string,
-  params: z.infer<typeof readShippingMethodParameters>
+  params: {
+    where?: string[];
+    limit?: number;
+    offset?: number;
+    sort?: string[];
+    expand?: string[];
+  }
 ) {
   try {
     const shippingMethodRequest = apiRoot
@@ -99,14 +105,14 @@ export async function createShippingMethod(
   params: z.infer<typeof createShippingMethodParameters>
 ) {
   try {
-    const shippingMethodDraft = {
-      key: params.key,
+    const shippingMethodDraft: any = {
       name: params.name,
-      description: params.description,
-      zoneRates: params.zoneRates,
-      isDefault: params.isDefault,
-      taxCategory: params.taxCategory,
-      custom: params.custom,
+      ...(params.key && {key: params.key}),
+      ...(params.description && {description: params.description}),
+      ...(params.zoneRates && {zoneRates: params.zoneRates}),
+      ...(params.isDefault !== undefined && {isDefault: params.isDefault}),
+      ...(params.taxCategory && {taxCategory: params.taxCategory}),
+      ...(params.custom && {custom: params.custom}),
     };
 
     const shippingMethodRequest = apiRoot

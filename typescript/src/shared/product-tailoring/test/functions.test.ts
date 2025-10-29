@@ -44,25 +44,23 @@ describe('Product Tailoring Functions', () => {
       const functions = contextToProductTailoringFunctionMapping(context);
 
       expect(functions).toHaveProperty('readProductTailoring');
-      expect(functions).toHaveProperty('createProductTailoring');
-      expect(functions).toHaveProperty('updateProductTailoring');
+      expect(functions).not.toHaveProperty('createProductTailoring');
+      expect(functions).not.toHaveProperty('updateProductTailoring');
     });
 
-    it('should return admin functions by default when no specific context is provided', () => {
+    it('should return empty object by default when no specific context is provided', () => {
       const context = {projectKey: 'test-project'};
       const functions = contextToProductTailoringFunctionMapping(context);
 
-      expect(functions).toHaveProperty('readProductTailoring');
-      expect(functions).toHaveProperty('createProductTailoring');
-      expect(functions).toHaveProperty('updateProductTailoring');
+      expect(functions).toEqual({});
+      expect(functions).not.toHaveProperty('readProductTailoring');
     });
 
-    it('should return admin functions when context is undefined', () => {
+    it('should return empty object when context is undefined', () => {
       const functions = contextToProductTailoringFunctionMapping(undefined);
 
-      expect(functions).toHaveProperty('readProductTailoring');
-      expect(functions).toHaveProperty('createProductTailoring');
-      expect(functions).toHaveProperty('updateProductTailoring');
+      expect(functions).toEqual({});
+      expect(functions).not.toHaveProperty('readProductTailoring');
     });
 
     it('should prioritize admin context over store context', () => {

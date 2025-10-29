@@ -55,5 +55,8 @@ export const contextToRecurringOrderTools = (context?: Context) => {
       tools.update_recurring_orders,
     ];
   }
+  if (context?.customerId) {
+    return [tools.read_recurring_orders];
+  }
   return [];
 };

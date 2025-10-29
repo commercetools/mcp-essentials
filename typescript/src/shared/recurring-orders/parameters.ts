@@ -47,7 +47,7 @@ export const readRecurringOrderParameters = z.object({
     .array(z.string())
     .optional()
     .describe(
-      'An array of reference paths to expand. Example: ["customer", "order"]'
+      'An array of reference paths to expand. Example: ["cart", "customer", "store"]'
     ),
 });
 
@@ -65,14 +65,25 @@ export const createRecurringOrderParameters = z.object({
       id: z.string(),
       typeId: z.literal('cart'),
     })
-    .describe('Reference to the Cart for the RecurringOrder'),
+    .describe('Reference to the Cart for a RecurringOrder'),
+  cartVersion: z.number().int().describe('Current version of the Cart'),
+  schedule: z
+    .object({
+      recurrencePolicy: z
+        .object({
+          id: z.string(),
+          typeId: z.literal('recurrence-policy'),
+        })
+        .describe('Reference to the RecurrencePolicy'),
+    })
+    .optional()
+    .describe('Schedule of the RecurringOrder'),
   startsAt: z
     .string()
     .optional()
     .describe(
       'Date and time (UTC) when the RecurringOrder starts creating new Orders'
     ),
-  cartVersion: z.number().int().describe('Current version of the Cart'),
   expiresAt: z
     .string()
     .optional()
@@ -141,7 +152,10 @@ export const updateRecurringOrderParameters = z.object({
           action: z.literal('setExpiresAt'),
           expiresAt: z
             .string()
-            .describe('Date and time (UTC) when the RecurringOrder expires'),
+            .optional()
+            .describe(
+              'Date and time (UTC) when the RecurringOrder expires. If empty, removes existing value.'
+            ),
         }),
         // Set Schedule action
         z.object({
@@ -153,7 +167,7 @@ export const updateRecurringOrderParameters = z.object({
             })
             .describe('Reference to the RecurrencePolicy'),
         }),
-        // Set CustomType action
+        // Set Custom Type action
         z.object({
           action: z.literal('setCustomType'),
           type: z
@@ -163,21 +177,23 @@ export const updateRecurringOrderParameters = z.object({
             })
             .optional()
             .describe(
-              'The Type that extends the recurring order with custom fields'
+              'The Type that extends the recurring order with custom fields. If absent, any existing Type and Custom Fields are removed.'
             ),
           fields: z
             .record(z.string(), z.any())
             .optional()
-            .describe('Custom fields for the recurring order'),
+            .describe('Sets the Custom Fields fields for the RecurringOrder'),
         }),
-        // Set CustomField action
+        // Set Custom Field action
         z.object({
           action: z.literal('setCustomField'),
-          name: z.string().describe('Name of the custom field'),
+          name: z.string().describe('Name of the Custom Field'),
           value: z
             .any()
             .optional()
-            .describe('Value to set for the custom field'),
+            .describe(
+              'If value is absent or null, this field will be removed if it exists. If value is provided, it is set for the field defined by name.'
+            ),
         }),
       ])
     )

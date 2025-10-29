@@ -36,10 +36,10 @@ export async function readShippingMethod(
     } else {
       // List shipping methods
       return await queryShippingMethods(apiRoot, context, {
+        where: params.where,
         limit: params.limit,
         offset: params.offset,
         sort: params.sort,
-        where: params.where,
         expand: params.expand,
       });
     }
@@ -54,13 +54,9 @@ export async function readShippingMethod(
 export async function readShippingMethodById(
   apiRoot: ApiRoot,
   context: CommercetoolsFuncContext,
-  params: z.infer<typeof readShippingMethodParameters>
+  params: {id: string; expand?: string[]}
 ) {
-  return base.readShippingMethodById(
-    apiRoot,
-    context.projectKey,
-    params as any
-  );
+  return base.readShippingMethodById(apiRoot, context.projectKey, params);
 }
 
 /**
@@ -69,7 +65,7 @@ export async function readShippingMethodById(
 export async function readShippingMethodByKey(
   apiRoot: ApiRoot,
   context: CommercetoolsFuncContext,
-  params: z.infer<typeof readShippingMethodParameters>
+  params: {key: string; expand?: string[]}
 ) {
   return base.readShippingMethodByKey(apiRoot, context.projectKey, params);
 }
@@ -80,7 +76,13 @@ export async function readShippingMethodByKey(
 export async function queryShippingMethods(
   apiRoot: ApiRoot,
   context: CommercetoolsFuncContext,
-  params: z.infer<typeof readShippingMethodParameters>
+  params: {
+    where?: string[];
+    limit?: number;
+    offset?: number;
+    sort?: string[];
+    expand?: string[];
+  }
 ) {
   return base.queryShippingMethods(apiRoot, context.projectKey, params);
 }
@@ -127,11 +129,10 @@ export async function updateShippingMethod(
       );
     }
   } catch (error) {
-    // If the error is already an SDKError, rethrow it
+    // If the error is already properly formatted, rethrow it
     if (error instanceof SDKError) {
       throw new SDKError('Error updating shipping method', error);
     }
-    // If the error is already properly formatted, rethrow it
     throw error;
   }
 }

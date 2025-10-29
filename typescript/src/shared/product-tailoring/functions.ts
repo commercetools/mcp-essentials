@@ -48,15 +48,9 @@ export const contextToProductTailoringFunctionMapping = (
   } else if (isCustomer) {
     return {
       readProductTailoring: customerReadProductTailoring,
-      createProductTailoring: customerCreateProductTailoring,
-      updateProductTailoring: customerUpdateProductTailoring,
     };
   } else {
     // Default to admin functions for backward compatibility
-    return {
-      readProductTailoring: adminReadProductTailoring,
-      createProductTailoring: adminCreateProductTailoring,
-      updateProductTailoring: adminUpdateProductTailoring,
-    };
+    return {};
   }
 };

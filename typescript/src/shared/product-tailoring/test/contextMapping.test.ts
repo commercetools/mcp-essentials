@@ -3,7 +3,7 @@ import {contextToProductTailoringFunctionMapping} from '../functions';
 // Mock the function modules
 jest.mock('../admin.functions', () => ({
   readProductTailoring: jest.fn(),
-  createProductTailoringEntry: jest.fn(),
+  createProductTailoring: jest.fn(),
   updateProductTailoring: jest.fn(),
 }));
 
@@ -15,7 +15,7 @@ jest.mock('../customer.functions', () => ({
 
 jest.mock('../store.functions', () => ({
   readProductTailoring: jest.fn(),
-  createProductTailoringEntry: jest.fn(),
+  createProductTailoring: jest.fn(),
   updateProductTailoring: jest.fn(),
 }));
 
@@ -122,55 +122,30 @@ describe('Product Tailoring Context Mapping', () => {
       const functions = contextToProductTailoringFunctionMapping(context);
 
       expect(functions).toHaveProperty('readProductTailoring');
-      expect(functions).toHaveProperty('createProductTailoring');
-      expect(functions).toHaveProperty('updateProductTailoring');
+      expect(functions).not.toHaveProperty('createProductTailoring');
+      expect(functions).not.toHaveProperty('updateProductTailoring');
 
       // Verify that the functions are the customer functions
       expect(functions.readProductTailoring).toBe(
         customerFunctions.readProductTailoring
       );
-      expect(functions.createProductTailoring).toBe(
-        customerFunctions.createProductTailoringEntry
-      );
-      expect(functions.updateProductTailoring).toBe(
-        customerFunctions.updateProductTailoring
-      );
     });
   });
 
   describe('Default Context', () => {
-    it('should return admin functions as default when no specific context is provided', () => {
+    it('should return empty object as default when no specific context is provided', () => {
       const functions = contextToProductTailoringFunctionMapping();
 
-      expect(functions).toHaveProperty('readProductTailoring');
-      expect(functions).toHaveProperty('createProductTailoring');
-      expect(functions).toHaveProperty('updateProductTailoring');
-
-      // Verify that the functions are the admin functions (default)
-      expect(functions.readProductTailoring).toBe(
-        adminFunctions.readProductTailoring
-      );
-      expect(functions.createProductTailoring).toBe(
-        adminFunctions.createProductTailoring
-      );
-      expect(functions.updateProductTailoring).toBe(
-        adminFunctions.updateProductTailoring
-      );
+      expect(functions).toEqual({});
+      expect(functions).not.toHaveProperty('readProductTailoring');
     });
 
-    it('should return admin functions as default when context is empty', () => {
+    it('should return empty object as default when context is empty', () => {
       const context = {projectKey: 'test-project'};
       const functions = contextToProductTailoringFunctionMapping(context);
 
-      expect(functions.readProductTailoring).toBe(
-        adminFunctions.readProductTailoring
-      );
-      expect(functions.createProductTailoring).toBe(
-        adminFunctions.createProductTailoring
-      );
-      expect(functions.updateProductTailoring).toBe(
-        adminFunctions.updateProductTailoring
-      );
+      expect(functions).toEqual({});
+      expect(functions.readProductTailoring).toBeUndefined();
     });
   });
 
