@@ -118,12 +118,9 @@ export async function createReview(
       custom: params.custom,
     };
 
-    const reviewRequest = apiRoot
-      .withProjectKey({projectKey})
-      .reviews()
-      .post({
-        body: reviewDraft,
-      });
+    const reviewRequest = apiRoot.withProjectKey({projectKey}).reviews().post({
+      body: reviewDraft,
+    });
 
     const response = await reviewRequest.execute();
     return response.body;
