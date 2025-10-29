@@ -32,4 +32,3 @@ describe('Types Functions', () => {
     });
   });
 });
-

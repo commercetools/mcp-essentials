@@ -113,12 +113,9 @@ export async function createType(
       fieldDefinitions: params.fieldDefinitions,
     };
 
-    const typeRequest = apiRoot
-      .withProjectKey({projectKey})
-      .types()
-      .post({
-        body: typeDraft,
-      });
+    const typeRequest = apiRoot.withProjectKey({projectKey}).types().post({
+      body: typeDraft,
+    });
 
     const response = await typeRequest.execute();
     return response.body;

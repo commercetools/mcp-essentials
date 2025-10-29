@@ -3,11 +3,7 @@ import {
   readTypeParameters,
   updateTypeParameters,
 } from './parameters';
-import {
-  readTypePrompt,
-  createTypePrompt,
-  updateTypePrompt,
-} from './prompts';
+import {readTypePrompt, createTypePrompt, updateTypePrompt} from './prompts';
 import {Tool} from '../../types/tools';
 import {Context} from '../../types/configuration';
 
@@ -49,11 +45,7 @@ const tools: Record<string, Tool> = {
 
 export const contextToTypeTools = (context?: Context) => {
   if (context?.isAdmin) {
-    return [
-      tools.read_type,
-      tools.create_type,
-      tools.update_type,
-    ];
+    return [tools.read_type, tools.create_type, tools.update_type];
   }
   return [];
 };

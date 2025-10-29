@@ -123,9 +123,7 @@ export function updateType(
         actions,
       });
     } else {
-      throw new Error(
-        'Either id or key must be provided for updating a type'
-      );
+      throw new Error('Either id or key must be provided for updating a type');
     }
   } catch (error) {
     // If the error is already properly formatted, rethrow it

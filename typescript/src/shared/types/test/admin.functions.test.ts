@@ -1,8 +1,4 @@
-import {
-  readType,
-  createType,
-  updateType,
-} from '../admin.functions';
+import {readType, createType, updateType} from '../admin.functions';
 
 // Mock the ApiRoot
 const mockExecute = jest.fn();
@@ -265,4 +261,3 @@ describe('Types Admin Functions', () => {
     });
   });
 });
-
