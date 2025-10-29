@@ -49,12 +49,7 @@ const tools: Record<string, Tool> = {
 
 export const contextToReviewTools = (context?: Context) => {
   if (context?.isAdmin) {
-    return [
-      tools.read_review,
-      tools.create_review,
-      tools.update_review,
-    ];
+    return [tools.read_review, tools.create_review, tools.update_review];
   }
   return [];
 };
-

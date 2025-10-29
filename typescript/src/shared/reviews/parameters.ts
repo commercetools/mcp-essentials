@@ -3,16 +3,10 @@ import {z} from 'zod';
 // Parameters for reading reviews
 export const readReviewParameters = z.object({
   // Optional ID for getting by ID
-  id: z
-    .string()
-    .optional()
-    .describe('The ID of the review to retrieve'),
+  id: z.string().optional().describe('The ID of the review to retrieve'),
 
   // Optional key for getting by key
-  key: z
-    .string()
-    .optional()
-    .describe('The key of the review to retrieve'),
+  key: z.string().optional().describe('The key of the review to retrieve'),
 
   // List parameters (used when neither id nor key is provided)
   limit: z
@@ -65,7 +59,10 @@ export const createReviewParameters = z.object({
     .describe(
       'Must be unique among reviews. Used to ensure only one review per specified scope'
     ),
-  locale: z.record(z.string(), z.any()).optional().describe('Language in which the content is written'),
+  locale: z
+    .record(z.string(), z.any())
+    .optional()
+    .describe('Language in which the content is written'),
   authorName: z
     .string()
     .optional()
@@ -101,9 +98,7 @@ export const createReviewParameters = z.object({
     .min(-100)
     .max(100)
     .optional()
-    .describe(
-      'Rating of the Product or Channel. Minimum: -100, Maximum: 100'
-    ),
+    .describe('Rating of the Product or Channel. Minimum: -100, Maximum: 100'),
   customer: z
     .object({
       id: z.string().optional(),
@@ -225,7 +220,10 @@ export const updateReviewParameters = z.object({
             id: z.string(),
             typeId: z.literal('state'),
           }),
-          force: z.boolean().optional().describe('Force transition even if validation fails'),
+          force: z
+            .boolean()
+            .optional()
+            .describe('Force transition even if validation fails'),
         }),
         // Set CustomType action
         z.object({
@@ -246,10 +244,12 @@ export const updateReviewParameters = z.object({
         z.object({
           action: z.literal('setCustomField'),
           name: z.string().describe('Name of the custom field'),
-          value: z.any().optional().describe('Value to set for the custom field'),
+          value: z
+            .any()
+            .optional()
+            .describe('Value to set for the custom field'),
         }),
       ])
     )
     .describe('Update actions to be performed on the review'),
 });
-

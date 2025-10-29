@@ -157,4 +157,3 @@ export function updateReviewByKey(
 ) {
   return base.updateReviewByKey(apiRoot, context.projectKey, params);
 }
-
