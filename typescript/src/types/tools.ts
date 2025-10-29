@@ -33,6 +33,7 @@ export enum AvailableNamespaces {
   ShoppingLists = 'shopping-lists',
   Extensions = 'extensions',
   Subscriptions = 'subscriptions',
+  CustomObjects = 'custom-objects',
 }
 
 export type Tool = {

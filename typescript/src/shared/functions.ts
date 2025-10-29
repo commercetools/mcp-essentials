@@ -34,6 +34,8 @@ import {contextToRecurringOrderFunctionMapping} from './recurring-orders/functio
 import {contextToShoppingListFunctionMapping} from './shopping-lists/functions';
 import {contextToExtensionFunctionMapping} from './extensions/functions';
 import {contextToSubscriptionFunctionMapping} from './subscriptions/functions';
+import {contextToCustomObjectFunctionMapping} from './custom-objects/functions';
+import {contextToTypeFunctionMapping} from './types/functions';
 
 export const contextToFunctionMapping = (
   context?: Context
@@ -80,5 +82,7 @@ export const contextToFunctionMapping = (
     ...contextToShoppingListFunctionMapping(context),
     ...contextToExtensionFunctionMapping(context),
     ...contextToSubscriptionFunctionMapping(context),
+    ...contextToCustomObjectFunctionMapping(context),
+    ...contextToTypeFunctionMapping(context),
   };
 };

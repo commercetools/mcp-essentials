@@ -208,6 +208,12 @@ Add the following to your `claude_desktop_config.json`. See [here](https://model
 | `product-tailoring.read`  | [Read product tailoring information](https://docs.commercetools.com/api/projects/productTailoring#get-producttailoring-by-id) |
 | `product-tailoring.create`| [Create product tailoring](https://docs.commercetools.com/api/projects/productTailoring#create-producttailoring)         |
 | `product-tailoring.update`| [Update product tailoring information](https://docs.commercetools.com/api/projects/productTailoring#update-producttailoring)|
+| `custom-objects.read`     | [Read custom object information](https://docs.commercetools.com/api/projects/custom-objects#get-customobject-by-container-and-key) |
+| `custom-objects.create`  | [Create custom object](https://docs.commercetools.com/api/projects/custom-objects#create-or-update-customobject)         |
+| `custom-objects.update`  | [Update custom object information](https://docs.commercetools.com/api/projects/custom-objects#create-or-update-customobject)|
+| `types.read`             | [Read type information](https://docs.commercetools.com/api/projects/types#get-type-by-id)                                    |
+| `types.create`           | [Create type](https://docs.commercetools.com/api/projects/types#create-type)                                                   |
+| `types.update`           | [Update type information](https://docs.commercetools.com/api/projects/types#update-type)                                       |
 
 To view information on how to develop the MCP server, see [this README](/modelcontextprotocol/README.md).
 

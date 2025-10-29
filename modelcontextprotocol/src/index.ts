@@ -156,6 +156,14 @@ export const ACCEPTED_TOOLS = [
   'subscriptions.read',
   'subscriptions.create',
   'subscriptions.update',
+
+  'custom-objects.read',
+  'custom-objects.create',
+  'custom-objects.update',
+
+  'types.read',
+  'types.create',
+  'types.update',
 ];
 
 // eslint-disable-next-line complexity

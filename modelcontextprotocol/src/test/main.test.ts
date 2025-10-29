@@ -82,6 +82,7 @@ describe('main function', () => {
           payments: {read: true, create: true, update: true},
           'shipping-methods': {read: true, create: true, update: true},
           'tax-category': {read: true, create: true, update: true},
+          types: {read: true, create: true, update: true},
           zone: {read: true, create: true, update: true},
           'recurring-orders': {read: true, create: true, update: true},
           'shopping-lists': {read: true, create: true, update: true},
@@ -89,6 +90,7 @@ describe('main function', () => {
           subscriptions: {read: true, create: true, update: true},
           'payment-methods': {read: true, create: true, update: true},
           'product-tailoring': {read: true, create: true, update: true},
+          'custom-objects': {read: true, create: true, update: true},
         },
         context: {
           isAdmin: true,

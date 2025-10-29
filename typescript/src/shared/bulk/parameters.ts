@@ -16,12 +16,11 @@ import {createStandalonePriceParameters} from '../standalone-price/parameters';
 import {createInventoryParameters} from '../inventory/parameters';
 import {createOrderParameters} from '../order/parameters';
 import {createStoreParameters} from '../store/parameters';
-<<<<<<< HEAD
 import {createReviewParameters} from '../reviews/parameters';
-=======
 import {createRecurringOrderParameters} from '../recurring-orders/parameters';
 import {createShoppingListParameters} from '../shopping-lists/parameters';
->>>>>>> 500162a (feat(mcp-essentials): add additional tools)
+import {createCustomObjectParameters} from '../custom-objects/parameters';
+import {createTypeParameters} from '../types/parameters';
 
 import {updateBusinessUnitParameters} from '../business-unit/parameters';
 import {updateProductParameters} from '../products/parameters';
@@ -42,12 +41,11 @@ import {updateOrderParameters} from '../order/parameters';
 import {updateProductSelectionParameters} from '../product-selection/parameters';
 import {updateProductTypeParameters} from '../product-type/parameters';
 import {updateStoreParameters} from '../store/parameters';
-<<<<<<< HEAD
 import {updateReviewParameters} from '../reviews/parameters';
-=======
 import {updateRecurringOrderParameters} from '../recurring-orders/parameters';
 import {updateShoppingListParameters} from '../shopping-lists/parameters';
->>>>>>> 500162a (feat(mcp-essentials): add additional tools)
+import {updateCustomObjectParameters} from '../custom-objects/parameters';
+import {updateTypeParameters} from '../types/parameters';
 
 // Define the bulk create parameters for products
 export const bulkCreateParameters = z.object({
@@ -71,12 +69,11 @@ export const bulkCreateParameters = z.object({
         'order',
         'inventory',
         'store',
-<<<<<<< HEAD
         'review',
-=======
         'recurring-orders',
         'shopping-lists',
->>>>>>> 500162a (feat(mcp-essentials): add additional tools)
+        'custom-objects',
+        'types',
       ]),
       data: z.union([
         createBusinessUnitParameters,
@@ -96,12 +93,11 @@ export const bulkCreateParameters = z.object({
         createInventoryParameters,
         createOrderParameters,
         createStoreParameters,
-<<<<<<< HEAD
         createReviewParameters,
-=======
         createRecurringOrderParameters,
         createShoppingListParameters,
->>>>>>> 500162a (feat(mcp-essentials): add additional tools)
+        createCustomObjectParameters,
+        createTypeParameters,
       ]),
     })
   ),
@@ -131,12 +127,11 @@ export const bulkUpdateParameters = z.object({
         'product-selection',
         'product-type',
         'store',
-<<<<<<< HEAD
         'review',
-=======
         'recurring-orders',
         'shopping-lists',
->>>>>>> 500162a (feat(mcp-essentials): add additional tools)
+        'custom-objects',
+        'types',
       ]),
       data: z.union([
         updateBusinessUnitParameters,
@@ -158,12 +153,11 @@ export const bulkUpdateParameters = z.object({
         updateProductSelectionParameters,
         updateProductTypeParameters,
         updateStoreParameters,
-<<<<<<< HEAD
         updateReviewParameters,
-=======
         updateRecurringOrderParameters,
         updateShoppingListParameters,
->>>>>>> 500162a (feat(mcp-essentials): add additional tools)
+        updateCustomObjectParameters,
+        updateTypeParameters,
       ]),
     })
   ),

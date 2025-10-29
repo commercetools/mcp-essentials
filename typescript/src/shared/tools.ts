@@ -31,6 +31,8 @@ import {contextToRecurringOrderTools} from './recurring-orders/tools';
 import {contextToShoppingListTools} from './shopping-lists/tools';
 import {contextToExtensionTools} from './extensions/tools';
 import {contextToSubscriptionTools} from './subscriptions/tools';
+import {contextToCustomObjectTools} from './custom-objects/tools';
+import {contextToTypeTools} from './types/tools';
 import {Context} from '../types/configuration';
 
 export const contextToResourceTools = (context?: Context) => {
@@ -68,6 +70,8 @@ export const contextToResourceTools = (context?: Context) => {
     'shopping-lists': contextToShoppingListTools(context),
     extension: contextToExtensionTools(context),
     subscription: contextToSubscriptionTools(context),
+    'custom-objects': contextToCustomObjectTools(context),
+    types: contextToTypeTools(context),
   };
 };
 export const contextToTools = (context?: Context) => {
