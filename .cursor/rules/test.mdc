@@ -1,0 +1,10 @@
+---
+description: Writing tests
+globs: 
+alwaysApply: true
+---
+Always follow these rules:
+- After creating a new functionality create test cases for all possible paths
+- After updating or refactoring update test cases or create new ones
+- Run related tests and make sure all pass
+- project uses `pnpm` as package manager

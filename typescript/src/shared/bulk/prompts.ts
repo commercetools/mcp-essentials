@@ -23,6 +23,7 @@ Supported entity types:
 - standalone-price
 - inventory
 - store
+- review
 
 Parameters:
 - items: An array of objects, each containing:
@@ -107,6 +108,7 @@ The supported entity types are:
 - standalone-price
 - inventory
 - store
+- review
 
 # PARAMETERS
 "items": [
@@ -291,6 +293,7 @@ The supported entity types are:
 - order
 - product-selection
 - product-type
+- review
 
 # PARAMETERS
 "items": [

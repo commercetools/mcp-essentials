@@ -1,0 +1,223 @@
+---
+description: Creating a New tool Function in @commercetools/agent-essentials
+globs: 
+alwaysApply: false
+---
+# Creating a New namespace tool Function in @commercetools/agent-essentials
+
+This document outlines the steps taken to implement a new function in @commercetools/agent-essentials to connect to commercetools API.
+
+The following steps are defining implementation of an example `products.create`. So the `(namespace)` here refers to `product`.
+
+## Implementation Steps
+
+1. Gather info regarding the (namespace)
+  - Search commercetools docs at https://docs.commercetools.com/api and find the (namespace)
+  - In this example `https://docs.commercetools.com/api/projects/products` and ProductDraft 
+
+2. Define Parameter Schema
+   - Using the namespace fetched in previous step , Created `createProductParameters` in `typescript/src/shared/(namespace)/parameters.ts`
+   - Used Zod for type validation
+   - Included all required and optional fields from ProductDraft
+   - Created a separate `productVariantDraft` schema for reusability
+
+3. Create a `base.functions.ts` file in the `namespace` directory. This file will export a couple of basic CRUD functions that will be used inside other files in this namespace. you can extract this base functions from current `functions.ts` file in the namespace.
+    - IMPORTANT: base functions should be generic as possible, e.g. instead of having a separate function for query cart for a specific user and another one for user in a store, we create one that accepts a "where" clause.
+    - 3.1: sometimes the commercetools SDK has different endpoint when a parameter is present, like query in store (look to the code sample below). in that case, we check that parameter inside the base function but keep the function as simple as possible and low complexity.
+    - 3.2: No delete operation.
+    - 3.3: in the base update, call the base get function to fetch the version from the entity and use it in the update call.
+    - GOAL: the goal of this step is maximize reusability.
+    - example: base functions created for 'cart.read' are: readCartById, readCartByKey, queryCart, queryCarts.
+    - file example: `typescript/src/shared/cart/base.functions.ts`
+     ***IMPORTANT***: functions.ts usually exports 3 functions: read, create and update. If there are more ways to read the entity (by id or key or query), embed all in one "read" exported function and adjust the parameters and prompts as well.
+
+    - code sample:
+
+    ```ts
+    const queryCart = async (
+        apiRoot: ApiRoot,
+        projectKey: string,
+        queryArgs: any,
+        storeKey?: string
+        ) => {
+        if (storeKey) {
+            const carts = await apiRoot
+            .withProjectKey({projectKey})
+            .inStoreKeyWithStoreKeyValue({storeKey})
+            .carts()
+            .get({queryArgs})
+            .execute();
+            return carts.body;
+        }
+        const carts = await apiRoot
+            .withProjectKey({projectKey})
+            .carts()
+            .get({queryArgs})
+            .execute();
+        return carts.body;
+        };
+    ```
+4. Create a `customer.functions.ts` in the namespace directory. This file, uses `base.functions.ts`. it has CRUD functions when `context.customerId` is present.
+    - GOAL: these functions are to limit the operations to the specific customerId.
+    - Note: Double check so there is no usage of `apiRoot.withProjectKey(...)` in this file since all actuall sdk api-calls should be in base.functions.ts 
+    - example: when querying carts, it should always inject `context.customerId` to the query. If not possible, it should check the entity after it's fetched.
+    - file example: `typescript/src/shared/cart/customer.functions.ts`
+
+5. Create a `store.functions.ts` in the namespace directory. This file, uses `base.functions.ts`. it has CRUD functions when `context.storeKey` is present.
+    - GOAL: these functions are to limit the operations to the specific store.
+    - Note: Double check so there is no usage of `apiRoot.withProjectKey(...)` in this file since all actuall sdk api-calls should be in base.functions.ts
+    - example: Limit carts fetched to a store.
+
+6. Create a `associate.functions.ts` in the namespace directory. This file, uses `base.functions.ts`. it has CRUD functions when `context.customerId` and `context.businessUnitKey` are present.
+    - GOAL: these functions are to limit the operations to as-associate endpoints.
+    - Note: Double check so there is no usage of `apiRoot.withProjectKey(...)` in this file since all actuall sdk api-calls should be in base.functions.ts
+
+7. Create a `admin.functions.ts` in the namespace directory. This file, uses `base.functions.ts`. it has CRUD functions when `context.isAdmin` is present.
+    - GOAL: these functions doesn't have any limitations.
+    - Note: Double check so there is no usage of `apiRoot.withProjectKey(...)` in this file since all actuall sdk api-calls should be in base.functions.ts
+    - file example: `typescript/src/shared/cart/admin.functions.ts`
+
+8. Create `functions.ts` to import all exported methods from customer, admin and store. create a method called `contextTo<namespace>FunctionMapping` which accepts the context and returns an object of name to method mapping.
+    - IMPORTANT: if no context is there, empty object should return
+    - IMPORTANT: use type `Context` from `typescript/src/types/configuration.ts`
+    - example: 
+    ```ts
+    export const contextToCartFunctionMapping = (context?: Context) => {
+        if (context?.customerId && context?.businessUnitKey) {
+            return {
+            read_cart: associate.readCart,
+             create_cart: associate.createCart,
+             update_cart: customer.updateCart,
+             replicate_cart: associate.replicateCart,
+            };
+        }
+        if (context?.customerId) {
+            return {
+            read_cart: customer.readCart,
+             create_cart: customer.createCart,
+             update_cart: customer.updateCart,
+             replicate_cart: customer.replicateCart,
+            };
+        }
+        if (context?.storeKey) {
+            return {
+            read_cart: store.readCart,
+             create_cart: store.createCart,
+             update_cart: store.updateCart,
+             replicate_cart: store.replicateCart,
+            };
+        }
+        if (context?.isAdmin) { // IMPORTANT
+            return {
+                read_cart: admin.readCart,
+                 create_cart: admin.createAdminCart,
+                 update_cart: admin.updateAdminCart,
+                 replicate_cart: admin.replicateAdminCart,
+            };
+        }
+        return {};
+        };
+    ```
+9. refactor `typescript/src/shared/functions.ts` and import `import {contextToCartFunctionMapping} from './cart/functions';` then update  this method return 
+
+
+10. Create Prompt
+  - Create a prompt describing the function and its' params in `typescript/src/shared/(namespace)/prompts.ts`
+  - Prompts for create functions across `customer`, `store` and `admin` should be the same. same for other functions 
+
+Refactor `const tools: Tool[]` to const tools: Record<string, Tool>
+    - example
+    ```
+    const tools: Record<string, Tool> = {}
+        read_category: {
+            method: 'read_category',
+            name: 'Read Category',
+            description: readCategoryPrompt,
+            parameters: readCategoryParameters,
+            actions: {
+            category: {
+                read: true,
+            },
+            },
+        }
+        ...
+    ```
+11. Create `typescript/src/shared/(namespace)/tools.ts` and export a method `contextToC<namespace>>Tools`. The method's return has to reflect the `typescript/src/shared/(namespae)/functions.ts` 's `contextTo<namespace>FunctionMapping` output
+    - example: 
+    ```ts
+    export const contextToCategoryTools = (context?: Context) => {
+        if (context?.customerId && context?.businessUnitKey) {
+            return [tools.read_category, tools.create_category, tools.update_category]
+        }
+        if (context?.customerId) {
+            return [tools.read_category]
+        }
+        if (context?.storeKey) {
+            return []
+        }
+        if (context?.isAdmin) { 
+            return [tools.read_category, tools.create_category, tools.update_category]
+        }
+        return { // IMPORTANT: usually fallback return is empty only exceptions are filled.
+            []
+        }
+        };
+    ```
+12. Modify `typescript/src/shared/tools.ts`
+    ```
+    export const contextToTools = (context?: Context) => {
+        return {
+            ...contextToCategoryTools(context)
+        }
+    }
+    ```
+
+13. Add new tool to ACCEPTED_TOOLS
+   - add too to `modelcontextprotocol/src/index.ts`'s ACCEPTED_TOOLS
+
+14. Add new tool to "bulk.create" functions.
+    - Bulk function always use admin.functions
+    - create the mapping in `typescript/src/shared/bulk/functions.ts` > `entityFunctionMap`
+    - add the new namespace's parameter to `typescript/src/shared/bulk/parameters.ts`
+    - modify bulk prompt to include the new entity `typescript/src/shared/bulk/prompts.ts`
+
+15. Test Implementation
+   - Created `createProduct.test.ts` in test directory
+   - Implemented mock ApiRoot for testing
+   - Added test cases for successful creation
+   - Added test cases for error handling
+   - Create test cases for success and error of the new tools in `modelcontextprotocol/src/test/main.test.ts`. These tests are only checking if `CommercetoolsAgentToolkit` and `StdioServerTransport` are being called with correct params
+   example
+   ```
+      it('should initialize the server with specific tools correctly', async () => {
+         process.argv = [
+            'node',
+            'index.js',
+            '--tools=products.create', // new function tool
+            '--clientId=test_client_id',
+            '--clientSecret=test_client_secret',
+            '--authUrl=https://auth.commercetools.com',
+            '--projectKey=test_project',
+            '--apiUrl=https://api.commercetools.com',
+         ];
+
+         await main();
+
+         expect(CommercetoolsAgentToolkit).toHaveBeenCalledWith({
+            clientId: 'test_client_id',
+            clientSecret: 'test_client_secret',
+            authUrl: 'https://auth.commercetools.com',
+            projectKey: 'test_project',
+            apiUrl: 'https://api.commercetools.com',
+            configuration: {actions: {products: {create: true}}}, // new function tool
+         });
+
+         expect(StdioServerTransport).toHaveBeenCalled();
+      });
+  ```
+  - create a test case to bulk namespace `typescript/src/shared/bulk/test/bulkCreate.test.ts`
+  - Update `modelcontextprotocol/src/test/main.test.ts` test and include new tool in the test `should initialize the server with tools=all correctly`
+
+16. Update README.md:
+  - add new tool(s) to Available tools table in `modelcontextprotocol/README.md` 
+  - add new tool's api documentation in commercetools to `README.md`

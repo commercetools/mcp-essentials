@@ -18,6 +18,7 @@ import {createStandalonePrice} from '../standalone-price/functions';
 import {createInventory} from '../inventory/functions';
 import {createOrder} from '../order/admin.functions';
 import {createStore} from '../store/functions';
+import {createReview} from '../reviews/functions';
 
 // import {updateCart} from '../cart/functions';
 import {updateBusinessUnit} from '../business-unit/functions';
@@ -38,6 +39,7 @@ import {updateQuoteRequest} from '../quote-request/functions';
 import {updateStagedQuote} from '../staged-quote/functions';
 import {updateStandalonePrice} from '../standalone-price/functions';
 import {updateStore} from '../store/functions';
+import {updateReview} from '../reviews/functions';
 import {CommercetoolsFuncContext} from '../../types/configuration';
 
 type EntityFunctionMap = {
@@ -67,6 +69,7 @@ const entityFunctionMap: EntityFunctionMap = {
   inventory: createInventory,
   order: createOrder,
   store: createStore,
+  review: createReview,
 };
 
 // Map entity types to their respective update functions
@@ -90,6 +93,7 @@ const entityUpdateFunctionMap: EntityFunctionMap = {
   'staged-quote': updateStagedQuote,
   'standalone-price': updateStandalonePrice,
   store: updateStore,
+  review: updateReview,
 };
 
 export const bulkCreate = async (
