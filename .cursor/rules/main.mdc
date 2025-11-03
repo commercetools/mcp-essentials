@@ -1,0 +1,14 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+IMPORTANT:
+- project uses `pnpm` as package manager.
+- do not use `npx`
+- always use this pattern to handle errors 
+    ```ts
+    } catch (error: any) {
+        throw new SDKError('Failed to read cart', error); // pass the error to SDKError instance
+    }
+  ```

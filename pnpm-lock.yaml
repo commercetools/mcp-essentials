@@ -96,6 +96,9 @@ importers:
 
   typescript:
     dependencies:
+      '@commercetools/checkout-sdk':
+        specifier: ^1.0.0
+        version: 1.0.0
       '@commercetools/platform-sdk':
         specifier: ^8.13.0
         version: 8.14.0
@@ -444,12 +447,20 @@ packages:
   '@changesets/write@0.4.0':
     resolution: {integrity: sha512-CdTLvIOPiCNuH71pyDu3rA+Q0n65cmAbXnwWH84rKGiFumFzkmHNT8KHTMEchcxN+Kl8I54xGUhJ7l3E7X396Q==}
 
+  '@commercetools/checkout-sdk@1.0.0':
+    resolution: {integrity: sha512-sJ2vL001cFfpzqvK6jifMNnYcDpiq76y1znp6ufDuteYqIP8GvGeRaPf3bDyZiHU6AieKmi0W09UBApzerzrDQ==}
+    engines: {node: '>=18'}
+
   '@commercetools/platform-sdk@8.14.0':
     resolution: {integrity: sha512-nlUVjtNNfBJEGsvHa2yqfXuF0+3j6hJcdKGlZ9smKCFOjIk0gSKwFjUvQYEovxfXpIiX1n5J3L2Fpl6DmC2NxA==}
     engines: {node: '>=18'}
 
   '@commercetools/ts-client@4.2.0':
     resolution: {integrity: sha512-ZJN9DIog7+FpL/Lx0K11SQkN2nFM+mNBP9vvDphHlHifzU1dwf9gGcsyAVJDqbyN7S4qeFet/GVZYvLIlhYoig==}
+    engines: {node: '>=18'}
+
+  '@commercetools/ts-client@4.3.0':
+    resolution: {integrity: sha512-YVR1VQZvKh78fPX1ljrjFXEstNw2FK7F5S/w5VIxULM8HYXgtS4fyd36DO/YpFqZFJ8koueaHnmAGupySryRAA==}
     engines: {node: '>=18'}
 
   '@cspotcode/source-map-support@0.8.1':
@@ -4014,11 +4025,19 @@ snapshots:
       human-id: 4.1.1
       prettier: 2.8.8
 
+  '@commercetools/checkout-sdk@1.0.0':
+    dependencies:
+      '@commercetools/ts-client': 4.3.0
+
   '@commercetools/platform-sdk@8.14.0':
     dependencies:
       '@commercetools/ts-client': 4.2.0
 
   '@commercetools/ts-client@4.2.0':
+    dependencies:
+      buffer: 6.0.3
+
+  '@commercetools/ts-client@4.3.0':
     dependencies:
       buffer: 6.0.3
 

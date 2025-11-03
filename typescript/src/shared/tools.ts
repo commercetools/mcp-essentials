@@ -33,6 +33,8 @@ import {contextToExtensionTools} from './extensions/tools';
 import {contextToSubscriptionTools} from './subscriptions/tools';
 import {contextToCustomObjectTools} from './custom-objects/tools';
 import {contextToTypeTools} from './types/tools';
+import {contextToPaymentIntentTools} from './payment-intents/tools';
+import {contextToTransactionTools} from './transactions/tools';
 import {Context} from '../types/configuration';
 
 export const contextToResourceTools = (context?: Context) => {
@@ -72,6 +74,8 @@ export const contextToResourceTools = (context?: Context) => {
     subscription: contextToSubscriptionTools(context),
     'custom-objects': contextToCustomObjectTools(context),
     types: contextToTypeTools(context),
+    'payment-intents': contextToPaymentIntentTools(context),
+    transactions: contextToTransactionTools(context),
   };
 };
 export const contextToTools = (context?: Context) => {

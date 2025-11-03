@@ -36,6 +36,8 @@ import {contextToExtensionFunctionMapping} from './extensions/functions';
 import {contextToSubscriptionFunctionMapping} from './subscriptions/functions';
 import {contextToCustomObjectFunctionMapping} from './custom-objects/functions';
 import {contextToTypeFunctionMapping} from './types/functions';
+import {contextToPaymentIntentFunctionMapping} from './payment-intents/functions';
+import {contextToTransactionFunctionMapping} from './transactions/functions';
 
 export const contextToFunctionMapping = (
   context?: Context
@@ -44,7 +46,8 @@ export const contextToFunctionMapping = (
   (
     apiRoot: ApiRoot,
     context: CommercetoolsFuncContext,
-    params: any
+    params: any,
+    getApiRoot?: any
   ) => Promise<any>
 > => {
   return {
@@ -84,5 +87,7 @@ export const contextToFunctionMapping = (
     ...contextToSubscriptionFunctionMapping(context),
     ...contextToCustomObjectFunctionMapping(context),
     ...contextToTypeFunctionMapping(context),
+    ...contextToPaymentIntentFunctionMapping(context),
+    ...contextToTransactionFunctionMapping(context),
   };
 };

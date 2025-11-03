@@ -21,6 +21,7 @@ import {createRecurringOrderParameters} from '../recurring-orders/parameters';
 import {createShoppingListParameters} from '../shopping-lists/parameters';
 import {createCustomObjectParameters} from '../custom-objects/parameters';
 import {createTypeParameters} from '../types/parameters';
+import {createTransactionParameters} from '../transactions/parameters';
 
 import {updateBusinessUnitParameters} from '../business-unit/parameters';
 import {updateProductParameters} from '../products/parameters';
@@ -74,6 +75,7 @@ export const bulkCreateParameters = z.object({
         'shopping-lists',
         'custom-objects',
         'types',
+        'transactions',
       ]),
       data: z.union([
         createBusinessUnitParameters,
@@ -98,6 +100,7 @@ export const bulkCreateParameters = z.object({
         createShoppingListParameters,
         createCustomObjectParameters,
         createTypeParameters,
+        createTransactionParameters,
       ]),
     })
   ),

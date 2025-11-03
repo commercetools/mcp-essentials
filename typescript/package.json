@@ -63,6 +63,7 @@
     "typescript": "^5.7.2"
   },
   "dependencies": {
+    "@commercetools/checkout-sdk": "^1.0.0",
     "@commercetools/platform-sdk": "^8.13.0",
     "@commercetools/ts-client": "^4.2.0",
     "express": "^5.1.0",

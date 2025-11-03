@@ -53,7 +53,11 @@ describe('Transaction Functions', () => {
       const mockResult = {results: []};
       (admin.readTransaction as jest.Mock).mockResolvedValue(mockResult);
 
-      const result = await readTransaction(mockApiRoot as any, mockContext, params);
+      const result = await readTransaction(
+        mockApiRoot as any,
+        mockContext,
+        params
+      );
 
       expect(admin.readTransaction).toHaveBeenCalledWith(
         mockApiRoot,
@@ -97,7 +101,11 @@ describe('Transaction Functions', () => {
       const mockResult = {key: 'test-key'};
       (admin.readTransaction as jest.Mock).mockResolvedValue(mockResult);
 
-      const result = await readTransaction(mockApiRoot as any, mockContext, params);
+      const result = await readTransaction(
+        mockApiRoot as any,
+        mockContext,
+        params
+      );
 
       expect(admin.readTransaction).toHaveBeenCalledWith(
         mockApiRoot,

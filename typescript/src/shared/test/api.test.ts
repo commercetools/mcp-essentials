@@ -160,7 +160,8 @@ describe('CommercetoolsAPI', () => {
       expect(mockFunction).toHaveBeenCalledWith(
         mockApiRoot,
         {projectKey: 'test-project'},
-        {param: 'value'}
+        {param: 'value'},
+        expect.any(Function)
       );
       expect(result).toBe(JSON.stringify(mockResult));
     });
@@ -192,7 +193,8 @@ describe('CommercetoolsAPI', () => {
           isAdmin: true,
           storeKey: 'test-store',
         },
-        {param: 'value'}
+        {param: 'value'},
+        expect.any(Function)
       );
       expect(result).toBe(JSON.stringify(mockResult));
     });

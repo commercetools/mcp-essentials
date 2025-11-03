@@ -1,0 +1,95 @@
+---
+description: project structure
+globs: 
+alwaysApply: false
+---
+# Repository Structure
+
+This document provides an overview of the directory structure for this repository.
+```
+/
+├── .github/                     # GitHub specific configurations
+│   ├── ISSUE_TEMPLATE/          # Templates for creating GitHub issues
+│   │   ├── bug_report.yml       # Template for bug reports
+│   │   ├── config.yml           # Configuration for issue templates
+│   │   └── feature_request.yml  # Template for feature requests
+│   └── workflows/               # GitHub Actions workflows
+│       ├── main.yml             # Main CI/CD workflow (e.g., testing, linting)
+│       └── release.yml          # Workflow for creating releases
+├── .git/                        # Git version control data (usually hidden)
+├── .vscode/                     # VS Code editor configurations
+├── modelcontextprotocol/        # Core package for the Model Context Protocol implementation
+│   ├── node_modules/            # Project dependencies (managed by npm/pnpm/yarn)
+│   ├── scripts/                 # Utility scripts for the package
+│   │   └── publish              # Script for publishing the package
+│   ├── src/                     # Source code for the modelcontextprotocol package
+│   │   ├── index.ts             # Main entry point for the package
+│   │   └── test/                # Unit tests for the package
+│   │       └── index.test.ts    # Tests for the main entry point
+│   ├── .gitignore               # Specifies intentionally untracked files that Git should ignore
+│   ├── .prettierrc              # Configuration file for the Prettier code formatter
+│   ├── eslint.config.mjs        # Configuration file for the ESLint linter
+│   ├── jest.config.ts           # Configuration file for the Jest testing framework
+│   ├── package-lock.json        # Records exact versions of dependencies (npm)
+│   ├── package.json             # Defines package metadata, dependencies, and scripts
+│   ├── pnpm-lock.yaml           # Records exact versions of dependencies (pnpm)
+│   ├── README.md                # README specific to the modelcontextprotocol package
+│   └── tsconfig.json            # TypeScript compiler options for this package
+├── typescript/                  # TypeScript specific implementations or toolkits using the protocol
+│   ├── examples/                # Example usage of the TypeScript toolkit
+│   │   ├── ai-sdk/              # Example using the AI SDK integration
+│   │   │   ├── .env.template    # Template for environment variables
+│   │   │   ├── index.ts         # Example script demonstrating usage
+│   │   │   ├── package.json     # Dependencies for the example
+│   │   │   ├── README.md        # README for the ai-sdk example
+│   │   │   └── tsconfig.json    # TypeScript configuration for the example
+│   │   └── langchain/           # Example using the Langchain integration
+│   │       ├── .env.template    # Template for environment variables
+│   │       ├── index.ts         # Example script demonstrating usage
+│   │       ├── package.json     # Dependencies for the example
+│   │       ├── README.md        # README for the langchain example
+│   │       └── tsconfig.json    # TypeScript configuration for the example
+│   ├── node_modules/            # Project dependencies (managed by npm/pnpm/yarn)
+│   ├── scripts/                 # Utility scripts for the TypeScript packages/workspace
+│   │   └── publish              # Script for publishing the package(s)
+│   ├── src/                     # Source code for the TypeScript toolkit/packages
+│   │   ├── ai-sdk/              # Integration layer for the AI SDK
+│   │   │   ├── index.ts         # Entry point for the AI SDK integration
+│   │   │   └── toolkit.ts       # Toolkit implementation specific to AI SDK
+│   │   ├── langchain/           # Integration layer for Langchain
+│   │   │   ├── index.ts         # Entry point for the Langchain integration
+│   │   │   └── toolkit.ts       # Toolkit implementation specific to Langchain
+│   │   ├── modelcontextprotocol/# Re-export or specific implementation related to the core protocol
+│   │   │   ├── index.ts         # Entry point
+│   │   │   └── toolkit.ts       # Toolkit implementation
+│   │   ├── shared/              # Shared utilities and components for TypeScript packages
+│   │   │   ├── api.ts           # API definitions or clients
+│   │   │   ├── configuration.ts # Configuration handling logic
+│   │   │   ├── functions.ts     # Utility functions
+│   │   │   ├── parameters.ts    # Parameter definitions or handling
+│   │   │   ├── prompts.ts       # Prompt templates or management
+│   │   │   └── tools.ts         # Tool definitions or handling
+│   │   └── test/                # Tests for the TypeScript code
+│   │       └── shared/          # Tests for the shared components
+│   │           ├── configuration.test.ts # Tests for configuration logic
+│   │           └── functions.test.ts     # Tests for utility functions
+│   ├── .gitignore               # Specifies intentionally untracked files that Git should ignore
+│   ├── .prettierrc              # Configuration file for the Prettier code formatter
+│   ├── .vscode/                 # VS Code editor configurations specific to the typescript directory
+│   ├── eslint.config.mjs        # Configuration file for the ESLint linter
+│   ├── jest.config.ts           # Configuration file for the Jest testing framework
+│   ├── package-lock.json        # Records exact versions of dependencies (npm)
+│   ├── package.json             # Defines package metadata, dependencies, and scripts (likely for the workspace)
+│   ├── pnpm-lock.yaml           # Records exact versions of dependencies (pnpm)
+│   ├── pnpm-workspace.yaml      # Defines the pnpm workspace configuration
+│   ├── README.md                # README specific to the TypeScript part of the repository
+│   ├── template.env             # Template for environment variables
+│   ├── tsconfig.json            # Base TypeScript compiler options for the workspace
+│   └── tsup.config.ts           # Configuration for the tsup bundler
+├── .gitignore                   # Specifies intentionally untracked files that Git should ignore at the root level
+├── LICENSE                      # Repository license information
+├── package-lock.json            # Records exact versions of root-level dependencies (if any, potentially for dev tools)
+├── package.json                 # Root package.json, might define workspace root or global dev dependencies
+├── README.md                    # Main README file for the repository
+└── SECURITY.md                  # Security policy and reporting instructions
+``` 

@@ -34,6 +34,8 @@ export enum AvailableNamespaces {
   Extensions = 'extensions',
   Subscriptions = 'subscriptions',
   CustomObjects = 'custom-objects',
+  PaymentIntents = 'payment-intents',
+  Transactions = 'transactions',
 }
 
 export type Tool = {

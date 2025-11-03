@@ -91,6 +91,8 @@ describe('main function', () => {
           'payment-methods': {read: true, create: true, update: true},
           'product-tailoring': {read: true, create: true, update: true},
           'custom-objects': {read: true, create: true, update: true},
+          'payment-intents': {update: true},
+          transactions: {read: true, create: true},
         },
         context: {
           isAdmin: true,

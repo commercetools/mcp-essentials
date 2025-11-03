@@ -36,10 +36,26 @@ class CommercetoolsAPI {
     }
 
     this.apiRoot = createApiBuilderFromCtpClient(this.client);
+    this.getApiRoot = this.getApiRoot.bind(this);
   }
 
-  private createClient(): Client | never {
-    const {authUrl, projectKey, apiUrl} = this.authConfig;
+  public getClient(): Client {
+    return this.client!;
+  }
+
+  private getApiRoot = <T>(
+    fn: (client: Client, baseUrl?: string) => T,
+    baseUrl?: string
+  ): T => {
+    return fn(this.createClient({apiUrl: baseUrl}), baseUrl);
+  };
+
+  private createClient(options?: Partial<AuthConfig>): Client | never {
+    const {authUrl, projectKey, apiUrl} = Object.assign(
+      this.authConfig,
+      options
+    );
+
     const httpMiddlewareOptions: HttpMiddlewareOptions = {
       host: apiUrl,
     };
@@ -185,7 +201,8 @@ class CommercetoolsAPI {
           projectKey: this.authConfig.projectKey,
           ...this.context,
         } as CommercetoolsFuncContext,
-        arg
+        arg,
+        this.getApiRoot
       )
     );
 

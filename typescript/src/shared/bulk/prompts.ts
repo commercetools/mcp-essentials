@@ -27,7 +27,11 @@ Supported entity types:
 - review
 =======
 - shopping-lists
+<<<<<<< Updated upstream
 >>>>>>> 500162a (feat(mcp-essentials): add additional tools)
+=======
+- transactions
+>>>>>>> Stashed changes
 
 Parameters:
 - items: An array of objects, each containing:
@@ -112,7 +116,11 @@ The supported entity types are:
 - standalone-price
 - inventory
 - store
+<<<<<<< Updated upstream
 - review
+=======
+- transactions
+>>>>>>> Stashed changes
 
 # PARAMETERS
 "items": [

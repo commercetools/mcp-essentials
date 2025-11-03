@@ -164,6 +164,11 @@ export const ACCEPTED_TOOLS = [
   'types.read',
   'types.create',
   'types.update',
+
+  'payment-intents.update',
+
+  'transactions.read',
+  'transactions.create',
 ];
 
 // eslint-disable-next-line complexity

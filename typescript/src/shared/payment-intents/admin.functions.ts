@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unsafe-function-type */
-/* eslint-disable require-await */
+
 import {ApiRoot} from '@commercetools/platform-sdk';
 import {z} from 'zod';
 import {updatePaymentIntentParameters} from './parameters';
