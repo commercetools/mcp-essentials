@@ -20,6 +20,7 @@ export enum AvailableNamespaces {
   Bulk = 'bulk',
   Inventory = 'inventory',
   Store = 'store',
+  Review = 'review',
 }
 
 export type Tool = {

@@ -113,6 +113,9 @@ export const ACCEPTED_TOOLS = [
   'store.read',
   'store.create',
   'store.update',
+  'review.read',
+  'review.create',
+  'review.update',
 ];
 
 // eslint-disable-next-line complexity
