@@ -13,7 +13,7 @@ import {SDKError} from '../errors/sdkError';
 export async function readReviewById(
   apiRoot: ApiRoot,
   projectKey: string,
-  params: {id: string; expand?: string[]}
+  params: z.infer<typeof readReviewParameters>
 ) {
   try {
     const reviewRequest = apiRoot
@@ -39,7 +39,7 @@ export async function readReviewById(
 export async function readReviewByKey(
   apiRoot: ApiRoot,
   projectKey: string,
-  params: {key: string; expand?: string[]}
+  params: z.infer<typeof readReviewParameters>
 ) {
   try {
     const reviewRequest = apiRoot
@@ -135,7 +135,7 @@ export async function createReview(
 export async function updateReviewById(
   apiRoot: ApiRoot,
   projectKey: string,
-  params: {id: string; version: number; actions: any[]}
+  params: z.infer<typeof updateReviewParameters>
 ) {
   try {
     const updateRequest = apiRoot
@@ -162,7 +162,7 @@ export async function updateReviewById(
 export async function updateReviewByKey(
   apiRoot: ApiRoot,
   projectKey: string,
-  params: {key: string; version: number; actions: any[]}
+  params: z.infer<typeof updateReviewParameters>
 ) {
   try {
     const updateRequest = apiRoot
