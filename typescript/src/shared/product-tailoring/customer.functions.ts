@@ -46,7 +46,7 @@ export async function readProductTailoring(
         context.projectKey,
         params
       );
-    } else if (params.productKey && params.storeKey) {
+    } else if (params.productKey) {
       return await readProductTailoringByProductKey(
         apiRoot,
         context.projectKey,
