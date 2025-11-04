@@ -4,6 +4,7 @@
   "homepage": "https://github.com/commercetools/mcp-essentials",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
+    "dev": "tsup --env.NODE_ENV dev",
     "build": "tsup",
     "clean": "rm -rf langchain ai-sdk modelcontextprotocol openai",
     "lint": "eslint \"./**/*.ts*\"",
