@@ -40,7 +40,7 @@ export async function readProductTailoring(
         context.projectKey,
         params
       );
-    } else if (params.productId && params.storeKey) {
+    } else if (params.productId) {
       return await readProductTailoringByProductId(
         apiRoot,
         context.projectKey,
