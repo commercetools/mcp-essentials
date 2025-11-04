@@ -172,7 +172,11 @@ class CommercetoolsAPI {
       string,
       any
     >;
-    const func = functionMap[method];
+
+    // TODO fix functionMap to not return type any
+    const func = functionMap[method] as
+      | ((...args: any[]) => Promise<unknown>)
+      | undefined;
 
     if (!func) {
       throw new Error('Invalid method ' + method);
