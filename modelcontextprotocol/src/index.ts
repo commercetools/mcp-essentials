@@ -19,6 +19,7 @@ type Options = {
   businessUnitKey?: string;
   dynamicToolLoadingThreshold?: number;
   logging?: boolean;
+  toolOutputFormat?: 'json' | 'tabular';
 };
 
 type EnvVars = {
@@ -47,6 +48,7 @@ const PUBLIC_ARGS = [
   'projectKey',
   'apiUrl',
   'dynamicToolLoadingThreshold',
+  'toolOutputFormat',
 ];
 
 const ACCEPTED_ARGS = [...PUBLIC_ARGS, ...HIDDEN_ARGS];
@@ -152,6 +154,10 @@ export function parseArgs(args: string[]): {options: Options; env: EnvVars} {
         options.isAdmin = value === 'true';
       } else if (key == 'dynamicToolLoadingThreshold') {
         options.dynamicToolLoadingThreshold = Number(value);
+      } else if (key == 'toolOutputFormat') {
+        if (value === 'json' || value === 'tabular') {
+          options.toolOutputFormat = value;
+        }
       } else if (key == 'logging') {
         options.logging = value == 'true';
       } else if (key == 'cartId') {
@@ -220,6 +226,15 @@ export function parseArgs(args: string[]): {options: Options; env: EnvVars} {
     (process.env.DYNAMIC_TOOL_LOADING_THRESHOLD
       ? Number(process.env.DYNAMIC_TOOL_LOADING_THRESHOLD)
       : undefined);
+
+  if (
+    (process.env.TOOL_OUTPUT_FORMAT &&
+      process.env.TOOL_OUTPUT_FORMAT === 'tabular') ||
+    process.env.TOOL_OUTPUT_FORMAT === 'json'
+  ) {
+    options.toolOutputFormat = process.env.TOOL_OUTPUT_FORMAT;
+  }
+
   options.cartId = options.cartId || process.env.CART_ID;
 
   // Validate required commercetools credentials based on auth type
@@ -301,6 +316,7 @@ export async function main() {
       customerId: options.customerId,
       isAdmin: options.isAdmin,
       dynamicToolLoadingThreshold: options.dynamicToolLoadingThreshold,
+      toolOutputFormat: options.toolOutputFormat,
       cartId: options.cartId,
       storeKey: options.storeKey,
       businessUnitKey: options.businessUnitKey,

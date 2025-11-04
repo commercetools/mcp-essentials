@@ -175,8 +175,9 @@ class CommercetoolsAgentEssentials extends McpServer {
         const result = await this.commercetoolsAPI.run(method, args, execute);
         return this.createToolResponse(
           transformToolOutput({
-            data: {data: result},
+            data: result,
             title: `${tool.method} result`,
+            format: this.configuration.context?.toolOutputFormat,
           })
         );
       }
@@ -228,8 +229,9 @@ class CommercetoolsAgentEssentials extends McpServer {
 
           return this.createToolResponse(
             transformToolOutput({
-              data: {data: result},
+              data: result,
               title: `${args.toolMethod} result`,
+              format: this.configuration.context?.toolOutputFormat,
             })
           );
         } catch (error) {
@@ -239,14 +241,14 @@ class CommercetoolsAgentEssentials extends McpServer {
     );
   }
 
-  private createToolResponse(result: string): {
+  private createToolResponse(result: unknown): {
     content: Array<{type: 'text'; text: string}>;
   } {
     return {
       content: [
         {
           type: 'text',
-          text: result,
+          text: String(result),
         },
       ],
     };

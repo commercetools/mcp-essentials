@@ -36,6 +36,7 @@ export type Context = {
   sessionId?: string;
   mode?: 'stateless' | 'stateful';
   logging?: boolean;
+  toolOutputFormat?: 'json' | 'tabular';
 };
 
 export type CommercetoolsFuncContext = Context & {

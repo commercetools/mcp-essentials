@@ -9,7 +9,8 @@ export default function CommercetoolsTool(
   commercetoolsAPI: CommercetoolsAPI,
   method: string,
   description: string,
-  schema: z.ZodObject<any, any, any, any, {[x: string]: any}>
+  schema: z.ZodObject<any, any, any, any, {[x: string]: any}>,
+  toolOutputFormat?: 'json' | 'tabular'
 ): DynamicStructuredTool {
   return new DynamicStructuredTool({
     name: method,
@@ -24,6 +25,7 @@ export default function CommercetoolsTool(
       return transformToolOutput({
         title: `${method} result`,
         data: {data: result},
+        format: toolOutputFormat,
       });
     },
   });
