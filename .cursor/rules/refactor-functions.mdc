@@ -1,0 +1,109 @@
+---
+description: Refactoring a tool Function in @commercetools/agent-essentials
+globs: 
+alwaysApply: false
+---
+# Refactoring a tool Function in @commercetools/agent-essentials
+
+This document outlines the steps taken to refactor a function in @commercetools/agent-essentials to connect to commercetools API.
+
+The following steps are defining implementation of an example `cart.read`. So the `(namespace)` here refers to `cart`.
+
+# NOTES: 
+    1. CRUD functions are read, update and create. do not add delete functions.
+    2. DO NOT MODIFY `parameters.ts` or `prompts.ts` or `tools.ts`
+    3. when creating update base functions, use get (by id or key) base functions to first fetch the entity, and use the version from the fetched entity in the update payload
+
+# Refactor steps
+
+1. Create a `base.functions.ts` file in the `namespace` directory. This file will export a couple of basic CRUD functions that will be used inside other files in this namespace. you can extract this base functions from current `functions.ts` file in the namespace.
+    - IMPORTANT: base functions should be generic as possible, e.g. instead of having a separate function for query cart for a specific user and another one for user in a store, we create one that accepts a "where" cluase.
+    - Note: sometimes the commercetools SDK has different endpoint when a parameter is present, like query in store (look to the code sample below). in that case, we check that parameter inside the base function but keep the function as simple as possible and low complexity.
+    - GOAL: the goal of this step is maximize reusability.
+    - example: base functions created for 'cart.read' are: readCartById, readCartByKey, queryCart, queryCarts.
+    - file example: `typescript/src/shared/cart/base.functions.ts`
+    - code sample:
+
+    ```ts
+    const queryCart = async (
+        apiRoot: ApiRoot,
+        projectKey: string,
+        queryArgs: any,
+        storeKey?: string
+        ) => {
+        if (storeKey) {
+            const carts = await apiRoot
+            .withProjectKey({projectKey})
+            .inStoreKeyWithStoreKeyValue({storeKey})
+            .carts()
+            .get({queryArgs})
+            .execute();
+            return carts.body;
+        }
+        const carts = await apiRoot
+            .withProjectKey({projectKey})
+            .carts()
+            .get({queryArgs})
+            .execute();
+        return carts.body;
+        };
+    ```
+
+2. Create a `customer.functions.ts` in the namespace directory. This file, uses `base.functions.ts`. it has CRUD functions when `context.customerId` is present.
+    - GOAL: these functions are to limit the operations to the specific customerId.
+    - example: when querying carts, it should always inject `context.customerId` to the query. If not possible, it should check the entity after it's fetched.
+    - file example: `typescript/src/shared/cart/customer.functions.ts`
+
+3. Create a `store.functions.ts` in the namespace directory. This file, uses `base.functions.ts`. it has CRUD functions when `context.storeKey` is present.
+    - GOAL: these functions are to limit the operations to the specific store.
+    - example: Limit carts fetched to a store.
+
+4. Create a `admin.functions.ts` in the namespace directory. This file, uses `base.functions.ts`. it has CRUD functions when `context.isAdmin` is present.
+    - GOAL: these functions doesn't have any limitations.
+    - file example: `typescript/src/shared/cart/admin.functions.ts`
+
+5. Modify `functions.ts` to import all exported methods from customer, admin and store. create a method called `contextTo<namespace>FunctionMapping` which accepts the context and returns an object of name to method mapping.
+    - IMPORTANT: if no context is there, empty object should return
+    - IMPORTANT: use type `Context` from `typescript/src/types/configuration.ts`
+    - example: 
+    ```ts
+    export const contextToCartFunctionMapping = (context?: Context) => {
+        if (context?.customerId) {
+            return {
+            read_cart: customer.readCart,
+            // create_cart: customer.createCart,
+            // update_cart: customer.updateCart,
+            // replicate_cart: customer.replicateCart,
+            };
+        }
+        if (context?.storeKey) {
+            return {
+            read_cart: store.readCart,
+            // create_cart: store.createCart,
+            // update_cart: store.updateCart,
+            // replicate_cart: store.replicateCart,
+            };
+        }
+        if (context?.isAdmin) { // IMPORTANT
+            return {
+                read_cart: admin.readCart,
+                // create_cart: admin.createAdminCart,
+                // update_cart: admin.updateAdminCart,
+                // replicate_cart: admin.replicateAdminCart,
+            };
+        }
+        };
+    ```
+
+6. create a test file to check if correct context is loading right functions from  `contextTo<namespace>FunctionMapping` and if none is provided, it should be empty
+7. update current tests to match the function calls
+8. refactor `typescript/src/shared/functions.ts` and import `import {contextToCartFunctionMapping} from './cart/functions';` then update  this method return 
+9. confirm that this method call `apiRoot.withProjectKey()` is only being called from base functions not in `customer.functions.ts` and not in `customer` and `admin`. if usage of `apiRoot.withProjectKey` found, move the method to base and reused from base functions.  
+```
+export const contextToFunctionMapping = (context?: Context) => {
+  return {
+    ...contextToOrderFunctionMapping(context),
+    ...contextToCartFunctionMapping(context),
+  };
+};
+```

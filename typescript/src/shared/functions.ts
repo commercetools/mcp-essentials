@@ -11,6 +11,7 @@ import {contextToCustomerFunctionMapping} from './customer/functions';
 import {contextToDiscountCodeFunctionMapping} from './discount-code/functions';
 import {contextToInventoryFunctionMapping} from './inventory/functions';
 import {contextToOrderFunctionMapping} from './order/functions';
+import {contextToReviewFunctionMapping} from './reviews/functions';
 import {contextToProductDiscountFunctionMapping} from './product-discount/functions';
 import {contextToProductSearchFunctionMapping} from './product-search/functions';
 import {contextToProductSelectionFunctionMapping} from './product-selection/functions';
@@ -46,6 +47,7 @@ export const contextToFunctionMapping = (
     ...contextToDiscountCodeFunctionMapping(context),
     ...contextToInventoryFunctionMapping(context),
     ...contextToProductDiscountFunctionMapping(context),
+    ...contextToReviewFunctionMapping(context),
     ...contextToProductSearchFunctionMapping(context),
     ...contextToProductSelectionFunctionMapping(context),
     ...contextToProductTypeFunctionMapping(context),

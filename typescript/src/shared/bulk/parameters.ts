@@ -16,6 +16,7 @@ import {createStandalonePriceParameters} from '../standalone-price/parameters';
 import {createInventoryParameters} from '../inventory/parameters';
 import {createOrderParameters} from '../order/parameters';
 import {createStoreParameters} from '../store/parameters';
+import {createReviewParameters} from '../reviews/parameters';
 
 import {updateBusinessUnitParameters} from '../business-unit/parameters';
 import {updateProductParameters} from '../products/parameters';
@@ -36,6 +37,7 @@ import {updateOrderParameters} from '../order/parameters';
 import {updateProductSelectionParameters} from '../product-selection/parameters';
 import {updateProductTypeParameters} from '../product-type/parameters';
 import {updateStoreParameters} from '../store/parameters';
+import {updateReviewParameters} from '../reviews/parameters';
 
 // Define the bulk create parameters for products
 export const bulkCreateParameters = z.object({
@@ -59,6 +61,7 @@ export const bulkCreateParameters = z.object({
         'order',
         'inventory',
         'store',
+        'review',
       ]),
       data: z.union([
         createBusinessUnitParameters,
@@ -78,6 +81,7 @@ export const bulkCreateParameters = z.object({
         createInventoryParameters,
         createOrderParameters,
         createStoreParameters,
+        createReviewParameters,
       ]),
     })
   ),
@@ -107,6 +111,7 @@ export const bulkUpdateParameters = z.object({
         'product-selection',
         'product-type',
         'store',
+        'review',
       ]),
       data: z.union([
         updateBusinessUnitParameters,
@@ -128,6 +133,7 @@ export const bulkUpdateParameters = z.object({
         updateProductSelectionParameters,
         updateProductTypeParameters,
         updateStoreParameters,
+        updateReviewParameters,
       ]),
     })
   ),

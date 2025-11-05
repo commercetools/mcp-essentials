@@ -20,6 +20,7 @@ import {contextToProductTypeTools} from './product-type/tools';
 import {contextToBulkTools} from './bulk/tools';
 import {contextToInventoryTools} from './inventory/tools';
 import {contextToStoreTools} from './store/tools';
+import {contextToReviewTools} from './reviews/tools';
 import {Context} from '../types/configuration';
 
 export const contextToResourceTools = (context?: Context) => {
@@ -35,6 +36,7 @@ export const contextToResourceTools = (context?: Context) => {
     order: contextToOrderTools(context),
     inventory: contextToInventoryTools(context),
     products: contextToProductsTools(context),
+    review: contextToReviewTools(context),
     project: contextToProjectTools(context),
     'product-search': contextToProductSearchTools(context),
     'product-selection': contextToProductSelectionTools(context),
