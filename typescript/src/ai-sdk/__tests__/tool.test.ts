@@ -53,7 +53,8 @@ describe('CommercetoolsTool', () => {
       mockCommercetoolsAPI,
       testMethod,
       testDescription,
-      testSchema
+      testSchema,
+      'json'
     ) as any; // Cast to any to access execute for testing
 
     const executeArgs = {param1: 'testValue'};
@@ -66,7 +67,7 @@ describe('CommercetoolsTool', () => {
       testMethod,
       executeArgs
     );
-    expect(result).toBe('API Result');
+    expect(result).toBe('{"TEST METHOD RESULT":"API Result"}');
   });
 
   it('should correctly handle execute with optional parameters', async () => {
@@ -74,7 +75,8 @@ describe('CommercetoolsTool', () => {
       mockCommercetoolsAPI,
       testMethod,
       testDescription,
-      testSchema
+      testSchema,
+      'json'
     ) as any;
 
     const executeArgs = {param1: 'testValue', param2: 123};
@@ -85,6 +87,6 @@ describe('CommercetoolsTool', () => {
       testMethod,
       executeArgs
     );
-    expect(result).toBe('API Result with optional');
+    expect(result).toBe('{"TEST METHOD RESULT":"API Result with optional"}');
   });
 });

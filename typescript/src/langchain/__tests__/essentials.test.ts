@@ -56,9 +56,10 @@ jest.mock('../../shared/tools', () => {
 let mockToolDefinitions: any[]; // To hold the data for assertions
 
 describe('CommercetoolsAgentEssentials (Langchain)', () => {
+  const toolOutputFormat = 'json';
   const mockConfiguration = {
     enabledTools: ['cart', 'product.lcTool2'],
-    context: {isAdmin: true},
+    context: {isAdmin: true, toolOutputFormat},
   } as any;
   const mockCommercetoolsAPIInstance = {} as CommercetoolsAPI;
   const mockLangchainTool = new DynamicStructuredTool({
@@ -141,13 +142,15 @@ describe('CommercetoolsAgentEssentials (Langchain)', () => {
       mockCommercetoolsAPIInstance,
       mockToolDefinitions[0].method,
       mockToolDefinitions[0].description,
-      expect.any(Object)
+      expect.any(Object),
+      toolOutputFormat
     );
     expect(CommercetoolsTool).toHaveBeenCalledWith(
       mockCommercetoolsAPIInstance,
       mockToolDefinitions[1].method,
       mockToolDefinitions[1].description,
-      expect.any(Object)
+      expect.any(Object),
+      toolOutputFormat
     );
     expect(CommercetoolsTool).not.toHaveBeenCalledWith(
       expect.anything(),

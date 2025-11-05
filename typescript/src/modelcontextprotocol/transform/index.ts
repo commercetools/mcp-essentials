@@ -1,3 +1,4 @@
 import {transformToolOutput} from './transformToolOutput';
+import {transformPropertyName} from './transformPropertyName';
 
-export {transformToolOutput};
+export {transformToolOutput, transformPropertyName};

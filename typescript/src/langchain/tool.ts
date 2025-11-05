@@ -24,7 +24,7 @@ export default function CommercetoolsTool(
       const result = await commercetoolsAPI.run(method, arg);
       return transformToolOutput({
         title: `${method} result`,
-        data: {data: result},
+        data: result,
         format: toolOutputFormat,
       });
     },

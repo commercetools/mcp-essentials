@@ -162,7 +162,7 @@ describe('CommercetoolsAPI', () => {
         {projectKey: 'test-project'},
         {param: 'value'}
       );
-      expect(result).toBe(JSON.stringify(mockResult));
+      expect(result).toBe(mockResult);
     });
 
     it('should execute a method with context', async () => {
@@ -194,7 +194,7 @@ describe('CommercetoolsAPI', () => {
         },
         {param: 'value'}
       );
-      expect(result).toBe(JSON.stringify(mockResult));
+      expect(result).toBe(mockResult);
     });
 
     it('should throw error for invalid method', async () => {
@@ -228,7 +228,7 @@ describe('CommercetoolsAPI', () => {
 
       const result = await api.run('testMethod', {});
 
-      expect(result).toBe(JSON.stringify(complexResult));
+      expect(result).toBe(complexResult);
     });
   });
 });
