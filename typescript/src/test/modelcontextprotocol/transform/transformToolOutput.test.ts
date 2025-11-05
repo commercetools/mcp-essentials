@@ -6,14 +6,31 @@ const emptyArrayTransformValue = 'none';
 const tab = '\t';
 
 describe('transformToolOutput', () => {
-  describe('format: default tabular', () => {
+  describe('default', () => {
+    test('transforms to tabular format by default', () => {
+      let testObj: Record<string, any> = {
+        testString: 'test string',
+        testObject: {
+          testNumber: 35673,
+        },
+      };
+
+      let transformedData = transformToolOutput({data: testObj});
+      let expectedTransformedData = `Test String: ${testObj.testString}\nTest Object:\n${tab}Test Number: ${testObj.testObject.testNumber}`;
+
+      expect(transformedData).toBe(expectedTransformedData);
+    });
+  });
+
+  describe('format: tabular', () => {
+    const format = 'tabular';
     test('ignores undefined values', () => {
       let testObj: Record<string, any> = {
         testUndefined1: undefined,
         testUndefined2: undefined,
       };
 
-      let transformedData = transformToolOutput({data: testObj});
+      let transformedData = transformToolOutput({data: testObj, format});
       let expectedTransformedData = emptyObjectTransformValue;
 
       expect(transformedData).toBe(expectedTransformedData);
@@ -24,7 +41,7 @@ describe('transformToolOutput', () => {
         testVal: 'string',
       };
 
-      transformedData = transformToolOutput({data: testObj});
+      transformedData = transformToolOutput({data: testObj, format});
       expectedTransformedData = `Test Val: string`;
 
       expect(transformedData).toBe(expectedTransformedData);
@@ -35,7 +52,7 @@ describe('transformToolOutput', () => {
         testfunction: () => 'function',
       };
 
-      let transformedData = transformToolOutput({data: testObj});
+      let transformedData = transformToolOutput({data: testObj, format});
       let expectedTransformedData = emptyObjectTransformValue;
 
       expect(transformedData).toBe(expectedTransformedData);
@@ -45,7 +62,7 @@ describe('transformToolOutput', () => {
         testVal: 'string',
       };
 
-      transformedData = transformToolOutput({data: testObj});
+      transformedData = transformToolOutput({data: testObj, format});
       expectedTransformedData = `Test Val: string`;
 
       expect(transformedData).toBe(expectedTransformedData);
@@ -57,7 +74,7 @@ describe('transformToolOutput', () => {
         testNull2: null,
       };
 
-      const transformedData = transformToolOutput({data: testObj});
+      const transformedData = transformToolOutput({data: testObj, format});
       const expectedTransformedData = `Test Null: null\nTest Null2: null`;
 
       expect(transformedData).toBe(expectedTransformedData);
@@ -69,7 +86,7 @@ describe('transformToolOutput', () => {
         testBool2: false,
       };
 
-      const transformedData = transformToolOutput({data: testObj});
+      const transformedData = transformToolOutput({data: testObj, format});
       const expectedTransformedData = `Test Bool1: Yes\nTest Bool2: No`;
 
       expect(transformedData).toBe(expectedTransformedData);
@@ -136,7 +153,11 @@ ${tab}1:
 ${tab}${tab}L2 String Val: my second string
 ${tab}${tab}L2 Number Val: 321`;
 
-      const transformedData = transformToolOutput({data: testObject, title});
+      const transformedData = transformToolOutput({
+        data: testObject,
+        title,
+        format,
+      });
       expect(transformedData).toBe(expectedTransformedData);
     });
 
@@ -161,7 +182,7 @@ ${tab}${tab}L2 Number Val: 321`;
           },
         },
       };
-      const transformedData = transformToolOutput({data: testObj});
+      const transformedData = transformToolOutput({data: testObj, format});
 
       const expectedTransformedData = `Obj:
 ${tab}Test Bool1: No
@@ -186,7 +207,7 @@ ${tab}${tab}${tab}${tab}Test Bool2: Yes`;
         testString2: '',
       };
 
-      const transformedData = transformToolOutput({data: testObj});
+      const transformedData = transformToolOutput({data: testObj, format});
       const expectedTransformedData = `Test String1: ""\nTest String2: ""`;
 
       expect(transformedData).toBe(expectedTransformedData);
@@ -198,7 +219,7 @@ ${tab}${tab}${tab}${tab}Test Bool2: Yes`;
         testString2: '2nd test string',
       };
 
-      const transformedData = transformToolOutput({data: testObj});
+      const transformedData = transformToolOutput({data: testObj, format});
       const expectedTransformedData = `Test String1: Test string one\nTest String2: 2nd test string`;
 
       expect(transformedData).toBe(expectedTransformedData);
@@ -210,7 +231,7 @@ ${tab}${tab}${tab}${tab}Test Bool2: Yes`;
         testNumber2: 0.2342,
       };
 
-      const transformedData = transformToolOutput({data: testObj});
+      const transformedData = transformToolOutput({data: testObj, format});
       const expectedTransformedData = `Test Number1: 360\nTest Number2: 0.2342`;
 
       expect(transformedData).toBe(expectedTransformedData);
@@ -222,7 +243,7 @@ ${tab}${tab}${tab}${tab}Test Bool2: Yes`;
         testBigInt2: BigInt('0o377777777777777777'),
       };
 
-      const transformedData = transformToolOutput({data: testObj});
+      const transformedData = transformToolOutput({data: testObj, format});
       const expectedTransformedData = `Test Big Int1: 9007199254740991\nTest Big Int2: 9007199254740991`;
 
       expect(transformedData).toBe(expectedTransformedData);
@@ -235,7 +256,7 @@ ${tab}${tab}${tab}${tab}Test Bool2: Yes`;
         testNegativeInfinity: -Infinity,
       };
 
-      const transformedData = transformToolOutput({data: testObj});
+      const transformedData = transformToolOutput({data: testObj, format});
       const expectedTransformedData = `Test Na N: NaN\nTest Infinity: Infinity\nTest Negative Infinity: -Infinity`;
 
       expect(transformedData).toBe(expectedTransformedData);
@@ -246,7 +267,7 @@ ${tab}${tab}${tab}${tab}Test Bool2: Yes`;
         testEmptyArray: [],
       };
 
-      const transformedData = transformToolOutput({data: testObj});
+      const transformedData = transformToolOutput({data: testObj, format});
       const expectedTransformedData = `Test Empty Array: ${emptyArrayTransformValue}`;
 
       expect(transformedData).toBe(expectedTransformedData);
@@ -267,7 +288,7 @@ ${tab}${tab}${tab}${tab}Test Bool2: Yes`;
         ],
       };
 
-      const transformedData = transformToolOutput({data: testObj});
+      const transformedData = transformToolOutput({data: testObj, format});
       const expectedTransformedData = `Basic Array Values: true, Yes, No, 2345, 66573478589565456346675464, null, ""`;
 
       expect(transformedData).toBe(expectedTransformedData);
@@ -296,7 +317,7 @@ ${tab}${tab}${tab}${tab}Test Bool2: Yes`;
         ],
       };
 
-      const transformedData = transformToolOutput({data: testObj});
+      const transformedData = transformToolOutput({data: testObj, format});
       const expectedTransformedData = `Array Of Inconsistent Types:
 ${tab}0: No
 ${tab}1:
@@ -336,7 +357,7 @@ ${tab}5: Some other string`;
         ],
       };
 
-      const transformedData = transformToolOutput({data: testObj});
+      const transformedData = transformToolOutput({data: testObj, format});
       const expectedTransformedData = `Array Of Inconsistent Objects:
 ${tab}0:
 ${tab}${tab}String Prop: stringProp
@@ -356,7 +377,7 @@ ${tab}${tab}Another Name Bool Prop: Yes`;
         emptyObject: {},
       };
 
-      let transformedData = transformToolOutput({data: testObj});
+      let transformedData = transformToolOutput({data: testObj, format});
       let expectedTransformedData = `Empty Object: ${emptyObjectTransformValue}`;
 
       expect(transformedData).toBe(expectedTransformedData);
@@ -367,7 +388,7 @@ ${tab}${tab}Another Name Bool Prop: Yes`;
         },
       };
 
-      transformedData = transformToolOutput({data: testObj});
+      transformedData = transformToolOutput({data: testObj, format});
       expectedTransformedData = `Object With Only Undefined: ${emptyObjectTransformValue}`;
 
       expect(transformedData).toBe(expectedTransformedData);
@@ -380,7 +401,7 @@ ${tab}${tab}Another Name Bool Prop: Yes`;
         },
       };
 
-      transformedData = transformToolOutput({data: testObj});
+      transformedData = transformToolOutput({data: testObj, format});
       expectedTransformedData = `Object With Only Functions: ${emptyObjectTransformValue}`;
 
       expect(transformedData).toBe(expectedTransformedData);
@@ -397,7 +418,7 @@ ${tab}${tab}Another Name Bool Prop: Yes`;
         },
       };
 
-      const transformedData = transformToolOutput({data: testObj});
+      const transformedData = transformToolOutput({data: testObj, format});
       const expectedTransformedData = `Customer:
 ${tab}Customer Id: 12345
 ${tab}First Name: Example
@@ -420,6 +441,7 @@ ${tab}Is Active: Yes`;
 
       const transformedData = transformToolOutput({
         data: testObj,
+        format,
       });
       const expectedTransformedData = `Facets:
 ${tab}0:
@@ -489,6 +511,7 @@ ${tab}${tab}Selected: No`;
       const transformedData = transformToolOutput({
         data: testObj,
         title,
+        format,
       });
       const expectedTransformedData = `${title.toUpperCase()}
 Some Other Prop: someOtherProp
@@ -549,6 +572,7 @@ Another Prop: anotherProp`;
       const transformedData = transformToolOutput({
         title,
         data: testObj,
+        format,
       });
       const expectedTransformedData = `${title.toLocaleUpperCase()}
 My String: myString
@@ -567,7 +591,38 @@ ${tab}My Nested Object With Only Ignored Types: no properties`;
     });
   });
 
-  describe('format: JSON', () => {
-    // TODO
+  describe('format: json', () => {
+    const format = 'json';
+    test('returns the data passed stringified into JSON', () => {
+      const testObj: Record<string, any> = {
+        testString: undefined,
+        testObject: {
+          testNumber: 3453,
+        },
+      };
+
+      let transformedData = transformToolOutput({data: testObj, format});
+      let expectedTransformedData = JSON.stringify(testObj);
+
+      expect(transformedData).toBe(expectedTransformedData);
+    });
+
+    test('when property passed returns the data passed stringified into JSON, in additional object with title property', () => {
+      const testObj: Record<string, any> = {
+        testString: undefined,
+        testObject: {
+          testNumber: 3453,
+        },
+      };
+
+      const title = 'My test object title';
+
+      let transformedData = transformToolOutput({data: testObj, title, format});
+      let expectedTransformedData = JSON.stringify({
+        [title.toUpperCase()]: testObj,
+      });
+
+      expect(transformedData).toBe(expectedTransformedData);
+    });
   });
 });

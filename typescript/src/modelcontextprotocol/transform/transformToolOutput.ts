@@ -32,14 +32,16 @@ export const transformToolOutput = (args: {
 
   if (isPropertyTypeToBeIgnored(data)) {
     return title
-      ? `${transformPropertyName(title).toUpperCase()}\n${emptyObjectTransformValue}`
+      ? `${transformTitle(title)}\n${emptyObjectTransformValue}`
       : emptyObjectTransformValue;
   }
 
   // if requested format is JSON, simply stringify and return the data
   if (format === 'json') {
     if (title) {
-      return JSON.stringify({[title]: data});
+      return JSON.stringify({
+        [transformTitle(title)]: data,
+      });
     }
     return JSON.stringify(data);
   }
@@ -47,7 +49,7 @@ export const transformToolOutput = (args: {
   // else handle default tabular format
   let transformedDataAggregate = '';
   if (title) {
-    transformedDataAggregate = `${transformPropertyName(title).toUpperCase()}\n`;
+    transformedDataAggregate = `${transformTitle(title)}\n`;
   }
 
   // negative tabCount to offset first level data
@@ -56,6 +58,9 @@ export const transformToolOutput = (args: {
   return (transformedDataAggregate +=
     transformedData ?? emptyObjectTransformValue);
 };
+
+const transformTitle = (title: string) =>
+  `${transformPropertyName(title).toUpperCase()}`;
 
 /**
  * The internal method used to transform values to tabular, split by type.
