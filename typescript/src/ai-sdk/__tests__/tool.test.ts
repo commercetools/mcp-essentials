@@ -58,7 +58,8 @@ describe('CommercetoolsTool', () => {
     ) as any; // Cast to any to access execute for testing
 
     const executeArgs = {param1: 'testValue'};
-    mockCommercetoolsAPI.run.mockResolvedValue('API Result');
+    const apiReturnValue = 'API Result';
+    mockCommercetoolsAPI.run.mockResolvedValue(apiReturnValue);
 
     const result = await coreToolConfig.execute(executeArgs);
 
@@ -67,7 +68,9 @@ describe('CommercetoolsTool', () => {
       testMethod,
       executeArgs
     );
-    expect(result).toBe('{"TEST METHOD RESULT":"API Result"}');
+    expect(result).toBe(
+      `{"TEST METHOD RESULT":${JSON.stringify(apiReturnValue)}}`
+    );
   });
 
   it('should correctly handle execute with optional parameters', async () => {
@@ -80,6 +83,7 @@ describe('CommercetoolsTool', () => {
     ) as any;
 
     const executeArgs = {param1: 'testValue', param2: 123};
+    const apiReturnValue = 'API Result with optional';
     mockCommercetoolsAPI.run.mockResolvedValue('API Result with optional');
 
     const result = await coreToolConfig.execute(executeArgs);
@@ -87,6 +91,8 @@ describe('CommercetoolsTool', () => {
       testMethod,
       executeArgs
     );
-    expect(result).toBe('{"TEST METHOD RESULT":"API Result with optional"}');
+    expect(result).toBe(
+      `{"TEST METHOD RESULT":${JSON.stringify(apiReturnValue)}}`
+    );
   });
 });
