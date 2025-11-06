@@ -34,7 +34,7 @@ const transformPropertyName = (propertyName: string): string => {
       if (isUpperCase(nextChar)) {
         do {
           nextChar = propertyName.charAt(n + i);
-          // eslint-disable-next-line $max-depth
+          // eslint-disable-next-line max-depth
           if (isUpperCase(nextChar)) {
             newPropertyName += nextChar;
             n += 1;
