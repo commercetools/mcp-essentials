@@ -27,6 +27,7 @@ describe('CommercetoolsTool', () => {
     param1: z.string().describe('Parameter 1'),
     param2: z.number().optional().describe('Parameter 2'),
   });
+  const toolFormat = 'json';
 
   beforeEach(() => {
     // Clear all instances and calls to constructor and all methods:
@@ -54,7 +55,7 @@ describe('CommercetoolsTool', () => {
       testMethod,
       testDescription,
       testSchema,
-      'json'
+      toolFormat
     ) as any; // Cast to any to access execute for testing
 
     const executeArgs = {param1: 'testValue'};
@@ -79,7 +80,7 @@ describe('CommercetoolsTool', () => {
       testMethod,
       testDescription,
       testSchema,
-      'json'
+      toolFormat
     ) as any;
 
     const executeArgs = {param1: 'testValue', param2: 123};
