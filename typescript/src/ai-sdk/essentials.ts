@@ -40,7 +40,8 @@ class CommercetoolsAgentEssentials {
         this._commercetools,
         tool.method,
         tool.description,
-        tool.parameters
+        tool.parameters,
+        configuration.context?.toolOutputFormat
       );
     });
   }
