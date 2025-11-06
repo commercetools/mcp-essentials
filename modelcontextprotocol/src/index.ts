@@ -120,6 +120,7 @@ export const ACCEPTED_TOOLS = [
   'review.update',
 ];
 
+// eslint-disable-next-line complexity
 export function parseArgs(args: string[]): {options: Options; env: EnvVars} {
   const options: Options = {};
   const env: EnvVars = {};
