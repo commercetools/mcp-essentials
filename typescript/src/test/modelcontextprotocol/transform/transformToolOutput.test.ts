@@ -8,15 +8,15 @@ const tab = '\t';
 describe('transformToolOutput', () => {
   describe('default', () => {
     test('transforms to tabular format by default', () => {
-      let testObj: Record<string, any> = {
+      const testObj: Record<string, any> = {
         testString: 'test string',
         testObject: {
           testNumber: 35673,
         },
       };
 
-      let transformedData = transformToolOutput({data: testObj});
-      let expectedTransformedData = `Test String: ${testObj.testString}\nTest Object:\n${tab}Test Number: ${testObj.testObject.testNumber}`;
+      const transformedData = transformToolOutput({data: testObj});
+      const expectedTransformedData = `Test String: ${testObj.testString}\nTest Object:\n${tab}Test Number: ${testObj.testObject.testNumber}`;
 
       expect(transformedData).toBe(expectedTransformedData);
     });
@@ -408,7 +408,7 @@ ${tab}${tab}Another Name Bool Prop: Yes`;
     });
 
     test('transforms objects with basic property types as expected', () => {
-      let testObj = {
+      const testObj = {
         customer: {
           customerId: 12345,
           firstName: 'Example',
@@ -430,7 +430,7 @@ ${tab}Is Active: Yes`;
     });
 
     test('transforms arrays of objects with consistent property names and without nested objects or arrays as expected', () => {
-      let facets = complexObject.facets;
+      const facets = complexObject.facets;
       // delete array parameters within array
       facets.forEach((facet) => {
         delete facet.terms;
@@ -601,8 +601,8 @@ ${tab}My Nested Object With Only Ignored Types: no properties`;
         },
       };
 
-      let transformedData = transformToolOutput({data: testObj, format});
-      let expectedTransformedData = JSON.stringify(testObj);
+      const transformedData = transformToolOutput({data: testObj, format});
+      const expectedTransformedData = JSON.stringify(testObj);
 
       expect(transformedData).toBe(expectedTransformedData);
     });
@@ -617,8 +617,12 @@ ${tab}My Nested Object With Only Ignored Types: no properties`;
 
       const title = 'My test object title';
 
-      let transformedData = transformToolOutput({data: testObj, title, format});
-      let expectedTransformedData = JSON.stringify({
+      const transformedData = transformToolOutput({
+        data: testObj,
+        title,
+        format,
+      });
+      const expectedTransformedData = JSON.stringify({
         [title.toUpperCase()]: testObj,
       });
 

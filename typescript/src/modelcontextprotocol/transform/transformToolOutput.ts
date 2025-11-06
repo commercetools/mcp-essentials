@@ -27,8 +27,7 @@ export const transformToolOutput = (args: {
   title?: string;
   format?: Format;
 }): string => {
-  let {format} = args;
-  const {data, title} = args;
+  const {data, title, format} = args;
 
   if (isPropertyTypeToBeIgnored(data)) {
     return title
@@ -53,7 +52,7 @@ export const transformToolOutput = (args: {
   }
 
   // negative tabCount to offset first level data
-  let transformedData = transformData({data, tabCount: -1});
+  const transformedData = transformData({data, tabCount: -1});
 
   return (transformedDataAggregate +=
     transformedData ?? emptyObjectTransformValue);
@@ -156,7 +155,7 @@ const handleArrayTransformation = (args: {
         tabCount,
       });
       transformedData += '\n';
-      unignoredArrayPropertyIndex++;
+      unignoredArrayPropertyIndex += 1;
     }
   });
 

@@ -157,7 +157,7 @@ class CommercetoolsAPI {
     return res.body?.scope.split(' ').map((scope) => scope.split(':')[0]) || [];
   }
 
-  async run(
+  run(
     method: string,
     arg: any,
     execute?: (args: Record<string, unknown>, api: ApiRoot) => Promise<unknown>
@@ -173,7 +173,6 @@ class CommercetoolsAPI {
       any
     >;
 
-    // TODO fix functionMap to not return type any
     const func = functionMap[method] as
       | ((...args: any[]) => Promise<unknown>)
       | undefined;
