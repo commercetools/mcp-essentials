@@ -157,6 +157,7 @@ class CommercetoolsAPI {
     return res.body?.scope.split(' ').map((scope) => scope.split(':')[0]) || [];
   }
 
+  // eslint-disable-next-line require-await
   async run(
     method: string,
     arg: any,
