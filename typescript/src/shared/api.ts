@@ -157,7 +157,7 @@ class CommercetoolsAPI {
     return res.body?.scope.split(' ').map((scope) => scope.split(':')[0]) || [];
   }
 
-  run(
+  async run(
     method: string,
     arg: any,
     execute?: (args: Record<string, unknown>, api: ApiRoot) => Promise<unknown>
