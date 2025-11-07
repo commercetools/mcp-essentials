@@ -78,8 +78,7 @@ export const createShoppingListParameters = z.object({
     .describe('Description of the shopping list (localized string)'),
   customer: z
     .object({
-      id: z.string().optional(),
-      key: z.string().optional(),
+      id: z.string(),
       typeId: z.literal('customer'),
     })
     .optional()

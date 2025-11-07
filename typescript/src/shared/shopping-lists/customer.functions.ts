@@ -21,10 +21,16 @@ export async function readShoppingList(
   try {
     const {id, key, storeKey} = params;
 
-    // Always filter by customer ID for customer operations
-    const customerWhere = context.customerId
-      ? [`customer(id="${context.customerId}")`]
-      : [];
+    // customerId is required - only from context
+    if (!context.customerId) {
+      throw new SDKError(
+        'Customer ID is required to access shopping lists',
+        new Error('Missing customerId in context')
+      );
+    }
+
+    // Build customer filter - always filter by customerId from context
+    const customerWhere = [`customer(id="${context.customerId}")`];
     const combinedWhere = params.where
       ? [...customerWhere, ...params.where]
       : customerWhere;
@@ -35,11 +41,13 @@ export async function readShoppingList(
         return await readShoppingListByIdInStore(apiRoot, context, {
           id,
           expand: params.expand,
+          customerId: context.customerId,
         });
       } else if (key) {
         return await readShoppingListByKeyInStore(apiRoot, context, {
           key,
           expand: params.expand,
+          customerId: context.customerId,
         });
       } else {
         return await queryShoppingListsInStore(apiRoot, context, {
@@ -48,17 +56,20 @@ export async function readShoppingList(
           sort: params.sort,
           where: combinedWhere,
           expand: params.expand,
+          customerId: context.customerId,
         });
       }
     } else if (id) {
       return await readShoppingListById(apiRoot, context, {
         id,
         expand: params.expand,
+        customerId: context.customerId,
       });
     } else if (key) {
       return await readShoppingListByKey(apiRoot, context, {
         key,
         expand: params.expand,
+        customerId: context.customerId,
       });
     } else {
       return await queryShoppingLists(apiRoot, context, {
@@ -80,8 +91,9 @@ export async function readShoppingList(
 export function readShoppingListById(
   apiRoot: ApiRoot,
   context: CommercetoolsFuncContext,
-  params: {id: string; expand?: string[]}
+  params: {id: string; expand?: string[]; customerId: string}
 ) {
+  // customerId is required for customer operations
   return base.readShoppingListById(apiRoot, context.projectKey, params);
 }
 
@@ -91,8 +103,9 @@ export function readShoppingListById(
 export function readShoppingListByKey(
   apiRoot: ApiRoot,
   context: CommercetoolsFuncContext,
-  params: {key: string; expand?: string[]}
+  params: {key: string; expand?: string[]; customerId: string}
 ) {
+  // customerId is required for customer operations
   return base.readShoppingListByKey(apiRoot, context.projectKey, params);
 }
 
@@ -110,7 +123,8 @@ export function queryShoppingLists(
     expand?: string[];
   }
 ) {
-  return base.queryShoppingLists(apiRoot, context.projectKey, params);
+  // Note: customerId filtering is handled via where clause
+  return base.queryShoppingLists(apiRoot, context.projectKey, params as any);
 }
 
 /**
@@ -125,6 +139,7 @@ export function queryShoppingListsInStore(
     sort?: string[];
     where?: string[];
     expand?: string[];
+    customerId: string;
   }
 ) {
   if (!context.storeKey) {
@@ -144,11 +159,16 @@ export function queryShoppingListsInStore(
 export function readShoppingListByIdInStore(
   apiRoot: ApiRoot,
   context: CommercetoolsFuncContext,
-  params: {id: string; expand?: string[]}
+  params: {
+    id: string;
+    expand?: string[];
+    customerId: string;
+  }
 ) {
   if (!context.storeKey) {
     throw new Error('Store key is required for store-specific operations');
   }
+  // customerId is required for customer operations
   return base.readShoppingListByIdInStore(
     apiRoot,
     context.projectKey,
@@ -163,11 +183,16 @@ export function readShoppingListByIdInStore(
 export function readShoppingListByKeyInStore(
   apiRoot: ApiRoot,
   context: CommercetoolsFuncContext,
-  params: {key: string; expand?: string[]}
+  params: {
+    key: string;
+    expand?: string[];
+    customerId: string;
+  }
 ) {
   if (!context.storeKey) {
     throw new Error('Store key is required for store-specific operations');
   }
+  // customerId is required for customer operations
   return base.readShoppingListByKeyInStore(
     apiRoot,
     context.projectKey,
@@ -185,17 +210,21 @@ export async function createShoppingList(
   params: z.infer<typeof createShoppingListParameters>
 ) {
   try {
+    // customerId is required - only from context
+    if (!context.customerId) {
+      throw new SDKError(
+        'Customer ID is required to create shopping lists',
+        new Error('Missing customerId in context')
+      );
+    }
+
     // Ensure customer is set for customer operations
     const customerParams = {
       ...params,
-      customer:
-        params.customer ||
-        (context.customerId
-          ? {
-              id: context.customerId,
-              typeId: 'customer' as const,
-            }
-          : undefined),
+      customer: params.customer || {
+        id: context.customerId,
+        typeId: 'customer' as const,
+      },
     };
 
     if (params.storeKey || context.storeKey) {
@@ -228,6 +257,14 @@ export async function updateShoppingList(
     const {id, key, version, actions, storeKey} = params;
     const targetStoreKey = storeKey || context.storeKey;
 
+    // customerId is required - only from context
+    if (!context.customerId) {
+      throw new SDKError(
+        'Customer ID is required to update shopping lists',
+        new Error('Missing customerId in context')
+      );
+    }
+
     if (targetStoreKey) {
       // Store-specific operations
       if (id) {
@@ -239,6 +276,7 @@ export async function updateShoppingList(
             id,
             version,
             actions,
+            customerId: context.customerId,
           }
         );
       } else if (key) {
@@ -250,6 +288,7 @@ export async function updateShoppingList(
             key,
             version,
             actions,
+            customerId: context.customerId,
           }
         );
       } else {
@@ -262,12 +301,14 @@ export async function updateShoppingList(
         id,
         version,
         actions,
+        customerId: context.customerId,
       });
     } else if (key) {
       return await base.updateShoppingListByKey(apiRoot, context.projectKey, {
         key,
         version,
         actions,
+        customerId: context.customerId,
       });
     } else {
       throw new Error(
@@ -285,8 +326,9 @@ export async function updateShoppingList(
 export async function updateShoppingListById(
   apiRoot: ApiRoot,
   context: CommercetoolsFuncContext,
-  params: {id: string; version: number; actions: any[]}
+  params: {id: string; version: number; actions: any[]; customerId: string}
 ) {
+  // customerId is required for customer operations
   return base.updateShoppingListById(apiRoot, context.projectKey, params);
 }
 
@@ -296,8 +338,9 @@ export async function updateShoppingListById(
 export async function updateShoppingListByKey(
   apiRoot: ApiRoot,
   context: CommercetoolsFuncContext,
-  params: {key: string; version: number; actions: any[]}
+  params: {key: string; version: number; actions: any[]; customerId: string}
 ) {
+  // customerId is required for customer operations
   return base.updateShoppingListByKey(apiRoot, context.projectKey, params);
 }
 
@@ -307,11 +350,17 @@ export async function updateShoppingListByKey(
 export async function updateShoppingListByIdInStore(
   apiRoot: ApiRoot,
   context: CommercetoolsFuncContext,
-  params: {id: string; version: number; actions: any[]}
+  params: {
+    id: string;
+    version: number;
+    actions: any[];
+    customerId: string;
+  }
 ) {
   if (!context.storeKey) {
     throw new Error('Store key is required for store-specific operations');
   }
+  // customerId is required for customer operations
   return base.updateShoppingListByIdInStore(
     apiRoot,
     context.projectKey,
@@ -326,11 +375,17 @@ export async function updateShoppingListByIdInStore(
 export async function updateShoppingListByKeyInStore(
   apiRoot: ApiRoot,
   context: CommercetoolsFuncContext,
-  params: {key: string; version: number; actions: any[]}
+  params: {
+    key: string;
+    version: number;
+    actions: any[];
+    customerId: string;
+  }
 ) {
   if (!context.storeKey) {
     throw new Error('Store key is required for store-specific operations');
   }
+  // customerId is required for customer operations
   return base.updateShoppingListByKeyInStore(
     apiRoot,
     context.projectKey,

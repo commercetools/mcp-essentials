@@ -29,7 +29,7 @@ describe('ShippingMethod Functions', () => {
     // Create mock context
     mockContext = {
       projectKey: 'test-project',
-      accessToken: 'test-token',
+      // accessToken: 'test-token',
     };
 
     // Create admin context
@@ -45,13 +45,6 @@ describe('ShippingMethod Functions', () => {
       expect(mapping).toHaveProperty('read_shipping_methods');
       expect(mapping).toHaveProperty('create_shipping_methods');
       expect(mapping).toHaveProperty('update_shipping_methods');
-    });
-
-    it('should return customer functions when customerId is provided', () => {
-      const customerContext = {customerId: 'customer-123'};
-      const mapping = contextToShippingMethodFunctionMapping(customerContext);
-
-      expect(mapping).toHaveProperty('read_shipping_methods');
     });
 
     it('should return empty object when isAdmin is false and no customerId', () => {
@@ -88,16 +81,6 @@ describe('ShippingMethod Functions', () => {
       const updateFunction = mapping.update_shipping_methods;
 
       expect(typeof updateFunction).toBe('function');
-    });
-  });
-
-  describe('Customer Functions', () => {
-    it('should have read_shipping_methods function for customers', () => {
-      const customerContext = {customerId: 'customer-123'};
-      const mapping = contextToShippingMethodFunctionMapping(customerContext);
-      const readFunction = mapping.read_shipping_methods;
-
-      expect(typeof readFunction).toBe('function');
     });
   });
 });

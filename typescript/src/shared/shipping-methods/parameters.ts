@@ -258,3 +258,103 @@ export const updateShippingMethodParameters = z.object({
     )
     .describe('Update actions to be performed on the shipping method'),
 });
+
+// Parameters for getting matching shipping methods for a cart
+export const getMatchingShippingMethodsForCartParameters = z.object({
+  cartId: z.string().describe('The ID of the cart'),
+  expand: z
+    .array(z.string())
+    .optional()
+    .describe(
+      'An array of reference paths to expand. Example: ["zoneRates[*].zone"]'
+    ),
+});
+
+// Parameters for checking if matching shipping methods exist for a cart
+export const checkMatchingShippingMethodsForCartParameters = z.object({
+  cartId: z.string().describe('The ID of the cart'),
+});
+
+// Parameters for getting matching shipping methods for a location
+export const getMatchingShippingMethodsForLocationParameters = z.object({
+  country: z.string().describe('The country code (e.g., "DE" for Germany)'),
+  state: z
+    .string()
+    .optional()
+    .describe('The state within the country (optional)'),
+  expand: z
+    .array(z.string())
+    .optional()
+    .describe(
+      'An array of reference paths to expand. Example: ["zoneRates[*].zone"]'
+    ),
+});
+
+// Parameters for checking if matching shipping methods exist for a location
+export const checkMatchingShippingMethodsForLocationParameters = z.object({
+  country: z.string().describe('The country code (e.g., "DE" for Germany)'),
+  state: z
+    .string()
+    .optional()
+    .describe('The state within the country (optional)'),
+});
+
+// Parameters for getting matching shipping methods for a cart and location
+export const getMatchingShippingMethodsForCartAndLocationParameters = z.object({
+  cartId: z.string().describe('The ID of the cart'),
+  country: z.string().describe('The country code (e.g., "DE" for Germany)'),
+  state: z
+    .string()
+    .optional()
+    .describe('The state within the country (optional)'),
+  expand: z
+    .array(z.string())
+    .optional()
+    .describe(
+      'An array of reference paths to expand. Example: ["zoneRates[*].zone"]'
+    ),
+});
+
+// Parameters for checking if matching shipping methods exist for a cart and location
+export const checkMatchingShippingMethodsForCartAndLocationParameters = z.object({
+  cartId: z.string().describe('The ID of the cart'),
+  country: z.string().describe('The country code (e.g., "DE" for Germany)'),
+  state: z
+    .string()
+    .optional()
+    .describe('The state within the country (optional)'),
+});
+
+// Parameters for getting matching shipping methods for a cart in store
+export const getMatchingShippingMethodsForCartInStoreParameters = z.object({
+  storeKey: z.string().describe('The key of the store'),
+  cartId: z.string().describe('The ID of the cart'),
+  expand: z
+    .array(z.string())
+    .optional()
+    .describe(
+      'An array of reference paths to expand. Example: ["zoneRates[*].zone"]'
+    ),
+});
+
+// Parameters for checking if matching shipping methods exist for a cart in store
+export const checkMatchingShippingMethodsForCartInStoreParameters = z.object({
+  storeKey: z.string().describe('The key of the store'),
+  cartId: z.string().describe('The ID of the cart'),
+});
+
+// Parameters for getting matching shipping methods for an order edit
+export const getMatchingShippingMethodsForOrderEditParameters = z.object({
+  orderEditId: z.string().describe('The ID of the order edit'),
+  expand: z
+    .array(z.string())
+    .optional()
+    .describe(
+      'An array of reference paths to expand. Example: ["zoneRates[*].zone"]'
+    ),
+});
+
+// Parameters for checking if matching shipping methods exist for an order edit
+export const checkMatchingShippingMethodsForOrderEditParameters = z.object({
+  orderEditId: z.string().describe('The ID of the order edit'),
+});

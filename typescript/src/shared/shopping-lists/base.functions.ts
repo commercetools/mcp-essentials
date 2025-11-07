@@ -8,14 +8,106 @@ import {
 import {SDKError} from '../errors/sdkError';
 
 /**
+ * Validates that a shopping list belongs to the specified customer
+ */
+async function validateCustomerOwnership(
+  apiRoot: ApiRoot,
+  projectKey: string,
+  shoppingListId: string,
+  customerId: string,
+  storeKey?: string
+): Promise<void> {
+  try {
+    const shoppingListRequest = storeKey
+      ? apiRoot
+          .withProjectKey({projectKey})
+          .inStoreKeyWithStoreKeyValue({storeKey})
+          .shoppingLists()
+          .withId({ID: shoppingListId})
+          .get()
+      : apiRoot
+          .withProjectKey({projectKey})
+          .shoppingLists()
+          .withId({ID: shoppingListId})
+          .get();
+
+    const response = await shoppingListRequest.execute();
+    const shoppingList = response.body;
+
+    if (!shoppingList.customer || shoppingList.customer.id !== customerId) {
+      throw new SDKError(
+        'Access denied: Shopping list does not belong to the specified customer',
+        new Error('Customer ownership validation failed')
+      );
+    }
+  } catch (error: any) {
+    if (error instanceof SDKError) {
+      throw error;
+    }
+    throw new SDKError('Error validating customer ownership', error);
+  }
+}
+
+/**
+ * Validates that a shopping list (by key) belongs to the specified customer
+ */
+async function validateCustomerOwnershipByKey(
+  apiRoot: ApiRoot,
+  projectKey: string,
+  shoppingListKey: string,
+  customerId: string,
+  storeKey?: string
+): Promise<void> {
+  try {
+    const shoppingListRequest = storeKey
+      ? apiRoot
+          .withProjectKey({projectKey})
+          .inStoreKeyWithStoreKeyValue({storeKey})
+          .shoppingLists()
+          .withKey({key: shoppingListKey})
+          .get()
+      : apiRoot
+          .withProjectKey({projectKey})
+          .shoppingLists()
+          .withKey({key: shoppingListKey})
+          .get();
+
+    const response = await shoppingListRequest.execute();
+    const shoppingList = response.body;
+
+    if (!shoppingList.customer || shoppingList.customer.id !== customerId) {
+      throw new SDKError(
+        'Access denied: Shopping list does not belong to the specified customer',
+        new Error('Customer ownership validation failed')
+      );
+    }
+  } catch (error: any) {
+    if (error instanceof SDKError) {
+      throw error;
+    }
+    throw new SDKError('Error validating customer ownership', error);
+  }
+}
+
+/**
  * Reads a shopping list by ID
  */
 export async function readShoppingListById(
   apiRoot: ApiRoot,
   projectKey: string,
-  params: z.infer<typeof readShoppingListParameters>
+  params: z.infer<typeof readShoppingListParameters> & {customerId?: string}
 ) {
   try {
+    // Validate customer ownership if customerId is provided
+    if (params.customerId) {
+      await validateCustomerOwnership(
+        apiRoot,
+        projectKey,
+        params.id as string,
+        params.customerId
+      );
+    }
+
     const shoppingListRequest = apiRoot
       .withProjectKey({projectKey})
       .shoppingLists()
@@ -28,7 +120,7 @@ export async function readShoppingListById(
 
     const response = await shoppingListRequest.execute();
     return response.body;
-  } catch (error) {
+  } catch (error: any) {
     throw new SDKError('Error reading shopping list by ID', error);
   }
 }
@@ -39,9 +131,19 @@ export async function readShoppingListById(
 export async function readShoppingListByKey(
   apiRoot: ApiRoot,
   projectKey: string,
-  params: z.infer<typeof readShoppingListParameters>
+  params: z.infer<typeof readShoppingListParameters> & {customerId?: string}
 ) {
   try {
+    // Validate customer ownership if customerId is provided
+    if (params.customerId) {
+      await validateCustomerOwnershipByKey(
+        apiRoot,
+        projectKey,
+        params.key as string,
+        params.customerId
+      );
+    }
+
     const shoppingListRequest = apiRoot
       .withProjectKey({projectKey})
       .shoppingLists()
@@ -54,7 +156,7 @@ export async function readShoppingListByKey(
 
     const response = await shoppingListRequest.execute();
     return response.body;
-  } catch (error) {
+  } catch (error: any) {
     throw new SDKError('Error reading shopping list by key', error);
   }
 }
@@ -126,9 +228,20 @@ export async function readShoppingListByIdInStore(
   apiRoot: ApiRoot,
   projectKey: string,
   storeKey: string,
-  params: z.infer<typeof readShoppingListParameters>
+  params: z.infer<typeof readShoppingListParameters> & {customerId?: string}
 ) {
   try {
+    // Validate customer ownership if customerId is provided
+    if (params.customerId) {
+      await validateCustomerOwnership(
+        apiRoot,
+        projectKey,
+        params.id as string,
+        params.customerId,
+        storeKey
+      );
+    }
+
     const shoppingListRequest = apiRoot
       .withProjectKey({projectKey})
       .inStoreKeyWithStoreKeyValue({storeKey})
@@ -142,7 +255,7 @@ export async function readShoppingListByIdInStore(
 
     const response = await shoppingListRequest.execute();
     return response.body;
-  } catch (error) {
+  } catch (error: any) {
     throw new SDKError('Error reading shopping list by ID in store', error);
   }
 }
@@ -154,9 +267,20 @@ export async function readShoppingListByKeyInStore(
   apiRoot: ApiRoot,
   projectKey: string,
   storeKey: string,
-  params: z.infer<typeof readShoppingListParameters>
+  params: z.infer<typeof readShoppingListParameters> & {customerId?: string}
 ) {
   try {
+    // Validate customer ownership if customerId is provided
+    if (params.customerId) {
+      await validateCustomerOwnershipByKey(
+        apiRoot,
+        projectKey,
+        params.key as string,
+        params.customerId,
+        storeKey
+      );
+    }
+
     const shoppingListRequest = apiRoot
       .withProjectKey({projectKey})
       .inStoreKeyWithStoreKeyValue({storeKey})
@@ -170,7 +294,7 @@ export async function readShoppingListByKeyInStore(
 
     const response = await shoppingListRequest.execute();
     return response.body;
-  } catch (error) {
+  } catch (error: any) {
     throw new SDKError('Error reading shopping list by key in store', error);
   }
 }
@@ -259,9 +383,19 @@ export async function createShoppingListInStore(
 export async function updateShoppingListById(
   apiRoot: ApiRoot,
   projectKey: string,
-  params: z.infer<typeof updateShoppingListParameters>
+  params: z.infer<typeof updateShoppingListParameters> & {customerId?: string}
 ) {
   try {
+    // Validate customer ownership if customerId is provided
+    if (params.customerId) {
+      await validateCustomerOwnership(
+        apiRoot,
+        projectKey,
+        params.id as string,
+        params.customerId
+      );
+    }
+
     const updateRequest = apiRoot
       .withProjectKey({projectKey})
       .shoppingLists()
@@ -275,7 +409,7 @@ export async function updateShoppingListById(
 
     const response = await updateRequest.execute();
     return response.body;
-  } catch (error) {
+  } catch (error: any) {
     throw new SDKError('Error updating shopping list by ID', error);
   }
 }
@@ -286,9 +420,19 @@ export async function updateShoppingListById(
 export async function updateShoppingListByKey(
   apiRoot: ApiRoot,
   projectKey: string,
-  params: z.infer<typeof updateShoppingListParameters>
+  params: z.infer<typeof updateShoppingListParameters> & {customerId?: string}
 ) {
   try {
+    // Validate customer ownership if customerId is provided
+    if (params.customerId) {
+      await validateCustomerOwnershipByKey(
+        apiRoot,
+        projectKey,
+        params.key as string,
+        params.customerId
+      );
+    }
+
     const updateRequest = apiRoot
       .withProjectKey({projectKey})
       .shoppingLists()
@@ -302,7 +446,7 @@ export async function updateShoppingListByKey(
 
     const response = await updateRequest.execute();
     return response.body;
-  } catch (error) {
+  } catch (error: any) {
     throw new SDKError('Error updating shopping list by key', error);
   }
 }
@@ -314,9 +458,20 @@ export async function updateShoppingListByIdInStore(
   apiRoot: ApiRoot,
   projectKey: string,
   storeKey: string,
-  params: z.infer<typeof updateShoppingListParameters>
+  params: z.infer<typeof updateShoppingListParameters> & {customerId?: string}
 ) {
   try {
+    // Validate customer ownership if customerId is provided
+    if (params.customerId) {
+      await validateCustomerOwnership(
+        apiRoot,
+        projectKey,
+        params.id as string,
+        params.customerId,
+        storeKey
+      );
+    }
+
     const updateRequest = apiRoot
       .withProjectKey({projectKey})
       .inStoreKeyWithStoreKeyValue({storeKey})
@@ -331,7 +486,7 @@ export async function updateShoppingListByIdInStore(
 
     const response = await updateRequest.execute();
     return response.body;
-  } catch (error) {
+  } catch (error: any) {
     throw new SDKError('Error updating shopping list by ID in store', error);
   }
 }
@@ -343,9 +498,20 @@ export async function updateShoppingListByKeyInStore(
   apiRoot: ApiRoot,
   projectKey: string,
   storeKey: string,
-  params: z.infer<typeof updateShoppingListParameters>
+  params: z.infer<typeof updateShoppingListParameters> & {customerId?: string}
 ) {
   try {
+    // Validate customer ownership if customerId is provided
+    if (params.customerId) {
+      await validateCustomerOwnershipByKey(
+        apiRoot,
+        projectKey,
+        params.key as string,
+        params.customerId,
+        storeKey
+      );
+    }
+
     const updateRequest = apiRoot
       .withProjectKey({projectKey})
       .inStoreKeyWithStoreKeyValue({storeKey})
@@ -360,7 +526,7 @@ export async function updateShoppingListByKeyInStore(
 
     const response = await updateRequest.execute();
     return response.body;
-  } catch (error) {
+  } catch (error: any) {
     throw new SDKError('Error updating shopping list by key in store', error);
   }
 }

@@ -1,7 +1,6 @@
-import * as customer from './customer.functions';
+import {z} from 'zod';
 import * as admin from './admin.functions';
 import {ApiRoot} from '@commercetools/platform-sdk';
-import {z} from 'zod';
 import {
   createShippingMethodParameters,
   readShippingMethodParameters,
@@ -19,20 +18,11 @@ export const contextToShippingMethodFunctionMapping = (
     params: any
   ) => Promise<any>
 > => {
-  if (context?.customerId) {
-    return {
-      read_shipping_methods: customer.readCustomerShippingMethod,
-    };
-  }
   if (context?.isAdmin) {
     return {
       read_shipping_methods: admin.readShippingMethod,
       create_shipping_methods: admin.createShippingMethod,
       update_shipping_methods: admin.updateShippingMethod,
-    };
-  } else if (context?.customerId) {
-    return {
-      read_shipping_methods: customer.readCustomerShippingMethod,
     };
   } else {
     return {};
@@ -51,7 +41,7 @@ export function readShippingMethod(
   params: z.infer<typeof readShippingMethodParameters>
 ) {
   if (context?.customerId) {
-    return customer.readCustomerShippingMethod(apiRoot, context, params);
+    return admin.readShippingMethod(apiRoot, context, params);
   }
   return admin.readShippingMethod(apiRoot, context, params);
 }

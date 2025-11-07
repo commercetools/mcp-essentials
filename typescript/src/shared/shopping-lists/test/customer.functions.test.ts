@@ -47,6 +47,7 @@ describe('Shopping List Customer Functions', () => {
         {
           id: 'test-id',
           expand: undefined,
+          customerId: 'test-customer',
         }
       );
       expect(result).toEqual(mockResponse);
@@ -129,6 +130,7 @@ describe('Shopping List Customer Functions', () => {
         {
           id: 'test-id',
           expand: undefined,
+          customerId: 'test-customer',
         }
       );
       expect(result).toEqual(mockResponse);
@@ -158,9 +160,107 @@ describe('Shopping List Customer Functions', () => {
           sort: undefined,
           where: ['customer(id="test-customer")'],
           expand: undefined,
+          customerId: 'test-customer',
         }
       );
       expect(result).toEqual(mockResponse);
+    });
+
+    it('should read shopping list by ID in store using context customerId', async () => {
+      const mockResponse = {
+        id: 'test-id',
+        name: {en: 'Store Shopping List'},
+      };
+      (base.readShoppingListByIdInStore as jest.Mock).mockResolvedValue(
+        mockResponse
+      );
+
+      const result = await customer.readShoppingList(mockApiRoot, mockContext, {
+        id: 'test-id',
+        storeKey: 'store-key',
+      });
+
+      expect(base.readShoppingListByIdInStore).toHaveBeenCalledWith(
+        mockApiRoot,
+        mockContext.projectKey,
+        mockContext.storeKey,
+        {
+          id: 'test-id',
+          expand: undefined,
+          customerId: 'test-customer',
+        }
+      );
+      expect(result).toEqual(mockResponse);
+    });
+
+    it('should read shopping list by key in store using context customerId', async () => {
+      const mockResponse = {
+        id: 'test-id',
+        name: {en: 'Store Shopping List'},
+      };
+      (base.readShoppingListByKeyInStore as jest.Mock).mockResolvedValue(
+        mockResponse
+      );
+
+      const result = await customer.readShoppingList(mockApiRoot, mockContext, {
+        key: 'test-key',
+        storeKey: 'store-key',
+      });
+
+      expect(base.readShoppingListByKeyInStore).toHaveBeenCalledWith(
+        mockApiRoot,
+        mockContext.projectKey,
+        mockContext.storeKey,
+        {
+          key: 'test-key',
+          expand: undefined,
+          customerId: 'test-customer',
+        }
+      );
+      expect(result).toEqual(mockResponse);
+    });
+
+
+    it('should use context customerId when not provided in parameters', async () => {
+      const mockResponse = {
+        results: [{id: 'test-id-1', name: {en: 'Store Shopping List 1'}}],
+      };
+      (base.queryShoppingListsInStore as jest.Mock).mockResolvedValue(
+        mockResponse
+      );
+
+      const result = await customer.readShoppingList(mockApiRoot, mockContext, {
+        storeKey: 'store-key',
+        limit: 10,
+      });
+
+      expect(base.queryShoppingListsInStore).toHaveBeenCalledWith(
+        mockApiRoot,
+        mockContext.projectKey,
+        mockContext.storeKey,
+        {
+          limit: 10,
+          offset: undefined,
+          sort: undefined,
+          where: ['customer(id="test-customer")'],
+          expand: undefined,
+          customerId: 'test-customer',
+        }
+      );
+      expect(result).toEqual(mockResponse);
+    });
+
+    it('should throw error when customerId is missing', async () => {
+      const contextWithoutCustomer: CommercetoolsFuncContext = {
+        projectKey: 'test-project',
+        storeKey: 'test-store',
+      };
+
+      await expect(
+        customer.readShoppingList(mockApiRoot, contextWithoutCustomer, {
+          id: 'test-id',
+        })
+      ).rejects.toThrow('Customer ID is required to access shopping lists');
     });
   });
 
@@ -303,6 +403,19 @@ describe('Shopping List Customer Functions', () => {
       );
       expect(result).toEqual(mockResponse);
     });
+
+    it('should throw error when customerId is missing', async () => {
+      const contextWithoutCustomer: CommercetoolsFuncContext = {
+        projectKey: 'test-project',
+        storeKey: 'test-store',
+      };
+
+      await expect(
+        customer.createShoppingList(mockApiRoot, contextWithoutCustomer, {
+          name: {en: 'New Shopping List'},
+        })
+      ).rejects.toThrow('Customer ID is required to create shopping lists');
+    });
   });
 
   describe('updateShoppingList', () => {
@@ -346,6 +459,7 @@ describe('Shopping List Customer Functions', () => {
               name: {en: 'Updated Shopping List'},
             },
           ],
+          customerId: 'test-customer',
         }
       );
       expect(result).toEqual(mockResponse);
@@ -391,6 +505,7 @@ describe('Shopping List Customer Functions', () => {
               name: {en: 'Updated Shopping List'},
             },
           ],
+          customerId: 'test-customer',
         }
       );
       expect(result).toEqual(mockResponse);
@@ -437,6 +552,7 @@ describe('Shopping List Customer Functions', () => {
               name: {en: 'Updated Store Shopping List'},
             },
           ],
+          customerId: 'test-customer',
         }
       );
       expect(result).toEqual(mockResponse);
@@ -458,6 +574,168 @@ describe('Shopping List Customer Functions', () => {
       ).rejects.toThrow(
         'Either id or key must be provided for updating a shopping list'
       );
+    });
+
+    it('should update shopping list by ID in store using context customerId', async () => {
+      const mockResponse = {
+        id: 'test-id',
+        version: 2,
+        name: {en: 'Updated Store Shopping List'},
+      };
+      (base.updateShoppingListByIdInStore as jest.Mock).mockResolvedValue(
+        mockResponse
+      );
+
+      const params = {
+        id: 'test-id',
+        version: 1,
+        storeKey: 'store-key',
+        actions: [
+          {
+            action: 'changeName',
+            name: {en: 'Updated Store Shopping List'},
+          },
+        ],
+      };
+
+      const result = await customer.updateShoppingList(
+        mockApiRoot,
+        mockContext,
+        params
+      );
+
+      expect(base.updateShoppingListByIdInStore).toHaveBeenCalledWith(
+        mockApiRoot,
+        mockContext.projectKey,
+        'store-key',
+        {
+          id: 'test-id',
+          version: 1,
+          actions: [
+            {
+              action: 'changeName',
+              name: {en: 'Updated Store Shopping List'},
+            },
+          ],
+          customerId: 'test-customer',
+        }
+      );
+      expect(result).toEqual(mockResponse);
+    });
+
+    it('should update shopping list by key in store using context customerId', async () => {
+      const mockResponse = {
+        id: 'test-id',
+        version: 2,
+        name: {en: 'Updated Store Shopping List'},
+      };
+      (base.updateShoppingListByKeyInStore as jest.Mock).mockResolvedValue(
+        mockResponse
+      );
+
+      const params = {
+        key: 'test-key',
+        version: 1,
+        storeKey: 'store-key',
+        actions: [
+          {
+            action: 'changeName',
+            name: {en: 'Updated Store Shopping List'},
+          },
+        ],
+      };
+
+      const result = await customer.updateShoppingList(
+        mockApiRoot,
+        mockContext,
+        params
+      );
+
+      expect(base.updateShoppingListByKeyInStore).toHaveBeenCalledWith(
+        mockApiRoot,
+        mockContext.projectKey,
+        'store-key',
+        {
+          key: 'test-key',
+          version: 1,
+          actions: [
+            {
+              action: 'changeName',
+              name: {en: 'Updated Store Shopping List'},
+            },
+          ],
+          customerId: 'test-customer',
+        }
+      );
+      expect(result).toEqual(mockResponse);
+    });
+
+    it('should update shopping list in store using context customerId when not in parameters', async () => {
+      const mockResponse = {
+        id: 'test-id',
+        version: 2,
+        name: {en: 'Updated Store Shopping List'},
+      };
+      (base.updateShoppingListByIdInStore as jest.Mock).mockResolvedValue(
+        mockResponse
+      );
+
+      const params = {
+        id: 'test-id',
+        version: 1,
+        storeKey: 'store-key',
+        actions: [
+          {
+            action: 'changeName',
+            name: {en: 'Updated Store Shopping List'},
+          },
+        ],
+      };
+
+      const result = await customer.updateShoppingList(
+        mockApiRoot,
+        mockContext,
+        params
+      );
+
+      expect(base.updateShoppingListByIdInStore).toHaveBeenCalledWith(
+        mockApiRoot,
+        mockContext.projectKey,
+        'store-key',
+        {
+          id: 'test-id',
+          version: 1,
+          actions: [
+            {
+              action: 'changeName',
+              name: {en: 'Updated Store Shopping List'},
+            },
+          ],
+          customerId: 'test-customer',
+        }
+      );
+      expect(result).toEqual(mockResponse);
+    });
+
+
+    it('should throw error when customerId is missing', async () => {
+      const contextWithoutCustomer: CommercetoolsFuncContext = {
+        projectKey: 'test-project',
+        storeKey: 'test-store',
+      };
+
+      await expect(
+        customer.updateShoppingList(mockApiRoot, contextWithoutCustomer, {
+          id: 'test-id',
+          version: 1,
+          actions: [
+            {
+              action: 'changeName',
+              name: {en: 'Updated Shopping List'},
+            },
+          ],
+        })
+      ).rejects.toThrow('Customer ID is required to update shopping lists');
     });
   });
 });
