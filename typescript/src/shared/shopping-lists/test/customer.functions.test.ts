@@ -220,7 +220,6 @@ describe('Shopping List Customer Functions', () => {
       expect(result).toEqual(mockResponse);
     });
 
-
     it('should use context customerId when not provided in parameters', async () => {
       const mockResponse = {
         results: [{id: 'test-id-1', name: {en: 'Store Shopping List 1'}}],
@@ -716,7 +715,6 @@ describe('Shopping List Customer Functions', () => {
       );
       expect(result).toEqual(mockResponse);
     });
-
 
     it('should throw error when customerId is missing', async () => {
       const contextWithoutCustomer: CommercetoolsFuncContext = {

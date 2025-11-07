@@ -316,14 +316,15 @@ export const getMatchingShippingMethodsForCartAndLocationParameters = z.object({
 });
 
 // Parameters for checking if matching shipping methods exist for a cart and location
-export const checkMatchingShippingMethodsForCartAndLocationParameters = z.object({
-  cartId: z.string().describe('The ID of the cart'),
-  country: z.string().describe('The country code (e.g., "DE" for Germany)'),
-  state: z
-    .string()
-    .optional()
-    .describe('The state within the country (optional)'),
-});
+export const checkMatchingShippingMethodsForCartAndLocationParameters =
+  z.object({
+    cartId: z.string().describe('The ID of the cart'),
+    country: z.string().describe('The country code (e.g., "DE" for Germany)'),
+    state: z
+      .string()
+      .optional()
+      .describe('The state within the country (optional)'),
+  });
 
 // Parameters for getting matching shipping methods for a cart in store
 export const getMatchingShippingMethodsForCartInStoreParameters = z.object({
