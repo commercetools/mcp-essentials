@@ -1,0 +1,30 @@
+---
+description: Update root README.md
+globs:
+alwaysApply: false
+---
+
+# Creating a New namespace tool Function in @commercetools/agent-essentials
+
+# Updating the README.md file in the project root with the newly added feature or namespaces
+
+This document outlines the steps taken to implement an updated README.md file by connecting to the official commercetools API.
+
+The following steps are defining implementation of an example `products.create`. So the `(namespace)` here refers to `product`.
+
+## Implementation Steps
+
+1. Gather info regarding the (namespace)
+
+- Search commercetools docs at https://docs.commercetools.com/api and find the (namespace)
+- In this example `https://docs.commercetools.com/api/projects/products`
+
+2. Define Available Tools
+   In the `### Special Tool Options` section of the `Available Tools` add to the end of the table the newly created or provided namespaces
+   - Using the namespace fetched in previous step and complete the table like the example provided below using the product namespace
+
+| `products.read` | [Read product information](https://docs.commercetools.com/api/projects/products#query-products) |
+| `products.create` | [Create product information](https://docs.commercetools.com/api/projects/products#create-product) |
+| `products.update` | [Update product information](https://docs.commercetools.com/api/projects/products#update-product) |
+
+3. After updating the Available Tools table, ensure all the original formatting is maintained and do not add or carryout any other special editing or formatting.

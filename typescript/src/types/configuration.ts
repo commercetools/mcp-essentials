@@ -1,4 +1,5 @@
 import {StreamableHTTPServerTransportOptions} from '@modelcontextprotocol/sdk/server/streamableHttp.js';
+import {Client} from '@commercetools/ts-client';
 import {
   AuthConfig,
   CommercetoolsAgentEssentials,

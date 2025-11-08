@@ -1,5 +1,5 @@
 export class SDKError extends Error {
-  constructor(message: string, error: any) {
+  constructor(message: string, error?: any) {
     let details: string[] = [];
 
     // Handle commercetools API errors

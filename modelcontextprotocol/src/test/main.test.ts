@@ -79,12 +79,28 @@ describe('main function', () => {
           review: {read: true, create: true, update: true},
           bulk: {create: true, update: true},
           'business-unit': {read: true, create: true, update: true},
+          payments: {read: true, create: true, update: true},
+          'shipping-methods': {read: true, create: true, update: true},
+          'tax-category': {read: true, create: true, update: true},
+          types: {read: true, create: true, update: true},
+          zone: {read: true, create: true, update: true},
+          'recurring-orders': {read: true, create: true, update: true},
+          'shopping-lists': {read: true, create: true, update: true},
+          extensions: {read: true, create: true, update: true},
+          subscriptions: {read: true, create: true, update: true},
+          'payment-methods': {read: true, create: true, update: true},
+          'product-tailoring': {read: true, create: true, update: true},
+          'custom-objects': {read: true, create: true, update: true},
+          'payment-intents': {update: true},
+          transactions: {read: true, create: true},
         },
         context: {
           isAdmin: true,
           storeKey: undefined,
           cartId: undefined,
           customerId: undefined,
+          businessUnitKey: undefined,
+          dynamicToolLoadingThreshold: undefined,
           logging: false,
         },
       },
@@ -229,6 +245,42 @@ describe('main function', () => {
       },
       configuration: {
         actions: {products: {create: true}},
+        context: {
+          isAdmin: true,
+          logging: false,
+        },
+      },
+    });
+
+    expect(StdioServerTransport).toHaveBeenCalled();
+  });
+
+  it('should initialize the server with specific tools correctly (shopping-lists.create)', async () => {
+    process.argv = [
+      'node',
+      'index.js',
+      '--tools=shopping-lists.create',
+      '--clientId=test_client_id',
+      '--clientSecret=test_client_secret',
+      '--authUrl=https://auth.commercetools.com',
+      '--projectKey=test_project',
+      '--apiUrl=https://api.commercetools.com',
+      '--isAdmin=true',
+    ];
+
+    await main();
+
+    expect(CommercetoolsAgentEssentials.create).toHaveBeenCalledWith({
+      authConfig: {
+        type: 'client_credentials',
+        clientId: 'test_client_id',
+        clientSecret: 'test_client_secret',
+        authUrl: 'https://auth.commercetools.com',
+        projectKey: 'test_project',
+        apiUrl: 'https://api.commercetools.com',
+      },
+      configuration: {
+        actions: {'shopping-lists': {create: true}},
         context: {
           isAdmin: true,
           logging: false,

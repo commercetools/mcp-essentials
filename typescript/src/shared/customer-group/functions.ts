@@ -4,7 +4,7 @@ import {CommercetoolsFuncContext, Context} from '../../types/configuration';
 import {CustomerGroupUpdateAction} from './base.functions';
 
 // Re-export the CustomerGroupUpdateAction type for use in tests
-export {CustomerGroupUpdateAction};
+export type {CustomerGroupUpdateAction};
 
 export const contextToCustomerGroupFunctionMapping = (
   context?: Context

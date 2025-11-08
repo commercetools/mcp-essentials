@@ -1,0 +1,68 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Splitting Namespace Functions into Scopes
+
+This rule defines how to organize functionality in a namespace by scope.
+
+## Structure
+
+1. Split functionality into three scopes:
+   - `customer` - Functions related to customer operations
+   - `store` - Functions related to store operations  
+   - `admin` - Functions related to admin operations
+
+2. Create separate files for each scope:
+   - `customer.functions.ts` - Customer-related functions
+   - `store.functions.ts` - Store-related functions
+   - `admin.functions.ts` - Admin-related functions
+
+3. Create a main functions file (e.g., `functions.ts`) that:
+   - Imports all scope files
+   - Exports a context mapping function (`contextTo<namespace>FunctionMapping`)
+
+## Implementation Rules
+
+1. **No cross-imports**: Do not import between scope files (customer/store/admin)
+2. **Context mapping**: Create a mapping function that determines which function to use based on context parameters
+3. **Exports**: Export all functions through the main functions file
+
+## Example (Order namespace)
+
+In `functions.ts`:
+```typescript
+import * as customer from './customer.functions';
+import * as admin from './admin.functions';
+import * as store from './store.functions';
+
+export const contextToOrderFunctionMapping = ({
+  customerId,
+  storeKey,
+}: {
+  customerId?: string;
+  storeKey?: string;
+}): Record<string, Function> => {
+  if (customerId) {
+    return {
+      read_order: customer.readCustomerOrder,
+    };
+  }
+  if (storeKey) {
+    return {
+      read_order: store.readStoreOrder,
+      create_order_from_cart: store.createOrderFromCartInStore,
+      create_order_from_quote: store.createOrderFromQuoteInStore,
+      update_order: store.updateOrderByIdInStore,
+    };
+  }
+  return {
+    read_order: admin.readOrder,
+    create_order_from_cart: admin.createOrderFromCart,
+    create_order_from_quote: admin.createOrderFromQuote,
+    create_order_by_import: admin.createOrderByImport,
+    update_order: admin.updateOrder,
+  };
+};
+``` 
