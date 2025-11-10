@@ -34,6 +34,14 @@ jest.mock('../../inventory/functions', () => ({
     }),
 }));
 
+jest.mock('../../shopping-lists/functions', () => ({
+  createShoppingList: jest
+    .fn()
+    .mockImplementation((_apiRoot: any, _context: any, params: any) => {
+      return {id: 'mock-shopping-list-id', ...params};
+    }),
+}));
+
 describe('bulkCreate function', () => {
   const mockApiRoot = {} as unknown as ApiRoot;
   const mockContext = {projectKey: 'test-project'};
@@ -101,6 +109,45 @@ describe('bulkCreate function', () => {
         {id: 'mock-customer-id', ...params.items[1].data},
         {id: 'mock-category-id', ...params.items[2].data},
         {id: 'mock-inventory-id', ...params.items[3].data},
+      ],
+    });
+  });
+
+  it('should create shopping lists in bulk', async () => {
+    const params = {
+      items: [
+        {
+          entityType: 'shopping-lists' as const,
+          data: {
+            name: {en: 'My Shopping List'},
+            key: 'my-shopping-list',
+            customer: {
+              id: 'customer-123',
+              typeId: 'customer' as const,
+            },
+          },
+        },
+        {
+          entityType: 'shopping-lists' as const,
+          data: {
+            name: {en: 'Another Shopping List'},
+            key: 'another-shopping-list',
+            customer: {
+              id: 'customer-456',
+              typeId: 'customer' as const,
+            },
+          },
+        },
+      ],
+    };
+
+    const result = await bulkCreate(mockApiRoot, mockContext, params);
+
+    expect(result).toEqual({
+      success: true,
+      results: [
+        {id: 'mock-shopping-list-id', ...params.items[0].data},
+        {id: 'mock-shopping-list-id', ...params.items[1].data},
       ],
     });
   });

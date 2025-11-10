@@ -19,6 +19,8 @@ import {createInventory} from '../inventory/functions';
 import {createOrder} from '../order/admin.functions';
 import {createStore} from '../store/functions';
 import {createReview} from '../reviews/functions';
+import {createRecurringOrder} from '../recurring-orders/functions';
+import {createShoppingList} from '../shopping-lists/functions';
 
 // import {updateCart} from '../cart/functions';
 import {updateBusinessUnit} from '../business-unit/functions';
@@ -40,6 +42,9 @@ import {updateStagedQuote} from '../staged-quote/functions';
 import {updateStandalonePrice} from '../standalone-price/functions';
 import {updateStore} from '../store/functions';
 import {updateReview} from '../reviews/functions';
+import {updateRecurringOrder} from '../recurring-orders/functions';
+import {updateShoppingList} from '../shopping-lists/functions';
+import {createTransaction} from '../transactions/functions';
 import {CommercetoolsFuncContext} from '../../types/configuration';
 
 type EntityFunctionMap = {
@@ -70,6 +75,9 @@ const entityFunctionMap: EntityFunctionMap = {
   order: createOrder,
   store: createStore,
   review: createReview,
+  'recurring-orders': createRecurringOrder,
+  'shopping-lists': createShoppingList,
+  transactions: createTransaction,
 };
 
 // Map entity types to their respective update functions
@@ -94,6 +102,8 @@ const entityUpdateFunctionMap: EntityFunctionMap = {
   'standalone-price': updateStandalonePrice,
   store: updateStore,
   review: updateReview,
+  'recurring-orders': updateRecurringOrder,
+  'shopping-lists': updateShoppingList,
 };
 
 export const bulkCreate = async (

@@ -118,6 +118,59 @@ export const ACCEPTED_TOOLS = [
   'review.read',
   'review.create',
   'review.update',
+
+  'tax-category.read',
+  'tax-category.create',
+  'tax-category.update',
+
+  'shipping-methods.read',
+  'shipping-methods.create',
+  'shipping-methods.update',
+
+  'payments.read',
+  'payments.create',
+  'payments.update',
+
+  'zone.read',
+  'zone.create',
+  'zone.update',
+
+  'product-tailoring.read',
+  'product-tailoring.create',
+  'product-tailoring.update',
+
+  'payment-methods.read',
+  'payment-methods.create',
+  'payment-methods.update',
+
+  'recurring-orders.read',
+  'recurring-orders.create',
+  'recurring-orders.update',
+
+  'shopping-lists.read',
+  'shopping-lists.create',
+  'shopping-lists.update',
+
+  'extensions.read',
+  'extensions.create',
+  'extensions.update',
+
+  'subscriptions.read',
+  'subscriptions.create',
+  'subscriptions.update',
+
+  'custom-objects.read',
+  'custom-objects.create',
+  'custom-objects.update',
+
+  'types.read',
+  'types.create',
+  'types.update',
+
+  'payment-intents.update',
+
+  'transactions.read',
+  'transactions.create',
 ];
 
 // eslint-disable-next-line complexity

@@ -17,6 +17,11 @@ import {createInventoryParameters} from '../inventory/parameters';
 import {createOrderParameters} from '../order/parameters';
 import {createStoreParameters} from '../store/parameters';
 import {createReviewParameters} from '../reviews/parameters';
+import {createRecurringOrderParameters} from '../recurring-orders/parameters';
+import {createShoppingListParameters} from '../shopping-lists/parameters';
+import {createCustomObjectParameters} from '../custom-objects/parameters';
+import {createTypeParameters} from '../types/parameters';
+import {createTransactionParameters} from '../transactions/parameters';
 
 import {updateBusinessUnitParameters} from '../business-unit/parameters';
 import {updateProductParameters} from '../products/parameters';
@@ -38,6 +43,10 @@ import {updateProductSelectionParameters} from '../product-selection/parameters'
 import {updateProductTypeParameters} from '../product-type/parameters';
 import {updateStoreParameters} from '../store/parameters';
 import {updateReviewParameters} from '../reviews/parameters';
+import {updateRecurringOrderParameters} from '../recurring-orders/parameters';
+import {updateShoppingListParameters} from '../shopping-lists/parameters';
+import {updateCustomObjectParameters} from '../custom-objects/parameters';
+import {updateTypeParameters} from '../types/parameters';
 
 // Define the bulk create parameters for products
 export const bulkCreateParameters = z.object({
@@ -62,6 +71,11 @@ export const bulkCreateParameters = z.object({
         'inventory',
         'store',
         'review',
+        'recurring-orders',
+        'shopping-lists',
+        'custom-objects',
+        'types',
+        'transactions',
       ]),
       data: z.union([
         createBusinessUnitParameters,
@@ -82,6 +96,11 @@ export const bulkCreateParameters = z.object({
         createOrderParameters,
         createStoreParameters,
         createReviewParameters,
+        createRecurringOrderParameters,
+        createShoppingListParameters,
+        createCustomObjectParameters,
+        createTypeParameters,
+        createTransactionParameters,
       ]),
     })
   ),
@@ -112,6 +131,10 @@ export const bulkUpdateParameters = z.object({
         'product-type',
         'store',
         'review',
+        'recurring-orders',
+        'shopping-lists',
+        'custom-objects',
+        'types',
       ]),
       data: z.union([
         updateBusinessUnitParameters,
@@ -134,6 +157,10 @@ export const bulkUpdateParameters = z.object({
         updateProductTypeParameters,
         updateStoreParameters,
         updateReviewParameters,
+        updateRecurringOrderParameters,
+        updateShoppingListParameters,
+        updateCustomObjectParameters,
+        updateTypeParameters,
       ]),
     })
   ),

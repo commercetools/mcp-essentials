@@ -1,0 +1,86 @@
+---
+description: Description: Steps to add or update parameters passed into a function
+globs: 
+alwaysApply: false
+---
+
+Always follow these steps in order:
+
+1. Parameter Schema Update:
+   - Locate the parameters file (usually `typescript/src/shared/(namespace)/parameters.ts`)
+   - Add new parameters to the Zod schema
+   - For each parameter:
+     - Define the correct type (e.g., z.number(), z.array(z.string()))
+     - Add appropriate validations (e.g., .min(), .max())
+     - Mark as .optional() if not required
+     - Add .describe() with clear documentation
+     - Include examples in the description for complex types
+
+2. Function Implementation Update:
+   - Locate the function file (usually `typescript/src/shared/(namespace)/functions.ts`)
+   - Add new parameters to the queryArgs object
+   - Use spread operator with null checks for optional params
+   - Format: `...(params.newParam && {newParam: params.newParam})`
+   - Remove any outdated comments
+
+3. Documentation Update:
+   - Locate the prompts file (usually named `typescript/src/shared/(namespace)/prompts.ts`)
+   - Update the function's prompt string
+   - For each parameter add:
+     - Parameter name
+     - Type information
+     - Optional/required status
+     - Default value if any
+     - Valid range if applicable
+     - Example usage for complex types
+
+4. Test Coverage Update:
+   - Locate the test file (usually `typescript/src/shared/(namespace)/test/functions.test.ts`)
+   - Add/update test cases:
+     - Test with default parameters
+     - Test with all new parameters
+     - Test error scenarios
+   - Verify all parameters are correctly passed to the API
+   - Ensure proper mock setup and assertions
+
+5. Verification:
+   - Ensure all files are consistent with each other
+   - Parameter types match between schema and tests
+   - Examples in prompts match test cases
+   - All optional parameters handle undefined cases
+   - Error handling is properly tested
+
+Example:
+When adding 'offset' parameter:
+1. In parameters.ts:
+   ```typescript
+   offset: z
+     .number()
+     .int()
+     .min(0)
+     .optional()
+     .describe('The number of items to skip before starting to collect the result set.')
+   ```
+
+2. In functions.ts:
+   ```typescript
+   queryArgs: {
+     ...(params.offset && {offset: params.offset}),
+   }
+   ```
+
+3. In prompts.ts:
+   ```typescript
+   - offset (int, optional): The number of items to skip before starting to collect the result set.
+   ```
+
+4. In functions.test.ts:
+   ```typescript
+   it('should list products with all query parameters', async () => {
+     const params = {
+       offset: 40,
+       // other params...
+     };
+     // test implementation
+   });
+   ```
