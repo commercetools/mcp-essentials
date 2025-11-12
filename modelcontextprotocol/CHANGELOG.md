@@ -1,5 +1,20 @@
 # @commercetools/mcp-essentials
 
+## 2.4.0
+
+### Minor Changes
+
+- [#40](https://github.com/commercetools/mcp-essentials/pull/40) [`e854cc4`](https://github.com/commercetools/mcp-essentials/commit/e854cc4a775a866e64d8bd012aebe409aedd716d) Thanks [@ajimae](https://github.com/ajimae)! - [Feat][DEVX-654] Add Missing Critical Tools
+
+- [#28](https://github.com/commercetools/mcp-essentials/pull/28) [`6eb40d5`](https://github.com/commercetools/mcp-essentials/commit/6eb40d55f36452e65a67b3d53d8017c6e76ec125) Thanks [@Trackerchum](https://github.com/Trackerchum)! - Resource response data transformation to tabular-like LLM formatting, with command-line flag to revert back to JSON.
+
+- [#41](https://github.com/commercetools/mcp-essentials/pull/41) [`1e66969`](https://github.com/commercetools/mcp-essentials/commit/1e669696e619b496231c8449e87086f4f556b87a) Thanks [@ShipilA](https://github.com/ShipilA)! - Adding reviews to MCP tools
+
+### Patch Changes
+
+- Updated dependencies [[`e854cc4`](https://github.com/commercetools/mcp-essentials/commit/e854cc4a775a866e64d8bd012aebe409aedd716d), [`6eb40d5`](https://github.com/commercetools/mcp-essentials/commit/6eb40d55f36452e65a67b3d53d8017c6e76ec125), [`1e66969`](https://github.com/commercetools/mcp-essentials/commit/1e669696e619b496231c8449e87086f4f556b87a)]:
+  - @commercetools/agent-essentials@3.4.0
+
 ## 2.3.0
 
 ### Minor Changes
