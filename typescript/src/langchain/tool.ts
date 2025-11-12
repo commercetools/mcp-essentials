@@ -3,12 +3,14 @@ import {DynamicStructuredTool} from '@langchain/core/tools';
 import {CallbackManagerForToolRun} from '@langchain/core/callbacks/manager';
 import {RunnableConfig} from '@langchain/core/runnables';
 import CommercetoolsAPI from '../shared/api';
+import {transformToolOutput} from '../modelcontextprotocol/transform';
 
 export default function CommercetoolsTool(
   commercetoolsAPI: CommercetoolsAPI,
   method: string,
   description: string,
-  schema: z.ZodObject<any, any, any, any, {[x: string]: any}>
+  schema: z.ZodObject<any, any, any, any, {[x: string]: any}>,
+  toolOutputFormat?: 'json' | 'tabular'
 ): DynamicStructuredTool {
   return new DynamicStructuredTool({
     name: method,
@@ -20,7 +22,11 @@ export default function CommercetoolsTool(
       _config?: RunnableConfig
     ): Promise<string> => {
       const result = await commercetoolsAPI.run(method, arg);
-      return JSON.stringify(result);
+      return transformToolOutput({
+        title: `${method} result`,
+        data: result,
+        format: toolOutputFormat,
+      });
     },
   });
 }

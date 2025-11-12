@@ -49,7 +49,8 @@ class CommercetoolsAgentEssentials implements BaseToolkit {
         this._commercetools,
         toolDef.method,
         toolDef.description,
-        toolDef.parameters
+        toolDef.parameters,
+        processedConfiguration.context?.toolOutputFormat
       )
     );
   }

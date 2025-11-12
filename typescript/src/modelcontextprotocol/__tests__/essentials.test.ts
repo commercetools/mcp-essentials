@@ -69,6 +69,7 @@ describe('CommercetoolsAgentEssentials (ModelContextProtocol)', () => {
     },
     context: {
       isAdmin: true,
+      toolOutputFormat: 'json',
     },
   };
   let mockCommercetoolsAPIInstance: jest.Mocked<CommercetoolsAPI>;
@@ -236,7 +237,7 @@ describe('CommercetoolsAgentEssentials (ModelContextProtocol)', () => {
       content: [
         {
           type: 'text',
-          text: String(apiResult),
+          text: `{"MCP TOOL1 RESULT":${JSON.stringify(apiResult)}}`,
         },
       ],
     });

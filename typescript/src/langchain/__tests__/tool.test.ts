@@ -65,12 +65,13 @@ describe('CommercetoolsTool (Langchain)', () => {
     expect(toolArgs.schema).toBe(testSchema);
   });
 
-  it('should call commercetoolsAPI.run and stringify the result when func is called', async () => {
+  it('should call commercetoolsAPI.run and transform the result when func is called', async () => {
     CommercetoolsTool(
       mockCommercetoolsAPI,
       testMethod,
       testDescription,
-      testSchema
+      testSchema,
+      'json'
     );
     // Access the mock's call arguments through the imported DynamicStructuredTool
     const toolConstructorArgs = (DynamicStructuredTool as unknown as jest.Mock)
@@ -88,15 +89,18 @@ describe('CommercetoolsTool (Langchain)', () => {
       testMethod,
       executeArgs
     );
-    expect(result).toBe(JSON.stringify(apiResultObject));
+    expect(result).toBe(
+      `{"LC TEST METHOD RESULT":${JSON.stringify(apiResultObject)}}`
+    );
   });
 
-  it('should handle func with optional parameters and stringify result', async () => {
+  it('should handle func with optional parameters and transform result', async () => {
     CommercetoolsTool(
       mockCommercetoolsAPI,
       testMethod,
       testDescription,
-      testSchema
+      testSchema,
+      'json'
     );
     const toolConstructorArgs = (DynamicStructuredTool as unknown as jest.Mock)
       .mock.calls[0][0];
@@ -111,6 +115,8 @@ describe('CommercetoolsTool (Langchain)', () => {
       testMethod,
       executeArgs
     );
-    expect(result).toBe(JSON.stringify(apiResultObject));
+    expect(result).toBe(
+      `{"LC TEST METHOD RESULT":${JSON.stringify(apiResultObject)}}`
+    );
   });
 });

@@ -5,6 +5,7 @@ import {isToolAllowed} from '../../shared/configuration';
 import {contextToTools} from '../../shared/tools'; // Assuming this is the source of all tools
 import {z} from 'zod';
 import {Configuration, Context} from '../../types/configuration';
+
 // Mock dependencies
 jest.mock('../../shared/api');
 jest.mock('../tool');
@@ -43,8 +44,9 @@ jest.mock('../../shared/tools', () => {
 const tools = contextToTools({});
 
 describe('CommercetoolsAgentEssentials with Admin tools', () => {
+  const toolFormat = 'json';
   const mockConfiguration = {
-    context: {isAdmin: true},
+    context: {isAdmin: true, toolOutputFormat: toolFormat},
     actions: {cart: {read: true}, products: {read: true}},
   } as any;
   const mockCommercetoolsAPIInstance = {} as CommercetoolsAPI;
@@ -122,21 +124,24 @@ describe('CommercetoolsAgentEssentials with Admin tools', () => {
       mockCommercetoolsAPIInstance,
       tools[0].method,
       tools[0].description,
-      expect.any(Object)
+      expect.any(Object),
+      toolFormat
     );
     // Detailed check for tool2 (namespace 'product', method 'tool2')
     expect(CommercetoolsTool).toHaveBeenCalledWith(
       mockCommercetoolsAPIInstance,
       tools[1].method,
       tools[1].description,
-      expect.any(Object)
+      expect.any(Object),
+      toolFormat
     );
     // Ensure tool3 was filtered out
     expect(CommercetoolsTool).not.toHaveBeenCalledWith(
       expect.anything(),
       tools[2].method,
       expect.anything(),
-      expect.anything()
+      expect.anything(),
+      toolFormat
     );
 
     expect(Object.keys(agentEssentials.tools)).toContain('tool1');
