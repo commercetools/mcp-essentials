@@ -3,4 +3,4 @@
 "@commercetools/mcp-essentials": minor
 ---
 
-Data transformation to reduce Token size.
+Resource response data transformation to tabular-like LLM formatting, with command-line flag to revert back to JSON.
