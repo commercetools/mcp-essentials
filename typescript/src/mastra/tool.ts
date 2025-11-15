@@ -1,5 +1,4 @@
-const {createTool} = require('@mastra/core/tools') as {createTool: any};
-
+import {createTool} from '@mastra/core/tools';
 import {z} from 'zod';
 import CommercetoolsAPI from '../shared/api';
 import {transformToolOutput} from '../modelcontextprotocol/transform';
