@@ -6,7 +6,7 @@
     "preinstall": "npx only-allow pnpm",
     "dev": "tsup --env.NODE_ENV dev",
     "build": "tsup",
-    "clean": "rm -rf langchain ai-sdk modelcontextprotocol openai",
+    "clean": "rm -rf langchain ai-sdk modelcontextprotocol openai mastra",
     "lint": "eslint \"./**/*.ts*\"",
     "prettier": "prettier './**/*.{js,ts,md,html,css}' --write",
     "prettier-check": "prettier './**/*.{js,ts,md,html,css}' --check",
@@ -34,6 +34,11 @@
       "types": "./langchain/index.d.ts",
       "require": "./langchain/index.js",
       "import": "./langchain/index.mjs"
+    },
+    "./mastra": {
+      "types": "./mastra/index.d.ts",
+      "require": "./mastra/index.js",
+      "import": "./mastra/index.mjs"
     }
   },
   "packageManager": "pnpm@9.11.0",
@@ -75,6 +80,7 @@
   },
   "peerDependencies": {
     "@langchain/core": "^0.3.6",
+    "@mastra/core": "^0.8.0",
     "@modelcontextprotocol/sdk": "^1.10.2",
     "ai": "^4.1.54",
     "openai": "^4.86.1"
@@ -86,6 +92,7 @@
     "ai-sdk/**/*",
     "langchain/**/*",
     "modelcontextprotocol/**/*",
+    "mastra/**/*",
     "LICENSE",
     "README.md",
     "VERSION",
