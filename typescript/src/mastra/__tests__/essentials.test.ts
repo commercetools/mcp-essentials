@@ -145,9 +145,9 @@ describe('CommercetoolsAgentEssentials with Mastra', () => {
       toolFormat
     );
 
-    expect(Object.keys(agentEssentials.tools)).toContain('tool1');
-    expect(Object.keys(agentEssentials.tools)).toContain('tool2');
-    expect(Object.keys(agentEssentials.tools)).not.toContain('tool3');
+    expect(Object.keys(agentEssentials.getTools())).toContain('tool1');
+    expect(Object.keys(agentEssentials.getTools())).toContain('tool2');
+    expect(Object.keys(agentEssentials.getTools())).not.toContain('tool3');
   });
 
   it('should return all created tools via getTools method', () => {
@@ -194,7 +194,7 @@ describe('CommercetoolsAgentEssentials with Mastra', () => {
 
     expect(isToolAllowed).toHaveBeenCalledTimes(tools.length);
     expect(CommercetoolsTool).not.toHaveBeenCalled();
-    expect(Object.keys(agentEssentials.tools).length).toBe(0);
+    expect(Object.keys(agentEssentials.getTools()).length).toBe(0);
   });
 
   it('should store tools as an object with method names as keys', () => {

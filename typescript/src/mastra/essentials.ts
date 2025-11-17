@@ -12,8 +12,7 @@ import {AuthConfig} from '../types/auth';
 
 class CommercetoolsAgentEssentials {
   private _commercetools: CommercetoolsAPI;
-
-  tools: {[key: string]: Tool};
+  private _tools: {[key: string]: Tool} = {};
 
   constructor({
     authConfig,
@@ -29,12 +28,10 @@ class CommercetoolsAgentEssentials {
       processedConfiguration.context
     );
 
-    this.tools = {};
-
     contextToTools(processedConfiguration.context)
       .filter((tool) => isToolAllowed(tool, processedConfiguration))
       .forEach((tool) => {
-        this.tools[tool.method] = CommercetoolsTool(
+        this._tools[tool.method] = CommercetoolsTool(
           this._commercetools,
           tool.method,
           tool.description,
@@ -45,7 +42,7 @@ class CommercetoolsAgentEssentials {
   }
 
   getTools(): {[key: string]: Tool} {
-    return this.tools;
+    return this._tools;
   }
 }
 
