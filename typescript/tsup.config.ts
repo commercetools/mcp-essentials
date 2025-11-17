@@ -27,5 +27,13 @@ export default defineConfig((options) => {
       sourcemap: true,
       watch: isDev,
     },
+    {
+      entry: ['src/mastra/index.ts'],
+      outDir: 'mastra',
+      format: ['cjs', 'esm'],
+      dts: true,
+      sourcemap: true,
+      watch: isDev,
+    },
   ];
 });

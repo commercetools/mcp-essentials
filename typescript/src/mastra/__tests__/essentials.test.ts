@@ -2,21 +2,22 @@ import CommercetoolsAgentEssentials from '../essentials';
 import CommercetoolsAPI from '../../shared/api';
 import CommercetoolsTool from '../tool';
 import {isToolAllowed} from '../../shared/configuration';
-import {contextToTools} from '../../shared/tools'; // Assuming this is the source of all tools
+import {contextToTools} from '../../shared/tools';
 import {z} from 'zod';
 import {Configuration, Context} from '../../types/configuration';
 
 // Mock dependencies
+jest.mock('@mastra/core/tools');
 jest.mock('../../shared/api');
 jest.mock('../tool');
 jest.mock('../../shared/configuration', () => ({
   isToolAllowed: jest.fn(),
-  processConfigurationDefaults: jest.fn((config) => config), // Pass through the configuration unchanged
+  processConfigurationDefaults: jest.fn((config) => config),
 }));
 
 // Mock the actual tools array if it's imported and used directly
 jest.mock('../../shared/tools', () => {
-  const {z: localZ} = require('zod'); // Require z inside the factory
+  const {z: localZ} = require('zod');
   return {
     contextToTools: (context: Context) => [
       {
@@ -43,7 +44,7 @@ jest.mock('../../shared/tools', () => {
 
 const tools = contextToTools({});
 
-describe('CommercetoolsAgentEssentials with Admin tools', () => {
+describe('CommercetoolsAgentEssentials with Mastra', () => {
   const toolFormat = 'json';
   const mockConfiguration = {
     context: {isAdmin: true, toolOutputFormat: toolFormat},
@@ -119,7 +120,7 @@ describe('CommercetoolsAgentEssentials with Admin tools', () => {
     expect(isToolAllowed).toHaveBeenCalledTimes(tools.length);
     expect(CommercetoolsTool).toHaveBeenCalledTimes(2); // tool1 and tool2 should be allowed
 
-    // Detailed check for tool1 (namespace 'cart')
+    // Detailed check for tool1
     expect(CommercetoolsTool).toHaveBeenCalledWith(
       mockCommercetoolsAPIInstance,
       tools[0].method,
@@ -127,7 +128,7 @@ describe('CommercetoolsAgentEssentials with Admin tools', () => {
       expect.any(Object),
       toolFormat
     );
-    // Detailed check for tool2 (namespace 'product', method 'tool2')
+    // Detailed check for tool2
     expect(CommercetoolsTool).toHaveBeenCalledWith(
       mockCommercetoolsAPIInstance,
       tools[1].method,
@@ -150,7 +151,7 @@ describe('CommercetoolsAgentEssentials with Admin tools', () => {
   });
 
   it('should return all created tools via getTools method', () => {
-    (isToolAllowed as jest.Mock).mockReturnValue(true); // Allow all tools for this test
+    (isToolAllowed as jest.Mock).mockReturnValue(true);
     const agentEssentials = new CommercetoolsAgentEssentials({
       authConfig: {
         clientId: 'id',
@@ -163,7 +164,7 @@ describe('CommercetoolsAgentEssentials with Admin tools', () => {
       configuration: {
         context: {isAdmin: true},
         actions: {cart: {read: true}, products: {read: true}},
-      } as any, // Enable all
+      } as any,
     });
 
     const returnedTools = agentEssentials.getTools();
@@ -174,7 +175,7 @@ describe('CommercetoolsAgentEssentials with Admin tools', () => {
   });
 
   it('should handle empty configuration correctly (no tools enabled)', () => {
-    (isToolAllowed as jest.Mock).mockReturnValue(false); // No tools allowed
+    (isToolAllowed as jest.Mock).mockReturnValue(false);
 
     const agentEssentials = new CommercetoolsAgentEssentials({
       authConfig: {
@@ -188,11 +189,30 @@ describe('CommercetoolsAgentEssentials with Admin tools', () => {
       configuration: {
         context: {isAdmin: true},
         actions: {cart: {read: false}, products: {read: false}},
-      } as any, // No tools enabled
+      } as any,
     });
 
     expect(isToolAllowed).toHaveBeenCalledTimes(tools.length);
     expect(CommercetoolsTool).not.toHaveBeenCalled();
     expect(Object.keys(agentEssentials.getTools()).length).toBe(0);
+  });
+
+  it('should store tools as an object with method names as keys', () => {
+    (isToolAllowed as jest.Mock).mockReturnValue(true);
+    const agentEssentials = new CommercetoolsAgentEssentials({
+      authConfig: {
+        clientId: 'id',
+        clientSecret: 'secret',
+        authUrl: 'auth',
+        projectKey: 'key',
+        apiUrl: 'api',
+        type: 'client_credentials',
+      },
+      configuration: mockConfiguration,
+    });
+
+    const toolsObject = agentEssentials.getTools();
+    expect(typeof toolsObject).toBe('object');
+    expect(!Array.isArray(toolsObject)).toBe(true);
   });
 });
