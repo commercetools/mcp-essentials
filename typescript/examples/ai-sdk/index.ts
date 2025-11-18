@@ -4,12 +4,15 @@ import {generateText} from 'ai';
 
 require('dotenv').config();
 
-const CommercetoolsAgentEssentials = new CommercetoolsAgentEssentials({
-  clientId: process.env.CLIENT_ID!,
-  clientSecret: process.env.CLIENT_SECRET!,
-  authUrl: process.env.AUTH_URL!,
-  projectKey: process.env.PROJECT_KEY!,
-  apiUrl: process.env.API_URL!,
+const commercetoolsAgentEssentials = new CommercetoolsAgentEssentials({
+  authConfig: {
+    type: 'client_credentials',
+    clientId: process.env.CLIENT_ID!,
+    clientSecret: process.env.CLIENT_SECRET!,
+    authUrl: process.env.AUTH_URL!,
+    projectKey: process.env.PROJECT_KEY!,
+    apiUrl: process.env.API_URL!,
+  },
   configuration: {
     actions: {
       products: {
@@ -36,7 +39,7 @@ const model = openai('gpt-4o');
   console.log(`\\nExecuting: ${initialPrompt}`);
   const resultInitial = await generateText({
     model: model,
-    tools: {...CommercetoolsAgentEssentials.getTools()},
+    tools: {...commercetoolsAgentEssentials.getTools()},
     maxSteps: 5,
     prompt: initialPrompt,
   });
