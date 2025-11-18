@@ -1,5 +1,11 @@
 # @commercetools/agent-essentials
 
+## 3.5.0
+
+### Minor Changes
+
+- [#44](https://github.com/commercetools/mcp-essentials/pull/44) [`b88f1bd`](https://github.com/commercetools/mcp-essentials/commit/b88f1bd21c5d7bb9b063e1c8e6e2c0b4137ae81f) Thanks [@tdeekens](https://github.com/tdeekens)! - Add support for [Mastra](https://mastra.ai/) to TypeScript package.
+
 ## 3.4.0
 
 ### Minor Changes

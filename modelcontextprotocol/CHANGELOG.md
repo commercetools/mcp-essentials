@@ -1,5 +1,12 @@
 # @commercetools/mcp-essentials
 
+## 2.4.1
+
+### Patch Changes
+
+- Updated dependencies [[`b88f1bd`](https://github.com/commercetools/mcp-essentials/commit/b88f1bd21c5d7bb9b063e1c8e6e2c0b4137ae81f)]:
+  - @commercetools/agent-essentials@3.5.0
+
 ## 2.4.0
 
 ### Minor Changes
