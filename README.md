@@ -42,6 +42,13 @@ npx -y @commercetools/mcp-essentials --tools=all.read --authType=auth_token --ac
 
 Make sure to replace `CLIENT_ID`, `CLIENT_SECRET`, `PROJECT_KEY`, `AUTH_URL`, `API_URL`, and `ACCESS_TOKEN` with your actual values. If using the customerId parameter, replace `CUSTOMER_ID` with the actual customer ID. Alternatively, you could set the API_KEY in your environment variables.
 
+To view information on how to develop the MCP server, see [this README](/typescript/README.md).
+To view information on how to locally run the bootstrapped MCP server, see [this README](/modelcontextprotocol/README.md).
+
+
+See our official docs [here](https://docs.commercetools.com/sdk/commerce-mcp/essentials-mcp) for a more advanced and comprehensive documentation on how to get the out of our MCP offerings.
+
+<!--
 ### Authentication Options
 
 The MCP server supports two authentication methods:
