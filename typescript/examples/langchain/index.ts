@@ -12,12 +12,15 @@ const llm = new ChatOpenAI({
   temperature: 0,
 });
 
-const CommercetoolsAgentEssentials = new CommercetoolsAgentEssentials({
-  clientId: process.env.CLIENT_ID!,
-  clientSecret: process.env.CLIENT_SECRET!,
-  authUrl: process.env.AUTH_URL!,
-  projectKey: process.env.PROJECT_KEY!,
-  apiUrl: process.env.API_URL!,
+const commercetoolsAgentEssentials = new CommercetoolsAgentEssentials({
+  authConfig: {
+    type: 'client_credentials',
+    clientId: process.env.CLIENT_ID!,
+    clientSecret: process.env.CLIENT_SECRET!,
+    authUrl: process.env.AUTH_URL!,
+    projectKey: process.env.PROJECT_KEY!,
+    apiUrl: process.env.API_URL!,
+  },
   configuration: {
     actions: {
       products: {
@@ -42,7 +45,7 @@ const CommercetoolsAgentEssentials = new CommercetoolsAgentEssentials({
     'hwchase17/structured-chat-agent'
   );
 
-  const tools = CommercetoolsAgentEssentials.getTools();
+  const tools = commercetoolsAgentEssentials.getTools();
 
   const agent = await createStructuredChatAgent({
     llm,

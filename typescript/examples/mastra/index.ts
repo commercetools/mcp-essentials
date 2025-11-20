@@ -1,10 +1,9 @@
-import {CommercetoolsAgentEssentials} from '../../src/mastra/index';
-import {Agent} from '@mastra/core/agent';
-
 require('dotenv').config();
+import {Agent} from '@mastra/core/agent';
+import {CommercetoolsAgentEssentials} from '../../src/mastra/index';
 
-const essentials = new CommercetoolsAgentEssentials(
-  {
+const essentials = new CommercetoolsAgentEssentials({
+  authConfig: {
     type: 'client_credentials',
     clientId: process.env.CLIENT_ID!,
     clientSecret: process.env.CLIENT_SECRET!,
@@ -12,7 +11,7 @@ const essentials = new CommercetoolsAgentEssentials(
     projectKey: process.env.PROJECT_KEY!,
     apiUrl: process.env.API_URL!,
   },
-  {
+  configuration: {
     actions: {
       products: {
         read: true,
@@ -24,8 +23,8 @@ const essentials = new CommercetoolsAgentEssentials(
         create: true,
       },
     },
-  }
-);
+  },
+});
 
 const agent = new Agent({
   name: 'CommercetoolsAgent',
