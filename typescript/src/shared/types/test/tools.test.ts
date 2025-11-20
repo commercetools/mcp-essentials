@@ -32,24 +32,33 @@ describe('Types Tools', () => {
       });
     });
 
-    it('should return empty array when isAdmin is false', () => {
+    it('should return type tools when isAdmin is false', () => {
       const context = {isAdmin: false};
       const tools = contextToTypeTools(context);
 
-      expect(tools).toEqual([]);
+      expect(tools).toHaveLength(3);
+      expect(tools[0]).toHaveProperty('name', 'Read Type');
+      expect(tools[1]).toHaveProperty('name', 'Create Type');
+      expect(tools[2]).toHaveProperty('name', 'Update Type');
     });
 
-    it('should return empty array when context is undefined', () => {
+    it('should return type tools when context is undefined', () => {
       const tools = contextToTypeTools();
 
-      expect(tools).toEqual([]);
+      expect(tools).toHaveLength(3);
+      expect(tools[0]).toHaveProperty('name', 'Read Type');
+      expect(tools[1]).toHaveProperty('name', 'Create Type');
+      expect(tools[2]).toHaveProperty('name', 'Update Type');
     });
 
-    it('should return empty array when context does not have isAdmin', () => {
+    it('should return type tools when context does not have isAdmin', () => {
       const context = {};
       const tools = contextToTypeTools(context);
 
-      expect(tools).toEqual([]);
+      expect(tools).toHaveLength(3);
+      expect(tools[0]).toHaveProperty('name', 'Read Type');
+      expect(tools[1]).toHaveProperty('name', 'Create Type');
+      expect(tools[2]).toHaveProperty('name', 'Update Type');
     });
   });
 });

@@ -16,7 +16,7 @@ jest.mock('../../shared/configuration', () => ({
 jest.mock('../../shared/tools', () => {
   const {z: localZ} = require('zod'); // Require z inside the factory
   return {
-    contextToTools: (context: Context) => [
+    contextToTools: (configuration: Configuration) => [
       {
         method: 'mcpTool1',
         description: 'Description for MCP tool 1',
@@ -78,7 +78,8 @@ describe('CommercetoolsAgentEssentials (ModelContextProtocol)', () => {
   beforeAll(() => {
     // Load the mocked definitions for use in tests
     const {contextToTools} = require('../../shared/tools');
-    mockSharedToolsData = contextToTools({isAdmin: true});
+    const _configuration = {context: {isAdmin: true}};
+    mockSharedToolsData = contextToTools(_configuration);
   });
 
   beforeEach(() => {
@@ -856,7 +857,7 @@ describe('CommercetoolsAgentEssentials (ModelContextProtocol)', () => {
         await new Promise(setImmediate);
 
         // Should register resource-based tool system (3 tools) + bulk tools (2 tools) = 5 total
-        expect(mockToolMethod).toHaveBeenCalledTimes(3);
+        expect(mockToolMethod).toHaveBeenCalledTimes(5);
         expect(mockToolMethod).toHaveBeenCalledWith(
           'list_available_tools',
           expect.any(String),

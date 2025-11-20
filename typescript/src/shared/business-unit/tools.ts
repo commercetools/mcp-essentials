@@ -72,12 +72,10 @@ export const contextToBusinessUnitTools = (context?: Context) => {
       tools.update_business_unit,
     ];
   }
-  if (context?.isAdmin) {
-    return [
-      tools.read_business_unit,
-      tools.create_business_unit,
-      tools.update_business_unit,
-    ];
-  }
-  return [];
+
+  return [
+    tools.read_business_unit,
+    tools.create_business_unit,
+    tools.update_business_unit,
+  ];
 };

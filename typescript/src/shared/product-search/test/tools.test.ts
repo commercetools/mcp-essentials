@@ -4,7 +4,8 @@ import {contextToProductSearchTools} from '../tools';
 describe('tools', () => {
   it('should include product-search tools', () => {
     // Find search_products tool in the combined tools array
-    const tools = contextToTools({isAdmin: true});
+    const _configuration = {context: {isAdmin: true}};
+    const tools = contextToTools(_configuration);
     const searchProductsTool = tools.find(
       (tool) => tool.method === 'search_products'
     );
@@ -16,7 +17,8 @@ describe('tools', () => {
   });
 
   it('should have correct structure for search_products tool', () => {
-    const tools = contextToTools({isAdmin: true});
+    const _configuration = {context: {isAdmin: true}};
+    const tools = contextToTools(_configuration);
     const searchProductsTool = tools.find(
       (tool) => tool.method === 'search_products'
     );

@@ -25,7 +25,7 @@ export enum AvailableNamespaces {
   TaxCategory = 'tax-category',
   ShippingMethods = 'shipping-methods',
   Payments = 'payments',
-  Zones = 'zones',
+  Zone = 'zone',
 
   ProductTailoring = 'product-tailoring',
   PaymentMethods = 'payment-methods',

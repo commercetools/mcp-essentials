@@ -76,9 +76,5 @@ export const contextToQuoteRequestTools = (context?: Context) => {
       tools.update_quote_request,
     ];
   }
-  if (context?.customerId) {
-    return [tools.read_quote_request, tools.update_quote_request];
-  }
-
-  return [];
+  return [tools.read_quote_request, tools.update_quote_request];
 };
