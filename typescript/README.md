@@ -79,7 +79,7 @@ import {generateText} from 'ai';
 import {openai} from '@ai-sdk/openai';
 import {CommercetoolsAgentEssentials} from '@commercetools/agent-essentials/ai-sdk';
 
-const commercetoolsAgentEssentials = await CommercetoolsAgentEssentials({
+const commercetoolsAgentEssentials = new CommercetoolsAgentEssentials({
   authConfig: {
     type: 'client_credentials',
     clientId: process.env.CLIENT_ID!,,
@@ -136,7 +136,7 @@ Example:
 import {AgentExecutor, createStructuredChatAgent} from 'langchain/agents';
 import {CommercetoolsAgentEssentials} from '@commercetools/agent-essentials/langchain';
 
-const commercetoolsAgentEssentials = await CommercetoolsAgentEssentials({
+const commercetoolsAgentEssentials = new CommercetoolsAgentEssentials({
   authConfig: {
     type: 'auth_token',
     accessToken: process.env.ACCESS_TOKEN!,
