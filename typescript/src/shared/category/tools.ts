@@ -49,8 +49,5 @@ const tools: Record<string, Tool> = {
 };
 
 export const contextToCategoryTools = (context?: Context) => {
-  if (context?.isAdmin) {
-    return [tools.read_category, tools.create_category, tools.update_category];
-  }
-  return [tools.read_category];
+  return [tools.read_category, tools.create_category, tools.update_category];
 };

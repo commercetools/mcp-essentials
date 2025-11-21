@@ -4,7 +4,7 @@ import CommercetoolsTool from '../tool';
 import {isToolAllowed} from '../../shared/configuration';
 import {z} from 'zod';
 import {DynamicStructuredTool} from '@langchain/core/tools';
-import {Context} from '../../types/configuration';
+import {Configuration, Context} from '../../types/configuration';
 
 // Mock dependencies
 jest.mock('../../shared/api');
@@ -20,7 +20,7 @@ jest.mock('../../shared/tools', () => {
   // For this specific case, we can define it directly here.
   const {z: localZ} = require('zod'); // Require z inside the factory
   return {
-    contextToTools: (context: Context) => [
+    contextToTools: (configuration: Configuration) => [
       {
         method: 'lcTool1',
         name: 'lcTool1',
@@ -72,7 +72,8 @@ describe('CommercetoolsAgentEssentials (Langchain)', () => {
   beforeAll(() => {
     // Load the mocked definitions for use in tests
     const {contextToTools} = require('../../shared/tools');
-    mockToolDefinitions = contextToTools({isAdmin: true});
+    const _configuration = {context: {isAdmin: true}};
+    mockToolDefinitions = contextToTools(_configuration);
   });
 
   beforeEach(() => {

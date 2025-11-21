@@ -64,8 +64,5 @@ export const contextToStoreTools = (context?: Context) => {
   if (context?.storeKey) {
     return [tools.read_store];
   }
-  if (context?.isAdmin) {
-    return [tools.read_store, tools.create_store, tools.update_store];
-  }
-  return [];
+  return [tools.read_store, tools.create_store, tools.update_store];
 };

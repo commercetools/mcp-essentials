@@ -35,8 +35,5 @@ const tools: Record<string, Tool> = {
 };
 
 export const contextToBulkTools = (context?: Context) => {
-  if (context?.isAdmin) {
-    return [tools.bulk_create, tools.bulk_update];
-  }
-  return [];
+  return [tools.bulk_create, tools.bulk_update];
 };

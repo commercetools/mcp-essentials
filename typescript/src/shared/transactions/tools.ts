@@ -32,8 +32,5 @@ const tools: Record<string, Tool> = {
 };
 
 export const contextToTransactionTools = (context?: Context) => {
-  if (context?.isAdmin) {
-    return [tools.read_transaction, tools.create_transaction];
-  }
-  return [];
+  return [tools.read_transaction, tools.create_transaction];
 };

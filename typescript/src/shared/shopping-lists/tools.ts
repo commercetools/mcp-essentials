@@ -62,12 +62,10 @@ export const contextToShoppingListTools = (context?: Context) => {
       tools.update_shopping_list,
     ];
   }
-  if (context?.isAdmin) {
-    return [
-      tools.read_shopping_list,
-      tools.create_shopping_list,
-      tools.update_shopping_list,
-    ];
-  }
-  return [];
+
+  return [
+    tools.read_shopping_list,
+    tools.create_shopping_list,
+    tools.update_shopping_list,
+  ];
 };

@@ -55,12 +55,9 @@ export const contextToStagedQuoteTools = (context?: Context) => {
       tools.update_staged_quote,
     ];
   }
-  if (context?.isAdmin) {
-    return [
-      tools.read_staged_quote,
-      tools.create_staged_quote,
-      tools.update_staged_quote,
-    ];
-  }
-  return [];
+  return [
+    tools.read_staged_quote,
+    tools.create_staged_quote,
+    tools.update_staged_quote,
+  ];
 };

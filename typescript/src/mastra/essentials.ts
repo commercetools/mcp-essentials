@@ -28,7 +28,7 @@ class CommercetoolsAgentEssentials {
       processedConfiguration.context
     );
 
-    contextToTools(processedConfiguration.context)
+    contextToTools(processedConfiguration)
       .filter((tool) => isToolAllowed(tool, processedConfiguration))
       .forEach((tool) => {
         this._tools[tool.method] = CommercetoolsTool(

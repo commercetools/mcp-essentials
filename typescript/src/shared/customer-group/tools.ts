@@ -65,12 +65,9 @@ const tools: Record<string, Tool> = {
 };
 
 export const contextToCustomerGroupTools = (context?: Context) => {
-  if (context?.isAdmin) {
-    return [
-      tools.read_customer_group,
-      tools.create_customer_group,
-      tools.update_customer_group,
-    ];
-  }
-  return [];
+  return [
+    tools.read_customer_group,
+    tools.create_customer_group,
+    tools.update_customer_group,
+  ];
 };

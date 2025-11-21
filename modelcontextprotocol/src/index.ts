@@ -184,7 +184,7 @@ export function parseArgs(args: string[]): {options: Options; env: EnvVars} {
       const [key, value] = arg.slice(2).split('=');
 
       if (key == 'tools') {
-        options.tools = value.split(',');
+        options.tools = value.replace(/\s+/g, '').split(',');
       } else if (key == 'authType') {
         env.authType = value as EnvVars['authType'];
       } else if (key == 'accessToken') {
@@ -381,7 +381,7 @@ export async function main() {
     },
   };
 
-  if (selectedTools[0] === 'all') {
+  if (options.isAdmin && selectedTools[0] === 'all') {
     ACCEPTED_TOOLS.forEach((tool) => {
       if (!configuration.actions) {
         configuration.actions = {};

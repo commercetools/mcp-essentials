@@ -49,12 +49,9 @@ const tools: Record<string, Tool> = {
 };
 
 export const contextToDiscountCodeTools = (context?: Context) => {
-  if (context?.isAdmin) {
-    return [
-      tools.read_discount_code,
-      tools.create_discount_code,
-      tools.update_discount_code,
-    ];
-  }
-  return [];
+  return [
+    tools.read_discount_code,
+    tools.create_discount_code,
+    tools.update_discount_code,
+  ];
 };

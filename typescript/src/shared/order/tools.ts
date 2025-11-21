@@ -57,11 +57,8 @@ export const contextToOrderTools = (context?: Context) => {
   if (context?.customerId) {
     return [tools.read_order];
   }
-  if (context?.isAdmin) {
-    return [tools.read_order, tools.create_order, tools.update_order];
-  }
   if (context?.storeKey) {
     return [tools.read_order, tools.create_order, tools.update_order];
   }
-  return [];
+  return [tools.read_order, tools.create_order, tools.update_order];
 };

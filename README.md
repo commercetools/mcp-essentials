@@ -46,6 +46,12 @@ To view information on how to develop the MCP server, see [this README](/typescr
 To view information on how to locally run the bootstrapped MCP server, see [this README](/modelcontextprotocol/README.md).
 
 
+> [!IMPORTANT]
+> To load all the available tools set `--tools=all` and `--isAdmin=true`, all the available tools will be loaded into the MCP server. To limit the number of loaded tools set `--tools=all.read` for read-only tools or `--tools=carts.read,quote.create,quote.read,...` To disable dynamic tools loading set the `dynamicToolLoadingThreshold` to a very high value e.g `--dynamicToolLoadingThreshold=650`.
+
+To view information on how to develop the MCP server, see [this README](/typescript/README.md).<br>
+To view information on how to locally run the bootstrapped MCP server, see [this README](/modelcontextprotocol/README.md).
+
 Refer to our [official public documentation](https://docs.commercetools.com/sdk/commerce-mcp/essentials-mcp) for a more advanced and comprehensive guide on how to get the most out of our MCP offerings.
 
 <!--

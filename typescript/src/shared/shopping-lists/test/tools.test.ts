@@ -44,18 +44,24 @@ describe('Shopping List Tools', () => {
       expect(tools[2]).toHaveProperty('method', 'update_shopping_list');
     });
 
-    it('should return empty array when no context is provided', () => {
+    it('should return shopping list tools when no context is provided', () => {
       const tools = contextToShoppingListTools();
 
-      expect(tools).toEqual([]);
+      expect(tools).toHaveLength(3);
+      expect(tools[0]).toHaveProperty('method', 'read_shopping_list');
+      expect(tools[1]).toHaveProperty('method', 'create_shopping_list');
+      expect(tools[2]).toHaveProperty('method', 'update_shopping_list');
     });
 
-    it('should return empty array when no relevant context properties are present', () => {
+    it('should return shopping list tools when no relevant context properties are present', () => {
       const context: Context = {};
 
       const tools = contextToShoppingListTools(context);
 
-      expect(tools).toEqual([]);
+      expect(tools).toHaveLength(3);
+      expect(tools[0]).toHaveProperty('method', 'read_shopping_list');
+      expect(tools[1]).toHaveProperty('method', 'create_shopping_list');
+      expect(tools[2]).toHaveProperty('method', 'update_shopping_list');
     });
 
     it('should prioritize customer over store when customerId is present', () => {
