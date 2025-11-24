@@ -1,5 +1,14 @@
 # @commercetools/mcp-essentials
 
+## 2.4.2
+
+### Patch Changes
+
+- [#47](https://github.com/commercetools/mcp-essentials/pull/47) [`2bae83e`](https://github.com/commercetools/mcp-essentials/commit/2bae83ef96ad9adc8129f5676b25d74fa622fd90) Thanks [@ajimae](https://github.com/ajimae)! - [Fix][DEVX-670] Fix Issues with Tools Configuration
+
+- Updated dependencies [[`2bae83e`](https://github.com/commercetools/mcp-essentials/commit/2bae83ef96ad9adc8129f5676b25d74fa622fd90)]:
+  - @commercetools/agent-essentials@3.5.1
+
 ## 2.4.1
 
 ### Patch Changes
