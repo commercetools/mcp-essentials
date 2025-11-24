@@ -48,15 +48,13 @@ const tools: Record<string, Tool> = {
 };
 
 export const contextToShippingMethodTools = (context?: Context) => {
-  if (context?.isAdmin) {
-    return [
-      tools.read_shipping_methods,
-      tools.create_shipping_methods,
-      tools.update_shipping_methods,
-    ];
-  }
   if (context?.customerId) {
     return [tools.read_shipping_methods];
   }
-  return [];
+
+  return [
+    tools.read_shipping_methods,
+    tools.create_shipping_methods,
+    tools.update_shipping_methods,
+  ];
 };

@@ -31,7 +31,7 @@ class CommercetoolsAgentEssentials {
 
     this.tools = {};
 
-    const filteredTools = contextToTools(processedConfiguration.context).filter(
+    const filteredTools = contextToTools(processedConfiguration).filter(
       (tool) => isToolAllowed(tool, processedConfiguration)
     );
 

@@ -108,13 +108,11 @@ export const contextToCartTools = (context?: Context) => {
       tools.replicate_cart,
     ];
   }
-  if (context?.isAdmin) {
-    return [
-      tools.read_cart,
-      tools.create_cart,
-      tools.replicate_cart,
-      tools.update_cart,
-    ];
-  }
-  return [];
+
+  return [
+    tools.read_cart,
+    tools.create_cart,
+    tools.replicate_cart,
+    tools.update_cart,
+  ];
 };

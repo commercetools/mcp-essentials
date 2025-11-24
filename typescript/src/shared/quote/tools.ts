@@ -71,8 +71,6 @@ export const contextToQuoteTools = (context?: Context) => {
   if (context?.storeKey) {
     return [tools.read_quote, tools.create_quote, tools.update_quote];
   }
-  if (context?.isAdmin) {
-    return [tools.read_quote, tools.create_quote, tools.update_quote];
-  }
-  return [];
+
+  return [tools.read_quote, tools.create_quote, tools.update_quote];
 };

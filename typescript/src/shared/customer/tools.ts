@@ -52,11 +52,9 @@ export const contextToCustomerTools = (context?: Context) => {
   if (context?.customerId) {
     return [tools.read_customer];
   }
-  if (context?.isAdmin) {
-    return [tools.create_customer, tools.read_customer, tools.update_customer];
-  }
   if (context?.storeKey) {
     return [tools.create_customer, tools.read_customer];
   }
-  return [];
+
+  return [tools.create_customer, tools.read_customer, tools.update_customer];
 };

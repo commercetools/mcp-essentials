@@ -1,5 +1,8 @@
 import {z} from 'zod';
-import {CommercetoolsFuncContext} from '../../types/configuration';
+import {
+  Configuration,
+  CommercetoolsFuncContext,
+} from '../../types/configuration';
 import {
   listAvailableToolsParameters,
   injectToolsParameters,
@@ -32,7 +35,7 @@ export const injectTools = async (
   context: CommercetoolsFuncContext,
   params: z.infer<typeof injectToolsParameters>
 ) => {
-  const allTools = contextToTools(context);
+  const allTools = contextToTools({context});
   const toolsToInject = allTools.filter((tool) =>
     params.toolMethods.includes(tool.method)
   );
@@ -52,7 +55,7 @@ export const executeTool = async (
   context: CommercetoolsFuncContext,
   params: z.infer<typeof executeToolParameters>
 ) => {
-  const allTools = contextToTools(context);
+  const allTools = contextToTools({context});
   const tool = await allTools.find((tool) => tool.method === params.toolMethod);
   if (!tool) {
     throw new Error(`Tool ${params.toolMethod} not found`);

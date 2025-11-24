@@ -48,12 +48,9 @@ const tools: Record<string, Tool> = {
 };
 
 export const contextToSubscriptionTools = (context?: Context) => {
-  if (context?.isAdmin) {
-    return [
-      tools.read_subscription,
-      tools.create_subscription,
-      tools.update_subscription,
-    ];
-  }
-  return [];
+  return [
+    tools.read_subscription,
+    tools.create_subscription,
+    tools.update_subscription,
+  ];
 };

@@ -18,8 +18,5 @@ const tools: Record<string, Tool> = {
 };
 
 export const contextToPaymentIntentTools = (context?: Context) => {
-  if (context?.isAdmin) {
-    return [tools.update_payment_intent];
-  }
-  return [];
+  return [tools.update_payment_intent];
 };

@@ -32,24 +32,33 @@ describe('Custom Objects Tools', () => {
       });
     });
 
-    it('should return empty array when isAdmin is false', () => {
+    it('should return custom object tools when isAdmin is false', () => {
       const context = {isAdmin: false};
       const tools = contextToCustomObjectTools(context);
 
-      expect(tools).toEqual([]);
+      expect(tools).toHaveLength(3);
+      expect(tools[0]).toHaveProperty('name', 'Read Custom Object');
+      expect(tools[1]).toHaveProperty('name', 'Create Custom Object');
+      expect(tools[2]).toHaveProperty('name', 'Update Custom Object');
     });
 
-    it('should return empty array when context is undefined', () => {
+    it('should return custom object tools when context is undefined', () => {
       const tools = contextToCustomObjectTools();
 
-      expect(tools).toEqual([]);
+      expect(tools).toHaveLength(3);
+      expect(tools[0]).toHaveProperty('name', 'Read Custom Object');
+      expect(tools[1]).toHaveProperty('name', 'Create Custom Object');
+      expect(tools[2]).toHaveProperty('name', 'Update Custom Object');
     });
 
-    it('should return empty array when context does not have isAdmin', () => {
+    it('should return custom object tools when context does not have isAdmin', () => {
       const context = {};
       const tools = contextToCustomObjectTools(context);
 
-      expect(tools).toEqual([]);
+      expect(tools).toHaveLength(3);
+      expect(tools[0]).toHaveProperty('name', 'Read Custom Object');
+      expect(tools[1]).toHaveProperty('name', 'Create Custom Object');
+      expect(tools[2]).toHaveProperty('name', 'Update Custom Object');
     });
   });
 });

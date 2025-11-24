@@ -13,17 +13,23 @@ describe('Subscription Tools', () => {
       expect(tools[2]).toHaveProperty('method', 'update_subscription');
     });
 
-    it('should return empty array when no context is provided', () => {
+    it('should return subscription tools when no context is provided', () => {
       const tools = contextToSubscriptionTools();
 
-      expect(tools).toEqual([]);
+      expect(tools).toHaveLength(3);
+      expect(tools[0]).toHaveProperty('method', 'read_subscription');
+      expect(tools[1]).toHaveProperty('method', 'create_subscription');
+      expect(tools[2]).toHaveProperty('method', 'update_subscription');
     });
 
-    it('should return empty array when context does not include isAdmin', () => {
+    it('should return subscription tools when context does not include isAdmin', () => {
       const context: Context = {};
       const tools = contextToSubscriptionTools(context);
 
-      expect(tools).toEqual([]);
+      expect(tools).toHaveLength(3);
+      expect(tools[0]).toHaveProperty('method', 'read_subscription');
+      expect(tools[1]).toHaveProperty('method', 'create_subscription');
+      expect(tools[2]).toHaveProperty('method', 'update_subscription');
     });
 
     it('should have correct tool properties', () => {

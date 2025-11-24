@@ -35,7 +35,7 @@ import {contextToCustomObjectTools} from './custom-objects/tools';
 import {contextToTypeTools} from './types/tools';
 import {contextToPaymentIntentTools} from './payment-intents/tools';
 import {contextToTransactionTools} from './transactions/tools';
-import {Context} from '../types/configuration';
+import {Actions, Configuration, Context} from '../types/configuration';
 
 export const contextToResourceTools = (context?: Context) => {
   return {
@@ -70,16 +70,25 @@ export const contextToResourceTools = (context?: Context) => {
     'payment-methods': contextToPaymentMethodTools(context),
     'recurring-orders': contextToRecurringOrderTools(context),
     'shopping-lists': contextToShoppingListTools(context),
-    extension: contextToExtensionTools(context),
-    subscription: contextToSubscriptionTools(context),
+    extensions: contextToExtensionTools(context),
+    subscriptions: contextToSubscriptionTools(context),
     'custom-objects': contextToCustomObjectTools(context),
     types: contextToTypeTools(context),
     'payment-intents': contextToPaymentIntentTools(context),
     transactions: contextToTransactionTools(context),
   };
 };
-export const contextToTools = (context?: Context) => {
+
+export const contextToTools = ({actions, context}: Configuration) => {
   const resourceTools = contextToResourceTools(context);
 
-  return Object.values(resourceTools).flat();
+  if (context?.isAdmin) {
+    return Object.values(resourceTools).flat();
+  }
+
+  const namespaces = Object.keys(actions as Actions) as Array<
+    keyof typeof resourceTools
+  >;
+
+  return namespaces.flatMap((ns) => resourceTools[ns] ?? []);
 };

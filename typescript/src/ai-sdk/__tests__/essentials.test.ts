@@ -18,7 +18,7 @@ jest.mock('../../shared/configuration', () => ({
 jest.mock('../../shared/tools', () => {
   const {z: localZ} = require('zod'); // Require z inside the factory
   return {
-    contextToTools: (context: Context) => [
+    contextToTools: (configuration: Configuration) => [
       {
         method: 'tool1',
         description: 'Description for tool 1',

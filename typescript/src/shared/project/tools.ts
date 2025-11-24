@@ -29,8 +29,5 @@ const tools: Record<string, Tool> = {
 };
 
 export const contextToProjectTools = (context?: Context) => {
-  if (context?.isAdmin) {
-    return [tools.read_project, tools.update_project];
-  }
-  return [tools.read_project];
+  return [tools.read_project, tools.update_project];
 };
