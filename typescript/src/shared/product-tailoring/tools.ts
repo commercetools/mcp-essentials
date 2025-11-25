@@ -4,6 +4,11 @@ import {
   updateProductTailoringParameters,
 } from './parameters';
 import {
+  readProductTailoringOutputSchema,
+  createProductTailoringOutputSchema,
+  updateProductTailoringOutputSchema,
+} from './output-schema';
+import {
   readProductTailoringPrompt,
   createProductTailoringPrompt,
   updateProductTailoringPrompt,
@@ -25,6 +30,7 @@ const tools: Record<string, Tool> = {
         read: true,
       },
     },
+    outputSchema: readProductTailoringOutputSchema,
   },
   create_product_tailoring: {
     name: 'Create product tailoring',
@@ -36,6 +42,7 @@ const tools: Record<string, Tool> = {
         create: true,
       },
     },
+    outputSchema: createProductTailoringOutputSchema,
   },
   update_product_tailoring: {
     name: 'Update product tailoring',
@@ -47,6 +54,7 @@ const tools: Record<string, Tool> = {
         update: true,
       },
     },
+    outputSchema: updateProductTailoringOutputSchema,
   },
 };
 

@@ -4,6 +4,11 @@ import {
   updateInventoryParameters,
 } from './parameters';
 import {
+  readInventoryOutputSchema,
+  createInventoryOutputSchema,
+  updateInventoryOutputSchema,
+} from './output-schema';
+import {
   readInventoryPrompt,
   createInventoryPrompt,
   updateInventoryPrompt,
@@ -22,6 +27,7 @@ const tools: Record<string, Tool> = {
         read: true,
       },
     },
+    outputSchema: readInventoryOutputSchema,
   },
   create_inventory: {
     name: 'Create Inventory',
@@ -33,6 +39,7 @@ const tools: Record<string, Tool> = {
         create: true,
       },
     },
+    outputSchema: createInventoryOutputSchema,
   },
   update_inventory: {
     name: 'Update Inventory',
@@ -44,6 +51,7 @@ const tools: Record<string, Tool> = {
         update: true,
       },
     },
+    outputSchema: updateInventoryOutputSchema,
   },
 };
 

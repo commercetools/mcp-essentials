@@ -9,6 +9,11 @@ import {
   createProductSelectionParameters,
   updateProductSelectionParameters,
 } from './parameters';
+import {
+  readProductSelectionOutputSchema,
+  createProductSelectionOutputSchema,
+  updateProductSelectionOutputSchema,
+} from './output-schema';
 import {Tool} from '../../types/tools';
 import {Context} from '../../types/configuration';
 
@@ -23,6 +28,7 @@ const tools: Record<string, Tool> = {
         read: true,
       },
     },
+    outputSchema: readProductSelectionOutputSchema,
   },
   create_product_selection: {
     method: 'create_product_selection',
@@ -34,6 +40,7 @@ const tools: Record<string, Tool> = {
         create: true,
       },
     },
+    outputSchema: createProductSelectionOutputSchema,
   },
   update_product_selection: {
     method: 'update_product_selection',
@@ -45,6 +52,7 @@ const tools: Record<string, Tool> = {
         update: true,
       },
     },
+    outputSchema: updateProductSelectionOutputSchema,
   },
 };
 

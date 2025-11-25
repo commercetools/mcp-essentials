@@ -9,6 +9,11 @@ import {
   listProductsParameters,
   updateProductParameters,
 } from './parameters';
+import {
+  listProductsOutputSchema,
+  createProductOutputSchema,
+  updateProductOutputSchema,
+} from './output-schema';
 import {Tool} from '../../types/tools';
 import {Context} from '../../types/configuration';
 
@@ -23,6 +28,7 @@ const tools: Record<string, Tool> = {
         read: true,
       },
     },
+    outputSchema: listProductsOutputSchema,
   },
   create_product: {
     method: 'create_product',
@@ -34,6 +40,7 @@ const tools: Record<string, Tool> = {
         create: true,
       },
     },
+    outputSchema: createProductOutputSchema,
   },
   update_product: {
     method: 'update_product',
@@ -45,6 +52,7 @@ const tools: Record<string, Tool> = {
         update: true,
       },
     },
+    outputSchema: updateProductOutputSchema,
   },
 };
 

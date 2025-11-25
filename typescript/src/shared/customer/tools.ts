@@ -9,6 +9,11 @@ import {
   readCustomerParameters,
   updateCustomerParameters,
 } from './parameters';
+import {
+  createCustomerOutputSchema,
+  readCustomerOutputSchema,
+  updateCustomerOutputSchema,
+} from './output-schema';
 import {Tool} from '../../types/tools';
 import {Context} from '../../types/configuration';
 
@@ -23,6 +28,7 @@ const tools: Record<string, Tool> = {
         create: true,
       },
     },
+    outputSchema: createCustomerOutputSchema,
   },
   read_customer: {
     method: 'read_customer',
@@ -34,6 +40,7 @@ const tools: Record<string, Tool> = {
         read: true,
       },
     },
+    outputSchema: readCustomerOutputSchema,
   },
   update_customer: {
     method: 'update_customer',
@@ -45,6 +52,7 @@ const tools: Record<string, Tool> = {
         update: true,
       },
     },
+    outputSchema: updateCustomerOutputSchema,
   },
 };
 

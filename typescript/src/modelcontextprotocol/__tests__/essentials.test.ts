@@ -93,7 +93,7 @@ describe('CommercetoolsAgentEssentials (ModelContextProtocol)', () => {
 
     // Set up McpServer mock to handle the fact that CommercetoolsAgentEssentials extends it
     (McpServer as jest.Mock).mockImplementation(function (this: any) {
-      this.tool = mockToolMethod;
+      this.registerTool = mockToolMethod;
     });
 
     mockCommercetoolsAPIInstance = new CommercetoolsAPI(
@@ -192,14 +192,19 @@ describe('CommercetoolsAgentEssentials (ModelContextProtocol)', () => {
     // Check if registerTool was called with the correct parameters
     expect(mockToolMethod).toHaveBeenCalledWith(
       mockSharedToolsData[0].method,
-      mockSharedToolsData[0].description,
-      expect.any(Object),
+      expect.objectContaining({
+        description: mockSharedToolsData[0].description,
+        inputSchema: expect.any(Object),
+      }),
+
       expect.any(Function) // Handler function
     );
     expect(mockToolMethod).toHaveBeenCalledWith(
       mockSharedToolsData[1].method,
-      mockSharedToolsData[1].description,
-      expect.any(Object),
+      expect.objectContaining({
+        description: mockSharedToolsData[1].description,
+        inputSchema: expect.any(Object),
+      }),
       expect.any(Function) // Handler function
     );
   });
@@ -220,7 +225,7 @@ describe('CommercetoolsAgentEssentials (ModelContextProtocol)', () => {
     // Get the handler from the mock call
     await new Promise(setImmediate);
     const toolCallArgs = mockToolMethod.mock.calls[0];
-    const handler = toolCallArgs[3]; // The async handler function
+    const handler = toolCallArgs[2]; // The async handler function
     const toolMethod = toolCallArgs[0];
 
     const handlerArg = {paramA: 'testValue'};
@@ -435,7 +440,7 @@ describe('CommercetoolsAgentEssentials (ModelContextProtocol)', () => {
 
       // Set up McpServer mock to handle the fact that CommercetoolsAgentEssentials extends it
       (McpServer as jest.Mock).mockImplementation(function (this: any) {
-        this.tool = _mockToolMethod;
+        this.registerTool = _mockToolMethod;
       });
 
       _mockCommercetoolsAPIInstance = new CommercetoolsAPI(
@@ -540,7 +545,6 @@ describe('CommercetoolsAgentEssentials (ModelContextProtocol)', () => {
 
         expect(_mockToolMethod).toHaveBeenCalledWith(
           'mcpTool1',
-          expect.any(String),
           expect.any(Object),
           expect.any(Function)
         );
@@ -575,7 +579,6 @@ describe('CommercetoolsAgentEssentials (ModelContextProtocol)', () => {
         expect(_mockToolMethod).toHaveBeenCalledTimes(2);
         expect(_mockToolMethod).toHaveBeenCalledWith(
           'custom-test-tool',
-          expect.any(String),
           expect.any(Object),
           expect.any(Function)
         );
@@ -690,7 +693,7 @@ describe('CommercetoolsAgentEssentials (ModelContextProtocol)', () => {
 
       // Set up McpServer mock to handle the fact that CommercetoolsAgentEssentials extends it
       (McpServer as jest.Mock).mockImplementation(function (this: any) {
-        this.tool = mockToolMethod;
+        this.registerTool = mockToolMethod;
       });
 
       mockCommercetoolsAPIInstance = new CommercetoolsAPI(
@@ -757,13 +760,11 @@ describe('CommercetoolsAgentEssentials (ModelContextProtocol)', () => {
         expect(mockToolMethod).toHaveBeenCalledTimes(2);
         expect(mockToolMethod).toHaveBeenCalledWith(
           'mcpTool1',
-          expect.any(String),
           expect.any(Object),
           expect.any(Function)
         );
         expect(mockToolMethod).toHaveBeenCalledWith(
           'mcpTool2',
-          expect.any(String),
           expect.any(Object),
           expect.any(Function)
         );
@@ -860,19 +861,16 @@ describe('CommercetoolsAgentEssentials (ModelContextProtocol)', () => {
         expect(mockToolMethod).toHaveBeenCalledTimes(5);
         expect(mockToolMethod).toHaveBeenCalledWith(
           'list_available_tools',
-          expect.any(String),
           expect.any(Object),
           expect.any(Function)
         );
         expect(mockToolMethod).toHaveBeenCalledWith(
           'inject_tools',
-          expect.any(String),
           expect.any(Object),
           expect.any(Function)
         );
         expect(mockToolMethod).toHaveBeenCalledWith(
           'execute_tool',
-          expect.any(String),
           expect.any(Object),
           expect.any(Function)
         );

@@ -4,6 +4,11 @@ import {
   updateShoppingListParameters,
 } from './parameters';
 import {
+  readShoppingListOutputSchema,
+  createShoppingListOutputSchema,
+  updateShoppingListOutputSchema,
+} from './output-schema';
+import {
   readShoppingListPrompt,
   createShoppingListPrompt,
   updateShoppingListPrompt,
@@ -22,6 +27,7 @@ const tools: Record<string, Tool> = {
         read: true,
       },
     },
+    outputSchema: readShoppingListOutputSchema,
   },
   create_shopping_list: {
     name: 'Create Shopping List',
@@ -33,6 +39,7 @@ const tools: Record<string, Tool> = {
         create: true,
       },
     },
+    outputSchema: createShoppingListOutputSchema,
   },
   update_shopping_list: {
     name: 'Update Shopping List',
@@ -44,6 +51,7 @@ const tools: Record<string, Tool> = {
         update: true,
       },
     },
+    outputSchema: updateShoppingListOutputSchema,
   },
 };
 

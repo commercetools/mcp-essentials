@@ -1,5 +1,6 @@
 import {searchProductsPrompt} from './prompts';
 import {searchProductsParameters} from './parameters';
+import {searchProductsOutputSchema} from './output-schema';
 import {Tool} from '../../types/tools';
 import {Context} from '../../types/configuration';
 
@@ -14,6 +15,7 @@ const tools: Record<string, Tool> = {
         read: true,
       },
     },
+    outputSchema: searchProductsOutputSchema,
   },
 };
 

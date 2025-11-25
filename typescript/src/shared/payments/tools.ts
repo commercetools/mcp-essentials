@@ -4,6 +4,11 @@ import {
   updatePaymentParameters,
 } from './parameters';
 import {
+  readPaymentsOutputSchema,
+  createPaymentsOutputSchema,
+  updatePaymentsOutputSchema,
+} from './output-schema';
+import {
   readPaymentPrompt,
   createPaymentPrompt,
   updatePaymentPrompt,
@@ -22,6 +27,7 @@ const tools: Record<string, Tool> = {
         read: true,
       },
     },
+    outputSchema: readPaymentsOutputSchema,
   },
   create_payments: {
     name: 'Create Payment',
@@ -33,6 +39,7 @@ const tools: Record<string, Tool> = {
         create: true,
       },
     },
+    outputSchema: createPaymentsOutputSchema,
   },
   update_payments: {
     name: 'Update Payment',
@@ -44,6 +51,7 @@ const tools: Record<string, Tool> = {
         update: true,
       },
     },
+    outputSchema: updatePaymentsOutputSchema,
   },
 };
 

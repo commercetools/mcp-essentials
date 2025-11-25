@@ -6,6 +6,11 @@ import {
   updateStagedQuoteParameters,
 } from './parameters';
 import {
+  readStagedQuoteOutputSchema,
+  createStagedQuoteOutputSchema,
+  updateStagedQuoteOutputSchema,
+} from './output-schema';
+import {
   readStagedQuotePrompt,
   createStagedQuotePrompt,
   updateStagedQuotePrompt,
@@ -22,6 +27,7 @@ const tools: Record<string, Tool> = {
         read: true,
       },
     },
+    outputSchema: readStagedQuoteOutputSchema,
   },
   create_staged_quote: {
     method: 'create_staged_quote',
@@ -33,6 +39,7 @@ const tools: Record<string, Tool> = {
         create: true,
       },
     },
+    outputSchema: createStagedQuoteOutputSchema,
   },
   update_staged_quote: {
     method: 'update_staged_quote',
@@ -44,6 +51,7 @@ const tools: Record<string, Tool> = {
         update: true,
       },
     },
+    outputSchema: updateStagedQuoteOutputSchema,
   },
 };
 

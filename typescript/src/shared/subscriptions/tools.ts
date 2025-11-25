@@ -4,6 +4,11 @@ import {
   updateSubscriptionParameters,
 } from './parameters';
 import {
+  readSubscriptionOutputSchema,
+  createSubscriptionOutputSchema,
+  updateSubscriptionOutputSchema,
+} from './output-schema';
+import {
   readSubscriptionPrompt,
   createSubscriptionPrompt,
   updateSubscriptionPrompt,
@@ -22,6 +27,7 @@ const tools: Record<string, Tool> = {
         read: true,
       },
     },
+    outputSchema: readSubscriptionOutputSchema,
   },
   create_subscription: {
     name: 'Create Subscription',
@@ -33,6 +39,7 @@ const tools: Record<string, Tool> = {
         create: true,
       },
     },
+    outputSchema: createSubscriptionOutputSchema,
   },
   update_subscription: {
     name: 'Update Subscription',
@@ -44,6 +51,7 @@ const tools: Record<string, Tool> = {
         update: true,
       },
     },
+    outputSchema: updateSubscriptionOutputSchema,
   },
 };
 

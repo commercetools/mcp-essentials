@@ -9,6 +9,11 @@ import {
   createCategoryParameters,
   updateCategoryParameters,
 } from './parameters';
+import {
+  readCategoryOutputSchema,
+  createCategoryOutputSchema,
+  updateCategoryOutputSchema,
+} from './output-schema';
 import {Tool} from '../../types/tools';
 import {Context} from '../../types/configuration';
 
@@ -23,6 +28,7 @@ const tools: Record<string, Tool> = {
         read: true,
       },
     },
+    outputSchema: readCategoryOutputSchema,
   },
   create_category: {
     method: 'create_category',
@@ -34,6 +40,7 @@ const tools: Record<string, Tool> = {
         create: true,
       },
     },
+    outputSchema: createCategoryOutputSchema,
   },
   update_category: {
     method: 'update_category',
@@ -45,6 +52,7 @@ const tools: Record<string, Tool> = {
         update: true,
       },
     },
+    outputSchema: updateCategoryOutputSchema,
   },
 };
 

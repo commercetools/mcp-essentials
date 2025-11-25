@@ -9,6 +9,11 @@ import {
   createCartDiscountParameters,
   updateCartDiscountParameters,
 } from './parameters';
+import {
+  readCartDiscountOutputSchema,
+  createCartDiscountOutputSchema,
+  updateCartDiscountOutputSchema,
+} from './output-schema';
 import {Tool} from '../../types/tools';
 import {Context} from '../../types/configuration';
 
@@ -23,6 +28,7 @@ const tools: Record<string, Tool> = {
         read: true,
       },
     },
+    outputSchema: readCartDiscountOutputSchema,
   },
   create_cart_discount: {
     method: 'create_cart_discount',
@@ -34,6 +40,7 @@ const tools: Record<string, Tool> = {
         create: true,
       },
     },
+    outputSchema: createCartDiscountOutputSchema,
   },
   update_cart_discount: {
     method: 'update_cart_discount',
@@ -45,6 +52,7 @@ const tools: Record<string, Tool> = {
         update: true,
       },
     },
+    outputSchema: updateCartDiscountOutputSchema,
   },
 };
 

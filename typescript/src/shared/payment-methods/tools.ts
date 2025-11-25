@@ -6,6 +6,11 @@ import {
   updatePaymentMethodParameters,
 } from './parameters';
 import {
+  readPaymentMethodsOutputSchema,
+  createPaymentMethodsOutputSchema,
+  updatePaymentMethodsOutputSchema,
+} from './output-schema';
+import {
   readPaymentMethodPrompt,
   createPaymentMethodPrompt,
   updatePaymentMethodPrompt,
@@ -22,6 +27,7 @@ const tools: Record<string, Tool> = {
         read: true,
       },
     },
+    outputSchema: readPaymentMethodsOutputSchema,
   },
   create_payment_methods: {
     method: 'create_payment_methods',
@@ -33,6 +39,7 @@ const tools: Record<string, Tool> = {
         create: true,
       },
     },
+    outputSchema: createPaymentMethodsOutputSchema,
   },
   update_payment_methods: {
     method: 'update_payment_methods',
@@ -44,6 +51,7 @@ const tools: Record<string, Tool> = {
         update: true,
       },
     },
+    outputSchema: updatePaymentMethodsOutputSchema,
   },
 };
 

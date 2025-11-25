@@ -4,6 +4,11 @@ import {
   updateExtensionParameters,
 } from './parameters';
 import {
+  readExtensionOutputSchema,
+  createExtensionOutputSchema,
+  updateExtensionOutputSchema,
+} from './output-schema';
+import {
   readExtensionPrompt,
   createExtensionPrompt,
   updateExtensionPrompt,
@@ -22,6 +27,7 @@ const tools: Record<string, Tool> = {
         read: true,
       },
     },
+    outputSchema: readExtensionOutputSchema,
   },
   create_extension: {
     name: 'Create Extension',
@@ -33,6 +39,7 @@ const tools: Record<string, Tool> = {
         create: true,
       },
     },
+    outputSchema: createExtensionOutputSchema,
   },
   update_extension: {
     name: 'Update Extension',
@@ -44,6 +51,7 @@ const tools: Record<string, Tool> = {
         update: true,
       },
     },
+    outputSchema: updateExtensionOutputSchema,
   },
 };
 

@@ -9,6 +9,11 @@ import {
   createQuoteRequestParameters,
   updateQuoteRequestParameters,
 } from './parameters';
+import {
+  readQuoteRequestOutputSchema,
+  createQuoteRequestOutputSchema,
+  updateQuoteRequestOutputSchema,
+} from './output-schema';
 import {Tool} from '../../types/tools';
 import {z} from 'zod';
 import {Context} from '../../types/configuration';
@@ -29,6 +34,7 @@ const tools: Record<string, Tool> = {
         read: true,
       },
     },
+    outputSchema: readQuoteRequestOutputSchema,
   },
   create_quote_request: {
     method: 'create_quote_request',
@@ -45,6 +51,7 @@ const tools: Record<string, Tool> = {
         create: true,
       },
     },
+    outputSchema: createQuoteRequestOutputSchema,
   },
   update_quote_request: {
     method: 'update_quote_request',
@@ -61,6 +68,7 @@ const tools: Record<string, Tool> = {
         update: true,
       },
     },
+    outputSchema: updateQuoteRequestOutputSchema,
   },
 };
 

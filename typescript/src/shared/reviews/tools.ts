@@ -4,6 +4,11 @@ import {
   updateReviewParameters,
 } from './parameters';
 import {
+  readReviewOutputSchema,
+  createReviewOutputSchema,
+  updateReviewOutputSchema,
+} from './output-schema';
+import {
   readReviewPrompt,
   createReviewPrompt,
   updateReviewPrompt,
@@ -22,6 +27,7 @@ const tools: Record<string, Tool> = {
         read: true,
       },
     },
+    outputSchema: readReviewOutputSchema,
   },
   create_review: {
     name: 'Create Review',
@@ -33,6 +39,7 @@ const tools: Record<string, Tool> = {
         create: true,
       },
     },
+    outputSchema: createReviewOutputSchema,
   },
   update_review: {
     name: 'Update Review',
@@ -44,6 +51,7 @@ const tools: Record<string, Tool> = {
         update: true,
       },
     },
+    outputSchema: updateReviewOutputSchema,
   },
 };
 

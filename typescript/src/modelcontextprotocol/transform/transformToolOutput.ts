@@ -58,7 +58,7 @@ export const transformToolOutput = (args: {
     transformedData ?? emptyObjectTransformValue);
 };
 
-const transformTitle = (title: string) =>
+export const transformTitle = (title: string) =>
   `${transformPropertyName(title).toUpperCase()}`;
 
 /**

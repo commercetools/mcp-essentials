@@ -1,5 +1,9 @@
 import {readProjectPrompt, updateProjectPrompt} from './prompts';
 import {readProjectParameters, updateProjectParameters} from './parameters';
+import {
+  readProjectOutputSchema,
+  updateProjectOutputSchema,
+} from './output-schema';
 import {Tool} from '../../types/tools';
 import {Context} from '../../types/configuration';
 
@@ -14,6 +18,7 @@ const tools: Record<string, Tool> = {
         read: true,
       },
     },
+    outputSchema: readProjectOutputSchema,
   },
   update_project: {
     method: 'update_project',
@@ -25,6 +30,7 @@ const tools: Record<string, Tool> = {
         update: true,
       },
     },
+    outputSchema: updateProjectOutputSchema,
   },
 };
 
