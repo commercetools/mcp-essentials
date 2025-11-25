@@ -9,6 +9,11 @@ import {
   createBusinessUnitParameters,
   updateBusinessUnitParameters,
 } from './parameters';
+import {
+  readBusinessUnitOutputSchema,
+  createBusinessUnitOutputSchema,
+  updateBusinessUnitOutputSchema,
+} from './output-schema';
 import {Tool} from '../../types/tools';
 import {z} from 'zod';
 import {Context} from '../../types/configuration';
@@ -28,6 +33,8 @@ const tools: Record<string, Tool> = {
       'business-unit': {
         read: true,
       },
+
+      outputSchema: readBusinessUnitOutputSchema,
     },
   },
   create_business_unit: {
@@ -44,6 +51,8 @@ const tools: Record<string, Tool> = {
       'business-unit': {
         create: true,
       },
+
+      outputSchema: createBusinessUnitOutputSchema,
     },
   },
   update_business_unit: {
@@ -60,6 +69,8 @@ const tools: Record<string, Tool> = {
       'business-unit': {
         update: true,
       },
+
+      outputSchema: updateBusinessUnitOutputSchema,
     },
   },
 };

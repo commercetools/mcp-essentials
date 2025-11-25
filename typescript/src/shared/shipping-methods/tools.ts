@@ -4,6 +4,11 @@ import {
   updateShippingMethodParameters,
 } from './parameters';
 import {
+  readShippingMethodsOutputSchema,
+  createShippingMethodsOutputSchema,
+  updateShippingMethodsOutputSchema,
+} from './output-schema';
+import {
   readShippingMethodPrompt,
   createShippingMethodPrompt,
   updateShippingMethodPrompt,
@@ -22,6 +27,7 @@ const tools: Record<string, Tool> = {
         read: true,
       },
     },
+    outputSchema: readShippingMethodsOutputSchema,
   },
   create_shipping_methods: {
     name: 'Create Shipping Method',
@@ -33,6 +39,7 @@ const tools: Record<string, Tool> = {
         create: true,
       },
     },
+    outputSchema: createShippingMethodsOutputSchema,
   },
   update_shipping_methods: {
     name: 'Update Shipping Method',
@@ -44,6 +51,7 @@ const tools: Record<string, Tool> = {
         update: true,
       },
     },
+    outputSchema: updateShippingMethodsOutputSchema,
   },
 };
 

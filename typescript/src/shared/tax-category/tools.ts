@@ -4,6 +4,11 @@ import {
   updateTaxCategoryParameters,
 } from './parameters';
 import {
+  readTaxCategoryOutputSchema,
+  createTaxCategoryOutputSchema,
+  updateTaxCategoryOutputSchema,
+} from './output-schema';
+import {
   readTaxCategoryPrompt,
   createTaxCategoryPrompt,
   updateTaxCategoryPrompt,
@@ -22,6 +27,7 @@ const tools: Record<string, Tool> = {
         read: true,
       },
     },
+    outputSchema: readTaxCategoryOutputSchema,
   },
   create_tax_category: {
     name: 'Create Tax Category',
@@ -33,6 +39,7 @@ const tools: Record<string, Tool> = {
         create: true,
       },
     },
+    outputSchema: createTaxCategoryOutputSchema,
   },
   update_tax_category: {
     name: 'Update Tax Category',
@@ -44,6 +51,7 @@ const tools: Record<string, Tool> = {
         update: true,
       },
     },
+    outputSchema: updateTaxCategoryOutputSchema,
   },
 };
 

@@ -3,6 +3,11 @@ import {
   readZoneParameters,
   updateZoneParameters,
 } from './parameters';
+import {
+  readZoneOutputSchema,
+  createZoneOutputSchema,
+  updateZoneOutputSchema,
+} from './output-schema';
 import {readZonePrompt, createZonePrompt, updateZonePrompt} from './prompts';
 import {Tool} from '../../types/tools';
 import {Context} from '../../types/configuration';
@@ -18,6 +23,7 @@ const tools: Record<string, Tool> = {
         read: true,
       },
     },
+    outputSchema: readZoneOutputSchema,
   },
   create_zone: {
     name: 'Create Zone',
@@ -29,6 +35,7 @@ const tools: Record<string, Tool> = {
         create: true,
       },
     },
+    outputSchema: createZoneOutputSchema,
   },
   update_zone: {
     name: 'Update Zone',
@@ -40,6 +47,7 @@ const tools: Record<string, Tool> = {
         update: true,
       },
     },
+    outputSchema: updateZoneOutputSchema,
   },
 };
 

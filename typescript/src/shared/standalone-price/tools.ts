@@ -9,6 +9,11 @@ import {
   createStandalonePriceParameters,
   updateStandalonePriceParameters,
 } from './parameters';
+import {
+  readStandalonePriceOutputSchema,
+  createStandalonePriceOutputSchema,
+  updateStandalonePriceOutputSchema,
+} from './output-schema';
 import {Tool} from '../../types/tools';
 import {Context} from '../../types/configuration';
 
@@ -23,6 +28,7 @@ const tools: Record<string, Tool> = {
         read: true,
       },
     },
+    outputSchema: readStandalonePriceOutputSchema,
   },
   create_standalone_price: {
     method: 'create_standalone_price',
@@ -34,6 +40,7 @@ const tools: Record<string, Tool> = {
         create: true,
       },
     },
+    outputSchema: createStandalonePriceOutputSchema,
   },
   update_standalone_price: {
     method: 'update_standalone_price',
@@ -45,6 +52,7 @@ const tools: Record<string, Tool> = {
         update: true,
       },
     },
+    outputSchema: updateStandalonePriceOutputSchema,
   },
 };
 

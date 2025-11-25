@@ -4,6 +4,11 @@ import {
   updateCustomObjectParameters,
 } from './parameters';
 import {
+  readCustomObjectOutputSchema,
+  createCustomObjectOutputSchema,
+  updateCustomObjectOutputSchema,
+} from './output-schema';
+import {
   readCustomObjectPrompt,
   createCustomObjectPrompt,
   updateCustomObjectPrompt,
@@ -22,6 +27,7 @@ const tools: Record<string, Tool> = {
         read: true,
       },
     },
+    outputSchema: readCustomObjectOutputSchema,
   },
   create_custom_object: {
     name: 'Create Custom Object',
@@ -33,6 +39,7 @@ const tools: Record<string, Tool> = {
         create: true,
       },
     },
+    outputSchema: createCustomObjectOutputSchema,
   },
   update_custom_object: {
     name: 'Update Custom Object',
@@ -44,6 +51,7 @@ const tools: Record<string, Tool> = {
         update: true,
       },
     },
+    outputSchema: updateCustomObjectOutputSchema,
   },
 };
 

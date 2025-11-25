@@ -9,6 +9,11 @@ import {
   createChannelParameters,
   updateChannelParameters,
 } from './parameters';
+import {
+  readChannelOutputSchema,
+  createChannelOutputSchema,
+  updateChannelOutputSchema,
+} from './output-schema';
 import {Tool} from '../../types/tools';
 import {Context} from '../../types/configuration';
 
@@ -23,6 +28,7 @@ const tools: Record<string, Tool> = {
         read: true,
       },
     },
+    outputSchema: readChannelOutputSchema,
   },
   create_channel: {
     method: 'create_channel',
@@ -34,6 +40,7 @@ const tools: Record<string, Tool> = {
         create: true,
       },
     },
+    outputSchema: createChannelOutputSchema,
   },
   update_channel: {
     method: 'update_channel',
@@ -45,6 +52,7 @@ const tools: Record<string, Tool> = {
         update: true,
       },
     },
+    outputSchema: updateChannelOutputSchema,
   },
 };
 

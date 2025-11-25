@@ -9,6 +9,11 @@ import {
   createDiscountCodeParameters,
   updateDiscountCodeParameters,
 } from './parameters';
+import {
+  readDiscountCodeOutputSchema,
+  createDiscountCodeOutputSchema,
+  updateDiscountCodeOutputSchema,
+} from './output-schema';
 import {Tool} from '../../types/tools';
 import {Context} from '../../types/configuration';
 
@@ -23,6 +28,7 @@ const tools: Record<string, Tool> = {
         read: true,
       },
     },
+    outputSchema: readDiscountCodeOutputSchema,
   },
   create_discount_code: {
     method: 'create_discount_code',
@@ -34,6 +40,7 @@ const tools: Record<string, Tool> = {
         create: true,
       },
     },
+    outputSchema: createDiscountCodeOutputSchema,
   },
   update_discount_code: {
     method: 'update_discount_code',
@@ -45,6 +52,7 @@ const tools: Record<string, Tool> = {
         update: true,
       },
     },
+    outputSchema: updateDiscountCodeOutputSchema,
   },
 };
 

@@ -4,6 +4,11 @@ import {
   updateRecurringOrderParameters,
 } from './parameters';
 import {
+  readRecurringOrdersOutputSchema,
+  createRecurringOrdersOutputSchema,
+  updateRecurringOrdersOutputSchema,
+} from './output-schema';
+import {
   readRecurringOrderPrompt,
   createRecurringOrderPrompt,
   updateRecurringOrderPrompt,
@@ -22,6 +27,7 @@ const tools: Record<string, Tool> = {
         read: true,
       },
     },
+    outputSchema: readRecurringOrdersOutputSchema,
   },
   create_recurring_orders: {
     name: 'Create Recurring Orders',
@@ -33,6 +39,7 @@ const tools: Record<string, Tool> = {
         create: true,
       },
     },
+    outputSchema: createRecurringOrdersOutputSchema,
   },
   update_recurring_orders: {
     name: 'Update Recurring Orders',
@@ -44,6 +51,7 @@ const tools: Record<string, Tool> = {
         update: true,
       },
     },
+    outputSchema: updateRecurringOrdersOutputSchema,
   },
 };
 

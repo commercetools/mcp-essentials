@@ -5,6 +5,11 @@ import {
   createOrderParameters,
   updateOrderParameters,
 } from './parameters';
+import {
+  readOrderOutputSchema,
+  createOrderOutputSchema,
+  updateOrderOutputSchema,
+} from './output-schema';
 import {Tool} from '../../types/tools';
 import {z} from 'zod';
 import {Context} from '../../types/configuration';
@@ -20,6 +25,7 @@ const tools: Record<string, Tool> = {
         read: true,
       },
     },
+    outputSchema: readOrderOutputSchema,
   },
   create_order: {
     method: 'create_order',
@@ -36,6 +42,7 @@ const tools: Record<string, Tool> = {
         create: true,
       },
     },
+    outputSchema: createOrderOutputSchema,
   },
   update_order: {
     method: 'update_order',
@@ -47,6 +54,7 @@ const tools: Record<string, Tool> = {
         update: true,
       },
     },
+    outputSchema: updateOrderOutputSchema,
   },
 };
 

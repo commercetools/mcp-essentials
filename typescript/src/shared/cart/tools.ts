@@ -11,10 +11,15 @@ import {
   replicateCartParameters,
   updateCartParameters,
 } from './parameters';
+import {
+  readCartOutputSchema,
+  createCartOutputSchema,
+  replicateCartOutputSchema,
+  updateCartOutputSchema,
+} from './output-schema';
 import {Tool} from '../../types/tools';
 import {z} from 'zod';
 import {Context} from '../../types/configuration';
-
 const tools: Record<string, Tool> = {
   read_cart: {
     method: 'read_cart',
@@ -26,6 +31,7 @@ const tools: Record<string, Tool> = {
       any,
       any
     >,
+    outputSchema: readCartOutputSchema,
     actions: {
       cart: {
         read: true,
@@ -47,6 +53,7 @@ const tools: Record<string, Tool> = {
         create: true,
       },
     },
+    outputSchema: createCartOutputSchema,
   },
   replicate_cart: {
     method: 'replicate_cart',
@@ -63,6 +70,7 @@ const tools: Record<string, Tool> = {
         create: true,
       },
     },
+    outputSchema: replicateCartOutputSchema,
   },
   update_cart: {
     method: 'update_cart',
@@ -79,6 +87,7 @@ const tools: Record<string, Tool> = {
         update: true,
       },
     },
+    outputSchema: updateCartOutputSchema,
   },
 };
 

@@ -2,6 +2,10 @@ import {
   createTransactionParameters,
   readTransactionParameters,
 } from './parameters';
+import {
+  readTransactionOutputSchema,
+  createTransactionOutputSchema,
+} from './output-schema';
 import {readTransactionPrompt, createTransactionPrompt} from './prompts';
 import {Tool} from '../../types/tools';
 import {Context} from '../../types/configuration';
@@ -17,6 +21,7 @@ const tools: Record<string, Tool> = {
         read: true,
       },
     },
+    outputSchema: readTransactionOutputSchema,
   },
   create_transaction: {
     name: 'Create Transaction',
@@ -28,6 +33,7 @@ const tools: Record<string, Tool> = {
         create: true,
       },
     },
+    outputSchema: createTransactionOutputSchema,
   },
 };
 

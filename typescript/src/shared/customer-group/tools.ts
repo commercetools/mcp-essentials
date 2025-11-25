@@ -13,6 +13,11 @@ import {
   updateCustomerGroupParameters,
 } from './parameters';
 
+import {
+  readCustomerGroupOutputSchema,
+  createCustomerGroupOutputSchema,
+  updateCustomerGroupOutputSchema,
+} from './output-schema';
 const tools: Record<string, Tool> = {
   read_customer_group: {
     method: 'read_customer_group',
@@ -29,6 +34,7 @@ const tools: Record<string, Tool> = {
         read: true,
       },
     },
+    outputSchema: readCustomerGroupOutputSchema,
   },
   create_customer_group: {
     method: 'create_customer_group',
@@ -45,6 +51,7 @@ const tools: Record<string, Tool> = {
         create: true,
       },
     },
+    outputSchema: createCustomerGroupOutputSchema,
   },
   update_customer_group: {
     method: 'update_customer_group',
@@ -61,6 +68,7 @@ const tools: Record<string, Tool> = {
         update: true,
       },
     },
+    outputSchema: updateCustomerGroupOutputSchema,
   },
 };
 

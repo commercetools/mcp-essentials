@@ -5,6 +5,11 @@ import {
   createQuoteParameters,
   updateQuoteParameters,
 } from './parameters';
+import {
+  readQuoteOutputSchema,
+  createQuoteOutputSchema,
+  updateQuoteOutputSchema,
+} from './output-schema';
 import {Tool} from '../../types/tools';
 import {z} from 'zod';
 import {Context} from '../../types/configuration';
@@ -25,6 +30,7 @@ const tools: Record<string, Tool> = {
         read: true,
       },
     },
+    outputSchema: readQuoteOutputSchema,
   },
   create_quote: {
     method: 'create_quote',
@@ -41,6 +47,7 @@ const tools: Record<string, Tool> = {
         create: true,
       },
     },
+    outputSchema: createQuoteOutputSchema,
   },
   update_quote: {
     method: 'update_quote',
@@ -57,6 +64,7 @@ const tools: Record<string, Tool> = {
         update: true,
       },
     },
+    outputSchema: updateQuoteOutputSchema,
   },
 };
 

@@ -9,6 +9,11 @@ import {
   createProductDiscountParameters,
   updateProductDiscountParameters,
 } from './parameters';
+import {
+  readProductDiscountOutputSchema,
+  createProductDiscountOutputSchema,
+  updateProductDiscountOutputSchema,
+} from './output-schema';
 import {Tool} from '../../types/tools';
 import {Context} from '../../types/configuration';
 
@@ -23,6 +28,7 @@ const tools: Record<string, Tool> = {
         read: true,
       },
     },
+    outputSchema: readProductDiscountOutputSchema,
   },
   create_product_discount: {
     method: 'create_product_discount',
@@ -34,6 +40,7 @@ const tools: Record<string, Tool> = {
         create: true,
       },
     },
+    outputSchema: createProductDiscountOutputSchema,
   },
   update_product_discount: {
     method: 'update_product_discount',
@@ -45,6 +52,7 @@ const tools: Record<string, Tool> = {
         update: true,
       },
     },
+    outputSchema: updateProductDiscountOutputSchema,
   },
 };
 

@@ -5,6 +5,11 @@ import {
   createStoreParameters,
   updateStoreParameters,
 } from './parameters';
+import {
+  readStoreOutputSchema,
+  createStoreOutputSchema,
+  updateStoreOutputSchema,
+} from './output-schema';
 import {Tool} from '../../types/tools';
 import {z} from 'zod';
 import {Context} from '../../types/configuration';
@@ -25,6 +30,7 @@ const tools: Record<string, Tool> = {
         read: true,
       },
     },
+    outputSchema: readStoreOutputSchema,
   },
   create_store: {
     method: 'create_store',
@@ -41,6 +47,7 @@ const tools: Record<string, Tool> = {
         create: true,
       },
     },
+    outputSchema: createStoreOutputSchema,
   },
   update_store: {
     method: 'update_store',
@@ -57,6 +64,7 @@ const tools: Record<string, Tool> = {
         update: true,
       },
     },
+    outputSchema: updateStoreOutputSchema,
   },
 };
 
