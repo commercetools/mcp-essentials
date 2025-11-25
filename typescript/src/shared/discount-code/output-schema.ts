@@ -1,8 +1,5 @@
 import {z} from 'zod';
 
-// Generated schemas for discount-code
-// DO NOT EDIT - This file is auto-generated
-
 // Base DiscountCode schema
 export const discountCodeSchema = z
   .object({

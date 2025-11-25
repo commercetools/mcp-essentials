@@ -1,8 +1,5 @@
 import {z} from 'zod';
 
-// Generated schemas for custom-objects
-// DO NOT EDIT - This file is auto-generated
-
 // Base CustomObject schema
 export const customObjectsSchema = z
   .object({

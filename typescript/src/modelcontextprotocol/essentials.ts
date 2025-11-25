@@ -14,7 +14,7 @@ import {Tool} from '../types/tools';
 import {contextToBulkTools} from '../shared/bulk/tools';
 import {DYNAMIC_TOOL_LOADING_THRESHOLD} from '../shared/constants';
 import {transformToolOutput} from './transform';
-import {transformTitle} from './transform/transformToolOutput';
+import {transfromOutputSchema} from './transform/transformToolOutput';
 
 class CommercetoolsAgentEssentials extends McpServer {
   private authConfig: AuthConfig;
@@ -174,14 +174,7 @@ class CommercetoolsAgentEssentials extends McpServer {
         description: tool.description,
         inputSchema: tool.parameters.shape,
         ...(this.configuration.context?.toolOutputFormat === 'json' &&
-          tool.outputSchema && {
-            outputSchema: z.object({
-              [transformTitle(tool.name)]: z.preprocess(
-                (val) => JSON.parse(val as string),
-                tool.outputSchema
-              ),
-            }).shape,
-          }),
+          transfromOutputSchema(tool)),
       },
       async (args: Record<string, unknown>) => {
         const result = await this.commercetoolsAPI.run(method, args, execute);

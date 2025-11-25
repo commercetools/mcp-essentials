@@ -1,8 +1,5 @@
 import {z} from 'zod';
 
-// Generated schemas for standalone-price
-// DO NOT EDIT - This file is auto-generated
-
 // Base StandalonePrice schema
 export const standalonePriceSchema = z
   .object({

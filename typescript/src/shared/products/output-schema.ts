@@ -1,8 +1,5 @@
 import {z} from 'zod';
 
-// Generated schemas for products
-// DO NOT EDIT - This file is auto-generated
-
 // Base ProductProjection schema
 export const productsSchema = z
   .object({

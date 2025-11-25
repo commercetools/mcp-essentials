@@ -1,8 +1,5 @@
 import {z} from 'zod';
 
-// Generated schemas for cart
-// DO NOT EDIT - This file is auto-generated
-
 // Base Cart schema
 export const cartSchema = z
   .object({

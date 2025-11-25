@@ -1,8 +1,5 @@
 import {z} from 'zod';
 
-// Generated schemas for order
-// DO NOT EDIT - This file is auto-generated
-
 // Base Order schema
 export const orderSchema = z
   .object({

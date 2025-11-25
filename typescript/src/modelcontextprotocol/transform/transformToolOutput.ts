@@ -1,5 +1,6 @@
+import {Tool} from '../../types/tools';
 import {transformPropertyName} from './transformPropertyName';
-
+import {z} from 'zod';
 const emptyObjectTransformValue = 'no properties';
 const emptyArrayTransformValue = 'none';
 
@@ -12,6 +13,28 @@ const generateTabs = (tabCount: number) => {
 };
 
 type Format = 'tabular' | 'json';
+
+/**
+ * Transforms the output schema of a tool to a JSON schema.
+ *
+ * @param {Tool} tool - The tool to transform the output schema of.
+ *
+ * @returns {Object} The transformed output schema.
+ */
+export const transfromOutputSchema = (tool: Tool) => {
+  if (!tool.outputSchema) {
+    return {};
+  }
+
+  return {
+    outputSchema: z.object({
+      [transformTitle(tool.name)]: z.preprocess(
+        (val) => JSON.parse(val as string),
+        tool.outputSchema
+      ),
+    }).shape,
+  };
+};
 
 /**
  * A method to strigify tool output into a LLM friendly and optimised format.
@@ -58,7 +81,7 @@ export const transformToolOutput = (args: {
     transformedData ?? emptyObjectTransformValue);
 };
 
-export const transformTitle = (title: string) =>
+const transformTitle = (title: string) =>
   `${transformPropertyName(title).toUpperCase()}`;
 
 /**

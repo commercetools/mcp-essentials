@@ -1,8 +1,5 @@
 import {z} from 'zod';
 
-// Generated schemas for recurring-orders
-// DO NOT EDIT - This file is auto-generated
-
 // Base RecurringOrder schema
 export const recurringOrdersSchema = z
   .object({

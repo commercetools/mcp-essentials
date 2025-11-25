@@ -1,8 +1,5 @@
 import {z} from 'zod';
 
-// Generated schemas for reviews
-// DO NOT EDIT - This file is auto-generated
-
 // Base Review schema
 export const reviewsSchema = z
   .object({

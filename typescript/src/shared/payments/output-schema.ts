@@ -1,8 +1,5 @@
 import {z} from 'zod';
 
-// Generated schemas for payments
-// DO NOT EDIT - This file is auto-generated
-
 // Base Payment schema
 export const paymentsSchema = z
   .object({

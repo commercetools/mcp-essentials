@@ -1,8 +1,5 @@
 import {z} from 'zod';
 
-// Generated schemas for category
-// DO NOT EDIT - This file is auto-generated
-
 // Base Category schema
 export const categorySchema = z
   .object({

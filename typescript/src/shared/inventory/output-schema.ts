@@ -1,8 +1,5 @@
 import {z} from 'zod';
 
-// Generated schemas for inventory
-// DO NOT EDIT - This file is auto-generated
-
 // Base InventoryEntry schema
 export const inventorySchema = z
   .object({

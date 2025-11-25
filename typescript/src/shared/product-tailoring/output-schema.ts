@@ -1,8 +1,5 @@
 import {z} from 'zod';
 
-// Generated schemas for product-tailoring
-// DO NOT EDIT - This file is auto-generated
-
 // Base ProductTailoring schema
 export const productTailoringSchema = z
   .object({

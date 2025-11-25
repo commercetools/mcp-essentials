@@ -1,8 +1,5 @@
 import {z} from 'zod';
 
-// Generated schemas for shipping-methods
-// DO NOT EDIT - This file is auto-generated
-
 // Base ShippingMethod schema
 export const shippingMethodsSchema = z
   .object({

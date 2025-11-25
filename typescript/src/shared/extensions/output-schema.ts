@@ -1,8 +1,5 @@
 import {z} from 'zod';
 
-// Generated schemas for extensions
-// DO NOT EDIT - This file is auto-generated
-
 // Base Extension schema
 export const extensionsSchema = z
   .object({

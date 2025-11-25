@@ -1,8 +1,5 @@
 import {z} from 'zod';
 
-// Generated schemas for store
-// DO NOT EDIT - This file is auto-generated
-
 // Base Store schema
 export const storeSchema = z
   .object({

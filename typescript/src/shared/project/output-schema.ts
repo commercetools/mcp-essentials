@@ -1,8 +1,5 @@
 import {z} from 'zod';
 
-// Generated schemas for project
-// DO NOT EDIT - This file is auto-generated
-
 // Base Project schema
 export const projectSchema = z
   .object({

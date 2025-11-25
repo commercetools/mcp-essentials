@@ -1,8 +1,5 @@
 import {z} from 'zod';
 
-// Generated schemas for channel
-// DO NOT EDIT - This file is auto-generated
-
 // Base Channel schema
 export const channelSchema = z
   .object({

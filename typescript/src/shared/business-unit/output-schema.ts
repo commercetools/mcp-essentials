@@ -1,8 +1,5 @@
 import {z} from 'zod';
 
-// Generated schemas for business-unit
-// DO NOT EDIT - This file is auto-generated
-
 // Base BusinessUnit schema
 export const businessUnitSchema = z.union([z.any(), z.any()]);
 

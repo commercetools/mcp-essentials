@@ -1,8 +1,5 @@
 import {z} from 'zod';
 
-// Generated schemas for subscriptions
-// DO NOT EDIT - This file is auto-generated
-
 // Base Subscription schema
 export const subscriptionsSchema = z
   .object({

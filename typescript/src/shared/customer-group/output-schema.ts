@@ -1,8 +1,5 @@
 import {z} from 'zod';
 
-// Generated schemas for customer-group
-// DO NOT EDIT - This file is auto-generated
-
 // Base CustomerGroup schema
 export const customerGroupSchema = z
   .object({

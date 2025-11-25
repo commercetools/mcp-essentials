@@ -1,8 +1,5 @@
 import {z} from 'zod';
 
-// Generated schemas for transactions
-// DO NOT EDIT - This file is auto-generated
-
 // Base Transaction schema
 export const transactionsSchema = z
   .object({

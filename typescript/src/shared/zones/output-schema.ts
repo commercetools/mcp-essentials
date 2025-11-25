@@ -1,8 +1,5 @@
 import {z} from 'zod';
 
-// Generated schemas for zones
-// DO NOT EDIT - This file is auto-generated
-
 // Base Zone schema
 export const zonesSchema = z
   .object({

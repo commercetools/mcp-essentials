@@ -1,8 +1,5 @@
 import {z} from 'zod';
 
-// Generated schemas for cart-discount
-// DO NOT EDIT - This file is auto-generated
-
 // Base CartDiscount schema
 export const cartDiscountSchema = z
   .object({

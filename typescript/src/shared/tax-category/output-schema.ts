@@ -1,8 +1,5 @@
 import {z} from 'zod';
 
-// Generated schemas for tax-category
-// DO NOT EDIT - This file is auto-generated
-
 // Base TaxCategory schema
 export const taxCategorySchema = z
   .object({

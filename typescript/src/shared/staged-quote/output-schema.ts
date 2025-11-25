@@ -1,8 +1,5 @@
 import {z} from 'zod';
 
-// Generated schemas for staged-quote
-// DO NOT EDIT - This file is auto-generated
-
 // Base StagedQuote schema
 export const stagedQuoteSchema = z
   .object({

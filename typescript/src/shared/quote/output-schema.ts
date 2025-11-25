@@ -1,8 +1,5 @@
 import {z} from 'zod';
 
-// Generated schemas for quote
-// DO NOT EDIT - This file is auto-generated
-
 // Base Quote schema
 export const quoteSchema = z
   .object({
