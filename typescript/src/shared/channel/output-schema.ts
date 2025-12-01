@@ -31,6 +31,6 @@ export const channelPagedSchema = z
   })
   .strict();
 
-export const readChannelOutputSchema = channelSchema || channelPagedSchema;
+export const readChannelOutputSchema = z.union([channelSchema, channelPagedSchema]);
 export const createChannelOutputSchema = channelSchema;
 export const updateChannelOutputSchema = channelSchema;

@@ -1,0 +1,142 @@
+{
+  "limit": 3,
+  "offset": 0,
+  "count": 3,
+  "total": 162,
+  "results": [
+    {
+      "id": "942de367-3337-45cf-8552-87f3dc1447f5",
+      "version": 5,
+      "versionModifiedAt": "2023-09-13T15:45:33.339Z",
+      "lastMessageSequenceNumber": 3,
+      "createdAt": "2022-09-19T19:53:38.369Z",
+      "lastModifiedAt": "2023-01-04T18:59:04.423Z",
+      "lastModifiedBy": {
+        "clientId": "fnpedlR_fvQNBbvM4XvBvNcO",
+        "isPlatformClient": false
+      },
+      "createdBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "cf7f6e32-2446-46a3-b05d-c705bb2c0d0e"
+        }
+      },
+      "key": "store1",
+      "name": {
+        "en-US": "Store 1"
+      },
+      "languages": [],
+      "distributionChannels": [
+        {
+          "typeId": "channel",
+          "id": "94f0286e-c720-400e-aff8-5e41422309d9"
+        }
+      ],
+      "supplyChannels": [
+        {
+          "typeId": "channel",
+          "id": "94f0286e-c720-400e-aff8-5e41422309d9"
+        }
+      ],
+      "custom": {
+        "type": {
+          "typeId": "type",
+          "id": "d4975219-9a37-42f7-a697-17b0baaf2ae6"
+        },
+        "fields": {
+          "rootCategory": {
+            "typeId": "category",
+            "id": "1e50afe7-4d56-4576-b76d-f6239201b570"
+          }
+        }
+      },
+      "productSelections": [],
+      "countries": []
+    },
+    {
+      "id": "220bf12e-7a4b-4f85-9b37-166d296cf891",
+      "version": 3,
+      "versionModifiedAt": "2023-09-13T15:45:33.338Z",
+      "lastMessageSequenceNumber": 1,
+      "createdAt": "2022-09-21T21:53:07.936Z",
+      "lastModifiedAt": "2023-01-04T18:59:04.562Z",
+      "lastModifiedBy": {
+        "clientId": "fnpedlR_fvQNBbvM4XvBvNcO",
+        "isPlatformClient": false
+      },
+      "createdBy": {
+        "clientId": "pyWxXbSIBd1w8cs0VH0RVAcv",
+        "isPlatformClient": false
+      },
+      "key": "store_vandelay_industries",
+      "name": {
+        "en-US": "Vandelay Industries"
+      },
+      "languages": [],
+      "distributionChannels": [],
+      "supplyChannels": [],
+      "custom": {
+        "type": {
+          "typeId": "type",
+          "id": "d4975219-9a37-42f7-a697-17b0baaf2ae6"
+        },
+        "fields": {
+          "rootCategory": {
+            "typeId": "category",
+            "id": "1e50afe7-4d56-4576-b76d-f6239201b570"
+          }
+        }
+      },
+      "productSelections": [],
+      "countries": []
+    },
+    {
+      "id": "642fb219-2c9b-47d1-a33c-017a6d4d882f",
+      "version": 3,
+      "versionModifiedAt": "2023-09-13T15:45:33.339Z",
+      "lastMessageSequenceNumber": 1,
+      "createdAt": "2022-09-22T20:42:35.882Z",
+      "lastModifiedAt": "2023-01-04T18:59:04.746Z",
+      "lastModifiedBy": {
+        "clientId": "fnpedlR_fvQNBbvM4XvBvNcO",
+        "isPlatformClient": false
+      },
+      "createdBy": {
+        "clientId": "pyWxXbSIBd1w8cs0VH0RVAcv",
+        "isPlatformClient": false
+      },
+      "key": "store_qwe",
+      "name": {
+        "en-US": "qwe"
+      },
+      "languages": [],
+      "distributionChannels": [
+        {
+          "typeId": "channel",
+          "id": "94f0286e-c720-400e-aff8-5e41422309d9"
+        }
+      ],
+      "supplyChannels": [
+        {
+          "typeId": "channel",
+          "id": "94f0286e-c720-400e-aff8-5e41422309d9"
+        }
+      ],
+      "custom": {
+        "type": {
+          "typeId": "type",
+          "id": "d4975219-9a37-42f7-a697-17b0baaf2ae6"
+        },
+        "fields": {
+          "rootCategory": {
+            "typeId": "category",
+            "id": "1e50afe7-4d56-4576-b76d-f6239201b570"
+          }
+        }
+      },
+      "productSelections": [],
+      "countries": []
+    }
+  ]
+}

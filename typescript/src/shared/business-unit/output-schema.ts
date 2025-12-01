@@ -1,7 +1,14 @@
 import {z} from 'zod';
 
 // Base BusinessUnit schema
-export const businessUnitSchema = z.union([z.any(), z.any()]);
+export const businessUnitSchema = z.object({
+  id: z.string(),
+  version: z.number(),
+  createdAt: z.string(),
+  lastModifiedAt: z.string(),
+  lastModifiedBy: z.any().optional(),
+  createdBy: z.any().optional(),
+});
 
 // Paged BusinessUnitPagedQueryResponse schema
 export const businessUnitPagedSchema = z
@@ -14,8 +21,7 @@ export const businessUnitPagedSchema = z
   })
   .strict();
 
-export const readBusinessUnitOutputSchema =
-  businessUnitSchema || businessUnitPagedSchema;
+export const readBusinessUnitOutputSchema = z.union([businessUnitSchema, businessUnitPagedSchema]);
 
 export const createBusinessUnitOutputSchema = businessUnitSchema;
 export const updateBusinessUnitOutputSchema = businessUnitSchema;

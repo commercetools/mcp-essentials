@@ -1,0 +1,797 @@
+{
+  "limit": 3,
+  "offset": 0,
+  "count": 3,
+  "total": 32,
+  "results": [
+    {
+      "id": "00fec3ef-6ca0-4d02-94da-33238f7bca94",
+      "version": 3,
+      "versionModifiedAt": "2023-09-13T15:45:33.287Z",
+      "createdAt": "2022-09-16T16:21:25.023Z",
+      "lastModifiedAt": "2022-09-30T15:33:30.556Z",
+      "lastModifiedBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "dedf67a6-f66d-4baf-81b7-ea6ba36e748f"
+        }
+      },
+      "createdBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "cf7f6e32-2446-46a3-b05d-c705bb2c0d0e"
+        }
+      },
+      "name": "Desktops",
+      "description": "Desktops",
+      "classifier": "Complex",
+      "attributes": [
+        {
+          "name": "config",
+          "label": {
+            "en-US": "Config"
+          },
+          "inputTip": {
+            "en-US": "device configuration"
+          },
+          "isRequired": false,
+          "type": {
+            "name": "text"
+          },
+          "attributeConstraint": "Unique",
+          "isSearchable": true,
+          "inputHint": "SingleLine",
+          "displayGroup": "Other",
+          "level": "Variant"
+        }
+      ],
+      "key": "desktops"
+    },
+    {
+      "id": "7c8a90ff-4d2d-457e-afcf-0d6330276d0c",
+      "version": 61,
+      "versionModifiedAt": "2024-05-08T22:30:23.566Z",
+      "createdAt": "2022-10-13T18:15:50.081Z",
+      "lastModifiedAt": "2024-05-08T22:30:23.566Z",
+      "lastModifiedBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "f372e4e3-4a11-469d-807a-d3622d00da99"
+        }
+      },
+      "createdBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "cf7f6e32-2446-46a3-b05d-c705bb2c0d0e"
+        }
+      },
+      "name": "Default",
+      "description": "Default",
+      "classifier": "Complex",
+      "attributes": [
+        {
+          "name": "prescription",
+          "label": {
+            "en-US": "isRX"
+          },
+          "inputTip": {
+            "en-US": "Requires a prescription"
+          },
+          "isRequired": false,
+          "type": {
+            "name": "boolean"
+          },
+          "attributeConstraint": "SameForAll",
+          "isSearchable": true,
+          "inputHint": "SingleLine",
+          "displayGroup": "Other",
+          "level": "Variant"
+        },
+        {
+          "name": "manufacturer-number",
+          "label": {
+            "en-US": "Manufacturer Number"
+          },
+          "inputTip": {
+            "en-US": ""
+          },
+          "isRequired": false,
+          "type": {
+            "name": "text"
+          },
+          "attributeConstraint": "SameForAll",
+          "isSearchable": true,
+          "inputHint": "SingleLine",
+          "displayGroup": "Other",
+          "level": "Variant"
+        },
+        {
+          "name": "brand",
+          "label": {
+            "en-US": "Brand"
+          },
+          "inputTip": {
+            "en-US": ""
+          },
+          "isRequired": false,
+          "type": {
+            "name": "enum",
+            "values": [
+              {
+                "key": "wholesale",
+                "label": "Wholesale"
+              },
+              {
+                "key": "privateLabel",
+                "label": "Private Label"
+              }
+            ]
+          },
+          "attributeConstraint": "SameForAll",
+          "isSearchable": true,
+          "inputHint": "SingleLine",
+          "displayGroup": "Other",
+          "level": "Variant"
+        },
+        {
+          "name": "narcotic",
+          "label": {
+            "en-US": "isNarcotic"
+          },
+          "inputTip": {
+            "en-US": ""
+          },
+          "isRequired": false,
+          "type": {
+            "name": "boolean"
+          },
+          "attributeConstraint": "SameForAll",
+          "isSearchable": true,
+          "inputHint": "SingleLine",
+          "displayGroup": "Other",
+          "level": "Variant"
+        },
+        {
+          "name": "product-alert-text",
+          "label": {
+            "en-US": "Alert Text"
+          },
+          "inputTip": {
+            "en-US": ""
+          },
+          "isRequired": false,
+          "type": {
+            "name": "text"
+          },
+          "attributeConstraint": "None",
+          "isSearchable": false,
+          "inputHint": "SingleLine",
+          "displayGroup": "Other",
+          "level": "Variant"
+        },
+        {
+          "name": "salesRank",
+          "label": {
+            "en-US": "Sales Rank"
+          },
+          "inputTip": {
+            "en-US": ""
+          },
+          "isRequired": false,
+          "type": {
+            "name": "number"
+          },
+          "attributeConstraint": "SameForAll",
+          "isSearchable": true,
+          "inputHint": "SingleLine",
+          "displayGroup": "Other",
+          "level": "Variant"
+        },
+        {
+          "name": "taste",
+          "label": {
+            "en-US": "Taste"
+          },
+          "inputTip": {
+            "en-US": ""
+          },
+          "isRequired": false,
+          "type": {
+            "name": "text"
+          },
+          "attributeConstraint": "CombinationUnique",
+          "isSearchable": false,
+          "inputHint": "SingleLine",
+          "displayGroup": "Other",
+          "level": "Variant"
+        },
+        {
+          "name": "return-eligible",
+          "label": {
+            "fr": "",
+            "en-GB": "",
+            "de": "",
+            "en-US": "Return Eligible",
+            "fr-CA": ""
+          },
+          "inputTip": {
+            "fr": "",
+            "en-GB": "",
+            "de": "",
+            "en-US": "",
+            "fr-CA": ""
+          },
+          "isRequired": false,
+          "type": {
+            "name": "boolean"
+          },
+          "attributeConstraint": "SameForAll",
+          "isSearchable": false,
+          "inputHint": "SingleLine",
+          "displayGroup": "Other",
+          "level": "Variant"
+        },
+        {
+          "name": "variant-selector-attributes",
+          "label": {
+            "en-US": "Variant selector attributes"
+          },
+          "inputTip": {
+            "en-US": "Set of ordered attribute names which is used for displaying variant selector in FE"
+          },
+          "isRequired": false,
+          "type": {
+            "name": "set",
+            "elementType": {
+              "name": "text"
+            }
+          },
+          "attributeConstraint": "SameForAll",
+          "isSearchable": false,
+          "inputHint": "SingleLine",
+          "displayGroup": "Other",
+          "level": "Variant"
+        },
+        {
+          "name": "package-size",
+          "label": {
+            "en-US": "Package size"
+          },
+          "inputTip": {
+            "en-US": ""
+          },
+          "isRequired": false,
+          "type": {
+            "name": "number"
+          },
+          "attributeConstraint": "CombinationUnique",
+          "isSearchable": false,
+          "inputHint": "SingleLine",
+          "displayGroup": "Other",
+          "level": "Variant"
+        },
+        {
+          "name": "test-att-enum",
+          "label": {
+            "en-US": "Just a test att"
+          },
+          "inputTip": {
+            "en-US": ""
+          },
+          "isRequired": false,
+          "type": {
+            "name": "enum",
+            "values": [
+              {
+                "key": "Foo",
+                "label": "Bar"
+              },
+              {
+                "key": "Foo1",
+                "label": "Bar1"
+              }
+            ]
+          },
+          "attributeConstraint": "CombinationUnique",
+          "isSearchable": false,
+          "inputHint": "SingleLine",
+          "displayGroup": "Other",
+          "level": "Variant"
+        },
+        {
+          "name": "color",
+          "label": {
+            "en-US": "Color"
+          },
+          "inputTip": {
+            "en-US": ""
+          },
+          "isRequired": false,
+          "type": {
+            "name": "enum",
+            "values": [
+              {
+                "key": "gray",
+                "label": "Gray"
+              },
+              {
+                "key": "blue",
+                "label": "Blue"
+              },
+              {
+                "key": "green",
+                "label": "Green"
+              }
+            ]
+          },
+          "attributeConstraint": "CombinationUnique",
+          "isSearchable": false,
+          "inputHint": "SingleLine",
+          "displayGroup": "Other",
+          "level": "Variant"
+        },
+        {
+          "name": "release-date",
+          "label": {
+            "en-US": "Release date"
+          },
+          "inputTip": {
+            "en-US": ""
+          },
+          "isRequired": false,
+          "type": {
+            "name": "date"
+          },
+          "attributeConstraint": "SameForAll",
+          "isSearchable": false,
+          "inputHint": "SingleLine",
+          "displayGroup": "Other",
+          "level": "Variant"
+        },
+        {
+          "name": "subscription",
+          "label": {
+            "en-US": "Subscription"
+          },
+          "inputTip": {
+            "en-US": ""
+          },
+          "isRequired": false,
+          "type": {
+            "name": "reference",
+            "referenceTypeId": "product"
+          },
+          "attributeConstraint": "SameForAll",
+          "isSearchable": false,
+          "inputHint": "SingleLine",
+          "displayGroup": "Other",
+          "level": "Variant"
+        },
+        {
+          "name": "fabric",
+          "label": {
+            "en-US": "Fabric"
+          },
+          "inputTip": {
+            "en-US": ""
+          },
+          "isRequired": false,
+          "type": {
+            "name": "text"
+          },
+          "attributeConstraint": "SameForAll",
+          "isSearchable": false,
+          "inputHint": "MultiLine",
+          "displayGroup": "Other",
+          "level": "Variant"
+        },
+        {
+          "name": "retailPrice",
+          "label": {
+            "en-US": "Retail Price"
+          },
+          "inputTip": {
+            "en-US": ""
+          },
+          "isRequired": false,
+          "type": {
+            "name": "text"
+          },
+          "attributeConstraint": "SameForAll",
+          "isSearchable": false,
+          "inputHint": "SingleLine",
+          "displayGroup": "Other",
+          "level": "Variant"
+        },
+        {
+          "name": "whyMade",
+          "label": {
+            "en-US": "Why we made this"
+          },
+          "inputTip": {
+            "en-US": ""
+          },
+          "isRequired": false,
+          "type": {
+            "name": "text"
+          },
+          "attributeConstraint": "SameForAll",
+          "isSearchable": false,
+          "inputHint": "MultiLine",
+          "displayGroup": "Other",
+          "level": "Variant"
+        },
+        {
+          "name": "care",
+          "label": {
+            "en-US": "Care"
+          },
+          "inputTip": {
+            "en-US": ""
+          },
+          "isRequired": false,
+          "type": {
+            "name": "text"
+          },
+          "attributeConstraint": "SameForAll",
+          "isSearchable": false,
+          "inputHint": "MultiLine",
+          "displayGroup": "Other",
+          "level": "Variant"
+        },
+        {
+          "name": "defaultVariant",
+          "label": {
+            "en-US": "Default Variant (for PLP)"
+          },
+          "inputTip": {
+            "en-US": ""
+          },
+          "isRequired": false,
+          "type": {
+            "name": "text"
+          },
+          "attributeConstraint": "SameForAll",
+          "isSearchable": false,
+          "inputHint": "SingleLine",
+          "displayGroup": "Other",
+          "level": "Variant"
+        },
+        {
+          "name": "attribute-product-item-weight",
+          "label": {
+            "en-US": "Item Weight"
+          },
+          "inputTip": {
+            "en-US": "Item Weight"
+          },
+          "isRequired": false,
+          "type": {
+            "name": "number"
+          },
+          "attributeConstraint": "SameForAll",
+          "isSearchable": false,
+          "inputHint": "SingleLine",
+          "displayGroup": "Other",
+          "level": "Variant"
+        },
+        {
+          "name": "size_l",
+          "label": {
+            "af": "",
+            "en-GB": "",
+            "en-US": "size",
+            "es-MX": ""
+          },
+          "inputTip": {
+            "af": "",
+            "en-GB": "",
+            "en-US": "size",
+            "es-MX": ""
+          },
+          "isRequired": false,
+          "type": {
+            "name": "text"
+          },
+          "attributeConstraint": "CombinationUnique",
+          "isSearchable": false,
+          "inputHint": "SingleLine",
+          "displayGroup": "Other",
+          "level": "Variant"
+        },
+        {
+          "name": "configurable",
+          "label": {
+            "af": "",
+            "en-GB": "",
+            "en-US": "Configurable",
+            "es-MX": ""
+          },
+          "inputTip": {
+            "af": "",
+            "en-GB": "",
+            "en-US": "",
+            "es-MX": ""
+          },
+          "isRequired": false,
+          "type": {
+            "name": "boolean"
+          },
+          "attributeConstraint": "SameForAll",
+          "isSearchable": false,
+          "inputHint": "SingleLine",
+          "displayGroup": "Other",
+          "level": "Variant"
+        },
+        {
+          "name": "components",
+          "label": {
+            "af": "",
+            "en-GB": "",
+            "en-US": "Components",
+            "es-MX": ""
+          },
+          "inputTip": {
+            "af": "",
+            "en-GB": "",
+            "en-US": "",
+            "es-MX": ""
+          },
+          "isRequired": false,
+          "type": {
+            "name": "set",
+            "elementType": {
+              "name": "reference",
+              "referenceTypeId": "product"
+            }
+          },
+          "attributeConstraint": "SameForAll",
+          "isSearchable": false,
+          "inputHint": "SingleLine",
+          "displayGroup": "Other",
+          "level": "Variant"
+        },
+        {
+          "name": "alternative-product",
+          "label": {
+            "af": "",
+            "en-GB": "",
+            "en-US": "Alternatives",
+            "es-MX": ""
+          },
+          "inputTip": {
+            "af": "",
+            "en-GB": "",
+            "en-US": "",
+            "es-MX": ""
+          },
+          "isRequired": false,
+          "type": {
+            "name": "set",
+            "elementType": {
+              "name": "reference",
+              "referenceTypeId": "product"
+            }
+          },
+          "attributeConstraint": "SameForAll",
+          "isSearchable": false,
+          "inputHint": "SingleLine",
+          "displayGroup": "Other",
+          "level": "Variant"
+        },
+        {
+          "name": "minimo",
+          "label": {
+            "en-GB": "",
+            "en-US": "",
+            "es-MX": "Minimo"
+          },
+          "inputTip": {
+            "en-GB": "",
+            "en-US": "",
+            "es-MX": ""
+          },
+          "isRequired": false,
+          "type": {
+            "name": "number"
+          },
+          "attributeConstraint": "None",
+          "isSearchable": false,
+          "inputHint": "SingleLine",
+          "displayGroup": "Other",
+          "level": "Variant"
+        },
+        {
+          "name": "Service",
+          "label": {
+            "en-GB": "",
+            "en-US": "Service",
+            "es-MX": ""
+          },
+          "inputTip": {
+            "en-GB": "",
+            "en-US": "",
+            "es-MX": ""
+          },
+          "isRequired": false,
+          "type": {
+            "name": "text"
+          },
+          "attributeConstraint": "Unique",
+          "isSearchable": false,
+          "inputHint": "SingleLine",
+          "displayGroup": "Other",
+          "level": "Variant"
+        }
+      ],
+      "key": "default"
+    },
+    {
+      "id": "a4eebec3-5060-48f0-a567-23b2734e3ef4",
+      "version": 15,
+      "versionModifiedAt": "2023-09-13T15:45:33.287Z",
+      "createdAt": "2022-11-08T13:04:36.007Z",
+      "lastModifiedAt": "2023-02-09T16:39:34.536Z",
+      "lastModifiedBy": {
+        "isPlatformClient": true
+      },
+      "createdBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "147fa1f6-e486-4d55-826a-dac81b0f17f3"
+        }
+      },
+      "name": "Medical Supplies",
+      "description": "Medical Supplies",
+      "classifier": "Complex",
+      "attributes": [
+        {
+          "name": "Manufacturer",
+          "label": {
+            "en-US": "Manufacturer"
+          },
+          "inputTip": {
+            "en-US": ""
+          },
+          "isRequired": true,
+          "type": {
+            "name": "text"
+          },
+          "attributeConstraint": "SameForAll",
+          "isSearchable": true,
+          "inputHint": "SingleLine",
+          "displayGroup": "Other",
+          "level": "Variant"
+        },
+        {
+          "name": "Measurement",
+          "label": {
+            "en-US": "Measurement"
+          },
+          "inputTip": {
+            "en-US": ""
+          },
+          "isRequired": false,
+          "type": {
+            "name": "text"
+          },
+          "attributeConstraint": "None",
+          "isSearchable": false,
+          "inputHint": "SingleLine",
+          "displayGroup": "Other",
+          "level": "Variant"
+        },
+        {
+          "name": "Usage",
+          "label": {
+            "en-US": "Usage"
+          },
+          "inputTip": {
+            "en-US": ""
+          },
+          "isRequired": false,
+          "type": {
+            "name": "text"
+          },
+          "attributeConstraint": "None",
+          "isSearchable": false,
+          "inputHint": "SingleLine",
+          "displayGroup": "Other",
+          "level": "Variant"
+        },
+        {
+          "name": "Haz_Mat",
+          "label": {
+            "en-US": "Hazardous Material"
+          },
+          "inputTip": {
+            "en-US": ""
+          },
+          "isRequired": true,
+          "type": {
+            "name": "boolean"
+          },
+          "attributeConstraint": "SameForAll",
+          "isSearchable": true,
+          "inputHint": "SingleLine",
+          "displayGroup": "Other",
+          "level": "Variant"
+        },
+        {
+          "name": "UoM",
+          "label": {
+            "en-US": "Unit of Measure"
+          },
+          "inputTip": {
+            "en-US": ""
+          },
+          "isRequired": true,
+          "type": {
+            "name": "text"
+          },
+          "attributeConstraint": "CombinationUnique",
+          "isSearchable": true,
+          "inputHint": "SingleLine",
+          "displayGroup": "Other",
+          "level": "Variant"
+        },
+        {
+          "name": "Color",
+          "label": {
+            "en-US": "Color"
+          },
+          "inputTip": {
+            "en-US": ""
+          },
+          "isRequired": false,
+          "type": {
+            "name": "enum",
+            "values": [
+              {
+                "key": "Blue",
+                "label": "Blue"
+              },
+              {
+                "key": "White",
+                "label": "White"
+              },
+              {
+                "key": "Clear",
+                "label": "Clear"
+              }
+            ]
+          },
+          "attributeConstraint": "CombinationUnique",
+          "isSearchable": true,
+          "inputHint": "SingleLine",
+          "displayGroup": "Other",
+          "level": "Variant"
+        },
+        {
+          "name": "subscription",
+          "label": {
+            "en-US": "Subscription"
+          },
+          "inputTip": {
+            "en-US": ""
+          },
+          "isRequired": false,
+          "type": {
+            "name": "reference",
+            "referenceTypeId": "product"
+          },
+          "attributeConstraint": "SameForAll",
+          "isSearchable": false,
+          "inputHint": "SingleLine",
+          "displayGroup": "Other",
+          "level": "Variant"
+        }
+      ]
+    }
+  ]
+}

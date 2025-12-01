@@ -27,7 +27,6 @@ export const taxCategoryPagedSchema = z
   })
   .strict();
 
-export const readTaxCategoryOutputSchema =
-  taxCategorySchema || taxCategoryPagedSchema;
+export const readTaxCategoryOutputSchema = z.union([taxCategorySchema, taxCategoryPagedSchema]);
 export const createTaxCategoryOutputSchema = taxCategorySchema;
 export const updateTaxCategoryOutputSchema = taxCategorySchema;

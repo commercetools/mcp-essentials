@@ -1,0 +1,804 @@
+{
+  "limit": 3,
+  "offset": 0,
+  "count": 3,
+  "total": 751,
+  "results": [
+    {
+      "type": "Order",
+      "id": "ede78e22-c5b2-4679-a2ea-8b7a68ac4a24",
+      "version": 5,
+      "versionModifiedAt": "2024-02-15T19:28:15.558Z",
+      "lastMessageSequenceNumber": 4,
+      "createdAt": "2022-10-18T12:40:15.338Z",
+      "lastModifiedAt": "2024-02-15T19:28:15.558Z",
+      "lastModifiedBy": {
+        "clientId": "fnpedlR_fvQNBbvM4XvBvNcO",
+        "isPlatformClient": false
+      },
+      "createdBy": {
+        "clientId": "pyWxXbSIBd1w8cs0VH0RVAcv",
+        "isPlatformClient": false
+      },
+      "orderNumber": "67ed5eec-1398-48d7-944e-76de03d3c45e",
+      "customerId": "6c169f06-34b3-4c48-bbde-6da224c9768f",
+      "customerEmail": "adi@das.com",
+      "locale": "en-US",
+      "totalPrice": {
+        "type": "centPrecision",
+        "currencyCode": "USD",
+        "centAmount": 7300,
+        "fractionDigits": 2
+      },
+      "taxedPrice": {
+        "totalNet": {
+          "type": "centPrecision",
+          "currencyCode": "USD",
+          "centAmount": 7300,
+          "fractionDigits": 2
+        },
+        "totalGross": {
+          "type": "centPrecision",
+          "currencyCode": "USD",
+          "centAmount": 8030,
+          "fractionDigits": 2
+        },
+        "taxPortions": [
+          {
+            "rate": 0.1,
+            "amount": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 730,
+              "fractionDigits": 2
+            },
+            "name": "standard"
+          }
+        ],
+        "totalTax": {
+          "type": "centPrecision",
+          "currencyCode": "USD",
+          "centAmount": 730,
+          "fractionDigits": 2
+        }
+      },
+      "country": "US",
+      "orderState": "Open",
+      "syncInfo": [],
+      "returnInfo": [],
+      "priceRoundingMode": "HalfEven",
+      "taxMode": "Platform",
+      "inventoryMode": "ReserveOnOrder",
+      "taxRoundingMode": "HalfEven",
+      "taxCalculationMode": "LineItemLevel",
+      "origin": "Customer",
+      "shippingMode": "Single",
+      "shippingAddress": {
+        "id": "1st-shipping-address",
+        "firstName": "Main",
+        "lastName": "Branch",
+        "streetName": "1 A",
+        "postalCode": "12354",
+        "city": "Buuuu",
+        "country": "US"
+      },
+      "shipping": [],
+      "discountTypeCombination": {
+        "type": "Stacking"
+      },
+      "lineItems": [
+        {
+          "id": "78bb1b3f-90b2-45f4-aca2-8cdec1a7207e",
+          "productId": "40f749bc-1df8-4cda-98da-5c441c10780e",
+          "productKey": "B074V2Y5ZJ",
+          "productType": {
+            "typeId": "product-type",
+            "id": "7c8a90ff-4d2d-457e-afcf-0d6330276d0c",
+            "version": 1
+          },
+          "productSlug": {
+            "en-US": "Tylenol-Extra-Strength-Rapid-Release"
+          },
+          "name": {
+            "en-US": "Tylenol Extra Strength Rapid Release Gels 500 mg - Value Size 2 Pack ( 290 Count Each )"
+          },
+          "variant": {
+            "id": 1,
+            "sku": "B074V2Y5ZJ-1",
+            "prices": [
+              {
+                "id": "e09fd88d-6ef1-4467-8372-eaa1c261b455",
+                "value": {
+                  "type": "centPrecision",
+                  "currencyCode": "USD",
+                  "centAmount": 4700,
+                  "fractionDigits": 2
+                }
+              }
+            ],
+            "images": [
+              {
+                "url": "https://efa2cc0dcbc20c919217-dbc413f6fc6aec98e00c8f16a9b5af63.ssl.cf1.rackcdn.com/718IC-nNM+L._AC_SX42-Kk29cPtv.jpg",
+                "dimensions": {
+                  "w": 425,
+                  "h": 240
+                }
+              }
+            ],
+            "attributes": [],
+            "assets": [],
+            "availability": {
+              "isOnStock": true,
+              "restockableInDays": 7,
+              "availableQuantity": 101,
+              "version": 1,
+              "id": "d97f6474-21d8-4995-88aa-613c9f4e723e"
+            }
+          },
+          "price": {
+            "id": "e09fd88d-6ef1-4467-8372-eaa1c261b455",
+            "value": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 4700,
+              "fractionDigits": 2
+            }
+          },
+          "quantity": 1,
+          "discountedPricePerQuantity": [],
+          "distributionChannel": {
+            "typeId": "channel",
+            "id": "04b3d1df-ef8a-4e56-abbf-2eb87d6d85a6"
+          },
+          "taxRate": {
+            "name": "standard",
+            "amount": 0.1,
+            "includedInPrice": false,
+            "country": "US",
+            "id": "z821AAA9",
+            "subRates": []
+          },
+          "perMethodTaxRate": [],
+          "addedAt": "2022-10-13T20:36:39.681Z",
+          "lastModifiedAt": "2022-10-13T20:36:39.681Z",
+          "state": [
+            {
+              "quantity": 1,
+              "state": {
+                "typeId": "state",
+                "id": "0bf0a49d-ef00-4576-8e0c-9e26486adce2"
+              }
+            }
+          ],
+          "priceMode": "Platform",
+          "lineItemMode": "Standard",
+          "priceRoundingMode": "HalfEven",
+          "totalPrice": {
+            "type": "centPrecision",
+            "currencyCode": "USD",
+            "centAmount": 4700,
+            "fractionDigits": 2
+          },
+          "taxedPrice": {
+            "totalNet": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 4700,
+              "fractionDigits": 2
+            },
+            "totalGross": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 5170,
+              "fractionDigits": 2
+            },
+            "taxPortions": [],
+            "totalTax": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 470,
+              "fractionDigits": 2
+            }
+          },
+          "taxedPricePortions": []
+        },
+        {
+          "id": "5deeb070-5f50-4698-8f3a-98e1c0c9e449",
+          "productId": "4ca24a28-ac53-407c-bc5c-63065986fec5",
+          "productKey": "B00EHNC5TK",
+          "productType": {
+            "typeId": "product-type",
+            "id": "7c8a90ff-4d2d-457e-afcf-0d6330276d0c",
+            "version": 1
+          },
+          "productSlug": {
+            "en-US": "Tylenol-Arthritis-Caplets-Bottle-Acetaminophen"
+          },
+          "name": {
+            "en-US": "Tylenol Arthritis Pain 250 Caplets Bottle, 650mg Acetaminophen"
+          },
+          "variant": {
+            "id": 1,
+            "sku": "B00EHNC5TK-1",
+            "prices": [
+              {
+                "id": "dafccbf3-b463-454d-ba46-76c7d56458bf",
+                "value": {
+                  "type": "centPrecision",
+                  "currencyCode": "USD",
+                  "centAmount": 2600,
+                  "fractionDigits": 2
+                }
+              }
+            ],
+            "images": [
+              {
+                "url": "https://efa2cc0dcbc20c919217-dbc413f6fc6aec98e00c8f16a9b5af63.ssl.cf1.rackcdn.com/61RVkomhteL._AC_SX42-YzmTqGg3.jpg",
+                "dimensions": {
+                  "w": 425,
+                  "h": 707
+                }
+              }
+            ],
+            "attributes": [],
+            "assets": [],
+            "availability": {
+              "isOnStock": true,
+              "restockableInDays": 7,
+              "availableQuantity": 101,
+              "version": 1,
+              "id": "9a9f7d90-704f-4724-8b78-8fd279e74ed7"
+            }
+          },
+          "price": {
+            "id": "dafccbf3-b463-454d-ba46-76c7d56458bf",
+            "value": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 2600,
+              "fractionDigits": 2
+            }
+          },
+          "quantity": 1,
+          "discountedPricePerQuantity": [],
+          "distributionChannel": {
+            "typeId": "channel",
+            "id": "04b3d1df-ef8a-4e56-abbf-2eb87d6d85a6"
+          },
+          "taxRate": {
+            "name": "standard",
+            "amount": 0.1,
+            "includedInPrice": false,
+            "country": "US",
+            "id": "z821AAA9",
+            "subRates": []
+          },
+          "perMethodTaxRate": [],
+          "addedAt": "2022-10-18T12:30:26.999Z",
+          "lastModifiedAt": "2022-10-18T12:30:26.999Z",
+          "state": [
+            {
+              "quantity": 1,
+              "state": {
+                "typeId": "state",
+                "id": "0bf0a49d-ef00-4576-8e0c-9e26486adce2"
+              }
+            }
+          ],
+          "priceMode": "Platform",
+          "lineItemMode": "Standard",
+          "priceRoundingMode": "HalfEven",
+          "totalPrice": {
+            "type": "centPrecision",
+            "currencyCode": "USD",
+            "centAmount": 2600,
+            "fractionDigits": 2
+          },
+          "taxedPrice": {
+            "totalNet": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 2600,
+              "fractionDigits": 2
+            },
+            "totalGross": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 2860,
+              "fractionDigits": 2
+            },
+            "taxPortions": [],
+            "totalTax": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 260,
+              "fractionDigits": 2
+            }
+          },
+          "taxedPricePortions": []
+        }
+      ],
+      "customLineItems": [],
+      "transactionFee": true,
+      "discountCodes": [],
+      "directDiscounts": [],
+      "cart": {
+        "typeId": "cart",
+        "id": "5483ecef-b07c-4937-b12e-1d01d22e8c30"
+      },
+      "billingAddress": {
+        "id": "1st-shipping-address",
+        "firstName": "Main",
+        "lastName": "Branch",
+        "streetName": "1 A",
+        "postalCode": "12354",
+        "city": "Buuuu",
+        "country": "US"
+      },
+      "itemShippingAddresses": [],
+      "refusedGifts": [],
+      "store": {
+        "typeId": "store",
+        "key": "store_adidas"
+      },
+      "businessUnit": {
+        "typeId": "business-unit",
+        "key": "business_unit_adidas"
+      }
+    },
+    {
+      "type": "Order",
+      "id": "1693968f-205d-4773-ae08-b9fa9d4eec6a",
+      "version": 2,
+      "versionModifiedAt": "2023-09-13T15:45:18.661Z",
+      "lastMessageSequenceNumber": 1,
+      "createdAt": "2022-10-18T13:00:56.678Z",
+      "lastModifiedAt": "2022-10-18T13:00:56.678Z",
+      "lastModifiedBy": {
+        "clientId": "pyWxXbSIBd1w8cs0VH0RVAcv",
+        "isPlatformClient": false
+      },
+      "createdBy": {
+        "clientId": "pyWxXbSIBd1w8cs0VH0RVAcv",
+        "isPlatformClient": false
+      },
+      "orderNumber": "717cbeb6-c1db-4886-3ebf-2c66ab14cc20",
+      "customerId": "6c169f06-34b3-4c48-bbde-6da224c9768f",
+      "customerEmail": "adi@das.com",
+      "locale": "en-US",
+      "totalPrice": {
+        "type": "centPrecision",
+        "currencyCode": "USD",
+        "centAmount": 2100,
+        "fractionDigits": 2
+      },
+      "taxedPrice": {
+        "totalNet": {
+          "type": "centPrecision",
+          "currencyCode": "USD",
+          "centAmount": 2100,
+          "fractionDigits": 2
+        },
+        "totalGross": {
+          "type": "centPrecision",
+          "currencyCode": "USD",
+          "centAmount": 2310,
+          "fractionDigits": 2
+        },
+        "taxPortions": [
+          {
+            "rate": 0.1,
+            "amount": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 210,
+              "fractionDigits": 2
+            },
+            "name": "standard"
+          }
+        ],
+        "totalTax": {
+          "type": "centPrecision",
+          "currencyCode": "USD",
+          "centAmount": 210,
+          "fractionDigits": 2
+        }
+      },
+      "country": "US",
+      "orderState": "Open",
+      "syncInfo": [],
+      "returnInfo": [],
+      "priceRoundingMode": "HalfEven",
+      "taxMode": "Platform",
+      "inventoryMode": "ReserveOnOrder",
+      "taxRoundingMode": "HalfEven",
+      "taxCalculationMode": "LineItemLevel",
+      "origin": "Customer",
+      "shippingMode": "Single",
+      "shippingAddress": {
+        "id": "1st-shipping-address",
+        "firstName": "Main",
+        "lastName": "Branch",
+        "streetName": "1 A",
+        "postalCode": "12354",
+        "city": "Buuuu",
+        "country": "US"
+      },
+      "shipping": [],
+      "discountTypeCombination": {
+        "type": "Stacking"
+      },
+      "lineItems": [
+        {
+          "id": "0e39b1e0-4f14-47c4-afec-f49cef325f9e",
+          "productId": "a6ba835b-082d-403d-86f9-d618fadf817b",
+          "productKey": "B005FCOGJE",
+          "productType": {
+            "typeId": "product-type",
+            "id": "7c8a90ff-4d2d-457e-afcf-0d6330276d0c",
+            "version": 1
+          },
+          "productSlug": {
+            "en-US": "Tylenol-Extra-Strength-Pouches-Caplets"
+          },
+          "name": {
+            "en-US": "Tylenol Extra Strength 50 Pouches of 2 Caplets Each"
+          },
+          "variant": {
+            "id": 1,
+            "sku": "B005FCOGJE-1",
+            "prices": [
+              {
+                "id": "e3db5cc6-a12a-46b3-a0c5-c76b16725c1c",
+                "value": {
+                  "type": "centPrecision",
+                  "currencyCode": "USD",
+                  "centAmount": 2100,
+                  "fractionDigits": 2
+                }
+              }
+            ],
+            "images": [
+              {
+                "url": "https://efa2cc0dcbc20c919217-dbc413f6fc6aec98e00c8f16a9b5af63.ssl.cf1.rackcdn.com/41s3NEBeQGL._AC_PIbu-e0ba-dwL.jpg",
+                "dimensions": {
+                  "w": 324,
+                  "h": 400
+                }
+              }
+            ],
+            "attributes": [],
+            "assets": [],
+            "availability": {
+              "isOnStock": true,
+              "restockableInDays": 7,
+              "availableQuantity": 101,
+              "version": 1,
+              "id": "413b61a9-fb68-41ed-9742-0314d7cab5a0"
+            }
+          },
+          "price": {
+            "id": "e3db5cc6-a12a-46b3-a0c5-c76b16725c1c",
+            "value": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 2100,
+              "fractionDigits": 2
+            }
+          },
+          "quantity": 1,
+          "discountedPricePerQuantity": [],
+          "distributionChannel": {
+            "typeId": "channel",
+            "id": "04b3d1df-ef8a-4e56-abbf-2eb87d6d85a6"
+          },
+          "taxRate": {
+            "name": "standard",
+            "amount": 0.1,
+            "includedInPrice": false,
+            "country": "US",
+            "id": "z821AAA9",
+            "subRates": []
+          },
+          "perMethodTaxRate": [],
+          "addedAt": "2022-10-18T13:00:30.800Z",
+          "lastModifiedAt": "2022-10-18T13:00:30.800Z",
+          "state": [
+            {
+              "quantity": 1,
+              "state": {
+                "typeId": "state",
+                "id": "0bf0a49d-ef00-4576-8e0c-9e26486adce2"
+              }
+            }
+          ],
+          "priceMode": "Platform",
+          "lineItemMode": "Standard",
+          "priceRoundingMode": "HalfEven",
+          "totalPrice": {
+            "type": "centPrecision",
+            "currencyCode": "USD",
+            "centAmount": 2100,
+            "fractionDigits": 2
+          },
+          "taxedPrice": {
+            "totalNet": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 2100,
+              "fractionDigits": 2
+            },
+            "totalGross": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 2310,
+              "fractionDigits": 2
+            },
+            "taxPortions": [],
+            "totalTax": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 210,
+              "fractionDigits": 2
+            }
+          },
+          "taxedPricePortions": []
+        }
+      ],
+      "customLineItems": [],
+      "transactionFee": true,
+      "discountCodes": [],
+      "directDiscounts": [],
+      "cart": {
+        "typeId": "cart",
+        "id": "e95d144c-1d44-407f-82f5-35efc435523f"
+      },
+      "billingAddress": {
+        "id": "1st-shipping-address",
+        "firstName": "Main",
+        "lastName": "Branch",
+        "streetName": "1 A",
+        "postalCode": "12354",
+        "city": "Buuuu",
+        "country": "US"
+      },
+      "itemShippingAddresses": [],
+      "refusedGifts": [],
+      "store": {
+        "typeId": "store",
+        "key": "store_adidas"
+      },
+      "businessUnit": {
+        "typeId": "business-unit",
+        "key": "business_unit_adidas"
+      }
+    },
+    {
+      "type": "Order",
+      "id": "bfc8f914-1af1-49b7-a76a-6e500e312dfd",
+      "version": 2,
+      "versionModifiedAt": "2023-09-13T15:45:18.661Z",
+      "lastMessageSequenceNumber": 1,
+      "createdAt": "2022-10-18T13:02:16.986Z",
+      "lastModifiedAt": "2022-10-18T13:02:16.986Z",
+      "lastModifiedBy": {
+        "clientId": "pyWxXbSIBd1w8cs0VH0RVAcv",
+        "isPlatformClient": false
+      },
+      "createdBy": {
+        "clientId": "pyWxXbSIBd1w8cs0VH0RVAcv",
+        "isPlatformClient": false
+      },
+      "orderNumber": "4dc27abf-23f5-44ca-bf17-9d78a94cc3bd",
+      "customerId": "6c169f06-34b3-4c48-bbde-6da224c9768f",
+      "customerEmail": "adi@das.com",
+      "locale": "en-US",
+      "totalPrice": {
+        "type": "centPrecision",
+        "currencyCode": "USD",
+        "centAmount": 2000,
+        "fractionDigits": 2
+      },
+      "taxedPrice": {
+        "totalNet": {
+          "type": "centPrecision",
+          "currencyCode": "USD",
+          "centAmount": 2000,
+          "fractionDigits": 2
+        },
+        "totalGross": {
+          "type": "centPrecision",
+          "currencyCode": "USD",
+          "centAmount": 2200,
+          "fractionDigits": 2
+        },
+        "taxPortions": [
+          {
+            "rate": 0.1,
+            "amount": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 200,
+              "fractionDigits": 2
+            },
+            "name": "standard"
+          }
+        ],
+        "totalTax": {
+          "type": "centPrecision",
+          "currencyCode": "USD",
+          "centAmount": 200,
+          "fractionDigits": 2
+        }
+      },
+      "country": "US",
+      "orderState": "Open",
+      "syncInfo": [],
+      "returnInfo": [],
+      "priceRoundingMode": "HalfEven",
+      "taxMode": "Platform",
+      "inventoryMode": "ReserveOnOrder",
+      "taxRoundingMode": "HalfEven",
+      "taxCalculationMode": "LineItemLevel",
+      "origin": "Customer",
+      "shippingMode": "Single",
+      "shippingAddress": {
+        "id": "1st-shipping-address",
+        "firstName": "Main",
+        "lastName": "Branch",
+        "streetName": "1 A",
+        "postalCode": "12354",
+        "city": "Buuuu",
+        "country": "US"
+      },
+      "shipping": [],
+      "discountTypeCombination": {
+        "type": "Stacking"
+      },
+      "lineItems": [
+        {
+          "id": "74050ae3-d40a-4e4c-a654-e596d97f5832",
+          "productId": "edc5789d-e069-4334-ae63-c6ecb7a8c33d",
+          "productKey": "B07QSFJ8S2",
+          "productType": {
+            "typeId": "product-type",
+            "id": "7c8a90ff-4d2d-457e-afcf-0d6330276d0c",
+            "version": 1
+          },
+          "productSlug": {
+            "en-US": "Shoulder-Cervical-Traction-Alignment-Chiropractic"
+          },
+          "name": {
+            "en-US": "Neck and Shoulder Relaxer, Cervical Traction Device for TMJ Pain Relief and Cervical Spine Alignment, Chiropractic Pillow Neck Stretcher(Blue)"
+          },
+          "variant": {
+            "id": 1,
+            "sku": "B07QSFJ8S2-1",
+            "prices": [
+              {
+                "id": "b56e9836-40ad-473e-be7d-87759d38c8c4",
+                "value": {
+                  "type": "centPrecision",
+                  "currencyCode": "USD",
+                  "centAmount": 2000,
+                  "fractionDigits": 2
+                }
+              }
+            ],
+            "images": [
+              {
+                "url": "https://efa2cc0dcbc20c919217-dbc413f6fc6aec98e00c8f16a9b5af63.ssl.cf1.rackcdn.com/71E1iRL3ynL._AC_SX52-IGktOfAK.jpg",
+                "dimensions": {
+                  "w": 522,
+                  "h": 523
+                }
+              }
+            ],
+            "attributes": [],
+            "assets": [],
+            "availability": {
+              "isOnStock": true,
+              "restockableInDays": 7,
+              "availableQuantity": 101,
+              "version": 1,
+              "id": "44c90ef6-e7b2-4892-ad81-a48eb6815efe"
+            }
+          },
+          "price": {
+            "id": "b56e9836-40ad-473e-be7d-87759d38c8c4",
+            "value": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 2000,
+              "fractionDigits": 2
+            }
+          },
+          "quantity": 1,
+          "discountedPricePerQuantity": [],
+          "distributionChannel": {
+            "typeId": "channel",
+            "id": "04b3d1df-ef8a-4e56-abbf-2eb87d6d85a6"
+          },
+          "taxRate": {
+            "name": "standard",
+            "amount": 0.1,
+            "includedInPrice": false,
+            "country": "US",
+            "id": "z821AAA9",
+            "subRates": []
+          },
+          "perMethodTaxRate": [],
+          "addedAt": "2022-10-18T13:02:06.832Z",
+          "lastModifiedAt": "2022-10-18T13:02:06.832Z",
+          "state": [
+            {
+              "quantity": 1,
+              "state": {
+                "typeId": "state",
+                "id": "0bf0a49d-ef00-4576-8e0c-9e26486adce2"
+              }
+            }
+          ],
+          "priceMode": "Platform",
+          "lineItemMode": "Standard",
+          "priceRoundingMode": "HalfEven",
+          "totalPrice": {
+            "type": "centPrecision",
+            "currencyCode": "USD",
+            "centAmount": 2000,
+            "fractionDigits": 2
+          },
+          "taxedPrice": {
+            "totalNet": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 2000,
+              "fractionDigits": 2
+            },
+            "totalGross": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 2200,
+              "fractionDigits": 2
+            },
+            "taxPortions": [],
+            "totalTax": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 200,
+              "fractionDigits": 2
+            }
+          },
+          "taxedPricePortions": []
+        }
+      ],
+      "customLineItems": [],
+      "transactionFee": true,
+      "discountCodes": [],
+      "directDiscounts": [],
+      "cart": {
+        "typeId": "cart",
+        "id": "90abc636-f0a0-40c3-8244-1a39a0c9bb76"
+      },
+      "billingAddress": {
+        "id": "1st-shipping-address",
+        "firstName": "Main",
+        "lastName": "Branch",
+        "streetName": "1 A",
+        "postalCode": "12354",
+        "city": "Buuuu",
+        "country": "US"
+      },
+      "itemShippingAddresses": [],
+      "refusedGifts": [],
+      "store": {
+        "typeId": "store",
+        "key": "store_adidas"
+      },
+      "businessUnit": {
+        "typeId": "business-unit",
+        "key": "business_unit_adidas"
+      }
+    }
+  ]
+}

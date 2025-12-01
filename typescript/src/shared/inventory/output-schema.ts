@@ -33,7 +33,6 @@ export const inventoryPagedSchema = z
   })
   .strict();
 
-export const readInventoryOutputSchema =
-  inventorySchema || inventoryPagedSchema;
+export const readInventoryOutputSchema = z.union([inventorySchema, inventoryPagedSchema]);
 export const createInventoryOutputSchema = inventorySchema;
 export const updateInventoryOutputSchema = inventorySchema;

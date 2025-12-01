@@ -1,0 +1,132 @@
+{
+  "limit": 3,
+  "offset": 0,
+  "count": 3,
+  "total": 56,
+  "results": [
+    {
+      "id": "42295e5e-75dd-49cf-923a-57fecff0ea52",
+      "version": 3,
+      "versionModifiedAt": "2024-02-14T21:06:11.254Z",
+      "lastMessageSequenceNumber": 3,
+      "createdAt": "2024-02-14T21:05:52.478Z",
+      "lastModifiedAt": "2024-02-14T21:06:11.254Z",
+      "lastModifiedBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "cf7f6e32-2446-46a3-b05d-c705bb2c0d0e"
+        }
+      },
+      "createdBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "cf7f6e32-2446-46a3-b05d-c705bb2c0d0e"
+        }
+      },
+      "quotationCart": {
+        "typeId": "cart",
+        "id": "b31ef9b3-dcd1-409e-bed0-c1c4b871668f"
+      },
+      "quoteRequest": {
+        "typeId": "quote-request",
+        "id": "d57f5d52-822d-4919-a6e4-0245acef4d80"
+      },
+      "customer": {
+        "typeId": "customer",
+        "id": "55937787-4eb1-43a7-9065-fac78a757e90"
+      },
+      "stagedQuoteState": "Sent",
+      "sellerComment": "",
+      "businessUnit": {
+        "typeId": "business-unit",
+        "key": "abc-hospital-pharmacy-3"
+      }
+    },
+    {
+      "id": "1ed652d6-f719-461b-9921-524c7d1a66b0",
+      "version": 3,
+      "versionModifiedAt": "2024-02-14T21:08:46.982Z",
+      "lastMessageSequenceNumber": 3,
+      "createdAt": "2024-02-14T21:08:22.555Z",
+      "lastModifiedAt": "2024-02-14T21:08:46.982Z",
+      "lastModifiedBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "cf7f6e32-2446-46a3-b05d-c705bb2c0d0e"
+        }
+      },
+      "createdBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "cf7f6e32-2446-46a3-b05d-c705bb2c0d0e"
+        }
+      },
+      "quotationCart": {
+        "typeId": "cart",
+        "id": "f20c90ca-5154-452c-ab24-813f232acf18"
+      },
+      "quoteRequest": {
+        "typeId": "quote-request",
+        "id": "a2690ed8-5361-4be0-b881-d54a88af5314"
+      },
+      "customer": {
+        "typeId": "customer",
+        "id": "55937787-4eb1-43a7-9065-fac78a757e90"
+      },
+      "stagedQuoteState": "Sent",
+      "sellerComment": "",
+      "businessUnit": {
+        "typeId": "business-unit",
+        "key": "corporate-retail-abc"
+      }
+    },
+    {
+      "id": "2c9e8c94-6a43-4b75-8944-1b04ef92b941",
+      "version": 3,
+      "versionModifiedAt": "2024-02-15T18:51:12.149Z",
+      "lastMessageSequenceNumber": 3,
+      "createdAt": "2024-02-15T18:50:48.724Z",
+      "lastModifiedAt": "2024-02-15T18:51:12.149Z",
+      "lastModifiedBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "cf7f6e32-2446-46a3-b05d-c705bb2c0d0e"
+        }
+      },
+      "createdBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "cf7f6e32-2446-46a3-b05d-c705bb2c0d0e"
+        }
+      },
+      "quotationCart": {
+        "typeId": "cart",
+        "id": "3d189a31-c7a3-4787-9e14-0bdc95830f80"
+      },
+      "quoteRequest": {
+        "typeId": "quote-request",
+        "id": "8e037898-f899-46c7-982b-ccc181db3d20"
+      },
+      "customer": {
+        "typeId": "customer",
+        "id": "55937787-4eb1-43a7-9065-fac78a757e90"
+      },
+      "stagedQuoteState": "Sent",
+      "sellerComment": "",
+      "businessUnit": {
+        "typeId": "business-unit",
+        "key": "corporate-retail-abc"
+      },
+      "store": {
+        "typeId": "store",
+        "key": "hospital-pharmacy-mwd-54321"
+      }
+    }
+  ]
+}

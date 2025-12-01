@@ -1,0 +1,1388 @@
+{
+  "limit": 3,
+  "offset": 0,
+  "count": 3,
+  "total": 262,
+  "results": [
+    {
+      "id": "ad47acd6-418d-4200-82a6-b6f4cc6805c3",
+      "version": 540,
+      "productType": {
+        "typeId": "product-type",
+        "id": "b1a8984a-fae1-49d7-9805-2d0c16e25092"
+      },
+      "name": {
+        "en-US": "WeatherMaker® Single-Packaged Rooftop Units with EcoBlue™ Technology\n50FC"
+      },
+      "description": {
+        "en-US": "Electric Heat / Electric Cooling & Cooling Only with Ecoblue™ Technology\n3 to 6 Nominal Tons\n\nExclusive, new EcoBlue™ Technology was designed to improve performance and efficiency while decreasing maintenance and installation costs. The industry’s first beltless direct-drive vane axial fan for rooftop units* is just one of many technological advances that prove that not all rooftop units are created equal. Other enhancements include a new control board and coil technology, permanently lubricated motor bearings, tool-less filter access doors and more – all available on this multiefficiency offering.\n\n*Available on select models",
+        "en-GB": "test"
+      },
+      "categories": [
+        {
+          "typeId": "category",
+          "id": "3d0257c8-2598-48db-922a-9f568eb449cf"
+        }
+      ],
+      "categoryOrderHints": {},
+      "slug": {
+        "en-US": "50fc"
+      },
+      "masterVariant": {
+        "id": 1,
+        "sku": "50fc-1",
+        "prices": [
+          {
+            "id": "eac4e22b-a38b-4aa5-9d2c-0956dd830197",
+            "value": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 9999998,
+              "fractionDigits": 2
+            },
+            "discounted": {
+              "value": {
+                "type": "centPrecision",
+                "currencyCode": "USD",
+                "centAmount": 9799998,
+                "fractionDigits": 2
+              },
+              "discount": {
+                "typeId": "product-discount",
+                "id": "cb8207b9-ca5f-4f6b-9380-50d61417e1a1"
+              }
+            }
+          },
+          {
+            "id": "0e018c8f-8ea4-4f50-aad4-3561ad999f39",
+            "value": {
+              "type": "centPrecision",
+              "currencyCode": "MXN",
+              "centAmount": 49999995,
+              "fractionDigits": 2
+            },
+            "country": "MX",
+            "discounted": {
+              "value": {
+                "type": "centPrecision",
+                "currencyCode": "MXN",
+                "centAmount": 48999995,
+                "fractionDigits": 2
+              },
+              "discount": {
+                "typeId": "product-discount",
+                "id": "cb8207b9-ca5f-4f6b-9380-50d61417e1a1"
+              }
+            }
+          }
+        ],
+        "images": [
+          {
+            "url": "https://images.carriercms.com/image/upload/w_1280,q_auto,f_auto/v1547744612/carrier/commercial-hvac/products/packaged-outdoor/carrier-50fc-single-packaged-rooftop-a.jpg",
+            "dimensions": {
+              "w": 0,
+              "h": 0
+            }
+          }
+        ],
+        "attributes": [
+          {
+            "name": "size",
+            "value": 3
+          },
+          {
+            "name": "variant-selector-attributes",
+            "value": [
+              "size"
+            ]
+          }
+        ],
+        "assets": [],
+        "availability": {
+          "isOnStock": true,
+          "restockableInDays": 7,
+          "availableQuantity": 919,
+          "version": 3,
+          "id": "892bded4-60d4-43b6-ba9a-84930826ce90",
+          "channels": {
+            "d5bbd9cd-db6a-4dd6-9bdb-e79c5109dcc4": {
+              "isOnStock": true,
+              "restockableInDays": 7,
+              "availableQuantity": 695,
+              "version": 3,
+              "id": "fb47f021-2d3d-426d-a9b9-b6fa38f641fb"
+            },
+            "04b3d1df-ef8a-4e56-abbf-2eb87d6d85a6": {
+              "isOnStock": true,
+              "restockableInDays": 7,
+              "availableQuantity": 908,
+              "version": 3,
+              "id": "091c6cc0-9246-4ecf-872a-24031c761a02"
+            },
+            "d902cb4e-e0f1-47e3-87c3-871e483c528d": {
+              "isOnStock": true,
+              "restockableInDays": 7,
+              "availableQuantity": 242,
+              "version": 3,
+              "id": "a09f4fee-e43f-4028-a71c-5902226db22d"
+            },
+            "25d4298e-477b-4743-a19c-0e7df6856ed8": {
+              "isOnStock": true,
+              "restockableInDays": 7,
+              "availableQuantity": 826,
+              "version": 1,
+              "id": "289d634e-bae1-4b8f-bf8f-2a434c768ab4"
+            },
+            "02bc4d74-7daa-4e48-badf-2e5ffd9c1a38": {
+              "isOnStock": true,
+              "restockableInDays": 7,
+              "availableQuantity": 151,
+              "version": 3,
+              "id": "3a38eb7a-f02e-48e9-b1aa-a5fca2a86c0b"
+            },
+            "94f0286e-c720-400e-aff8-5e41422309d9": {
+              "isOnStock": true,
+              "restockableInDays": 7,
+              "availableQuantity": 296,
+              "version": 3,
+              "id": "4d91937d-e2ae-4237-9a08-a2000007db15"
+            },
+            "73298866-5cf5-4718-978f-e83563647e87": {
+              "isOnStock": true,
+              "restockableInDays": 7,
+              "availableQuantity": 413,
+              "version": 1,
+              "id": "5a8cd8de-2f30-47c2-b33d-5b4e839a4928"
+            },
+            "e1d8d389-3c47-4334-80d8-90b2e9e28ef3": {
+              "isOnStock": true,
+              "restockableInDays": 7,
+              "availableQuantity": 174,
+              "version": 3,
+              "id": "ec11f2cf-e8ec-4c50-bce8-98d2a010276b"
+            },
+            "528e6fbb-47b5-4aa6-9add-cd869921332c": {
+              "isOnStock": true,
+              "restockableInDays": 7,
+              "availableQuantity": 250,
+              "version": 3,
+              "id": "80dbe29a-e031-436a-a670-1fd60de75518"
+            },
+            "79e9cbbe-024a-4d3c-bad4-ba4e521f2e39": {
+              "isOnStock": true,
+              "restockableInDays": 7,
+              "availableQuantity": 975,
+              "version": 3,
+              "id": "7d832ea4-f511-4edb-a4e5-d856fbf4dda2"
+            },
+            "5e62a55f-4b4e-4bea-ad42-273b378050e5": {
+              "isOnStock": true,
+              "restockableInDays": 7,
+              "availableQuantity": 542,
+              "version": 3,
+              "id": "36f8cabc-4a23-4a75-8152-e39aad73d2b7"
+            },
+            "e8004306-debf-43ab-a1b3-431336c54449": {
+              "isOnStock": true,
+              "restockableInDays": 7,
+              "availableQuantity": 250,
+              "version": 3,
+              "id": "41f5f252-223b-4964-b007-8ac4cffc070c"
+            },
+            "5c2efb2f-71ba-4c3c-8a78-b9105b757189": {
+              "isOnStock": true,
+              "restockableInDays": 7,
+              "availableQuantity": 1068,
+              "version": 3,
+              "id": "54980cff-9a69-47d3-a257-aca16e301be6"
+            },
+            "c3a700cf-76b7-4a63-a139-71680ac0e920": {
+              "isOnStock": true,
+              "restockableInDays": 7,
+              "availableQuantity": 349,
+              "version": 1,
+              "id": "d9b62ac5-9d15-43bb-8c7f-f2b6c12be9e4"
+            }
+          }
+        }
+      },
+      "variants": [
+        {
+          "id": 2,
+          "sku": "50fc-2",
+          "prices": [
+            {
+              "id": "aab7858e-bc22-4832-a6b7-4a7343ead90a",
+              "value": {
+                "type": "centPrecision",
+                "currencyCode": "USD",
+                "centAmount": 9999999,
+                "fractionDigits": 2
+              },
+              "discounted": {
+                "value": {
+                  "type": "centPrecision",
+                  "currencyCode": "USD",
+                  "centAmount": 9799999,
+                  "fractionDigits": 2
+                },
+                "discount": {
+                  "typeId": "product-discount",
+                  "id": "cb8207b9-ca5f-4f6b-9380-50d61417e1a1"
+                }
+              }
+            },
+            {
+              "id": "7f005dfa-b99b-4428-b937-e121e27aeacf",
+              "value": {
+                "type": "centPrecision",
+                "currencyCode": "MXN",
+                "centAmount": 49999995,
+                "fractionDigits": 2
+              },
+              "country": "MX",
+              "channel": {
+                "typeId": "channel",
+                "id": "94f0286e-c720-400e-aff8-5e41422309d9"
+              },
+              "discounted": {
+                "value": {
+                  "type": "centPrecision",
+                  "currencyCode": "MXN",
+                  "centAmount": 48999995,
+                  "fractionDigits": 2
+                },
+                "discount": {
+                  "typeId": "product-discount",
+                  "id": "cb8207b9-ca5f-4f6b-9380-50d61417e1a1"
+                }
+              }
+            }
+          ],
+          "images": [
+            {
+              "url": "https://images.carriercms.com/image/upload/w_1280,q_auto,f_auto/v1547744612/carrier/commercial-hvac/products/packaged-outdoor/carrier-50fc-single-packaged-rooftop-a.jpg",
+              "dimensions": {
+                "w": 0,
+                "h": 0
+              }
+            }
+          ],
+          "attributes": [
+            {
+              "name": "size",
+              "value": 4
+            },
+            {
+              "name": "variant-selector-attributes",
+              "value": [
+                "size"
+              ]
+            }
+          ],
+          "assets": [],
+          "availability": {
+            "isOnStock": true,
+            "restockableInDays": 7,
+            "availableQuantity": 954,
+            "version": 3,
+            "id": "b5d6098f-8dd7-4c40-bed9-b6c1ee31cfc4",
+            "channels": {
+              "d5bbd9cd-db6a-4dd6-9bdb-e79c5109dcc4": {
+                "isOnStock": true,
+                "restockableInDays": 7,
+                "availableQuantity": 466,
+                "version": 3,
+                "id": "fd42ec37-5ed6-4bdc-8024-8271760191dd"
+              },
+              "04b3d1df-ef8a-4e56-abbf-2eb87d6d85a6": {
+                "isOnStock": true,
+                "restockableInDays": 7,
+                "availableQuantity": 464,
+                "version": 3,
+                "id": "c036434f-19d5-44a5-8c1e-ee2242845843"
+              },
+              "d902cb4e-e0f1-47e3-87c3-871e483c528d": {
+                "isOnStock": true,
+                "restockableInDays": 7,
+                "availableQuantity": 523,
+                "version": 3,
+                "id": "a5fed892-c3da-4055-9d92-6be92db4596a"
+              },
+              "25d4298e-477b-4743-a19c-0e7df6856ed8": {
+                "isOnStock": true,
+                "restockableInDays": 7,
+                "availableQuantity": 597,
+                "version": 1,
+                "id": "9d8d2897-391a-40dd-8de2-f9511a6e3c32"
+              },
+              "02bc4d74-7daa-4e48-badf-2e5ffd9c1a38": {
+                "isOnStock": true,
+                "restockableInDays": 7,
+                "availableQuantity": 790,
+                "version": 3,
+                "id": "26687de9-0fd8-4b92-8029-8d765d536c49"
+              },
+              "94f0286e-c720-400e-aff8-5e41422309d9": {
+                "isOnStock": true,
+                "restockableInDays": 7,
+                "availableQuantity": 648,
+                "version": 3,
+                "id": "c9054447-507f-4e53-a573-c81e80a1bf51"
+              },
+              "73298866-5cf5-4718-978f-e83563647e87": {
+                "isOnStock": true,
+                "restockableInDays": 7,
+                "availableQuantity": 569,
+                "version": 1,
+                "id": "209571c5-4da7-4046-95e6-91674d4ae367"
+              },
+              "e1d8d389-3c47-4334-80d8-90b2e9e28ef3": {
+                "isOnStock": true,
+                "restockableInDays": 7,
+                "availableQuantity": 225,
+                "version": 3,
+                "id": "6722408c-b25e-4f84-96af-4ad45614ec51"
+              },
+              "528e6fbb-47b5-4aa6-9add-cd869921332c": {
+                "isOnStock": true,
+                "restockableInDays": 7,
+                "availableQuantity": 328,
+                "version": 3,
+                "id": "049a4ab0-6ffa-43fe-8a58-9f384fc5e7fc"
+              },
+              "79e9cbbe-024a-4d3c-bad4-ba4e521f2e39": {
+                "isOnStock": true,
+                "restockableInDays": 7,
+                "availableQuantity": 874,
+                "version": 3,
+                "id": "ae66aebb-130b-43e7-b61e-1a3a20de1c89"
+              },
+              "5e62a55f-4b4e-4bea-ad42-273b378050e5": {
+                "isOnStock": true,
+                "restockableInDays": 7,
+                "availableQuantity": 997,
+                "version": 3,
+                "id": "4e70357d-8819-41a9-a162-0e939d4bfba5"
+              },
+              "e8004306-debf-43ab-a1b3-431336c54449": {
+                "isOnStock": true,
+                "restockableInDays": 7,
+                "availableQuantity": 711,
+                "version": 3,
+                "id": "b0d086d9-d53a-428d-b7d9-b5605237d9f0"
+              },
+              "5c2efb2f-71ba-4c3c-8a78-b9105b757189": {
+                "isOnStock": true,
+                "restockableInDays": 7,
+                "availableQuantity": 616,
+                "version": 3,
+                "id": "b270b6a0-dff7-45ca-9059-dada0bb594c3"
+              },
+              "c3a700cf-76b7-4a63-a139-71680ac0e920": {
+                "isOnStock": true,
+                "restockableInDays": 7,
+                "availableQuantity": 1087,
+                "version": 1,
+                "id": "dff68446-d73b-4248-a388-19c13244ab44"
+              }
+            }
+          }
+        },
+        {
+          "id": 3,
+          "sku": "50fc-3",
+          "prices": [
+            {
+              "id": "f26bf9a4-6e31-4292-8a04-7db1299c7858",
+              "value": {
+                "type": "centPrecision",
+                "currencyCode": "USD",
+                "centAmount": 9999999,
+                "fractionDigits": 2
+              },
+              "discounted": {
+                "value": {
+                  "type": "centPrecision",
+                  "currencyCode": "USD",
+                  "centAmount": 9799999,
+                  "fractionDigits": 2
+                },
+                "discount": {
+                  "typeId": "product-discount",
+                  "id": "cb8207b9-ca5f-4f6b-9380-50d61417e1a1"
+                }
+              }
+            },
+            {
+              "id": "474d9184-10f5-4096-8636-f247eaf42e49",
+              "value": {
+                "type": "centPrecision",
+                "currencyCode": "MXN",
+                "centAmount": 49999995,
+                "fractionDigits": 2
+              },
+              "country": "MX",
+              "channel": {
+                "typeId": "channel",
+                "id": "94f0286e-c720-400e-aff8-5e41422309d9"
+              },
+              "discounted": {
+                "value": {
+                  "type": "centPrecision",
+                  "currencyCode": "MXN",
+                  "centAmount": 48999995,
+                  "fractionDigits": 2
+                },
+                "discount": {
+                  "typeId": "product-discount",
+                  "id": "cb8207b9-ca5f-4f6b-9380-50d61417e1a1"
+                }
+              }
+            }
+          ],
+          "images": [
+            {
+              "url": "https://images.carriercms.com/image/upload/w_1280,q_auto,f_auto/v1547744612/carrier/commercial-hvac/products/packaged-outdoor/carrier-50fc-single-packaged-rooftop-a.jpg",
+              "dimensions": {
+                "w": 0,
+                "h": 0
+              }
+            }
+          ],
+          "attributes": [
+            {
+              "name": "size",
+              "value": 5
+            },
+            {
+              "name": "variant-selector-attributes",
+              "value": [
+                "size"
+              ]
+            }
+          ],
+          "assets": [],
+          "availability": {
+            "isOnStock": true,
+            "restockableInDays": 7,
+            "availableQuantity": 168,
+            "version": 3,
+            "id": "cf59a79b-59d8-43a8-a62a-0ede665558ae",
+            "channels": {
+              "d5bbd9cd-db6a-4dd6-9bdb-e79c5109dcc4": {
+                "isOnStock": true,
+                "restockableInDays": 7,
+                "availableQuantity": 828,
+                "version": 3,
+                "id": "98d61699-4461-45a8-b5fd-fc1ce5c92479"
+              },
+              "04b3d1df-ef8a-4e56-abbf-2eb87d6d85a6": {
+                "isOnStock": true,
+                "restockableInDays": 7,
+                "availableQuantity": 163,
+                "version": 3,
+                "id": "c8f35046-e3df-4c47-954b-83823f108007"
+              },
+              "d902cb4e-e0f1-47e3-87c3-871e483c528d": {
+                "isOnStock": true,
+                "restockableInDays": 7,
+                "availableQuantity": 485,
+                "version": 3,
+                "id": "3eba477a-78bc-4f13-8675-70d993e76999"
+              },
+              "25d4298e-477b-4743-a19c-0e7df6856ed8": {
+                "isOnStock": true,
+                "restockableInDays": 7,
+                "availableQuantity": 475,
+                "version": 1,
+                "id": "01d22d80-3082-49d8-83ec-6a8794ff3482"
+              },
+              "02bc4d74-7daa-4e48-badf-2e5ffd9c1a38": {
+                "isOnStock": true,
+                "restockableInDays": 7,
+                "availableQuantity": 320,
+                "version": 3,
+                "id": "83bff2c8-f713-42f9-a9c7-b1f5e1dc6969"
+              },
+              "94f0286e-c720-400e-aff8-5e41422309d9": {
+                "isOnStock": true,
+                "restockableInDays": 7,
+                "availableQuantity": 133,
+                "version": 3,
+                "id": "ae12b668-92af-4b8a-90f5-5bccb5336a7d"
+              },
+              "73298866-5cf5-4718-978f-e83563647e87": {
+                "isOnStock": true,
+                "restockableInDays": 7,
+                "availableQuantity": 727,
+                "version": 1,
+                "id": "7e15dc70-71d8-4029-a4e4-15355d6b096f"
+              },
+              "e1d8d389-3c47-4334-80d8-90b2e9e28ef3": {
+                "isOnStock": true,
+                "restockableInDays": 7,
+                "availableQuantity": 594,
+                "version": 3,
+                "id": "22e7b991-cb27-4828-a9b7-fbdf7e03926d"
+              },
+              "528e6fbb-47b5-4aa6-9add-cd869921332c": {
+                "isOnStock": true,
+                "restockableInDays": 7,
+                "availableQuantity": 430,
+                "version": 3,
+                "id": "f8c83f3f-1d36-4a96-a6e3-f15e02a5b0e7"
+              },
+              "79e9cbbe-024a-4d3c-bad4-ba4e521f2e39": {
+                "isOnStock": true,
+                "restockableInDays": 7,
+                "availableQuantity": 544,
+                "version": 3,
+                "id": "2db98ee0-178b-4ee8-9149-84c688242d2a"
+              },
+              "5e62a55f-4b4e-4bea-ad42-273b378050e5": {
+                "isOnStock": true,
+                "restockableInDays": 7,
+                "availableQuantity": 110,
+                "version": 3,
+                "id": "a4eb62f7-1f8b-49b6-bec5-150b1fe35014"
+              },
+              "e8004306-debf-43ab-a1b3-431336c54449": {
+                "isOnStock": true,
+                "restockableInDays": 7,
+                "availableQuantity": 528,
+                "version": 3,
+                "id": "b9a933db-029c-4fe9-82af-76254dbebfb2"
+              },
+              "5c2efb2f-71ba-4c3c-8a78-b9105b757189": {
+                "isOnStock": true,
+                "restockableInDays": 7,
+                "availableQuantity": 474,
+                "version": 3,
+                "id": "70817d70-05d9-497e-ac0a-354fa4997d76"
+              },
+              "c3a700cf-76b7-4a63-a139-71680ac0e920": {
+                "isOnStock": true,
+                "restockableInDays": 7,
+                "availableQuantity": 478,
+                "version": 1,
+                "id": "b6243ef5-71c9-482c-9b61-62959d8884b7"
+              }
+            }
+          }
+        },
+        {
+          "id": 4,
+          "sku": "50fc-4",
+          "prices": [
+            {
+              "id": "75f9a6f9-5509-427d-b982-56b2c866542a",
+              "value": {
+                "type": "centPrecision",
+                "currencyCode": "USD",
+                "centAmount": 9999999,
+                "fractionDigits": 2
+              },
+              "discounted": {
+                "value": {
+                  "type": "centPrecision",
+                  "currencyCode": "USD",
+                  "centAmount": 9799999,
+                  "fractionDigits": 2
+                },
+                "discount": {
+                  "typeId": "product-discount",
+                  "id": "cb8207b9-ca5f-4f6b-9380-50d61417e1a1"
+                }
+              }
+            },
+            {
+              "id": "3562c773-5993-4a79-aaae-9c0434273388",
+              "value": {
+                "type": "centPrecision",
+                "currencyCode": "MXN",
+                "centAmount": 49999995,
+                "fractionDigits": 2
+              },
+              "country": "MX",
+              "channel": {
+                "typeId": "channel",
+                "id": "94f0286e-c720-400e-aff8-5e41422309d9"
+              },
+              "discounted": {
+                "value": {
+                  "type": "centPrecision",
+                  "currencyCode": "MXN",
+                  "centAmount": 48999995,
+                  "fractionDigits": 2
+                },
+                "discount": {
+                  "typeId": "product-discount",
+                  "id": "cb8207b9-ca5f-4f6b-9380-50d61417e1a1"
+                }
+              }
+            }
+          ],
+          "images": [
+            {
+              "url": "https://images.carriercms.com/image/upload/w_1280,q_auto,f_auto/v1547744612/carrier/commercial-hvac/products/packaged-outdoor/carrier-50fc-single-packaged-rooftop-a.jpg",
+              "dimensions": {
+                "w": 0,
+                "h": 0
+              }
+            }
+          ],
+          "attributes": [
+            {
+              "name": "size",
+              "value": 6
+            },
+            {
+              "name": "variant-selector-attributes",
+              "value": [
+                "size"
+              ]
+            }
+          ],
+          "assets": [],
+          "availability": {
+            "isOnStock": true,
+            "restockableInDays": 7,
+            "availableQuantity": 228,
+            "version": 3,
+            "id": "e3891d12-6709-4647-923d-9a0dbb1d4428",
+            "channels": {
+              "d5bbd9cd-db6a-4dd6-9bdb-e79c5109dcc4": {
+                "isOnStock": true,
+                "restockableInDays": 7,
+                "availableQuantity": 538,
+                "version": 3,
+                "id": "3a78e5a4-c236-4e90-8013-eff213652b00"
+              },
+              "04b3d1df-ef8a-4e56-abbf-2eb87d6d85a6": {
+                "isOnStock": true,
+                "restockableInDays": 7,
+                "availableQuantity": 863,
+                "version": 3,
+                "id": "34aa8cc3-14b6-4ebd-a24f-2d472ca36ad8"
+              },
+              "d902cb4e-e0f1-47e3-87c3-871e483c528d": {
+                "isOnStock": true,
+                "restockableInDays": 7,
+                "availableQuantity": 1079,
+                "version": 3,
+                "id": "13e88cdf-b481-469a-90eb-d128a1270548"
+              },
+              "25d4298e-477b-4743-a19c-0e7df6856ed8": {
+                "isOnStock": true,
+                "restockableInDays": 7,
+                "availableQuantity": 662,
+                "version": 1,
+                "id": "6927879c-9b9c-45cc-bec5-1115d090c0a2"
+              },
+              "02bc4d74-7daa-4e48-badf-2e5ffd9c1a38": {
+                "isOnStock": true,
+                "restockableInDays": 7,
+                "availableQuantity": 570,
+                "version": 3,
+                "id": "33afe95e-241e-4951-9fd1-75ddcecda339"
+              },
+              "94f0286e-c720-400e-aff8-5e41422309d9": {
+                "isOnStock": true,
+                "restockableInDays": 7,
+                "availableQuantity": 517,
+                "version": 3,
+                "id": "0c9aaa07-eef8-42fe-9b2f-e3b93e1c22ea"
+              },
+              "73298866-5cf5-4718-978f-e83563647e87": {
+                "isOnStock": true,
+                "restockableInDays": 7,
+                "availableQuantity": 1063,
+                "version": 1,
+                "id": "6f06c4a8-60ff-4a36-9ff7-39f155f088aa"
+              },
+              "e1d8d389-3c47-4334-80d8-90b2e9e28ef3": {
+                "isOnStock": true,
+                "restockableInDays": 7,
+                "availableQuantity": 781,
+                "version": 3,
+                "id": "63bc75f5-6a06-4351-9a61-b613b77790da"
+              },
+              "528e6fbb-47b5-4aa6-9add-cd869921332c": {
+                "isOnStock": true,
+                "restockableInDays": 7,
+                "availableQuantity": 1047,
+                "version": 3,
+                "id": "c55de16d-bd18-449b-a014-425230d7e92e"
+              },
+              "79e9cbbe-024a-4d3c-bad4-ba4e521f2e39": {
+                "isOnStock": true,
+                "restockableInDays": 7,
+                "availableQuantity": 494,
+                "version": 3,
+                "id": "5a56e3d0-3a0c-4779-bf00-8dfc4fb2ee7d"
+              },
+              "5e62a55f-4b4e-4bea-ad42-273b378050e5": {
+                "isOnStock": true,
+                "restockableInDays": 7,
+                "availableQuantity": 565,
+                "version": 3,
+                "id": "8b7c507f-1c1e-4193-ad5e-8f1ab417b9d8"
+              },
+              "e8004306-debf-43ab-a1b3-431336c54449": {
+                "isOnStock": true,
+                "restockableInDays": 7,
+                "availableQuantity": 993,
+                "version": 3,
+                "id": "21403ab4-cb62-43c9-a0ba-f6a16a4c5510"
+              },
+              "5c2efb2f-71ba-4c3c-8a78-b9105b757189": {
+                "isOnStock": true,
+                "restockableInDays": 7,
+                "availableQuantity": 981,
+                "version": 3,
+                "id": "8460cad8-b385-4a6c-a007-aa2434612fdb"
+              },
+              "c3a700cf-76b7-4a63-a139-71680ac0e920": {
+                "isOnStock": true,
+                "restockableInDays": 7,
+                "availableQuantity": 239,
+                "version": 1,
+                "id": "ec67e435-14d8-4328-826d-633c957abac2"
+              }
+            }
+          }
+        }
+      ],
+      "searchKeywords": {},
+      "attributes": [],
+      "hasStagedChanges": false,
+      "published": true,
+      "key": "50fc",
+      "taxCategory": {
+        "typeId": "tax-category",
+        "id": "1aba7f86-aa97-4649-8cac-fcde18798699"
+      },
+      "priceMode": "Embedded",
+      "createdAt": "2023-05-25T16:04:11.055Z",
+      "lastModifiedAt": "2024-11-28T14:38:14.922Z"
+    },
+    {
+      "id": "1f078064-a184-4a00-bc08-79cf47d2bec1",
+      "version": 84,
+      "productType": {
+        "typeId": "product-type",
+        "id": "b8d9e350-5a7d-41ce-9c39-8ed263c98cb9"
+      },
+      "name": {
+        "en-US": "GS1 Class with Volume Pricing"
+      },
+      "description": {
+        "en-US": "This is an important class"
+      },
+      "categories": [
+        {
+          "typeId": "category",
+          "id": "99aed617-e242-4c2f-91a3-69ce77d88ef1"
+        },
+        {
+          "typeId": "category",
+          "id": "08c26d69-314c-4672-8406-1d9a67634bc2"
+        }
+      ],
+      "categoryOrderHints": {},
+      "slug": {
+        "en-US": "gs1-class-with-volume-pricing"
+      },
+      "metaTitle": {
+        "en-US": "",
+        "af": ""
+      },
+      "metaDescription": {
+        "en-US": "",
+        "af": ""
+      },
+      "masterVariant": {
+        "id": 1,
+        "sku": "class1",
+        "key": "class1",
+        "prices": [
+          {
+            "id": "6060b569-6f16-45a0-9258-daf1c3264cea",
+            "value": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 40015,
+              "fractionDigits": 2
+            },
+            "country": "US",
+            "channel": {
+              "typeId": "channel",
+              "id": "e1d8d389-3c47-4334-80d8-90b2e9e28ef3"
+            },
+            "discounted": {
+              "value": {
+                "type": "centPrecision",
+                "currencyCode": "USD",
+                "centAmount": 39215,
+                "fractionDigits": 2
+              },
+              "discount": {
+                "typeId": "product-discount",
+                "id": "cb8207b9-ca5f-4f6b-9380-50d61417e1a1"
+              }
+            }
+          },
+          {
+            "id": "14500a42-fbbf-442d-bfff-128edea9bfaa",
+            "value": {
+              "type": "centPrecision",
+              "currencyCode": "MXN",
+              "centAmount": 200000,
+              "fractionDigits": 2
+            },
+            "country": "MX",
+            "discounted": {
+              "value": {
+                "type": "centPrecision",
+                "currencyCode": "MXN",
+                "centAmount": 196000,
+                "fractionDigits": 2
+              },
+              "discount": {
+                "typeId": "product-discount",
+                "id": "cb8207b9-ca5f-4f6b-9380-50d61417e1a1"
+              }
+            }
+          },
+          {
+            "id": "b0d82290-c906-4194-9f81-02768bd55c7c",
+            "value": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 3500,
+              "fractionDigits": 2
+            },
+            "country": "US",
+            "channel": {
+              "typeId": "channel",
+              "id": "94f0286e-c720-400e-aff8-5e41422309d9"
+            },
+            "discounted": {
+              "value": {
+                "type": "centPrecision",
+                "currencyCode": "USD",
+                "centAmount": 3430,
+                "fractionDigits": 2
+              },
+              "discount": {
+                "typeId": "product-discount",
+                "id": "cb8207b9-ca5f-4f6b-9380-50d61417e1a1"
+              }
+            }
+          }
+        ],
+        "images": [
+          {
+            "url": "https://efa2cc0dcbc20c919217-dbc413f6fc6aec98e00c8f16a9b5af63.ssl.cf1.rackcdn.com/class-49UCqOYR.jpg",
+            "dimensions": {
+              "w": 212,
+              "h": 140
+            }
+          }
+        ],
+        "attributes": [
+          {
+            "name": "seats",
+            "value": 2
+          }
+        ],
+        "assets": [],
+        "availability": {
+          "isOnStock": true,
+          "availableQuantity": 1042,
+          "version": 11,
+          "id": "bb9420d6-8996-40f1-8767-f61dd8e33e34",
+          "channels": {
+            "d5bbd9cd-db6a-4dd6-9bdb-e79c5109dcc4": {
+              "isOnStock": true,
+              "restockableInDays": 7,
+              "availableQuantity": 773,
+              "version": 1,
+              "id": "0ec41d5a-0635-4be3-98e5-addb06bd18b9"
+            },
+            "04b3d1df-ef8a-4e56-abbf-2eb87d6d85a6": {
+              "isOnStock": true,
+              "restockableInDays": 7,
+              "availableQuantity": 545,
+              "version": 1,
+              "id": "89bf0e4b-e603-4b1f-8270-f3e70f6c8fa8"
+            },
+            "d902cb4e-e0f1-47e3-87c3-871e483c528d": {
+              "isOnStock": true,
+              "restockableInDays": 7,
+              "availableQuantity": 890,
+              "version": 1,
+              "id": "89cc6472-ed1b-4599-a7ec-98cf4cca6d4c"
+            },
+            "25d4298e-477b-4743-a19c-0e7df6856ed8": {
+              "isOnStock": true,
+              "restockableInDays": 7,
+              "availableQuantity": 872,
+              "version": 1,
+              "id": "7f26e7cf-c4ba-49f8-a94e-4bc86f1c727b"
+            },
+            "02bc4d74-7daa-4e48-badf-2e5ffd9c1a38": {
+              "isOnStock": true,
+              "restockableInDays": 7,
+              "availableQuantity": 355,
+              "version": 1,
+              "id": "0916c47d-7774-4c00-bc2b-14a5cc921eb0"
+            },
+            "94f0286e-c720-400e-aff8-5e41422309d9": {
+              "isOnStock": true,
+              "restockableInDays": 7,
+              "availableQuantity": 964,
+              "version": 1,
+              "id": "1ce78cf3-7009-4efe-878d-75a6e28487d8"
+            },
+            "73298866-5cf5-4718-978f-e83563647e87": {
+              "isOnStock": true,
+              "restockableInDays": 7,
+              "availableQuantity": 169,
+              "version": 1,
+              "id": "2679cb97-95a5-4f7d-998a-327686f21f8e"
+            },
+            "e1d8d389-3c47-4334-80d8-90b2e9e28ef3": {
+              "isOnStock": true,
+              "restockableInDays": 7,
+              "availableQuantity": 845,
+              "version": 1,
+              "id": "be102f2b-4830-4256-9472-1bbd0ceb67ea"
+            },
+            "528e6fbb-47b5-4aa6-9add-cd869921332c": {
+              "isOnStock": true,
+              "restockableInDays": 7,
+              "availableQuantity": 953,
+              "version": 1,
+              "id": "db88edea-0b29-4d24-b98c-fc6cdeff2c50"
+            },
+            "79e9cbbe-024a-4d3c-bad4-ba4e521f2e39": {
+              "isOnStock": true,
+              "restockableInDays": 7,
+              "availableQuantity": 822,
+              "version": 1,
+              "id": "6bcf9033-3a61-4d44-a6fe-ff694c7d4b64"
+            },
+            "5e62a55f-4b4e-4bea-ad42-273b378050e5": {
+              "isOnStock": true,
+              "restockableInDays": 7,
+              "availableQuantity": 959,
+              "version": 1,
+              "id": "e651982b-e1b6-4ea4-85d0-96f60248d52a"
+            },
+            "e8004306-debf-43ab-a1b3-431336c54449": {
+              "isOnStock": true,
+              "restockableInDays": 7,
+              "availableQuantity": 205,
+              "version": 1,
+              "id": "164897f5-edd4-40f2-ab38-0bd8892cdf8f"
+            },
+            "5c2efb2f-71ba-4c3c-8a78-b9105b757189": {
+              "isOnStock": true,
+              "restockableInDays": 7,
+              "availableQuantity": 156,
+              "version": 1,
+              "id": "f9613d49-d178-4cdd-b22c-364efcc4b217"
+            },
+            "c3a700cf-76b7-4a63-a139-71680ac0e920": {
+              "isOnStock": true,
+              "restockableInDays": 7,
+              "availableQuantity": 731,
+              "version": 1,
+              "id": "6261580a-ffff-4ece-befd-022bed9d80a5"
+            }
+          }
+        }
+      },
+      "variants": [],
+      "searchKeywords": {},
+      "attributes": [],
+      "hasStagedChanges": true,
+      "published": true,
+      "key": "gs1cl",
+      "taxCategory": {
+        "typeId": "tax-category",
+        "id": "1aba7f86-aa97-4649-8cac-fcde18798699"
+      },
+      "priceMode": "Embedded",
+      "createdAt": "2023-05-08T18:35:37.492Z",
+      "lastModifiedAt": "2024-10-07T17:46:25.436Z"
+    },
+    {
+      "id": "3d02d683-3f86-4f00-b144-97d67f339f80",
+      "version": 100,
+      "productType": {
+        "typeId": "product-type",
+        "id": "e524d54b-17d4-4eb1-855a-107f6e46fe40"
+      },
+      "name": {
+        "en-US": "Date"
+      },
+      "description": {
+        "en-US": "asdas"
+      },
+      "categories": [],
+      "categoryOrderHints": {},
+      "slug": {
+        "en-US": "date"
+      },
+      "metaTitle": {
+        "en-US": "",
+        "af": ""
+      },
+      "metaDescription": {
+        "en-US": "",
+        "af": ""
+      },
+      "masterVariant": {
+        "id": 1,
+        "sku": "15/4/2023",
+        "prices": [
+          {
+            "id": "acb3bc36-dd99-4afd-a0c7-3b2989ca771e",
+            "value": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 2380,
+              "fractionDigits": 2
+            },
+            "country": "US",
+            "channel": {
+              "typeId": "channel",
+              "id": "e1d8d389-3c47-4334-80d8-90b2e9e28ef3"
+            },
+            "discounted": {
+              "value": {
+                "type": "centPrecision",
+                "currencyCode": "USD",
+                "centAmount": 2332,
+                "fractionDigits": 2
+              },
+              "discount": {
+                "typeId": "product-discount",
+                "id": "cb8207b9-ca5f-4f6b-9380-50d61417e1a1"
+              }
+            }
+          },
+          {
+            "id": "87b0f427-6178-4fac-9b7f-874228049fb2",
+            "value": {
+              "type": "centPrecision",
+              "currencyCode": "MXN",
+              "centAmount": 0,
+              "fractionDigits": 2
+            },
+            "country": "MX",
+            "discounted": {
+              "value": {
+                "type": "centPrecision",
+                "currencyCode": "MXN",
+                "centAmount": 0,
+                "fractionDigits": 2
+              },
+              "discount": {
+                "typeId": "product-discount",
+                "id": "cb8207b9-ca5f-4f6b-9380-50d61417e1a1"
+              }
+            }
+          }
+        ],
+        "images": [],
+        "attributes": [],
+        "assets": [],
+        "availability": {
+          "isOnStock": true,
+          "availableQuantity": 779,
+          "version": 3,
+          "id": "ac8502ab-b468-45e6-8ad5-ff142d65367f",
+          "channels": {
+            "d5bbd9cd-db6a-4dd6-9bdb-e79c5109dcc4": {
+              "isOnStock": true,
+              "restockableInDays": 7,
+              "availableQuantity": 1070,
+              "version": 1,
+              "id": "1df98677-5dac-486c-b227-f8efd3727af5"
+            },
+            "04b3d1df-ef8a-4e56-abbf-2eb87d6d85a6": {
+              "isOnStock": true,
+              "restockableInDays": 7,
+              "availableQuantity": 779,
+              "version": 1,
+              "id": "11482d1a-3f26-4c19-81f2-a1fc4c1b54df"
+            },
+            "d902cb4e-e0f1-47e3-87c3-871e483c528d": {
+              "isOnStock": true,
+              "restockableInDays": 7,
+              "availableQuantity": 287,
+              "version": 1,
+              "id": "d93f2ab0-56ce-4f06-a2a7-6cfe821b4cc9"
+            },
+            "25d4298e-477b-4743-a19c-0e7df6856ed8": {
+              "isOnStock": true,
+              "restockableInDays": 7,
+              "availableQuantity": 299,
+              "version": 1,
+              "id": "901bf483-89ad-4350-9126-c22c8e9a07f8"
+            },
+            "02bc4d74-7daa-4e48-badf-2e5ffd9c1a38": {
+              "isOnStock": true,
+              "restockableInDays": 7,
+              "availableQuantity": 797,
+              "version": 1,
+              "id": "d341c07c-8817-4f9a-8640-9beaa7b18954"
+            },
+            "94f0286e-c720-400e-aff8-5e41422309d9": {
+              "isOnStock": true,
+              "restockableInDays": 7,
+              "availableQuantity": 849,
+              "version": 1,
+              "id": "a3021977-5857-4fe6-9a0b-863cdeace14f"
+            },
+            "73298866-5cf5-4718-978f-e83563647e87": {
+              "isOnStock": true,
+              "restockableInDays": 7,
+              "availableQuantity": 1003,
+              "version": 1,
+              "id": "45b91240-9c98-40a5-8d1c-246550d47adb"
+            },
+            "e1d8d389-3c47-4334-80d8-90b2e9e28ef3": {
+              "isOnStock": true,
+              "restockableInDays": 7,
+              "availableQuantity": 680,
+              "version": 1,
+              "id": "6bd2d82e-7acd-4202-b723-ee2818843ac8"
+            },
+            "528e6fbb-47b5-4aa6-9add-cd869921332c": {
+              "isOnStock": true,
+              "restockableInDays": 7,
+              "availableQuantity": 346,
+              "version": 1,
+              "id": "ba9e021a-b824-41c3-880e-bc8bf0a8e576"
+            },
+            "79e9cbbe-024a-4d3c-bad4-ba4e521f2e39": {
+              "isOnStock": true,
+              "restockableInDays": 7,
+              "availableQuantity": 610,
+              "version": 1,
+              "id": "4f357dd4-c406-49ff-8f8a-61b0d75f932d"
+            },
+            "5e62a55f-4b4e-4bea-ad42-273b378050e5": {
+              "isOnStock": true,
+              "restockableInDays": 7,
+              "availableQuantity": 957,
+              "version": 1,
+              "id": "95734773-7f4b-493e-b93b-0c5b7b8eef4e"
+            },
+            "e8004306-debf-43ab-a1b3-431336c54449": {
+              "isOnStock": true,
+              "restockableInDays": 7,
+              "availableQuantity": 565,
+              "version": 1,
+              "id": "e8c355d6-29a6-4d5d-96f2-7fd43e7a2da7"
+            },
+            "5c2efb2f-71ba-4c3c-8a78-b9105b757189": {
+              "isOnStock": true,
+              "restockableInDays": 7,
+              "availableQuantity": 418,
+              "version": 1,
+              "id": "a6f34b9e-9e7d-4fcc-bb3c-1a4e5abc7b66"
+            },
+            "c3a700cf-76b7-4a63-a139-71680ac0e920": {
+              "isOnStock": true,
+              "restockableInDays": 7,
+              "availableQuantity": 504,
+              "version": 1,
+              "id": "1ac535f1-1305-4b2b-845a-dfccfa4ad425"
+            }
+          }
+        }
+      },
+      "variants": [
+        {
+          "id": 2,
+          "sku": "30/5/2023",
+          "prices": [
+            {
+              "id": "0135b8fe-f9a5-4891-b736-b91f5500d654",
+              "value": {
+                "type": "centPrecision",
+                "currencyCode": "USD",
+                "centAmount": 500,
+                "fractionDigits": 2
+              },
+              "discounted": {
+                "value": {
+                  "type": "centPrecision",
+                  "currencyCode": "USD",
+                  "centAmount": 490,
+                  "fractionDigits": 2
+                },
+                "discount": {
+                  "typeId": "product-discount",
+                  "id": "cb8207b9-ca5f-4f6b-9380-50d61417e1a1"
+                }
+              }
+            },
+            {
+              "id": "2a846a70-0ef3-4d74-9f6f-0f37bef9f0ab",
+              "value": {
+                "type": "centPrecision",
+                "currencyCode": "MXN",
+                "centAmount": 2500,
+                "fractionDigits": 2
+              },
+              "country": "MX",
+              "channel": {
+                "typeId": "channel",
+                "id": "94f0286e-c720-400e-aff8-5e41422309d9"
+              },
+              "discounted": {
+                "value": {
+                  "type": "centPrecision",
+                  "currencyCode": "MXN",
+                  "centAmount": 2450,
+                  "fractionDigits": 2
+                },
+                "discount": {
+                  "typeId": "product-discount",
+                  "id": "cb8207b9-ca5f-4f6b-9380-50d61417e1a1"
+                }
+              }
+            }
+          ],
+          "images": [],
+          "attributes": [],
+          "assets": [],
+          "availability": {
+            "isOnStock": true,
+            "availableQuantity": 294,
+            "version": 3,
+            "id": "30fc66c1-b19d-4c7b-b208-5612d1c96cb1",
+            "channels": {
+              "d5bbd9cd-db6a-4dd6-9bdb-e79c5109dcc4": {
+                "isOnStock": true,
+                "restockableInDays": 7,
+                "availableQuantity": 699,
+                "version": 1,
+                "id": "0a13500b-aa93-40c7-a751-6f89e9d51a4f"
+              },
+              "04b3d1df-ef8a-4e56-abbf-2eb87d6d85a6": {
+                "isOnStock": true,
+                "restockableInDays": 7,
+                "availableQuantity": 357,
+                "version": 1,
+                "id": "987e5f35-6de5-4648-95c0-61dcaafe2e85"
+              },
+              "d902cb4e-e0f1-47e3-87c3-871e483c528d": {
+                "isOnStock": true,
+                "restockableInDays": 7,
+                "availableQuantity": 166,
+                "version": 1,
+                "id": "eec78c71-96ce-4579-b397-96205eb597d7"
+              },
+              "25d4298e-477b-4743-a19c-0e7df6856ed8": {
+                "isOnStock": true,
+                "restockableInDays": 7,
+                "availableQuantity": 534,
+                "version": 1,
+                "id": "22a90e25-47b3-4a88-964d-5fce81f5f251"
+              },
+              "02bc4d74-7daa-4e48-badf-2e5ffd9c1a38": {
+                "isOnStock": true,
+                "restockableInDays": 7,
+                "availableQuantity": 1087,
+                "version": 1,
+                "id": "a74677d8-51ff-43f9-8229-238076b73e04"
+              },
+              "94f0286e-c720-400e-aff8-5e41422309d9": {
+                "isOnStock": true,
+                "restockableInDays": 7,
+                "availableQuantity": 270,
+                "version": 1,
+                "id": "abf78ba5-8908-4a0e-9a53-0b6cd00197ad"
+              },
+              "73298866-5cf5-4718-978f-e83563647e87": {
+                "isOnStock": true,
+                "restockableInDays": 7,
+                "availableQuantity": 398,
+                "version": 1,
+                "id": "dbb98ac7-7c9b-478e-8ccd-402a6a60351d"
+              },
+              "e1d8d389-3c47-4334-80d8-90b2e9e28ef3": {
+                "isOnStock": true,
+                "restockableInDays": 7,
+                "availableQuantity": 608,
+                "version": 1,
+                "id": "58e2e7ae-3ac8-4ac1-9b5b-d98a7d6e97a2"
+              },
+              "528e6fbb-47b5-4aa6-9add-cd869921332c": {
+                "isOnStock": true,
+                "restockableInDays": 7,
+                "availableQuantity": 484,
+                "version": 1,
+                "id": "b8e05880-da15-43dd-9ba9-e56d62475c59"
+              },
+              "79e9cbbe-024a-4d3c-bad4-ba4e521f2e39": {
+                "isOnStock": true,
+                "restockableInDays": 7,
+                "availableQuantity": 841,
+                "version": 1,
+                "id": "a0253469-f5b5-4e61-89f3-e537f97c389a"
+              },
+              "5e62a55f-4b4e-4bea-ad42-273b378050e5": {
+                "isOnStock": true,
+                "restockableInDays": 7,
+                "availableQuantity": 534,
+                "version": 1,
+                "id": "7e76543a-4ef5-4d19-b552-88ab48dcf24f"
+              },
+              "e8004306-debf-43ab-a1b3-431336c54449": {
+                "isOnStock": true,
+                "restockableInDays": 7,
+                "availableQuantity": 733,
+                "version": 1,
+                "id": "4e3ea033-91c1-4cae-92cc-3b6abc8a52a8"
+              },
+              "5c2efb2f-71ba-4c3c-8a78-b9105b757189": {
+                "isOnStock": true,
+                "restockableInDays": 7,
+                "availableQuantity": 779,
+                "version": 1,
+                "id": "ce341182-f5f3-43f9-bfa9-efc6004b2ef9"
+              },
+              "c3a700cf-76b7-4a63-a139-71680ac0e920": {
+                "isOnStock": true,
+                "restockableInDays": 7,
+                "availableQuantity": 599,
+                "version": 1,
+                "id": "a2f48a01-7dc4-4d57-8ef2-8a481f062ad7"
+              }
+            }
+          }
+        }
+      ],
+      "searchKeywords": {},
+      "attributes": [],
+      "hasStagedChanges": false,
+      "published": true,
+      "taxCategory": {
+        "typeId": "tax-category",
+        "id": "1aba7f86-aa97-4649-8cac-fcde18798699"
+      },
+      "priceMode": "Embedded",
+      "createdAt": "2023-05-04T19:39:06.500Z",
+      "lastModifiedAt": "2024-10-07T17:46:25.357Z"
+    }
+  ]
+}

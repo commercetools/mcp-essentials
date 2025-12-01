@@ -31,6 +31,6 @@ export const storePagedSchema = z
   })
   .strict();
 
-export const readStoreOutputSchema = storeSchema || storePagedSchema;
+export const readStoreOutputSchema = z.union([storeSchema, storePagedSchema]);
 export const createStoreOutputSchema = storeSchema;
 export const updateStoreOutputSchema = storeSchema;

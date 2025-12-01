@@ -40,7 +40,6 @@ export const recurringOrdersPagedSchema = z
   })
   .strict();
 
-export const readRecurringOrdersOutputSchema =
-  recurringOrdersSchema || recurringOrdersPagedSchema;
+export const readRecurringOrdersOutputSchema = z.union([recurringOrdersSchema, recurringOrdersPagedSchema]);
 export const createRecurringOrdersOutputSchema = recurringOrdersSchema;
 export const updateRecurringOrdersOutputSchema = recurringOrdersSchema;

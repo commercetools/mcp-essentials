@@ -1,0 +1,91 @@
+{
+  "limit": 3,
+  "offset": 0,
+  "count": 3,
+  "total": 20,
+  "results": [
+    {
+      "id": "549e6621-defb-4539-a114-1eac075f86be",
+      "version": 143,
+      "versionModifiedAt": "2023-09-13T15:45:18.223Z",
+      "lastMessageSequenceNumber": 8,
+      "createdAt": "2022-09-23T16:02:29.390Z",
+      "lastModifiedAt": "2023-03-23T15:16:17.358Z",
+      "lastModifiedBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "147fa1f6-e486-4d55-826a-dac81b0f17f3"
+        }
+      },
+      "createdBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "dedf67a6-f66d-4baf-81b7-ea6ba36e748f"
+        }
+      },
+      "name": {
+        "en-US": "tier 1"
+      },
+      "productCount": 1,
+      "mode": "Individual"
+    },
+    {
+      "id": "3141d1b8-abeb-4404-a060-a862128853cb",
+      "version": 3,
+      "versionModifiedAt": "2023-09-13T15:45:18.224Z",
+      "lastMessageSequenceNumber": 2,
+      "createdAt": "2022-10-18T20:42:10.687Z",
+      "lastModifiedAt": "2022-10-18T20:42:27.301Z",
+      "lastModifiedBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "cf7f6e32-2446-46a3-b05d-c705bb2c0d0e"
+        }
+      },
+      "createdBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "cf7f6e32-2446-46a3-b05d-c705bb2c0d0e"
+        }
+      },
+      "key": "msd",
+      "name": {
+        "en-US": "McKesson Specialty Distribution"
+      },
+      "productCount": 1,
+      "mode": "Individual"
+    },
+    {
+      "id": "e2aedb29-613e-41bb-be58-3d0cadb6f9d0",
+      "version": 6,
+      "versionModifiedAt": "2023-09-13T15:45:18.223Z",
+      "lastMessageSequenceNumber": 5,
+      "createdAt": "2022-12-13T13:40:56.788Z",
+      "lastModifiedAt": "2022-12-13T13:52:44.639Z",
+      "lastModifiedBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "b7b12d4b-c570-405f-a9c1-35933715c37f"
+        }
+      },
+      "createdBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "e4a7384a-946f-4738-b234-b69feb044495"
+        }
+      },
+      "key": "canon",
+      "name": {
+        "en-US": "canon"
+      },
+      "productCount": 4,
+      "mode": "Individual"
+    }
+  ]
+}

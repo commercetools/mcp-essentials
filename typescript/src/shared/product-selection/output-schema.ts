@@ -28,7 +28,6 @@ export const productSelectionPagedSchema = z
   })
   .strict();
 
-export const readProductSelectionOutputSchema =
-  productSelectionSchema || productSelectionPagedSchema;
+export const readProductSelectionOutputSchema = z.union([productSelectionSchema, productSelectionPagedSchema]);
 export const createProductSelectionOutputSchema = productSelectionSchema;
 export const updateProductSelectionOutputSchema = productSelectionSchema;

@@ -1,0 +1,122 @@
+{
+  "limit": 3,
+  "offset": 0,
+  "count": 3,
+  "total": 4,
+  "results": [
+    {
+      "id": "b9e7dec8-8d83-40a2-bbe2-c2b5a4ecbba6",
+      "version": 2,
+      "versionModifiedAt": "2023-09-13T15:45:35.081Z",
+      "createdAt": "2022-10-17T14:44:36.838Z",
+      "lastModifiedAt": "2022-10-17T14:44:36.838Z",
+      "lastModifiedBy": {
+        "isPlatformClient": true
+      },
+      "createdBy": {
+        "isPlatformClient": true
+      },
+      "destination": {
+        "type": "GoogleCloudPubSub",
+        "projectId": "ct-sales-207211",
+        "topic": "customer-created"
+      },
+      "messages": [
+        {
+          "resourceTypeId": "customer",
+          "types": [
+            "CustomerCreated"
+          ]
+        }
+      ],
+      "changes": [],
+      "format": {
+        "type": "Platform"
+      },
+      "status": "Healthy",
+      "key": "customer-auto-verify"
+    },
+    {
+      "id": "aa2421cd-23f7-46ec-9e35-48ef37c9608d",
+      "version": 1,
+      "versionModifiedAt": "2023-11-09T19:35:07.030Z",
+      "createdAt": "2023-11-09T19:35:07.030Z",
+      "lastModifiedAt": "2023-11-09T19:35:07.030Z",
+      "lastModifiedBy": {
+        "clientId": "pyWxXbSIBd1w8cs0VH0RVAcv",
+        "isPlatformClient": false
+      },
+      "createdBy": {
+        "clientId": "pyWxXbSIBd1w8cs0VH0RVAcv",
+        "isPlatformClient": false
+      },
+      "destination": {
+        "type": "GoogleCloudPubSub",
+        "projectId": "ct-connectors-preview",
+        "topic": "event-0d1da28a-cb95-4e1c-9478-b305810adb3e-notification-manager"
+      },
+      "messages": [
+        {
+          "resourceTypeId": "staged-quote",
+          "types": [
+            "StagedQuoteCreated"
+          ]
+        },
+        {
+          "resourceTypeId": "quote-request",
+          "types": [
+            "QuoteRequestStateChanged"
+          ]
+        },
+        {
+          "resourceTypeId": "quote",
+          "types": [
+            "QuoteCreated"
+          ]
+        }
+      ],
+      "changes": [],
+      "format": {
+        "type": "Platform"
+      },
+      "status": "Healthy",
+      "key": "twilio-notifications"
+    },
+    {
+      "id": "14563658-f18a-4ac6-92f7-0db7e30065d8",
+      "version": 8,
+      "versionModifiedAt": "2025-09-15T17:09:00.018Z",
+      "createdAt": "2024-03-20T20:40:50.112Z",
+      "lastModifiedAt": "2025-09-15T17:09:00.018Z",
+      "lastModifiedBy": {
+        "isPlatformClient": true
+      },
+      "createdBy": {
+        "clientId": "ax-1-bpgYf5y4k1p3xflnbEn",
+        "isPlatformClient": false
+      },
+      "destination": {
+        "type": "GoogleCloudPubSub",
+        "projectId": "ct-sales-207211",
+        "topic": "uri-pubsub"
+      },
+      "messages": [],
+      "changes": [
+        {
+          "resourceTypeId": "order"
+        },
+        {
+          "resourceTypeId": "product"
+        },
+        {
+          "resourceTypeId": "customer"
+        }
+      ],
+      "format": {
+        "type": "Platform"
+      },
+      "status": "ConfigurationErrorDeliveryStopped",
+      "key": "b2b-subscription"
+    }
+  ]
+}

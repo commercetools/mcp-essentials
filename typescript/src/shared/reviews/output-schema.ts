@@ -35,6 +35,6 @@ export const reviewsPagedSchema = z
   })
   .strict();
 
-export const readReviewOutputSchema = reviewsSchema || reviewsPagedSchema;
+export const readReviewOutputSchema = z.union([reviewsSchema, reviewsPagedSchema]);
 export const createReviewOutputSchema = reviewsSchema;
 export const updateReviewOutputSchema = reviewsSchema;

@@ -1,0 +1,140 @@
+{
+  "limit": 3,
+  "offset": 0,
+  "count": 3,
+  "total": 12,
+  "results": [
+    {
+      "id": "a645634a-642b-4a9c-8188-42032520edd1",
+      "version": 6,
+      "versionModifiedAt": "2023-09-13T15:45:33.534Z",
+      "createdAt": "2023-02-14T14:17:02.018Z",
+      "lastModifiedAt": "2023-02-27T12:54:03.616Z",
+      "lastModifiedBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "2efd184e-b6cf-412a-b0ca-396771d7cb5e"
+        }
+      },
+      "createdBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "147fa1f6-e486-4d55-826a-dac81b0f17f3"
+        }
+      },
+      "value": {
+        "type": "relative",
+        "permyriad": 1000
+      },
+      "predicate": "categories.id = (\"1809e313-5145-445b-b50e-c5ee07ab101a\") and (customerGroup.id = \"ca190f7c-2c29-4050-8a76-b56624f69f73\") and not(attributes.Measurement = \"10\")",
+      "name": {
+        "en-US": "Save 10% on Printers for Laboratoires Customer Group"
+      },
+      "description": {
+        "en-US": "Save 10% on Printers"
+      },
+      "isActive": false,
+      "sortOrder": "0.05",
+      "references": [
+        {
+          "typeId": "category",
+          "id": "1809e313-5145-445b-b50e-c5ee07ab101a"
+        },
+        {
+          "typeId": "customer-group",
+          "id": "ca190f7c-2c29-4050-8a76-b56624f69f73"
+        }
+      ]
+    },
+    {
+      "id": "551d4ac9-e4e7-4e6a-902f-c8f5c70f2388",
+      "version": 7,
+      "versionModifiedAt": "2023-09-13T15:45:33.534Z",
+      "createdAt": "2023-03-13T16:30:09.321Z",
+      "lastModifiedAt": "2023-08-29T14:24:29.021Z",
+      "lastModifiedBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "dedf67a6-f66d-4baf-81b7-ea6ba36e748f"
+        }
+      },
+      "createdBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "147fa1f6-e486-4d55-826a-dac81b0f17f3"
+        }
+      },
+      "value": {
+        "type": "relative",
+        "permyriad": 1000
+      },
+      "predicate": "categories.id = (\"4808deb3-92dd-4285-8c26-36fd0e458744\")",
+      "name": {
+        "en-US": "Price Group 1 Save 10% on Office Supplies ",
+        "af": "",
+        "es-MX": ""
+      },
+      "description": {
+        "en-US": "Save 10% on Office",
+        "af": "",
+        "es-MX": ""
+      },
+      "isActive": false,
+      "sortOrder": "0.07",
+      "references": [
+        {
+          "typeId": "category",
+          "id": "4808deb3-92dd-4285-8c26-36fd0e458744"
+        }
+      ]
+    },
+    {
+      "id": "aea0bfe5-8d83-4cd1-81d2-23916053628d",
+      "version": 2,
+      "versionModifiedAt": "2023-09-13T15:45:33.534Z",
+      "createdAt": "2023-03-13T16:31:10.928Z",
+      "lastModifiedAt": "2023-03-13T16:31:10.928Z",
+      "lastModifiedBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "147fa1f6-e486-4d55-826a-dac81b0f17f3"
+        }
+      },
+      "createdBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "147fa1f6-e486-4d55-826a-dac81b0f17f3"
+        }
+      },
+      "value": {
+        "type": "relative",
+        "permyriad": 1500
+      },
+      "predicate": "categories.id = (\"4808deb3-92dd-4285-8c26-36fd0e458744\") and customerGroup.id = \"fd6f7919-894d-4926-a63f-fe01bfe2f58b\"",
+      "name": {
+        "en-US": "Price Group 2 Save 15% on Office Supplies"
+      },
+      "description": {
+        "en-US": "Save 10% on Office"
+      },
+      "isActive": false,
+      "sortOrder": "0.06",
+      "references": [
+        {
+          "typeId": "category",
+          "id": "4808deb3-92dd-4285-8c26-36fd0e458744"
+        },
+        {
+          "typeId": "customer-group",
+          "id": "fd6f7919-894d-4926-a63f-fe01bfe2f58b"
+        }
+      ]
+    }
+  ]
+}

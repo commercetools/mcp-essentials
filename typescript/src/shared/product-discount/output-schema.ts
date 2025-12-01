@@ -33,7 +33,6 @@ export const productDiscountPagedSchema = z
   })
   .strict();
 
-export const readProductDiscountOutputSchema =
-  productDiscountSchema || productDiscountPagedSchema;
+export const readProductDiscountOutputSchema = z.union([productDiscountSchema, productDiscountPagedSchema]);
 export const createProductDiscountOutputSchema = productDiscountSchema;
 export const updateProductDiscountOutputSchema = productDiscountSchema;

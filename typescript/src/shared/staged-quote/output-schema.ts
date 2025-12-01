@@ -35,7 +35,6 @@ export const stagedQuotePagedSchema = z
   })
   .strict();
 
-export const readStagedQuoteOutputSchema =
-  stagedQuoteSchema || stagedQuotePagedSchema;
+export const readStagedQuoteOutputSchema = z.union([stagedQuoteSchema, stagedQuotePagedSchema]);
 export const createStagedQuoteOutputSchema = stagedQuoteSchema;
 export const updateStagedQuoteOutputSchema = stagedQuoteSchema;

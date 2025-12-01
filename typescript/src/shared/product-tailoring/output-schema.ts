@@ -31,7 +31,6 @@ export const productTailoringPagedSchema = z
   })
   .strict();
 
-export const readProductTailoringOutputSchema =
-  productTailoringSchema || productTailoringPagedSchema;
+export const readProductTailoringOutputSchema = z.union([productTailoringSchema, productTailoringPagedSchema]);
 export const createProductTailoringOutputSchema = productTailoringSchema;
 export const updateProductTailoringOutputSchema = productTailoringSchema;

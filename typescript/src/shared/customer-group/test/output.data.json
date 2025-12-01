@@ -1,0 +1,77 @@
+{
+  "limit": 3,
+  "offset": 0,
+  "count": 3,
+  "total": 14,
+  "results": [
+    {
+      "id": "c8d589dc-ac74-477a-905c-8403e9503700",
+      "version": 2,
+      "versionModifiedAt": "2023-09-13T15:45:31.616Z",
+      "createdAt": "2022-11-08T13:18:03.559Z",
+      "lastModifiedAt": "2022-11-08T13:18:03.559Z",
+      "lastModifiedBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "147fa1f6-e486-4d55-826a-dac81b0f17f3"
+        }
+      },
+      "createdBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "147fa1f6-e486-4d55-826a-dac81b0f17f3"
+        }
+      },
+      "name": "DSO",
+      "key": "DSO"
+    },
+    {
+      "id": "adb3f26b-95f5-4789-babf-a08bad64ec00",
+      "version": 2,
+      "versionModifiedAt": "2023-09-13T15:45:31.606Z",
+      "createdAt": "2022-11-22T06:13:45.801Z",
+      "lastModifiedAt": "2022-11-22T06:13:45.801Z",
+      "lastModifiedBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "f1c38524-1874-4a36-8cc4-b0ed33dcf3e4"
+        }
+      },
+      "createdBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "f1c38524-1874-4a36-8cc4-b0ed33dcf3e4"
+        }
+      },
+      "name": "Affiliates",
+      "key": "Aff"
+    },
+    {
+      "id": "ca190f7c-2c29-4050-8a76-b56624f69f73",
+      "version": 3,
+      "versionModifiedAt": "2023-09-13T15:45:31.607Z",
+      "createdAt": "2022-11-22T06:21:59.133Z",
+      "lastModifiedAt": "2022-11-22T13:09:25.523Z",
+      "lastModifiedBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "f1c38524-1874-4a36-8cc4-b0ed33dcf3e4"
+        }
+      },
+      "createdBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "f1c38524-1874-4a36-8cc4-b0ed33dcf3e4"
+        }
+      },
+      "name": "Laboratories",
+      "key": "LAB"
+    }
+  ]
+}

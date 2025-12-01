@@ -1,0 +1,192 @@
+{
+  "limit": 3,
+  "offset": 0,
+  "count": 3,
+  "total": 168,
+  "results": [
+    {
+      "id": "5cd42966-bc7f-498a-99ee-8fa3101518b7",
+      "version": 3,
+      "versionModifiedAt": "2023-09-13T15:45:34.301Z",
+      "lastMessageSequenceNumber": 2,
+      "createdAt": "2022-09-23T13:33:57.527Z",
+      "lastModifiedAt": "2023-02-13T13:48:58.125Z",
+      "lastModifiedBy": {
+        "clientId": "1eyVB5_tTzMDPwSxppod3eyZ",
+        "isPlatformClient": false
+      },
+      "createdBy": {
+        "clientId": "pyWxXbSIBd1w8cs0VH0RVAcv",
+        "isPlatformClient": false
+      },
+      "key": "business_unit_asdasd_asdas_2334",
+      "name": "asdasd asdas 2334",
+      "contactEmail": "asd234sa@sdfsdgsds.cvads",
+      "addresses": [],
+      "shippingAddressIds": [],
+      "billingAddressIds": [],
+      "status": "Active",
+      "storeMode": "Explicit",
+      "stores": [
+        {
+          "typeId": "store",
+          "key": "store_asdasd_asdas_2334"
+        }
+      ],
+      "associateMode": "Explicit",
+      "approvalRuleMode": "Explicit",
+      "unitType": "Company",
+      "associates": [
+        {
+          "customer": {
+            "typeId": "customer",
+            "id": "f8020317-6943-4fda-b310-253f06c039b8"
+          },
+          "associateRoleAssignments": [
+            {
+              "associateRole": {
+                "typeId": "associate-role",
+                "key": "admin"
+              },
+              "inheritance": "Disabled"
+            }
+          ]
+        }
+      ],
+      "topLevelUnit": {
+        "typeId": "business-unit",
+        "key": "business_unit_asdasd_asdas_2334"
+      }
+    },
+    {
+      "id": "6b29f9be-b56d-410c-bf13-ac2ce40e7bd8",
+      "version": 7,
+      "versionModifiedAt": "2023-09-13T15:45:34.310Z",
+      "lastMessageSequenceNumber": 6,
+      "createdAt": "2022-09-23T19:39:26.192Z",
+      "lastModifiedAt": "2023-02-13T13:48:58.774Z",
+      "lastModifiedBy": {
+        "clientId": "1eyVB5_tTzMDPwSxppod3eyZ",
+        "isPlatformClient": false
+      },
+      "createdBy": {
+        "clientId": "pyWxXbSIBd1w8cs0VH0RVAcv",
+        "isPlatformClient": false
+      },
+      "key": "business_unit_foo",
+      "name": "Foo",
+      "contactEmail": "tom@foo.com",
+      "addresses": [],
+      "shippingAddressIds": [],
+      "billingAddressIds": [],
+      "status": "Inactive",
+      "storeMode": "Explicit",
+      "stores": [
+        {
+          "typeId": "store",
+          "key": "store_foo"
+        }
+      ],
+      "associateMode": "Explicit",
+      "approvalRuleMode": "Explicit",
+      "unitType": "Company",
+      "associates": [
+        {
+          "customer": {
+            "typeId": "customer",
+            "id": "f8a6a3b1-501b-476d-9c2a-3bd473f13bff"
+          },
+          "associateRoleAssignments": [
+            {
+              "associateRole": {
+                "typeId": "associate-role",
+                "key": "admin"
+              },
+              "inheritance": "Disabled"
+            }
+          ]
+        },
+        {
+          "customer": {
+            "typeId": "customer",
+            "id": "e518f147-d5af-4193-b76e-63a876a3ba96"
+          },
+          "associateRoleAssignments": [
+            {
+              "associateRole": {
+                "typeId": "associate-role",
+                "key": "admin"
+              },
+              "inheritance": "Disabled"
+            },
+            {
+              "associateRole": {
+                "typeId": "associate-role",
+                "key": "buyer"
+              },
+              "inheritance": "Disabled"
+            }
+          ]
+        }
+      ],
+      "topLevelUnit": {
+        "typeId": "business-unit",
+        "key": "business_unit_foo"
+      }
+    },
+    {
+      "id": "08ff9dde-03cd-4e18-ace9-a26cb8767cdd",
+      "version": 3,
+      "versionModifiedAt": "2023-09-13T15:45:34.300Z",
+      "lastMessageSequenceNumber": 2,
+      "createdAt": "2022-10-06T18:09:41.880Z",
+      "lastModifiedAt": "2023-02-13T13:48:58.912Z",
+      "lastModifiedBy": {
+        "clientId": "1eyVB5_tTzMDPwSxppod3eyZ",
+        "isPlatformClient": false
+      },
+      "createdBy": {
+        "clientId": "pyWxXbSIBd1w8cs0VH0RVAcv",
+        "isPlatformClient": false
+      },
+      "key": "business_unit_nike",
+      "name": "Nike",
+      "contactEmail": "sam@ple.com",
+      "addresses": [],
+      "shippingAddressIds": [],
+      "billingAddressIds": [],
+      "status": "Active",
+      "storeMode": "Explicit",
+      "stores": [
+        {
+          "typeId": "store",
+          "key": "store_nike"
+        }
+      ],
+      "associateMode": "Explicit",
+      "approvalRuleMode": "Explicit",
+      "unitType": "Company",
+      "associates": [
+        {
+          "customer": {
+            "typeId": "customer",
+            "id": "ea830134-350d-49a2-8556-c815fdd7eac6"
+          },
+          "associateRoleAssignments": [
+            {
+              "associateRole": {
+                "typeId": "associate-role",
+                "key": "admin"
+              },
+              "inheritance": "Disabled"
+            }
+          ]
+        }
+      ],
+      "topLevelUnit": {
+        "typeId": "business-unit",
+        "key": "business_unit_nike"
+      }
+    }
+  ]
+}

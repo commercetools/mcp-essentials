@@ -1,0 +1,98 @@
+{
+  "key": "composable-b2b-demo",
+  "name": "composable b2b demo",
+  "countries": [
+    "US",
+    "MX"
+  ],
+  "currencies": [
+    "USD",
+    "EUR",
+    "MXN",
+    "CRC"
+  ],
+  "languages": [
+    "en-US",
+    "es-MX",
+    "en-GB"
+  ],
+  "createdAt": "2022-09-14T18:31:46.647Z",
+  "createdBy": {
+    "isPlatformClient": true,
+    "user": {
+      "typeId": "user",
+      "id": "cf7f6e32-2446-46a3-b05d-c705bb2c0d0e"
+    }
+  },
+  "lastModifiedAt": "2025-11-14T12:48:40.438Z",
+  "lastModifiedBy": {
+    "isPlatformClient": true
+  },
+  "messages": {
+    "enabled": false,
+    "deleteDaysAfterCreation": 15
+  },
+  "carts": {
+    "deleteDaysAfterLastModification": 90,
+    "allowAddingUnpublishedProducts": false,
+    "countryTaxRateFallbackEnabled": false,
+    "cartDiscountCache": {
+      "enabled": false
+    },
+    "totalPriceDiscountDoesNotReduceExternalTax": false,
+    "loadParsedDiscountsEnabled": false,
+    "taxRoundingMode": "HalfEven",
+    "priceRoundingMode": "HalfEven"
+  },
+  "shoppingLists": {
+    "deleteDaysAfterLastModification": 360
+  },
+  "version": 82,
+  "searchIndexing": {
+    "products": {
+      "status": "Activated",
+      "lastModifiedAt": "2022-09-15T17:33:19.594Z",
+      "lastModifiedBy": {
+        "isPlatformClient": true
+      }
+    },
+    "productsSearch": {
+      "status": "Activated",
+      "lastModifiedAt": "2024-04-19T18:35:40.458Z",
+      "lastModifiedBy": {
+        "isPlatformClient": true
+      }
+    },
+    "orders": {
+      "status": "Deactivated",
+      "lastModifiedAt": "2025-11-14T12:48:40.436Z",
+      "lastModifiedBy": {
+        "isPlatformClient": true
+      }
+    },
+    "customers": {
+      "status": "Deactivated",
+      "lastModifiedAt": "2025-11-09T09:00:07.676Z",
+      "lastModifiedBy": {
+        "isPlatformClient": true
+      }
+    },
+    "businessUnits": {
+      "status": "Activated",
+      "lastModifiedAt": "2025-07-18T15:53:29.168Z",
+      "lastModifiedBy": {
+        "isPlatformClient": true
+      }
+    }
+  },
+  "businessUnits": {
+    "myBusinessUnitStatusOnCreation": "Active"
+  },
+  "discounts": {
+    "productVsCartDiscountCombination": "Stacking",
+    "discountCombinationMode": "Stacking"
+  },
+  "inventory": {
+    "releaseExpiredReservations": true
+  }
+}

@@ -26,7 +26,6 @@ export const customerGroupPagedSchema = z
   })
   .strict();
 
-export const readCustomerGroupOutputSchema =
-  customerGroupSchema || customerGroupPagedSchema;
+export const readCustomerGroupOutputSchema = z.union([customerGroupSchema, customerGroupPagedSchema]);
 export const createCustomerGroupOutputSchema = customerGroupSchema;
 export const updateCustomerGroupOutputSchema = customerGroupSchema;

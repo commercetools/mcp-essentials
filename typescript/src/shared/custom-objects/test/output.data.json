@@ -1,0 +1,83 @@
+{
+  "limit": 3,
+  "offset": 0,
+  "count": 3,
+  "total": 459,
+  "results": [
+    {
+      "id": "a07e21fa-9d27-4976-8994-62807483fb97",
+      "version": 2,
+      "versionModifiedAt": "2023-09-13T15:45:34.472Z",
+      "createdAt": "2022-09-15T17:29:18.304Z",
+      "lastModifiedAt": "2022-09-15T17:29:18.304Z",
+      "lastModifiedBy": {
+        "clientId": "fnpedlR_fvQNBbvM4XvBvNcO",
+        "isPlatformClient": false
+      },
+      "createdBy": {
+        "clientId": "fnpedlR_fvQNBbvM4XvBvNcO",
+        "isPlatformClient": false
+      },
+      "container": "commercetools-project-sync.runnerName.CategorySync.timestampGenerator",
+      "key": "timestampGenerator",
+      "value": "ab841bd4-5187-4c4b-ab91-7f5abd2ef14e"
+    },
+    {
+      "id": "1951a79a-76b8-429f-a99b-0c6e42681d31",
+      "version": 2,
+      "versionModifiedAt": "2023-09-13T15:45:34.481Z",
+      "createdAt": "2022-09-15T17:29:18.304Z",
+      "lastModifiedAt": "2022-09-15T17:29:18.304Z",
+      "lastModifiedBy": {
+        "clientId": "fnpedlR_fvQNBbvM4XvBvNcO",
+        "isPlatformClient": false
+      },
+      "createdBy": {
+        "clientId": "fnpedlR_fvQNBbvM4XvBvNcO",
+        "isPlatformClient": false
+      },
+      "container": "commercetools-project-sync.runnerName.ProductTypeSync.timestampGenerator",
+      "key": "timestampGenerator",
+      "value": "8b6b3e8c-ee42-4f7c-87af-b47e7c298dfb"
+    },
+    {
+      "id": "21ed4494-2b15-4109-a233-0fe5d4ec5302",
+      "version": 2,
+      "versionModifiedAt": "2023-09-13T15:45:34.482Z",
+      "createdAt": "2022-09-15T17:29:20.398Z",
+      "lastModifiedAt": "2022-09-15T17:29:20.398Z",
+      "lastModifiedBy": {
+        "clientId": "fnpedlR_fvQNBbvM4XvBvNcO",
+        "isPlatformClient": false
+      },
+      "createdBy": {
+        "clientId": "fnpedlR_fvQNBbvM4XvBvNcO",
+        "isPlatformClient": false
+      },
+      "container": "commercetools-sync-java.UnresolvedReferencesService.categoryDrafts",
+      "key": "47621dd0c4e96583979e8f05a7a5a579fefb44b6",
+      "value": {
+        "categoryDraft": {
+          "assets": [],
+          "externalId": "Beauty_Makeup_Nails",
+          "key": "Beauty_Makeup_Nails",
+          "name": {
+            "en": "Nails"
+          },
+          "orderHint": "1.63E-05",
+          "parent": {
+            "key": "Beauty_Makeup"
+          },
+          "slug": {
+            "en": "Beauty_Makeup_Nails",
+            "zh": "Beauty_Makeup_Nails"
+          }
+        },
+        "missingReferencedCategoriesKeys": [
+          "Beauty_Makeup"
+        ],
+        "key": "Beauty_Makeup_Nails"
+      }
+    }
+  ]
+}

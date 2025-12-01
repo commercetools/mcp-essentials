@@ -39,7 +39,6 @@ export const cartDiscountPagedSchema = z
   })
   .strict();
 
-export const readCartDiscountOutputSchema =
-  cartDiscountSchema || cartDiscountPagedSchema;
+export const readCartDiscountOutputSchema = z.union([cartDiscountSchema, cartDiscountPagedSchema]);
 export const createCartDiscountOutputSchema = cartDiscountSchema;
 export const updateCartDiscountOutputSchema = cartDiscountSchema;

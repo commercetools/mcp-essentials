@@ -1,0 +1,102 @@
+{
+  "limit": 3,
+  "offset": 0,
+  "count": 3,
+  "total": 170,
+  "results": [
+    {
+      "id": "e518f147-d5af-4193-b76e-63a876a3ba96",
+      "version": 7,
+      "versionModifiedAt": "2023-09-13T15:45:34.923Z",
+      "lastMessageSequenceNumber": 4,
+      "createdAt": "2022-09-21T21:53:07.044Z",
+      "lastModifiedAt": "2022-10-06T21:20:04.926Z",
+      "lastModifiedBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "cf7f6e32-2446-46a3-b05d-c705bb2c0d0e"
+        }
+      },
+      "createdBy": {
+        "clientId": "pyWxXbSIBd1w8cs0VH0RVAcv",
+        "isPlatformClient": false
+      },
+      "email": "abc@test.com",
+      "firstName": "abc",
+      "lastName": "test",
+      "middleName": "",
+      "title": "",
+      "salutation": "Mr.",
+      "companyName": "test company",
+      "password": "****y8E=",
+      "addresses": [],
+      "shippingAddressIds": [],
+      "billingAddressIds": [],
+      "isEmailVerified": true,
+      "customerGroupAssignments": [],
+      "stores": [],
+      "authenticationMode": "Password"
+    },
+    {
+      "id": "97bf484c-dcc4-492b-87a9-b6517c52eb43",
+      "version": 3,
+      "versionModifiedAt": "2024-08-08T16:23:11.031Z",
+      "lastMessageSequenceNumber": 2,
+      "createdAt": "2022-09-23T13:29:31.460Z",
+      "lastModifiedAt": "2024-08-08T16:23:11.031Z",
+      "lastModifiedBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "dedf67a6-f66d-4baf-81b7-ea6ba36e748f"
+        }
+      },
+      "createdBy": {
+        "clientId": "pyWxXbSIBd1w8cs0VH0RVAcv",
+        "isPlatformClient": false
+      },
+      "email": "asdsa@sdfsdgs.cvads",
+      "lastName": "AS",
+      "companyName": "asdasd asdas",
+      "password": "****kV8=",
+      "addresses": [],
+      "shippingAddressIds": [],
+      "billingAddressIds": [],
+      "isEmailVerified": true,
+      "customerGroupAssignments": [],
+      "stores": [],
+      "authenticationMode": "Password"
+    },
+    {
+      "id": "ffbe15e3-bc31-400d-9a72-e5ff1c030418",
+      "version": 3,
+      "versionModifiedAt": "2024-08-29T15:57:45.952Z",
+      "lastMessageSequenceNumber": 2,
+      "createdAt": "2022-09-23T13:32:21.016Z",
+      "lastModifiedAt": "2024-08-29T15:57:45.952Z",
+      "lastModifiedBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "dedf67a6-f66d-4baf-81b7-ea6ba36e748f"
+        }
+      },
+      "createdBy": {
+        "clientId": "pyWxXbSIBd1w8cs0VH0RVAcv",
+        "isPlatformClient": false
+      },
+      "email": "asdsa@sdfsdgsds.cvads",
+      "lastName": "tets",
+      "companyName": "asdasd asdas 23",
+      "password": "****kyk=",
+      "addresses": [],
+      "shippingAddressIds": [],
+      "billingAddressIds": [],
+      "isEmailVerified": true,
+      "customerGroupAssignments": [],
+      "stores": [],
+      "authenticationMode": "Password"
+    }
+  ]
+}

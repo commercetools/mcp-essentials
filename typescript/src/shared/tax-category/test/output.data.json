@@ -1,0 +1,581 @@
+{
+  "limit": 3,
+  "offset": 0,
+  "count": 1,
+  "total": 1,
+  "results": [
+    {
+      "id": "1aba7f86-aa97-4649-8cac-fcde18798699",
+      "version": 188,
+      "versionModifiedAt": "2023-09-13T15:45:31.749Z",
+      "createdAt": "2022-09-14T19:50:09.602Z",
+      "lastModifiedAt": "2023-07-26T18:39:54.764Z",
+      "lastModifiedBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "dedf67a6-f66d-4baf-81b7-ea6ba36e748f"
+        }
+      },
+      "createdBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "cf7f6e32-2446-46a3-b05d-c705bb2c0d0e"
+        }
+      },
+      "name": "standard",
+      "description": "",
+      "rates": [
+        {
+          "name": "10% incl.",
+          "amount": 0.1,
+          "includedInPrice": false,
+          "country": "US",
+          "id": "HF-csJaY",
+          "subRates": []
+        },
+        {
+          "name": "10% incl.",
+          "amount": 0.1,
+          "includedInPrice": false,
+          "country": "US",
+          "state": "AL",
+          "id": "MEZCLASr",
+          "subRates": []
+        },
+        {
+          "name": "10% incl.",
+          "amount": 0.1,
+          "includedInPrice": false,
+          "country": "US",
+          "state": "AK",
+          "id": "1yj7Ejrm",
+          "subRates": []
+        },
+        {
+          "name": "10% incl.",
+          "amount": 0.1,
+          "includedInPrice": false,
+          "country": "US",
+          "state": "AS",
+          "id": "S3e8z2ch",
+          "subRates": []
+        },
+        {
+          "name": "10% incl.",
+          "amount": 0.1,
+          "includedInPrice": false,
+          "country": "US",
+          "state": "AZ",
+          "id": "pYzPHY4x",
+          "subRates": []
+        },
+        {
+          "name": "10% incl.",
+          "amount": 0.1,
+          "includedInPrice": false,
+          "country": "US",
+          "state": "AR",
+          "id": "415UUKJ5",
+          "subRates": []
+        },
+        {
+          "name": "10% incl.",
+          "amount": 0.1,
+          "includedInPrice": false,
+          "country": "US",
+          "state": "CA",
+          "id": "a6wnH1J3",
+          "subRates": []
+        },
+        {
+          "name": "10% incl.",
+          "amount": 0.1,
+          "includedInPrice": false,
+          "country": "US",
+          "state": "CO",
+          "id": "xVyUo7CD",
+          "subRates": []
+        },
+        {
+          "name": "10% incl.",
+          "amount": 0.1,
+          "includedInPrice": false,
+          "country": "US",
+          "state": "CT",
+          "id": "oRlipPRO",
+          "subRates": []
+        },
+        {
+          "name": "10% incl.",
+          "amount": 0.1,
+          "includedInPrice": false,
+          "country": "US",
+          "state": "DE",
+          "id": "WyP5RGVN",
+          "subRates": []
+        },
+        {
+          "name": "10% incl.",
+          "amount": 0.1,
+          "includedInPrice": false,
+          "country": "US",
+          "state": "DC",
+          "id": "pblyKPWd",
+          "subRates": []
+        },
+        {
+          "name": "10% incl.",
+          "amount": 0.1,
+          "includedInPrice": false,
+          "country": "US",
+          "state": "FM",
+          "id": "cIxqqZm9",
+          "subRates": []
+        },
+        {
+          "name": "10% incl.",
+          "amount": 0.1,
+          "includedInPrice": false,
+          "country": "US",
+          "state": "FL",
+          "id": "QQI1XRGb",
+          "subRates": []
+        },
+        {
+          "name": "10% incl.",
+          "amount": 0.1,
+          "includedInPrice": false,
+          "country": "US",
+          "state": "GA",
+          "id": "226nOUaQ",
+          "subRates": []
+        },
+        {
+          "name": "10% incl.",
+          "amount": 0.1,
+          "includedInPrice": false,
+          "country": "US",
+          "state": "GU",
+          "id": "en83K40z",
+          "subRates": []
+        },
+        {
+          "name": "10% incl.",
+          "amount": 0.1,
+          "includedInPrice": false,
+          "country": "US",
+          "state": "HI",
+          "id": "dZgL8usC",
+          "subRates": []
+        },
+        {
+          "name": "10% incl.",
+          "amount": 0.1,
+          "includedInPrice": false,
+          "country": "US",
+          "state": "ID",
+          "id": "U75MLNIV",
+          "subRates": []
+        },
+        {
+          "name": "10% incl.",
+          "amount": 0.1,
+          "includedInPrice": false,
+          "country": "US",
+          "state": "IL",
+          "id": "5UbCnlHT",
+          "subRates": []
+        },
+        {
+          "name": "10% incl.",
+          "amount": 0.1,
+          "includedInPrice": false,
+          "country": "US",
+          "state": "IN",
+          "id": "oxSU3ayp",
+          "subRates": []
+        },
+        {
+          "name": "10% incl.",
+          "amount": 0.1,
+          "includedInPrice": false,
+          "country": "US",
+          "state": "IA",
+          "id": "IUXWx8xl",
+          "subRates": []
+        },
+        {
+          "name": "10% incl.",
+          "amount": 0.1,
+          "includedInPrice": false,
+          "country": "US",
+          "state": "KS",
+          "id": "4EkaoqMI",
+          "subRates": []
+        },
+        {
+          "name": "10% incl.",
+          "amount": 0.1,
+          "includedInPrice": false,
+          "country": "US",
+          "state": "KY",
+          "id": "DXYmA5tR",
+          "subRates": []
+        },
+        {
+          "name": "10% incl.",
+          "amount": 0.1,
+          "includedInPrice": false,
+          "country": "US",
+          "state": "LA",
+          "id": "glYTs3un",
+          "subRates": []
+        },
+        {
+          "name": "10% incl.",
+          "amount": 0.1,
+          "includedInPrice": false,
+          "country": "US",
+          "state": "ME",
+          "id": "zJl_8wv7",
+          "subRates": []
+        },
+        {
+          "name": "10% incl.",
+          "amount": 0.1,
+          "includedInPrice": false,
+          "country": "US",
+          "state": "MH",
+          "id": "Ug-JIWl-",
+          "subRates": []
+        },
+        {
+          "name": "10% incl.",
+          "amount": 0.1,
+          "includedInPrice": false,
+          "country": "US",
+          "state": "MD",
+          "id": "4PDXFA_R",
+          "subRates": []
+        },
+        {
+          "name": "10% incl.",
+          "amount": 0.1,
+          "includedInPrice": false,
+          "country": "US",
+          "state": "MA",
+          "id": "dh75P7eA",
+          "subRates": []
+        },
+        {
+          "name": "10% incl.",
+          "amount": 0.1,
+          "includedInPrice": false,
+          "country": "US",
+          "state": "MI",
+          "id": "fNeo6NyP",
+          "subRates": []
+        },
+        {
+          "name": "10% incl.",
+          "amount": 0.1,
+          "includedInPrice": false,
+          "country": "US",
+          "state": "MN",
+          "id": "CtJlpRIU",
+          "subRates": []
+        },
+        {
+          "name": "10% incl.",
+          "amount": 0.1,
+          "includedInPrice": false,
+          "country": "US",
+          "state": "MS",
+          "id": "WBv04VuU",
+          "subRates": []
+        },
+        {
+          "name": "10% incl.",
+          "amount": 0.1,
+          "includedInPrice": false,
+          "country": "US",
+          "state": "MO",
+          "id": "mCbksC8-",
+          "subRates": []
+        },
+        {
+          "name": "10% incl.",
+          "amount": 0.1,
+          "includedInPrice": false,
+          "country": "US",
+          "state": "MT",
+          "id": "vHb6RQcj",
+          "subRates": []
+        },
+        {
+          "name": "10% incl.",
+          "amount": 0.1,
+          "includedInPrice": false,
+          "country": "US",
+          "state": "NE",
+          "id": "NpIaVYSX",
+          "subRates": []
+        },
+        {
+          "name": "10% incl.",
+          "amount": 0.1,
+          "includedInPrice": false,
+          "country": "US",
+          "state": "NV",
+          "id": "oxL9KROr",
+          "subRates": []
+        },
+        {
+          "name": "10% incl.",
+          "amount": 0.1,
+          "includedInPrice": false,
+          "country": "US",
+          "state": "NH",
+          "id": "86skLDk6",
+          "subRates": []
+        },
+        {
+          "name": "10% incl.",
+          "amount": 0.1,
+          "includedInPrice": false,
+          "country": "US",
+          "state": "NJ",
+          "id": "zMfgTgVz",
+          "subRates": []
+        },
+        {
+          "name": "10% incl.",
+          "amount": 0.1,
+          "includedInPrice": false,
+          "country": "US",
+          "state": "NM",
+          "id": "ADk37o50",
+          "subRates": []
+        },
+        {
+          "name": "10% incl.",
+          "amount": 0.1,
+          "includedInPrice": false,
+          "country": "US",
+          "state": "NY",
+          "id": "QLA2Eoj6",
+          "subRates": []
+        },
+        {
+          "name": "10% incl.",
+          "amount": 0.1,
+          "includedInPrice": false,
+          "country": "US",
+          "state": "NC",
+          "id": "kyqc-wwW",
+          "subRates": []
+        },
+        {
+          "name": "10% incl.",
+          "amount": 0.1,
+          "includedInPrice": false,
+          "country": "US",
+          "state": "ND",
+          "id": "9XROw1qG",
+          "subRates": []
+        },
+        {
+          "name": "10% incl.",
+          "amount": 0.1,
+          "includedInPrice": false,
+          "country": "US",
+          "state": "MP",
+          "id": "PidhcfB8",
+          "subRates": []
+        },
+        {
+          "name": "10% incl.",
+          "amount": 0.1,
+          "includedInPrice": false,
+          "country": "US",
+          "state": "OH",
+          "id": "3amOd7jz",
+          "subRates": []
+        },
+        {
+          "name": "10% incl.",
+          "amount": 0.1,
+          "includedInPrice": false,
+          "country": "US",
+          "state": "OK",
+          "id": "0mV861-S",
+          "subRates": []
+        },
+        {
+          "name": "10% incl.",
+          "amount": 0.1,
+          "includedInPrice": false,
+          "country": "US",
+          "state": "OR",
+          "id": "XUOJA6yA",
+          "subRates": []
+        },
+        {
+          "name": "10% incl.",
+          "amount": 0.1,
+          "includedInPrice": false,
+          "country": "US",
+          "state": "PW",
+          "id": "8Z_q3TdU",
+          "subRates": []
+        },
+        {
+          "name": "10% incl.",
+          "amount": 0.1,
+          "includedInPrice": false,
+          "country": "US",
+          "state": "PA",
+          "id": "yzwTtxqU",
+          "subRates": []
+        },
+        {
+          "name": "10% incl.",
+          "amount": 0.1,
+          "includedInPrice": false,
+          "country": "US",
+          "state": "PR",
+          "id": "cwSF_A4y",
+          "subRates": []
+        },
+        {
+          "name": "10% incl.",
+          "amount": 0.1,
+          "includedInPrice": false,
+          "country": "US",
+          "state": "RI",
+          "id": "sr6sR3t7",
+          "subRates": []
+        },
+        {
+          "name": "10% incl.",
+          "amount": 0.1,
+          "includedInPrice": false,
+          "country": "US",
+          "state": "SC",
+          "id": "H-f9GP4b",
+          "subRates": []
+        },
+        {
+          "name": "10% incl.",
+          "amount": 0.1,
+          "includedInPrice": false,
+          "country": "US",
+          "state": "SD",
+          "id": "DlDRjvL9",
+          "subRates": []
+        },
+        {
+          "name": "10% incl.",
+          "amount": 0.1,
+          "includedInPrice": false,
+          "country": "US",
+          "state": "TN",
+          "id": "2hUZA3rL",
+          "subRates": []
+        },
+        {
+          "name": "10% incl.",
+          "amount": 0.1,
+          "includedInPrice": false,
+          "country": "US",
+          "state": "TX",
+          "id": "ggBldxeG",
+          "subRates": []
+        },
+        {
+          "name": "10% incl.",
+          "amount": 0.1,
+          "includedInPrice": false,
+          "country": "US",
+          "state": "UT",
+          "id": "lywbNFhS",
+          "subRates": []
+        },
+        {
+          "name": "10% incl.",
+          "amount": 0.1,
+          "includedInPrice": false,
+          "country": "US",
+          "state": "VT",
+          "id": "nZzlqLcb",
+          "subRates": []
+        },
+        {
+          "name": "10% incl.",
+          "amount": 0.1,
+          "includedInPrice": false,
+          "country": "US",
+          "state": "VI",
+          "id": "KKvt7bXt",
+          "subRates": []
+        },
+        {
+          "name": "10% incl.",
+          "amount": 0.1,
+          "includedInPrice": false,
+          "country": "US",
+          "state": "VA",
+          "id": "FJFL74z5",
+          "subRates": []
+        },
+        {
+          "name": "10% incl.",
+          "amount": 0.1,
+          "includedInPrice": false,
+          "country": "US",
+          "state": "WA",
+          "id": "npgwRJvE",
+          "subRates": []
+        },
+        {
+          "name": "10% incl.",
+          "amount": 0.1,
+          "includedInPrice": false,
+          "country": "US",
+          "state": "WV",
+          "id": "XEHMLplu",
+          "subRates": []
+        },
+        {
+          "name": "10% incl.",
+          "amount": 0.1,
+          "includedInPrice": false,
+          "country": "US",
+          "state": "WI",
+          "id": "-FXG_HuU",
+          "subRates": []
+        },
+        {
+          "name": "10% incl.",
+          "amount": 0.1,
+          "includedInPrice": false,
+          "country": "US",
+          "state": "WY",
+          "id": "EDwxH8Lv",
+          "subRates": []
+        },
+        {
+          "name": "10% incl.",
+          "amount": 0.1,
+          "includedInPrice": false,
+          "country": "MX",
+          "id": "hgQJYycc",
+          "subRates": []
+        }
+      ],
+      "key": "standard"
+    }
+  ]
+}

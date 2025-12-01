@@ -1,0 +1,103 @@
+{
+  "limit": 3,
+  "offset": 0,
+  "count": 3,
+  "total": 22,
+  "results": [
+    {
+      "id": "94f0286e-c720-400e-aff8-5e41422309d9",
+      "version": 11,
+      "versionModifiedAt": "2025-11-10T19:59:11.002Z",
+      "createdAt": "2022-09-19T19:53:59.266Z",
+      "lastModifiedAt": "2025-11-10T19:59:11.002Z",
+      "lastModifiedBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "dedf67a6-f66d-4baf-81b7-ea6ba36e748f"
+        }
+      },
+      "createdBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "cf7f6e32-2446-46a3-b05d-c705bb2c0d0e"
+        }
+      },
+      "key": "default-channel",
+      "roles": [
+        "InventorySupply",
+        "ProductDistribution"
+      ],
+      "name": {
+        "en-US": "The default channel for new store creation",
+        "es-MX": "Por Defecto"
+      },
+      "geoLocation": {
+        "coordinates": [
+          100,
+          10
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "id": "d5bbd9cd-db6a-4dd6-9bdb-e79c5109dcc4",
+      "version": 4,
+      "versionModifiedAt": "2023-09-13T15:45:31.651Z",
+      "createdAt": "2022-09-23T16:08:02.947Z",
+      "lastModifiedAt": "2022-10-13T15:44:24.636Z",
+      "lastModifiedBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "dedf67a6-f66d-4baf-81b7-ea6ba36e748f"
+        }
+      },
+      "createdBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "dedf67a6-f66d-4baf-81b7-ea6ba36e748f"
+        }
+      },
+      "key": "test-tier-2-channel",
+      "roles": [
+        "InventorySupply",
+        "ProductDistribution"
+      ],
+      "name": {
+        "en-US": "Channel for higher price :}"
+      }
+    },
+    {
+      "id": "04b3d1df-ef8a-4e56-abbf-2eb87d6d85a6",
+      "version": 2,
+      "versionModifiedAt": "2023-09-13T15:45:31.651Z",
+      "createdAt": "2022-10-13T15:45:06.236Z",
+      "lastModifiedAt": "2022-10-13T15:45:06.236Z",
+      "lastModifiedBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "dedf67a6-f66d-4baf-81b7-ea6ba36e748f"
+        }
+      },
+      "createdBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "dedf67a6-f66d-4baf-81b7-ea6ba36e748f"
+        }
+      },
+      "key": "test-tier-3-channel",
+      "roles": [
+        "InventorySupply",
+        "ProductDistribution"
+      ],
+      "name": {
+        "en-US": "Channel which misses some products"
+      }
+    }
+  ]
+}

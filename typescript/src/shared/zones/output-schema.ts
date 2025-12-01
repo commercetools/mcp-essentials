@@ -39,6 +39,6 @@ export const zonesPagedSchema = z
   })
   .strict();
 
-export const readZoneOutputSchema = zonesSchema || zonesPagedSchema;
+export const readZoneOutputSchema = z.union([zonesSchema, zonesPagedSchema]);
 export const createZoneOutputSchema = zonesSchema;
 export const updateZoneOutputSchema = zonesSchema;

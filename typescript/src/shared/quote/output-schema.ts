@@ -54,6 +54,6 @@ export const quotePagedSchema = z
   })
   .strict();
 
-export const readQuoteOutputSchema = quoteSchema || quotePagedSchema;
+export const readQuoteOutputSchema = z.union([quoteSchema, quotePagedSchema]);
 export const createQuoteOutputSchema = quoteSchema;
 export const updateQuoteOutputSchema = quoteSchema;

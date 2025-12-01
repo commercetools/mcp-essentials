@@ -1,0 +1,133 @@
+{
+  "limit": 3,
+  "offset": 0,
+  "count": 3,
+  "total": 3,
+  "results": [
+    {
+      "id": "139d8e84-ae67-4966-9ee7-ba0b36ac23b6",
+      "version": 5,
+      "versionModifiedAt": "2023-09-13T15:45:33.568Z",
+      "createdAt": "2022-10-03T17:26:45.085Z",
+      "lastModifiedAt": "2022-10-03T17:26:54.906Z",
+      "lastModifiedBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "dedf67a6-f66d-4baf-81b7-ea6ba36e748f"
+        }
+      },
+      "createdBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "dedf67a6-f66d-4baf-81b7-ea6ba36e748f"
+        }
+      },
+      "code": "-test",
+      "name": {
+        "en-US": "-test"
+      },
+      "description": {
+        "en-US": ""
+      },
+      "cartDiscounts": [
+        {
+          "typeId": "cart-discount",
+          "id": "42c2810a-51fb-4e1f-8a50-c81594ef50b2"
+        }
+      ],
+      "isActive": true,
+      "references": [],
+      "applicationVersion": 2,
+      "groups": []
+    },
+    {
+      "id": "750e6621-7240-4758-aaf9-9b54b460652c",
+      "version": 6,
+      "versionModifiedAt": "2023-10-05T14:03:17.419Z",
+      "createdAt": "2023-10-03T19:27:28.734Z",
+      "lastModifiedAt": "2023-10-03T19:27:54.066Z",
+      "lastModifiedBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "147fa1f6-e486-4d55-826a-dac81b0f17f3"
+        }
+      },
+      "createdBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "147fa1f6-e486-4d55-826a-dac81b0f17f3"
+        }
+      },
+      "code": "class20",
+      "name": {
+        "af": "",
+        "en-GB": "",
+        "en-US": "class20",
+        "es-MX": ""
+      },
+      "description": {
+        "af": "",
+        "en-GB": "",
+        "en-US": "20% off Classes",
+        "es-MX": ""
+      },
+      "cartDiscounts": [
+        {
+          "typeId": "cart-discount",
+          "id": "8af706a0-17a7-4b81-8f34-dc6f949c2020"
+        }
+      ],
+      "isActive": true,
+      "references": [],
+      "applicationVersion": 4,
+      "groups": []
+    },
+    {
+      "id": "9dc898ea-d394-40ec-924b-55ed7bb90dd4",
+      "version": 3,
+      "versionModifiedAt": "2024-04-25T17:52:57.281Z",
+      "lastMessageSequenceNumber": 1,
+      "createdAt": "2024-04-25T16:57:31.932Z",
+      "lastModifiedAt": "2024-04-25T16:57:47.185Z",
+      "lastModifiedBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "f372e4e3-4a11-469d-807a-d3622d00da99"
+        }
+      },
+      "createdBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "f372e4e3-4a11-469d-807a-d3622d00da99"
+        }
+      },
+      "code": "ult130-10",
+      "name": {
+        "en-GB": "",
+        "en-US": "",
+        "es-MX": ""
+      },
+      "description": {
+        "en-GB": "",
+        "en-US": "",
+        "es-MX": ""
+      },
+      "cartDiscounts": [
+        {
+          "typeId": "cart-discount",
+          "id": "06e630a9-cfd0-4789-9d07-32961832b07a"
+        }
+      ],
+      "isActive": true,
+      "references": [],
+      "applicationVersion": 1,
+      "groups": []
+    }
+  ]
+}

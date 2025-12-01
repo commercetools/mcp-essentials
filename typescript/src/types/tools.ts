@@ -43,7 +43,7 @@ export type Tool = {
   name: string;
   description: string;
   parameters: z.ZodObject<any, any, any, any>;
-  outputSchema?: z.ZodObject<any, any, any, any>;
+  outputSchema?: z.ZodObject<any, any, any, any> | z.ZodUnion<[z.ZodObject<any, any, any, any>, z.ZodObject<any, any, any, any>]>;
   execute?: <T = any, R = string>(args: T, api?: ApiRoot) => Promise<R>;
   actions: {
     [key: string]: {

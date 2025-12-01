@@ -1,0 +1,142 @@
+{
+  "limit": 3,
+  "offset": 0,
+  "count": 3,
+  "total": 132,
+  "results": [
+    {
+      "id": "bcd77063-7387-4ccc-8264-abce96226a32",
+      "version": 8,
+      "versionModifiedAt": "2023-09-13T15:45:34.176Z",
+      "lastMessageSequenceNumber": 2,
+      "createdAt": "2022-10-13T18:13:30.953Z",
+      "lastModifiedAt": "2023-07-26T19:55:34.582Z",
+      "lastModifiedBy": {
+        "clientId": "1eyVB5_tTzMDPwSxppod3eyZ",
+        "isPlatformClient": false
+      },
+      "createdBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "cf7f6e32-2446-46a3-b05d-c705bb2c0d0e"
+        }
+      },
+      "key": "pain-relievers",
+      "name": {
+        "en-US": "Pain Relievers",
+        "es-MX": "Analgésicos"
+      },
+      "slug": {
+        "en-US": "pain-relievers",
+        "es-MX": "pain-relievers"
+      },
+      "ancestors": [
+        {
+          "typeId": "category",
+          "id": "a6160a1b-0a82-41dd-8817-eabfba4582fc"
+        },
+        {
+          "typeId": "category",
+          "id": "1e50afe7-4d56-4576-b76d-f6239201b570"
+        },
+        {
+          "typeId": "category",
+          "id": "28910afa-19e6-416e-98a8-c072873ca7ce"
+        }
+      ],
+      "parent": {
+        "typeId": "category",
+        "id": "28910afa-19e6-416e-98a8-c072873ca7ce"
+      },
+      "orderHint": "0.05",
+      "assets": []
+    },
+    {
+      "id": "aadc6743-9a20-4a55-be18-f5413e8cab23",
+      "version": 7,
+      "versionModifiedAt": "2023-09-13T15:45:34.167Z",
+      "lastMessageSequenceNumber": 2,
+      "createdAt": "2022-11-09T14:14:26.027Z",
+      "lastModifiedAt": "2023-07-26T19:55:34.404Z",
+      "lastModifiedBy": {
+        "clientId": "1eyVB5_tTzMDPwSxppod3eyZ",
+        "isPlatformClient": false
+      },
+      "createdBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "4051df61-3ed3-4518-85f2-2d6a0725a007"
+        }
+      },
+      "key": "ace",
+      "name": {
+        "en-US": "Ace",
+        "es-MX": "As"
+      },
+      "slug": {
+        "en-US": "ace",
+        "es-MX": "ace"
+      },
+      "ancestors": [
+        {
+          "typeId": "category",
+          "id": "a6160a1b-0a82-41dd-8817-eabfba4582fc"
+        }
+      ],
+      "parent": {
+        "typeId": "category",
+        "id": "a6160a1b-0a82-41dd-8817-eabfba4582fc"
+      },
+      "orderHint": ".45",
+      "assets": []
+    },
+    {
+      "id": "1e50afe7-4d56-4576-b76d-f6239201b570",
+      "version": 8,
+      "versionModifiedAt": "2023-09-13T15:45:34.167Z",
+      "lastMessageSequenceNumber": 2,
+      "createdAt": "2022-12-05T00:30:09.617Z",
+      "lastModifiedAt": "2023-07-26T19:55:34.467Z",
+      "lastModifiedBy": {
+        "clientId": "1eyVB5_tTzMDPwSxppod3eyZ",
+        "isPlatformClient": false
+      },
+      "createdBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "2b06b734-5b66-47fa-b3b2-67318555b9a9"
+        }
+      },
+      "key": "all-products",
+      "name": {
+        "en-US": "All Products",
+        "es-MX": "Todos los productos"
+      },
+      "slug": {
+        "en-US": "all-products",
+        "es-MX": "all-products"
+      },
+      "description": {
+        "en-US": "all products"
+      },
+      "ancestors": [
+        {
+          "typeId": "category",
+          "id": "a6160a1b-0a82-41dd-8817-eabfba4582fc"
+        }
+      ],
+      "parent": {
+        "typeId": "category",
+        "id": "a6160a1b-0a82-41dd-8817-eabfba4582fc"
+      },
+      "orderHint": "1",
+      "metaTitle": {
+        "en-US": "all products"
+      },
+      "assets": []
+    }
+  ]
+}

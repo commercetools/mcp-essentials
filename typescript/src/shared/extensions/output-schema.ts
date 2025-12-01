@@ -27,7 +27,6 @@ export const extensionsPagedSchema = z
   })
   .strict();
 
-export const readExtensionOutputSchema =
-  extensionsSchema || extensionsPagedSchema;
+export const readExtensionOutputSchema = z.union([extensionsSchema, extensionsPagedSchema]);
 export const createExtensionOutputSchema = extensionsSchema;
 export const updateExtensionOutputSchema = extensionsSchema;

@@ -26,7 +26,6 @@ export const customObjectsPagedSchema = z
   })
   .strict();
 
-export const readCustomObjectOutputSchema =
-  customObjectsSchema || customObjectsPagedSchema;
+export const readCustomObjectOutputSchema = z.union([customObjectsSchema, customObjectsPagedSchema]);
 export const createCustomObjectOutputSchema = customObjectsSchema;
 export const updateCustomObjectOutputSchema = customObjectsSchema;

@@ -34,7 +34,6 @@ export const paymentMethodsPagedSchema = z
   })
   .strict();
 
-export const readPaymentMethodsOutputSchema =
-  paymentMethodsSchema || paymentMethodsPagedSchema;
+export const readPaymentMethodsOutputSchema = z.union([paymentMethodsSchema, paymentMethodsPagedSchema]);
 export const createPaymentMethodsOutputSchema = paymentMethodsSchema;
 export const updatePaymentMethodsOutputSchema = paymentMethodsSchema;

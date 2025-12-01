@@ -49,5 +49,5 @@ export const customerPagedSchema = z
   .strict();
 
 export const createCustomerOutputSchema = customerSchema;
-export const readCustomerOutputSchema = customerSchema || customerPagedSchema;
+export const readCustomerOutputSchema = z.union([customerSchema, customerPagedSchema]);
 export const updateCustomerOutputSchema = customerSchema;

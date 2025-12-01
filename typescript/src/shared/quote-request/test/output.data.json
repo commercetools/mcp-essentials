@@ -1,0 +1,1495 @@
+{
+  "limit": 3,
+  "offset": 0,
+  "count": 3,
+  "total": 63,
+  "results": [
+    {
+      "id": "d57f5d52-822d-4919-a6e4-0245acef4d80",
+      "version": 2,
+      "versionModifiedAt": "2024-02-14T21:05:50.546Z",
+      "lastMessageSequenceNumber": 2,
+      "createdAt": "2024-02-14T21:05:29.723Z",
+      "lastModifiedAt": "2024-02-14T21:05:50.546Z",
+      "lastModifiedBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "cf7f6e32-2446-46a3-b05d-c705bb2c0d0e"
+        }
+      },
+      "createdBy": {
+        "clientId": "1eyVB5_tTzMDPwSxppod3eyZ",
+        "isPlatformClient": false,
+        "associate": {
+          "typeId": "customer",
+          "id": "55937787-4eb1-43a7-9065-fac78a757e90"
+        }
+      },
+      "quoteRequestState": "Accepted",
+      "comment": "5% discount",
+      "customer": {
+        "typeId": "customer",
+        "id": "55937787-4eb1-43a7-9065-fac78a757e90"
+      },
+      "lineItems": [
+        {
+          "id": "153ceddc-6c9a-4db0-ace4-2da1437d54b9",
+          "productId": "b738be74-941f-4f4f-9d2a-07304eef8c1a",
+          "productKey": "xps-15",
+          "productType": {
+            "typeId": "product-type",
+            "id": "d284835b-6d15-497f-ac59-59381951494f",
+            "version": 7
+          },
+          "productSlug": {
+            "en-US": "xps-15-laptop"
+          },
+          "name": {
+            "en-US": "XPS 15 Laptop"
+          },
+          "variant": {
+            "id": 1,
+            "sku": "xps-15",
+            "key": "xps-15",
+            "prices": [
+              {
+                "id": "b9e33c10-4af1-4591-b300-80ec7a09b1e0",
+                "value": {
+                  "type": "centPrecision",
+                  "currencyCode": "USD",
+                  "centAmount": 89999,
+                  "fractionDigits": 2
+                }
+              },
+              {
+                "id": "8ca1a382-e441-4554-aeac-4cdf7669876c",
+                "value": {
+                  "type": "centPrecision",
+                  "currencyCode": "MXN",
+                  "centAmount": 1640000,
+                  "fractionDigits": 2
+                }
+              },
+              {
+                "id": "5bf17a0c-c72b-42e7-a208-3dc855888f00",
+                "value": {
+                  "type": "centPrecision",
+                  "currencyCode": "USD",
+                  "centAmount": 79999,
+                  "fractionDigits": 2
+                },
+                "channel": {
+                  "typeId": "channel",
+                  "id": "e1d8d389-3c47-4334-80d8-90b2e9e28ef3"
+                },
+                "tiers": [
+                  {
+                    "minimumQuantity": 10,
+                    "value": {
+                      "type": "centPrecision",
+                      "currencyCode": "USD",
+                      "centAmount": 69999,
+                      "fractionDigits": 2
+                    }
+                  }
+                ]
+              }
+            ],
+            "images": [
+              {
+                "url": "https://efa2cc0dcbc20c919217-dbc413f6fc6aec98e00c8f16a9b5af63.ssl.cf1.rackcdn.com/Screenshot%202023-04-1-KqT3Xyq6.png",
+                "dimensions": {
+                  "w": 569,
+                  "h": 413
+                }
+              }
+            ],
+            "attributes": [
+              {
+                "name": "components",
+                "value": [
+                  {
+                    "typeId": "product",
+                    "id": "dcce0343-0288-425b-ac48-6567642a112a"
+                  },
+                  {
+                    "typeId": "product",
+                    "id": "586d4aa7-99ac-44ca-b361-cbeaea55e9f2"
+                  },
+                  {
+                    "typeId": "product",
+                    "id": "23410ba0-0a67-48a9-8e6d-2bfb7a9c555c"
+                  },
+                  {
+                    "typeId": "product",
+                    "id": "b595608e-4b31-4d3a-9650-843191ec9daa"
+                  },
+                  {
+                    "typeId": "product",
+                    "id": "1cc79ac5-59e7-4407-b0bd-78dc2b72b56e"
+                  }
+                ]
+              },
+              {
+                "name": "salesRank",
+                "value": 100
+              }
+            ],
+            "assets": [],
+            "availability": {
+              "isOnStock": true,
+              "availableQuantity": 479,
+              "version": 19,
+              "id": "dd232ed2-6162-4010-a0cd-9d7c786bcb9b",
+              "channels": {
+                "e1d8d389-3c47-4334-80d8-90b2e9e28ef3": {
+                  "isOnStock": true,
+                  "restockableInDays": 7,
+                  "availableQuantity": 347,
+                  "version": 1,
+                  "id": "4b317d0a-916d-4122-9a66-8784d6a6d0d3"
+                }
+              }
+            }
+          },
+          "price": {
+            "id": "b9e33c10-4af1-4591-b300-80ec7a09b1e0",
+            "value": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 89999,
+              "fractionDigits": 2
+            }
+          },
+          "quantity": 10,
+          "discountedPricePerQuantity": [],
+          "taxRate": {
+            "name": "10% incl.",
+            "amount": 0.1,
+            "includedInPrice": false,
+            "country": "US",
+            "id": "HF-csJaY",
+            "subRates": []
+          },
+          "perMethodTaxRate": [],
+          "addedAt": "2024-02-14T21:05:20.928Z",
+          "lastModifiedAt": "2024-02-14T21:05:20.928Z",
+          "state": [
+            {
+              "quantity": 10,
+              "state": {
+                "typeId": "state",
+                "id": "0bf0a49d-ef00-4576-8e0c-9e26486adce2"
+              }
+            }
+          ],
+          "priceMode": "Platform",
+          "lineItemMode": "Standard",
+          "priceRoundingMode": "HalfEven",
+          "totalPrice": {
+            "type": "centPrecision",
+            "currencyCode": "USD",
+            "centAmount": 899990,
+            "fractionDigits": 2
+          },
+          "taxedPrice": {
+            "totalNet": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 899990,
+              "fractionDigits": 2
+            },
+            "totalGross": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 989989,
+              "fractionDigits": 2
+            },
+            "taxPortions": [],
+            "totalTax": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 89999,
+              "fractionDigits": 2
+            }
+          },
+          "taxedPricePortions": []
+        }
+      ],
+      "totalPrice": {
+        "type": "centPrecision",
+        "currencyCode": "USD",
+        "centAmount": 899990,
+        "fractionDigits": 2
+      },
+      "taxedPrice": {
+        "totalNet": {
+          "type": "centPrecision",
+          "currencyCode": "USD",
+          "centAmount": 899990,
+          "fractionDigits": 2
+        },
+        "totalGross": {
+          "type": "centPrecision",
+          "currencyCode": "USD",
+          "centAmount": 989989,
+          "fractionDigits": 2
+        },
+        "taxPortions": [
+          {
+            "rate": 0.1,
+            "amount": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 89999,
+              "fractionDigits": 2
+            },
+            "name": "10% incl."
+          }
+        ],
+        "totalTax": {
+          "type": "centPrecision",
+          "currencyCode": "USD",
+          "centAmount": 89999,
+          "fractionDigits": 2
+        }
+      },
+      "country": "US",
+      "customLineItems": [],
+      "directDiscounts": [],
+      "inventoryMode": "ReserveOnOrder",
+      "priceRoundingMode": "HalfEven",
+      "taxMode": "Platform",
+      "taxRoundingMode": "HalfEven",
+      "taxCalculationMode": "LineItemLevel",
+      "billingAddress": {
+        "city": "Collinsville",
+        "country": "US"
+      },
+      "itemShippingAddresses": [],
+      "shippingAddress": {
+        "city": "Collinsville",
+        "country": "US"
+      },
+      "store": {
+        "typeId": "store",
+        "key": "hospital-pharmacy-mwd-54321"
+      },
+      "businessUnit": {
+        "typeId": "business-unit",
+        "key": "abc-hospital-pharmacy-3"
+      },
+      "cart": {
+        "typeId": "cart",
+        "id": "6c103e20-366e-43c6-8ea3-2438a04170e7"
+      }
+    },
+    {
+      "id": "a2690ed8-5361-4be0-b881-d54a88af5314",
+      "version": 2,
+      "versionModifiedAt": "2024-02-14T21:08:20.505Z",
+      "lastMessageSequenceNumber": 2,
+      "createdAt": "2024-02-14T21:07:56.885Z",
+      "lastModifiedAt": "2024-02-14T21:08:20.505Z",
+      "lastModifiedBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "cf7f6e32-2446-46a3-b05d-c705bb2c0d0e"
+        }
+      },
+      "createdBy": {
+        "clientId": "pyWxXbSIBd1w8cs0VH0RVAcv",
+        "isPlatformClient": false
+      },
+      "quoteRequestState": "Accepted",
+      "comment": "5% off",
+      "customer": {
+        "typeId": "customer",
+        "id": "55937787-4eb1-43a7-9065-fac78a757e90"
+      },
+      "lineItems": [
+        {
+          "id": "2aa15d0a-dff2-4f43-b822-37fbfdbae9ea",
+          "productId": "b738be74-941f-4f4f-9d2a-07304eef8c1a",
+          "productKey": "xps-15",
+          "productType": {
+            "typeId": "product-type",
+            "id": "d284835b-6d15-497f-ac59-59381951494f",
+            "version": 7
+          },
+          "productSlug": {
+            "en-US": "xps-15-laptop"
+          },
+          "name": {
+            "en-US": "XPS 15 Laptop"
+          },
+          "variant": {
+            "id": 1,
+            "sku": "xps-15",
+            "key": "xps-15",
+            "prices": [
+              {
+                "id": "b9e33c10-4af1-4591-b300-80ec7a09b1e0",
+                "value": {
+                  "type": "centPrecision",
+                  "currencyCode": "USD",
+                  "centAmount": 89999,
+                  "fractionDigits": 2
+                }
+              },
+              {
+                "id": "8ca1a382-e441-4554-aeac-4cdf7669876c",
+                "value": {
+                  "type": "centPrecision",
+                  "currencyCode": "MXN",
+                  "centAmount": 1640000,
+                  "fractionDigits": 2
+                }
+              },
+              {
+                "id": "5bf17a0c-c72b-42e7-a208-3dc855888f00",
+                "value": {
+                  "type": "centPrecision",
+                  "currencyCode": "USD",
+                  "centAmount": 79999,
+                  "fractionDigits": 2
+                },
+                "channel": {
+                  "typeId": "channel",
+                  "id": "e1d8d389-3c47-4334-80d8-90b2e9e28ef3"
+                }
+              }
+            ],
+            "images": [
+              {
+                "url": "https://efa2cc0dcbc20c919217-dbc413f6fc6aec98e00c8f16a9b5af63.ssl.cf1.rackcdn.com/Screenshot%202023-04-1-KqT3Xyq6.png",
+                "dimensions": {
+                  "w": 569,
+                  "h": 413
+                }
+              }
+            ],
+            "attributes": [
+              {
+                "name": "components",
+                "value": [
+                  {
+                    "typeId": "product",
+                    "id": "dcce0343-0288-425b-ac48-6567642a112a"
+                  },
+                  {
+                    "typeId": "product",
+                    "id": "586d4aa7-99ac-44ca-b361-cbeaea55e9f2"
+                  },
+                  {
+                    "typeId": "product",
+                    "id": "23410ba0-0a67-48a9-8e6d-2bfb7a9c555c"
+                  },
+                  {
+                    "typeId": "product",
+                    "id": "b595608e-4b31-4d3a-9650-843191ec9daa"
+                  },
+                  {
+                    "typeId": "product",
+                    "id": "1cc79ac5-59e7-4407-b0bd-78dc2b72b56e"
+                  }
+                ]
+              },
+              {
+                "name": "salesRank",
+                "value": 100
+              }
+            ],
+            "assets": [],
+            "availability": {
+              "isOnStock": true,
+              "availableQuantity": 479,
+              "version": 19,
+              "id": "dd232ed2-6162-4010-a0cd-9d7c786bcb9b",
+              "channels": {
+                "e1d8d389-3c47-4334-80d8-90b2e9e28ef3": {
+                  "isOnStock": true,
+                  "restockableInDays": 7,
+                  "availableQuantity": 347,
+                  "version": 1,
+                  "id": "4b317d0a-916d-4122-9a66-8784d6a6d0d3"
+                }
+              }
+            }
+          },
+          "price": {
+            "id": "5bf17a0c-c72b-42e7-a208-3dc855888f00",
+            "value": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 69999,
+              "fractionDigits": 2
+            },
+            "channel": {
+              "typeId": "channel",
+              "id": "e1d8d389-3c47-4334-80d8-90b2e9e28ef3"
+            },
+            "tiers": [
+              {
+                "minimumQuantity": 10,
+                "value": {
+                  "type": "centPrecision",
+                  "currencyCode": "USD",
+                  "centAmount": 69999,
+                  "fractionDigits": 2
+                }
+              }
+            ]
+          },
+          "quantity": 10,
+          "discountedPricePerQuantity": [],
+          "supplyChannel": {
+            "typeId": "channel",
+            "id": "e1d8d389-3c47-4334-80d8-90b2e9e28ef3"
+          },
+          "distributionChannel": {
+            "typeId": "channel",
+            "id": "e1d8d389-3c47-4334-80d8-90b2e9e28ef3"
+          },
+          "taxRate": {
+            "name": "10% incl.",
+            "amount": 0.1,
+            "includedInPrice": false,
+            "country": "US",
+            "id": "HF-csJaY",
+            "subRates": []
+          },
+          "perMethodTaxRate": [],
+          "addedAt": "2024-02-14T20:38:35.846Z",
+          "lastModifiedAt": "2024-02-14T20:41:50.273Z",
+          "state": [
+            {
+              "quantity": 10,
+              "state": {
+                "typeId": "state",
+                "id": "0bf0a49d-ef00-4576-8e0c-9e26486adce2"
+              }
+            }
+          ],
+          "priceMode": "Platform",
+          "lineItemMode": "Standard",
+          "priceRoundingMode": "HalfEven",
+          "totalPrice": {
+            "type": "centPrecision",
+            "currencyCode": "USD",
+            "centAmount": 699990,
+            "fractionDigits": 2
+          },
+          "taxedPrice": {
+            "totalNet": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 699990,
+              "fractionDigits": 2
+            },
+            "totalGross": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 769989,
+              "fractionDigits": 2
+            },
+            "taxPortions": [],
+            "totalTax": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 69999,
+              "fractionDigits": 2
+            }
+          },
+          "taxedPricePortions": []
+        },
+        {
+          "id": "ed1a26ab-6b24-4e40-ad2b-f47835ad9dbd",
+          "productId": "dcce0343-0288-425b-ac48-6567642a112a",
+          "productType": {
+            "typeId": "product-type",
+            "id": "e524d54b-17d4-4eb1-855a-107f6e46fe40",
+            "version": 4
+          },
+          "productSlug": {
+            "en-US": "processor"
+          },
+          "name": {
+            "en-US": "Processor"
+          },
+          "variant": {
+            "id": 1,
+            "sku": "i7-13-gen-18",
+            "prices": [
+              {
+                "id": "8ff00ba8-e33f-43d0-8253-a688dae212ef",
+                "value": {
+                  "type": "centPrecision",
+                  "currencyCode": "USD",
+                  "centAmount": 19999,
+                  "fractionDigits": 2
+                }
+              },
+              {
+                "id": "6bb5a3ce-958f-45bc-9101-b7e632104af4",
+                "value": {
+                  "type": "centPrecision",
+                  "currencyCode": "MXN",
+                  "centAmount": 99995,
+                  "fractionDigits": 2
+                },
+                "country": "MX"
+              }
+            ],
+            "images": [],
+            "attributes": [
+              {
+                "name": "option",
+                "value": "13th Gen Intel® Core™ i7-13700H (18-core)"
+              },
+              {
+                "name": "variant-selector-attributes",
+                "value": [
+                  "option"
+                ]
+              }
+            ],
+            "assets": [],
+            "availability": {
+              "isOnStock": true,
+              "availableQuantity": 480,
+              "version": 17,
+              "id": "623ad83b-896b-46c4-8f84-699d6a4f59e8",
+              "channels": {
+                "e1d8d389-3c47-4334-80d8-90b2e9e28ef3": {
+                  "isOnStock": true,
+                  "restockableInDays": 7,
+                  "availableQuantity": 641,
+                  "version": 1,
+                  "id": "a167e813-9e84-42bf-bda4-aaf4d31f014b"
+                }
+              }
+            }
+          },
+          "price": {
+            "id": "8ff00ba8-e33f-43d0-8253-a688dae212ef",
+            "value": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 19999,
+              "fractionDigits": 2
+            }
+          },
+          "quantity": 1,
+          "discountedPricePerQuantity": [],
+          "taxRate": {
+            "name": "10% incl.",
+            "amount": 0.1,
+            "includedInPrice": false,
+            "country": "US",
+            "id": "HF-csJaY",
+            "subRates": []
+          },
+          "perMethodTaxRate": [],
+          "addedAt": "2024-02-14T20:38:36.146Z",
+          "lastModifiedAt": "2024-02-14T20:38:36.146Z",
+          "state": [
+            {
+              "quantity": 1,
+              "state": {
+                "typeId": "state",
+                "id": "0bf0a49d-ef00-4576-8e0c-9e26486adce2"
+              }
+            }
+          ],
+          "priceMode": "Platform",
+          "lineItemMode": "Standard",
+          "priceRoundingMode": "HalfEven",
+          "totalPrice": {
+            "type": "centPrecision",
+            "currencyCode": "USD",
+            "centAmount": 19999,
+            "fractionDigits": 2
+          },
+          "taxedPrice": {
+            "totalNet": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 19999,
+              "fractionDigits": 2
+            },
+            "totalGross": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 21999,
+              "fractionDigits": 2
+            },
+            "taxPortions": [],
+            "totalTax": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 2000,
+              "fractionDigits": 2
+            }
+          },
+          "taxedPricePortions": [],
+          "custom": {
+            "type": {
+              "typeId": "type",
+              "id": "7f027541-b95e-4073-958f-230e8f81364b"
+            },
+            "fields": {
+              "parentId": "2aa15d0a-dff2-4f43-b822-37fbfdbae9ea"
+            }
+          }
+        },
+        {
+          "id": "a466181e-217c-4892-9bff-98c0fbed682c",
+          "productId": "b595608e-4b31-4d3a-9650-843191ec9daa",
+          "productType": {
+            "typeId": "product-type",
+            "id": "e524d54b-17d4-4eb1-855a-107f6e46fe40",
+            "version": 4
+          },
+          "productSlug": {
+            "en-US": "video-card"
+          },
+          "name": {
+            "en-US": "Video Card"
+          },
+          "variant": {
+            "id": 3,
+            "sku": "nvidia-rtx-3050",
+            "prices": [
+              {
+                "id": "2375fa7d-4603-429c-8eeb-ef9fd44e69c6",
+                "value": {
+                  "type": "centPrecision",
+                  "currencyCode": "USD",
+                  "centAmount": 4900,
+                  "fractionDigits": 2
+                }
+              }
+            ],
+            "images": [],
+            "attributes": [
+              {
+                "name": "variant-selector-attributes",
+                "value": [
+                  "option"
+                ]
+              },
+              {
+                "name": "option",
+                "value": "NVIDIA® GeForce RTX 3050, 4GB GDDR6, 40W"
+              }
+            ],
+            "assets": [],
+            "availability": {
+              "isOnStock": true,
+              "availableQuantity": 701,
+              "version": 54,
+              "id": "c648c63f-1b49-48de-972c-77d7ef83c479",
+              "channels": {
+                "e1d8d389-3c47-4334-80d8-90b2e9e28ef3": {
+                  "isOnStock": true,
+                  "restockableInDays": 7,
+                  "availableQuantity": 218,
+                  "version": 1,
+                  "id": "fc81f1a0-b6dd-4633-a3f3-8d209e32d7ef"
+                }
+              }
+            }
+          },
+          "price": {
+            "id": "2375fa7d-4603-429c-8eeb-ef9fd44e69c6",
+            "value": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 4900,
+              "fractionDigits": 2
+            }
+          },
+          "quantity": 1,
+          "discountedPricePerQuantity": [],
+          "taxRate": {
+            "name": "10% incl.",
+            "amount": 0.1,
+            "includedInPrice": false,
+            "country": "US",
+            "id": "HF-csJaY",
+            "subRates": []
+          },
+          "perMethodTaxRate": [],
+          "addedAt": "2024-02-14T20:38:36.154Z",
+          "lastModifiedAt": "2024-02-14T20:38:36.154Z",
+          "state": [
+            {
+              "quantity": 1,
+              "state": {
+                "typeId": "state",
+                "id": "0bf0a49d-ef00-4576-8e0c-9e26486adce2"
+              }
+            }
+          ],
+          "priceMode": "Platform",
+          "lineItemMode": "Standard",
+          "priceRoundingMode": "HalfEven",
+          "totalPrice": {
+            "type": "centPrecision",
+            "currencyCode": "USD",
+            "centAmount": 4900,
+            "fractionDigits": 2
+          },
+          "taxedPrice": {
+            "totalNet": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 4900,
+              "fractionDigits": 2
+            },
+            "totalGross": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 5390,
+              "fractionDigits": 2
+            },
+            "taxPortions": [],
+            "totalTax": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 490,
+              "fractionDigits": 2
+            }
+          },
+          "taxedPricePortions": [],
+          "custom": {
+            "type": {
+              "typeId": "type",
+              "id": "7f027541-b95e-4073-958f-230e8f81364b"
+            },
+            "fields": {
+              "parentId": "2aa15d0a-dff2-4f43-b822-37fbfdbae9ea"
+            }
+          }
+        },
+        {
+          "id": "77405be7-7c4e-407e-b522-bbf282723738",
+          "productId": "23410ba0-0a67-48a9-8e6d-2bfb7a9c555c",
+          "productType": {
+            "typeId": "product-type",
+            "id": "e524d54b-17d4-4eb1-855a-107f6e46fe40",
+            "version": 4
+          },
+          "productSlug": {
+            "en-US": "memory"
+          },
+          "name": {
+            "en-US": "Memory"
+          },
+          "variant": {
+            "id": 2,
+            "sku": "16gb-4800",
+            "prices": [
+              {
+                "id": "45a67b91-92fc-4608-8c61-942862f3a457",
+                "value": {
+                  "type": "centPrecision",
+                  "currencyCode": "USD",
+                  "centAmount": 5000,
+                  "fractionDigits": 2
+                },
+                "country": "US"
+              }
+            ],
+            "images": [],
+            "attributes": [
+              {
+                "name": "variant-selector-attributes",
+                "value": [
+                  "option"
+                ]
+              },
+              {
+                "name": "option",
+                "value": "16GB, 2x8GB, DDR5, 4800MHz"
+              }
+            ],
+            "assets": [],
+            "availability": {
+              "isOnStock": true,
+              "availableQuantity": 268,
+              "version": 50,
+              "id": "26f9f15c-1839-41ec-b0f3-a1c277548ffc",
+              "channels": {
+                "e1d8d389-3c47-4334-80d8-90b2e9e28ef3": {
+                  "isOnStock": true,
+                  "restockableInDays": 7,
+                  "availableQuantity": 131,
+                  "version": 1,
+                  "id": "9f5de57f-33f7-4c2c-9a25-a7cb9b6451bf"
+                }
+              }
+            }
+          },
+          "price": {
+            "id": "45a67b91-92fc-4608-8c61-942862f3a457",
+            "value": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 5000,
+              "fractionDigits": 2
+            },
+            "country": "US"
+          },
+          "quantity": 1,
+          "discountedPricePerQuantity": [],
+          "taxRate": {
+            "name": "10% incl.",
+            "amount": 0.1,
+            "includedInPrice": false,
+            "country": "US",
+            "id": "HF-csJaY",
+            "subRates": []
+          },
+          "perMethodTaxRate": [],
+          "addedAt": "2024-02-14T20:38:36.157Z",
+          "lastModifiedAt": "2024-02-14T20:38:36.157Z",
+          "state": [
+            {
+              "quantity": 1,
+              "state": {
+                "typeId": "state",
+                "id": "0bf0a49d-ef00-4576-8e0c-9e26486adce2"
+              }
+            }
+          ],
+          "priceMode": "Platform",
+          "lineItemMode": "Standard",
+          "priceRoundingMode": "HalfEven",
+          "totalPrice": {
+            "type": "centPrecision",
+            "currencyCode": "USD",
+            "centAmount": 5000,
+            "fractionDigits": 2
+          },
+          "taxedPrice": {
+            "totalNet": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 5000,
+              "fractionDigits": 2
+            },
+            "totalGross": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 5500,
+              "fractionDigits": 2
+            },
+            "taxPortions": [],
+            "totalTax": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 500,
+              "fractionDigits": 2
+            }
+          },
+          "taxedPricePortions": [],
+          "custom": {
+            "type": {
+              "typeId": "type",
+              "id": "7f027541-b95e-4073-958f-230e8f81364b"
+            },
+            "fields": {
+              "parentId": "2aa15d0a-dff2-4f43-b822-37fbfdbae9ea"
+            }
+          }
+        },
+        {
+          "id": "3a813b5d-6771-4c3e-8a4d-349e5a7cd315",
+          "productId": "586d4aa7-99ac-44ca-b361-cbeaea55e9f2",
+          "productType": {
+            "typeId": "product-type",
+            "id": "e524d54b-17d4-4eb1-855a-107f6e46fe40",
+            "version": 4
+          },
+          "productSlug": {
+            "en-US": "operating-system"
+          },
+          "name": {
+            "en-US": "Operating System"
+          },
+          "variant": {
+            "id": 1,
+            "sku": "windows-11-home",
+            "prices": [
+              {
+                "id": "b856bd9e-61e3-4cfc-a394-7054e67159c5",
+                "value": {
+                  "type": "centPrecision",
+                  "currencyCode": "USD",
+                  "centAmount": 0,
+                  "fractionDigits": 2
+                }
+              },
+              {
+                "id": "14f4b3a1-c1c5-4a86-9ef7-c3e3bcc464c4",
+                "value": {
+                  "type": "centPrecision",
+                  "currencyCode": "MXN",
+                  "centAmount": 0,
+                  "fractionDigits": 2
+                },
+                "country": "MX"
+              }
+            ],
+            "images": [],
+            "attributes": [
+              {
+                "name": "variant-selector-attributes",
+                "value": [
+                  "option"
+                ]
+              },
+              {
+                "name": "option",
+                "value": "Windows 11 Home, English"
+              }
+            ],
+            "assets": [],
+            "availability": {
+              "isOnStock": true,
+              "availableQuantity": 676,
+              "version": 29,
+              "id": "845bcac1-b999-48d7-9ea9-a4768b693712",
+              "channels": {
+                "e1d8d389-3c47-4334-80d8-90b2e9e28ef3": {
+                  "isOnStock": true,
+                  "restockableInDays": 7,
+                  "availableQuantity": 521,
+                  "version": 1,
+                  "id": "421603a1-9493-4e8a-a14e-c6a66c870c76"
+                }
+              }
+            }
+          },
+          "price": {
+            "id": "b856bd9e-61e3-4cfc-a394-7054e67159c5",
+            "value": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 0,
+              "fractionDigits": 2
+            }
+          },
+          "quantity": 1,
+          "discountedPricePerQuantity": [],
+          "taxRate": {
+            "name": "10% incl.",
+            "amount": 0.1,
+            "includedInPrice": false,
+            "country": "US",
+            "id": "HF-csJaY",
+            "subRates": []
+          },
+          "perMethodTaxRate": [],
+          "addedAt": "2024-02-14T20:38:36.161Z",
+          "lastModifiedAt": "2024-02-14T20:38:36.161Z",
+          "state": [
+            {
+              "quantity": 1,
+              "state": {
+                "typeId": "state",
+                "id": "0bf0a49d-ef00-4576-8e0c-9e26486adce2"
+              }
+            }
+          ],
+          "priceMode": "Platform",
+          "lineItemMode": "Standard",
+          "priceRoundingMode": "HalfEven",
+          "totalPrice": {
+            "type": "centPrecision",
+            "currencyCode": "USD",
+            "centAmount": 0,
+            "fractionDigits": 2
+          },
+          "taxedPrice": {
+            "totalNet": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 0,
+              "fractionDigits": 2
+            },
+            "totalGross": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 0,
+              "fractionDigits": 2
+            },
+            "taxPortions": [],
+            "totalTax": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 0,
+              "fractionDigits": 2
+            }
+          },
+          "taxedPricePortions": [],
+          "custom": {
+            "type": {
+              "typeId": "type",
+              "id": "7f027541-b95e-4073-958f-230e8f81364b"
+            },
+            "fields": {
+              "parentId": "2aa15d0a-dff2-4f43-b822-37fbfdbae9ea"
+            }
+          }
+        },
+        {
+          "id": "abe9d6cf-6fff-438a-8e6b-2356ceae8c95",
+          "productId": "1cc79ac5-59e7-4407-b0bd-78dc2b72b56e",
+          "productType": {
+            "typeId": "product-type",
+            "id": "e524d54b-17d4-4eb1-855a-107f6e46fe40",
+            "version": 4
+          },
+          "productSlug": {
+            "en-US": "hard-drive"
+          },
+          "name": {
+            "en-US": "Hard Drive"
+          },
+          "variant": {
+            "id": 1,
+            "sku": "hd-512",
+            "prices": [
+              {
+                "id": "2df232a8-d48a-4bd2-8a47-92a54cf3b35d",
+                "value": {
+                  "type": "centPrecision",
+                  "currencyCode": "USD",
+                  "centAmount": 0,
+                  "fractionDigits": 2
+                }
+              },
+              {
+                "id": "2ca732c8-b59a-4661-b84f-68872cf3492d",
+                "value": {
+                  "type": "centPrecision",
+                  "currencyCode": "MXN",
+                  "centAmount": 0,
+                  "fractionDigits": 2
+                },
+                "country": "MX"
+              }
+            ],
+            "images": [],
+            "attributes": [
+              {
+                "name": "option",
+                "value": "512 GB M.2, PCIe NVMe, SSD"
+              },
+              {
+                "name": "variant-selector-attributes",
+                "value": [
+                  "option"
+                ]
+              }
+            ],
+            "assets": [],
+            "availability": {
+              "isOnStock": true,
+              "availableQuantity": 978,
+              "version": 25,
+              "id": "dcae50a3-2bf1-4ee2-8e07-4749d43b879f",
+              "channels": {
+                "e1d8d389-3c47-4334-80d8-90b2e9e28ef3": {
+                  "isOnStock": true,
+                  "restockableInDays": 7,
+                  "availableQuantity": 731,
+                  "version": 1,
+                  "id": "248432ee-1497-47f1-932d-2b6b59dc4bc3"
+                }
+              }
+            }
+          },
+          "price": {
+            "id": "2df232a8-d48a-4bd2-8a47-92a54cf3b35d",
+            "value": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 0,
+              "fractionDigits": 2
+            }
+          },
+          "quantity": 1,
+          "discountedPricePerQuantity": [],
+          "taxRate": {
+            "name": "10% incl.",
+            "amount": 0.1,
+            "includedInPrice": false,
+            "country": "US",
+            "id": "HF-csJaY",
+            "subRates": []
+          },
+          "perMethodTaxRate": [],
+          "addedAt": "2024-02-14T20:38:36.164Z",
+          "lastModifiedAt": "2024-02-14T20:38:36.164Z",
+          "state": [
+            {
+              "quantity": 1,
+              "state": {
+                "typeId": "state",
+                "id": "0bf0a49d-ef00-4576-8e0c-9e26486adce2"
+              }
+            }
+          ],
+          "priceMode": "Platform",
+          "lineItemMode": "Standard",
+          "priceRoundingMode": "HalfEven",
+          "totalPrice": {
+            "type": "centPrecision",
+            "currencyCode": "USD",
+            "centAmount": 0,
+            "fractionDigits": 2
+          },
+          "taxedPrice": {
+            "totalNet": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 0,
+              "fractionDigits": 2
+            },
+            "totalGross": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 0,
+              "fractionDigits": 2
+            },
+            "taxPortions": [],
+            "totalTax": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 0,
+              "fractionDigits": 2
+            }
+          },
+          "taxedPricePortions": [],
+          "custom": {
+            "type": {
+              "typeId": "type",
+              "id": "7f027541-b95e-4073-958f-230e8f81364b"
+            },
+            "fields": {
+              "parentId": "2aa15d0a-dff2-4f43-b822-37fbfdbae9ea"
+            }
+          }
+        }
+      ],
+      "totalPrice": {
+        "type": "centPrecision",
+        "currencyCode": "USD",
+        "centAmount": 729889,
+        "fractionDigits": 2
+      },
+      "taxedPrice": {
+        "totalNet": {
+          "type": "centPrecision",
+          "currencyCode": "USD",
+          "centAmount": 729889,
+          "fractionDigits": 2
+        },
+        "totalGross": {
+          "type": "centPrecision",
+          "currencyCode": "USD",
+          "centAmount": 802878,
+          "fractionDigits": 2
+        },
+        "taxPortions": [
+          {
+            "rate": 0.1,
+            "amount": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 72989,
+              "fractionDigits": 2
+            },
+            "name": "10% incl."
+          }
+        ],
+        "totalTax": {
+          "type": "centPrecision",
+          "currencyCode": "USD",
+          "centAmount": 72989,
+          "fractionDigits": 2
+        }
+      },
+      "country": "US",
+      "customLineItems": [],
+      "directDiscounts": [],
+      "inventoryMode": "ReserveOnOrder",
+      "priceRoundingMode": "HalfEven",
+      "taxMode": "Platform",
+      "taxRoundingMode": "HalfEven",
+      "taxCalculationMode": "LineItemLevel",
+      "billingAddress": {
+        "country": "US"
+      },
+      "itemShippingAddresses": [],
+      "shippingAddress": {
+        "country": "US"
+      },
+      "store": {
+        "typeId": "store",
+        "key": "hospital-pharmacy-mwd-54321"
+      },
+      "businessUnit": {
+        "typeId": "business-unit",
+        "key": "corporate-retail-abc"
+      },
+      "cart": {
+        "typeId": "cart",
+        "id": "583e5580-24da-40e7-8776-d0c437e93489"
+      }
+    },
+    {
+      "id": "8e037898-f899-46c7-982b-ccc181db3d20",
+      "version": 2,
+      "versionModifiedAt": "2024-02-15T18:50:46.294Z",
+      "lastMessageSequenceNumber": 2,
+      "createdAt": "2024-02-15T18:50:03.413Z",
+      "lastModifiedAt": "2024-02-15T18:50:46.294Z",
+      "lastModifiedBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "cf7f6e32-2446-46a3-b05d-c705bb2c0d0e"
+        }
+      },
+      "createdBy": {
+        "clientId": "pyWxXbSIBd1w8cs0VH0RVAcv",
+        "isPlatformClient": false
+      },
+      "quoteRequestState": "Accepted",
+      "comment": "5% off",
+      "customer": {
+        "typeId": "customer",
+        "id": "55937787-4eb1-43a7-9065-fac78a757e90"
+      },
+      "lineItems": [
+        {
+          "id": "a381e269-5a22-4e99-a7d7-5323c76c198d",
+          "productId": "e98b617d-3ddc-4bac-8cdf-82e8490c5a33",
+          "productKey": "pixma-g6050-key",
+          "productType": {
+            "typeId": "product-type",
+            "id": "7c8a90ff-4d2d-457e-afcf-0d6330276d0c",
+            "version": 59
+          },
+          "productSlug": {
+            "en-US": "pixma-g6050"
+          },
+          "name": {
+            "en-US": "Canon PIXMA G6050 3-in-1 Refillable MegaTank Printer"
+          },
+          "variant": {
+            "id": 1,
+            "sku": "pixma-g6050-001",
+            "prices": [
+              {
+                "id": "953fc01e-44f8-48b1-b788-525e47db9476",
+                "value": {
+                  "type": "centPrecision",
+                  "currencyCode": "USD",
+                  "centAmount": 29999,
+                  "fractionDigits": 2
+                }
+              },
+              {
+                "id": "c402512b-4759-4ec3-9ca4-7ec4e38dd8b2",
+                "value": {
+                  "type": "centPrecision",
+                  "currencyCode": "USD",
+                  "centAmount": 25000,
+                  "fractionDigits": 2
+                },
+                "customerGroup": {
+                  "typeId": "customer-group",
+                  "id": "bd90ec2d-b605-4624-abd8-6e946a53076d"
+                }
+              }
+            ],
+            "images": [
+              {
+                "url": "https://efa2cc0dcbc20c919217-dbc413f6fc6aec98e00c8f16a9b5af63.ssl.cf1.rackcdn.com/3113C002_pixma-g6020-SDBWlX04.jpeg",
+                "dimensions": {
+                  "w": 800,
+                  "h": 800
+                }
+              }
+            ],
+            "attributes": [
+              {
+                "name": "return-eligible",
+                "value": false
+              },
+              {
+                "name": "salesRank",
+                "value": 1
+              },
+              {
+                "name": "manufacturer-number",
+                "value": "123456"
+              }
+            ],
+            "assets": [],
+            "availability": {
+              "isOnStock": true,
+              "availableQuantity": 737,
+              "version": 25,
+              "id": "4abbdf29-c313-454f-979b-6500d608754e",
+              "channels": {
+                "e1d8d389-3c47-4334-80d8-90b2e9e28ef3": {
+                  "isOnStock": true,
+                  "restockableInDays": 7,
+                  "availableQuantity": 180,
+                  "version": 1,
+                  "id": "98ee7ad4-0266-4b4b-9e87-cd6c2d07cfc9"
+                }
+              }
+            }
+          },
+          "price": {
+            "id": "953fc01e-44f8-48b1-b788-525e47db9476",
+            "value": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 29999,
+              "fractionDigits": 2
+            }
+          },
+          "quantity": 10,
+          "discountedPricePerQuantity": [],
+          "taxRate": {
+            "name": "10% incl.",
+            "amount": 0.1,
+            "includedInPrice": false,
+            "country": "US",
+            "id": "HF-csJaY",
+            "subRates": []
+          },
+          "perMethodTaxRate": [],
+          "addedAt": "2024-02-15T18:49:41.755Z",
+          "lastModifiedAt": "2024-02-15T18:49:41.755Z",
+          "state": [
+            {
+              "quantity": 10,
+              "state": {
+                "typeId": "state",
+                "id": "0bf0a49d-ef00-4576-8e0c-9e26486adce2"
+              }
+            }
+          ],
+          "priceMode": "Platform",
+          "lineItemMode": "Standard",
+          "priceRoundingMode": "HalfEven",
+          "totalPrice": {
+            "type": "centPrecision",
+            "currencyCode": "USD",
+            "centAmount": 299990,
+            "fractionDigits": 2
+          },
+          "taxedPrice": {
+            "totalNet": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 299990,
+              "fractionDigits": 2
+            },
+            "totalGross": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 329989,
+              "fractionDigits": 2
+            },
+            "taxPortions": [],
+            "totalTax": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 29999,
+              "fractionDigits": 2
+            }
+          },
+          "taxedPricePortions": []
+        }
+      ],
+      "totalPrice": {
+        "type": "centPrecision",
+        "currencyCode": "USD",
+        "centAmount": 299990,
+        "fractionDigits": 2
+      },
+      "taxedPrice": {
+        "totalNet": {
+          "type": "centPrecision",
+          "currencyCode": "USD",
+          "centAmount": 299990,
+          "fractionDigits": 2
+        },
+        "totalGross": {
+          "type": "centPrecision",
+          "currencyCode": "USD",
+          "centAmount": 329989,
+          "fractionDigits": 2
+        },
+        "taxPortions": [
+          {
+            "rate": 0.1,
+            "amount": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 29999,
+              "fractionDigits": 2
+            },
+            "name": "10% incl."
+          }
+        ],
+        "totalTax": {
+          "type": "centPrecision",
+          "currencyCode": "USD",
+          "centAmount": 29999,
+          "fractionDigits": 2
+        }
+      },
+      "country": "US",
+      "customLineItems": [],
+      "directDiscounts": [],
+      "inventoryMode": "ReserveOnOrder",
+      "priceRoundingMode": "HalfEven",
+      "taxMode": "Platform",
+      "taxRoundingMode": "HalfEven",
+      "taxCalculationMode": "LineItemLevel",
+      "billingAddress": {
+        "country": "US"
+      },
+      "itemShippingAddresses": [],
+      "shippingAddress": {
+        "country": "US"
+      },
+      "store": {
+        "typeId": "store",
+        "key": "hospital-pharmacy-mwd-54321"
+      },
+      "businessUnit": {
+        "typeId": "business-unit",
+        "key": "corporate-retail-abc"
+      },
+      "cart": {
+        "typeId": "cart",
+        "id": "330bf460-4b7c-484b-a150-7651dfa1fedb"
+      }
+    }
+  ]
+}

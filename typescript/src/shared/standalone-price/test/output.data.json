@@ -1,0 +1,131 @@
+{
+  "limit": 3,
+  "offset": 0,
+  "count": 3,
+  "total": 13,
+  "results": [
+    {
+      "id": "65dc5c62-3b4b-44f0-8d19-256335a33727",
+      "version": 7,
+      "versionModifiedAt": "2024-10-07T17:46:28.216Z",
+      "lastMessageSequenceNumber": 7,
+      "createdAt": "2024-02-20T19:57:51.349Z",
+      "lastModifiedAt": "2024-10-07T17:46:28.216Z",
+      "lastModifiedBy": {
+        "isPlatformClient": true
+      },
+      "createdBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "dedf67a6-f66d-4baf-81b7-ea6ba36e748f"
+        }
+      },
+      "sku": "green-hat-1",
+      "value": {
+        "type": "centPrecision",
+        "currencyCode": "USD",
+        "centAmount": 1200,
+        "fractionDigits": 2
+      },
+      "channel": {
+        "typeId": "channel",
+        "id": "04b3d1df-ef8a-4e56-abbf-2eb87d6d85a6"
+      },
+      "discounted": {
+        "value": {
+          "type": "centPrecision",
+          "currencyCode": "USD",
+          "centAmount": 1176,
+          "fractionDigits": 2
+        },
+        "discount": {
+          "typeId": "product-discount",
+          "id": "cb8207b9-ca5f-4f6b-9380-50d61417e1a1"
+        }
+      },
+      "active": true
+    },
+    {
+      "id": "2bc58020-f57a-4155-b3f8-4cd36b585d30",
+      "version": 7,
+      "versionModifiedAt": "2024-10-07T17:46:28.223Z",
+      "lastMessageSequenceNumber": 7,
+      "createdAt": "2024-02-29T15:17:10.633Z",
+      "lastModifiedAt": "2024-10-07T17:46:28.223Z",
+      "lastModifiedBy": {
+        "isPlatformClient": true
+      },
+      "createdBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "dedf67a6-f66d-4baf-81b7-ea6ba36e748f"
+        }
+      },
+      "sku": "green-hat-1",
+      "value": {
+        "type": "centPrecision",
+        "currencyCode": "USD",
+        "centAmount": 22200,
+        "fractionDigits": 2
+      },
+      "discounted": {
+        "value": {
+          "type": "centPrecision",
+          "currencyCode": "USD",
+          "centAmount": 21756,
+          "fractionDigits": 2
+        },
+        "discount": {
+          "typeId": "product-discount",
+          "id": "cb8207b9-ca5f-4f6b-9380-50d61417e1a1"
+        }
+      },
+      "active": true
+    },
+    {
+      "id": "1a35b473-61a2-4aef-bbc3-614128ac745e",
+      "version": 5,
+      "versionModifiedAt": "2024-10-07T17:46:28.696Z",
+      "lastMessageSequenceNumber": 5,
+      "createdAt": "2024-03-19T19:58:59.459Z",
+      "lastModifiedAt": "2024-10-07T17:46:28.696Z",
+      "lastModifiedBy": {
+        "isPlatformClient": true
+      },
+      "createdBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "f372e4e3-4a11-469d-807a-d3622d00da99"
+        }
+      },
+      "sku": "WF-100",
+      "value": {
+        "type": "centPrecision",
+        "currencyCode": "USD",
+        "centAmount": 10000,
+        "fractionDigits": 2
+      },
+      "key": "dmu",
+      "channel": {
+        "typeId": "channel",
+        "id": "8972835e-38e5-4142-8736-80c88ed0d670"
+      },
+      "discounted": {
+        "value": {
+          "type": "centPrecision",
+          "currencyCode": "USD",
+          "centAmount": 9800,
+          "fractionDigits": 2
+        },
+        "discount": {
+          "typeId": "product-discount",
+          "id": "cb8207b9-ca5f-4f6b-9380-50d61417e1a1"
+        }
+      },
+      "active": true
+    }
+  ]
+}

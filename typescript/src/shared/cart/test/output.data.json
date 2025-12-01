@@ -1,0 +1,708 @@
+{
+  "limit": 3,
+  "offset": 0,
+  "count": 3,
+  "total": 409,
+  "results": [
+    {
+      "type": "Cart",
+      "id": "e33365d5-6099-45f9-83cd-e802b17540c4",
+      "version": 32,
+      "versionModifiedAt": "2023-09-13T15:45:35.121Z",
+      "lastMessageSequenceNumber": 1,
+      "createdAt": "2022-10-20T15:32:58.560Z",
+      "lastModifiedAt": "2023-03-27T19:45:03.442Z",
+      "lastModifiedBy": {
+        "clientId": "pyWxXbSIBd1w8cs0VH0RVAcv",
+        "isPlatformClient": false
+      },
+      "createdBy": {
+        "clientId": "pyWxXbSIBd1w8cs0VH0RVAcv",
+        "isPlatformClient": false
+      },
+      "lineItems": [
+        {
+          "id": "ff51e703-09f4-410f-8cd6-c911b6893e8c",
+          "productId": "4ca24a28-ac53-407c-bc5c-63065986fec5",
+          "productKey": "B00EHNC5TK",
+          "productType": {
+            "typeId": "product-type",
+            "id": "7c8a90ff-4d2d-457e-afcf-0d6330276d0c",
+            "version": 15
+          },
+          "productSlug": {
+            "en-US": "Tylenol-Arthritis-Caplets-Bottle-Acetaminophen"
+          },
+          "name": {
+            "en-US": "Tylenol Arthritis Pain 250 Caplets Bottle, 650mg Acetaminophen"
+          },
+          "variant": {
+            "id": 1,
+            "sku": "B00EHNC5TK-1",
+            "prices": [
+              {
+                "id": "dafccbf3-b463-454d-ba46-76c7d56458bf",
+                "value": {
+                  "type": "centPrecision",
+                  "currencyCode": "USD",
+                  "centAmount": 2600,
+                  "fractionDigits": 2
+                }
+              }
+            ],
+            "images": [
+              {
+                "url": "https://efa2cc0dcbc20c919217-dbc413f6fc6aec98e00c8f16a9b5af63.ssl.cf1.rackcdn.com/61RVkomhteL._AC_SX42-YzmTqGg3.jpg",
+                "dimensions": {
+                  "w": 425,
+                  "h": 707
+                }
+              }
+            ],
+            "attributes": [],
+            "assets": [],
+            "availability": {
+              "isOnStock": true,
+              "restockableInDays": 7,
+              "availableQuantity": 100,
+              "version": 3,
+              "id": "9a9f7d90-704f-4724-8b78-8fd279e74ed7"
+            }
+          },
+          "price": {
+            "id": "dafccbf3-b463-454d-ba46-76c7d56458bf",
+            "value": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 2600,
+              "fractionDigits": 2
+            }
+          },
+          "quantity": 1,
+          "discountedPricePerQuantity": [],
+          "distributionChannel": {
+            "typeId": "channel",
+            "id": "04b3d1df-ef8a-4e56-abbf-2eb87d6d85a6"
+          },
+          "taxRate": {
+            "name": "standard",
+            "amount": 0.1,
+            "includedInPrice": false,
+            "country": "US",
+            "id": "tjGc7iOO",
+            "subRates": []
+          },
+          "perMethodTaxRate": [],
+          "addedAt": "2022-10-19T18:55:02.878Z",
+          "lastModifiedAt": "2022-10-19T18:55:02.878Z",
+          "state": [
+            {
+              "quantity": 1,
+              "state": {
+                "typeId": "state",
+                "id": "0bf0a49d-ef00-4576-8e0c-9e26486adce2"
+              }
+            }
+          ],
+          "priceMode": "Platform",
+          "lineItemMode": "Standard",
+          "priceRoundingMode": "HalfEven",
+          "totalPrice": {
+            "type": "centPrecision",
+            "currencyCode": "USD",
+            "centAmount": 2600,
+            "fractionDigits": 2
+          },
+          "taxedPrice": {
+            "totalNet": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 2600,
+              "fractionDigits": 2
+            },
+            "totalGross": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 2860,
+              "fractionDigits": 2
+            },
+            "taxPortions": [],
+            "totalTax": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 260,
+              "fractionDigits": 2
+            }
+          },
+          "taxedPricePortions": []
+        }
+      ],
+      "cartState": "Active",
+      "totalPrice": {
+        "type": "centPrecision",
+        "currencyCode": "USD",
+        "centAmount": 2600,
+        "fractionDigits": 2
+      },
+      "taxedPrice": {
+        "totalNet": {
+          "type": "centPrecision",
+          "currencyCode": "USD",
+          "centAmount": 2600,
+          "fractionDigits": 2
+        },
+        "totalGross": {
+          "type": "centPrecision",
+          "currencyCode": "USD",
+          "centAmount": 2860,
+          "fractionDigits": 2
+        },
+        "taxPortions": [
+          {
+            "rate": 0.1,
+            "amount": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 260,
+              "fractionDigits": 2
+            },
+            "name": "standard"
+          }
+        ],
+        "totalTax": {
+          "type": "centPrecision",
+          "currencyCode": "USD",
+          "centAmount": 260,
+          "fractionDigits": 2
+        }
+      },
+      "country": "US",
+      "shippingMode": "Single",
+      "shippingAddress": {
+        "id": "1st-shipping-address",
+        "firstName": "Main",
+        "lastName": "Branch",
+        "streetName": "1 A",
+        "postalCode": "12354",
+        "city": "Buuuu",
+        "country": "US"
+      },
+      "shipping": [],
+      "customLineItems": [],
+      "discountCodes": [],
+      "directDiscounts": [],
+      "inventoryMode": "ReserveOnOrder",
+      "priceRoundingMode": "HalfEven",
+      "taxMode": "Platform",
+      "taxRoundingMode": "HalfEven",
+      "taxCalculationMode": "LineItemLevel",
+      "refusedGifts": [],
+      "origin": "Quote",
+      "billingAddress": {
+        "id": "1st-shipping-address",
+        "firstName": "Main",
+        "lastName": "Branch",
+        "streetName": "1 A",
+        "postalCode": "12354",
+        "city": "Buuuu",
+        "country": "US"
+      },
+      "itemShippingAddresses": [],
+      "store": {
+        "typeId": "store",
+        "key": "store_adidas"
+      },
+      "businessUnit": {
+        "typeId": "business-unit",
+        "key": "business_unit_adidas"
+      },
+      "discountTypeCombination": {
+        "type": "Stacking"
+      },
+      "totalLineItemQuantity": 1
+    },
+    {
+      "type": "Cart",
+      "id": "9f031a50-8411-472b-8237-80880565e5a5",
+      "version": 8,
+      "versionModifiedAt": "2023-09-13T15:45:35.121Z",
+      "lastMessageSequenceNumber": 1,
+      "createdAt": "2022-10-20T15:45:17.414Z",
+      "lastModifiedAt": "2022-10-25T14:20:41.431Z",
+      "lastModifiedBy": {
+        "clientId": "pyWxXbSIBd1w8cs0VH0RVAcv",
+        "isPlatformClient": false
+      },
+      "createdBy": {
+        "clientId": "pyWxXbSIBd1w8cs0VH0RVAcv",
+        "isPlatformClient": false
+      },
+      "customerEmail": "adi@das.com",
+      "lineItems": [
+        {
+          "id": "71c99615-1403-41d9-8e4b-6a37ba0c01fd",
+          "productId": "4ca24a28-ac53-407c-bc5c-63065986fec5",
+          "productKey": "B00EHNC5TK",
+          "productType": {
+            "typeId": "product-type",
+            "id": "7c8a90ff-4d2d-457e-afcf-0d6330276d0c",
+            "version": 15
+          },
+          "productSlug": {
+            "en-US": "Tylenol-Arthritis-Caplets-Bottle-Acetaminophen"
+          },
+          "name": {
+            "en-US": "Tylenol Arthritis Pain 250 Caplets Bottle, 650mg Acetaminophen"
+          },
+          "variant": {
+            "id": 1,
+            "sku": "B00EHNC5TK-1",
+            "prices": [
+              {
+                "id": "dafccbf3-b463-454d-ba46-76c7d56458bf",
+                "value": {
+                  "type": "centPrecision",
+                  "currencyCode": "USD",
+                  "centAmount": 2600,
+                  "fractionDigits": 2
+                }
+              }
+            ],
+            "images": [
+              {
+                "url": "https://efa2cc0dcbc20c919217-dbc413f6fc6aec98e00c8f16a9b5af63.ssl.cf1.rackcdn.com/61RVkomhteL._AC_SX42-YzmTqGg3.jpg",
+                "dimensions": {
+                  "w": 425,
+                  "h": 707
+                }
+              }
+            ],
+            "attributes": [],
+            "assets": [],
+            "availability": {
+              "isOnStock": true,
+              "restockableInDays": 7,
+              "availableQuantity": 100,
+              "version": 3,
+              "id": "9a9f7d90-704f-4724-8b78-8fd279e74ed7"
+            }
+          },
+          "price": {
+            "id": "dafccbf3-b463-454d-ba46-76c7d56458bf",
+            "value": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 2600,
+              "fractionDigits": 2
+            }
+          },
+          "quantity": 2,
+          "discountedPricePerQuantity": [],
+          "distributionChannel": {
+            "typeId": "channel",
+            "id": "d5bbd9cd-db6a-4dd6-9bdb-e79c5109dcc4"
+          },
+          "taxRate": {
+            "name": "standard",
+            "amount": 0.1,
+            "includedInPrice": false,
+            "country": "US",
+            "id": "z821AAA9",
+            "subRates": []
+          },
+          "perMethodTaxRate": [],
+          "addedAt": "2022-10-18T19:55:41.998Z",
+          "lastModifiedAt": "2022-10-18T19:55:41.998Z",
+          "state": [
+            {
+              "quantity": 2,
+              "state": {
+                "typeId": "state",
+                "id": "0bf0a49d-ef00-4576-8e0c-9e26486adce2"
+              }
+            }
+          ],
+          "priceMode": "Platform",
+          "lineItemMode": "Standard",
+          "priceRoundingMode": "HalfEven",
+          "totalPrice": {
+            "type": "centPrecision",
+            "currencyCode": "USD",
+            "centAmount": 5200,
+            "fractionDigits": 2
+          },
+          "taxedPrice": {
+            "totalNet": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 5200,
+              "fractionDigits": 2
+            },
+            "totalGross": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 5720,
+              "fractionDigits": 2
+            },
+            "taxPortions": [],
+            "totalTax": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 520,
+              "fractionDigits": 2
+            }
+          },
+          "taxedPricePortions": []
+        }
+      ],
+      "cartState": "Ordered",
+      "totalPrice": {
+        "type": "centPrecision",
+        "currencyCode": "USD",
+        "centAmount": 5200,
+        "fractionDigits": 2
+      },
+      "taxedPrice": {
+        "totalNet": {
+          "type": "centPrecision",
+          "currencyCode": "USD",
+          "centAmount": 5200,
+          "fractionDigits": 2
+        },
+        "totalGross": {
+          "type": "centPrecision",
+          "currencyCode": "USD",
+          "centAmount": 5720,
+          "fractionDigits": 2
+        },
+        "taxPortions": [
+          {
+            "rate": 0.1,
+            "amount": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 520,
+              "fractionDigits": 2
+            },
+            "name": "standard"
+          }
+        ],
+        "totalTax": {
+          "type": "centPrecision",
+          "currencyCode": "USD",
+          "centAmount": 520,
+          "fractionDigits": 2
+        }
+      },
+      "country": "US",
+      "shippingMode": "Single",
+      "shippingAddress": {
+        "id": "1st-shipping-address",
+        "firstName": "Main",
+        "lastName": "Branch",
+        "streetName": "1 A",
+        "postalCode": "12354",
+        "city": "Buuuu",
+        "country": "US"
+      },
+      "shipping": [],
+      "customLineItems": [],
+      "discountCodes": [],
+      "directDiscounts": [],
+      "inventoryMode": "ReserveOnOrder",
+      "priceRoundingMode": "HalfEven",
+      "taxMode": "Platform",
+      "taxRoundingMode": "HalfEven",
+      "taxCalculationMode": "LineItemLevel",
+      "refusedGifts": [],
+      "origin": "Quote",
+      "billingAddress": {
+        "id": "1st-shipping-address",
+        "firstName": "Main",
+        "lastName": "Branch",
+        "streetName": "1 A",
+        "postalCode": "12354",
+        "city": "Buuuu",
+        "country": "US"
+      },
+      "itemShippingAddresses": [],
+      "store": {
+        "typeId": "store",
+        "key": "store_west_coast"
+      },
+      "businessUnit": {
+        "typeId": "business-unit",
+        "key": "business_unit_adidas"
+      },
+      "discountTypeCombination": {
+        "type": "Stacking"
+      },
+      "totalLineItemQuantity": 2
+    },
+    {
+      "type": "Cart",
+      "id": "fb0a9a42-00dd-4911-851b-7952ee34ab04",
+      "version": 6,
+      "versionModifiedAt": "2023-09-13T15:45:35.121Z",
+      "lastMessageSequenceNumber": 1,
+      "createdAt": "2022-10-24T15:43:20.319Z",
+      "lastModifiedAt": "2022-10-24T20:29:23.145Z",
+      "lastModifiedBy": {
+        "clientId": "pyWxXbSIBd1w8cs0VH0RVAcv",
+        "isPlatformClient": false
+      },
+      "createdBy": {
+        "clientId": "pyWxXbSIBd1w8cs0VH0RVAcv",
+        "isPlatformClient": false
+      },
+      "lineItems": [
+        {
+          "id": "7782ec49-7a06-4f77-af49-3035297b2c86",
+          "productId": "77fa562a-1015-437b-9731-ad6b03f7cbb5",
+          "productKey": "B09DNXFCLM",
+          "productType": {
+            "typeId": "product-type",
+            "id": "7c8a90ff-4d2d-457e-afcf-0d6330276d0c",
+            "version": 15
+          },
+          "productSlug": {
+            "en-US": "Electric-Shoulder-Arthritis-Settings-Auto-Off"
+          },
+          "name": {
+            "en-US": "Electric Heating pad for Back/Shoulder/Neck/Knee/Leg Pain, Cramps and Arthritis Relief, 6 Fast Heating Settings, Auto-Off, Machine Washable, Moist Dry Heat Options, Extra Large 12\"x24\""
+          },
+          "variant": {
+            "id": 1,
+            "sku": "B09DNXFCLM-1",
+            "prices": [
+              {
+                "id": "ddc9123f-0ddf-4e2f-92c6-11f93160f1d9",
+                "value": {
+                  "type": "centPrecision",
+                  "currencyCode": "USD",
+                  "centAmount": 2999,
+                  "fractionDigits": 2
+                }
+              }
+            ],
+            "images": [
+              {
+                "url": "https://efa2cc0dcbc20c919217-dbc413f6fc6aec98e00c8f16a9b5af63.ssl.cf1.rackcdn.com/81rAOf-+RWL._AC_SX52-bHZM3LFR.jpg",
+                "dimensions": {
+                  "w": 522,
+                  "h": 687
+                }
+              }
+            ],
+            "attributes": [],
+            "assets": [],
+            "availability": {
+              "isOnStock": true,
+              "restockableInDays": 7,
+              "availableQuantity": 101,
+              "version": 1,
+              "id": "56375390-d46d-492f-beec-718e630d8921"
+            }
+          },
+          "price": {
+            "id": "ddc9123f-0ddf-4e2f-92c6-11f93160f1d9",
+            "value": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 2999,
+              "fractionDigits": 2
+            }
+          },
+          "quantity": 1,
+          "discountedPrice": {
+            "value": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 2699,
+              "fractionDigits": 2
+            },
+            "includedDiscounts": [
+              {
+                "discount": {
+                  "typeId": "cart-discount",
+                  "id": "7742059e-e03e-4ef1-9148-d1d85246deff"
+                },
+                "discountedAmount": {
+                  "type": "centPrecision",
+                  "currencyCode": "USD",
+                  "centAmount": 300,
+                  "fractionDigits": 2
+                }
+              }
+            ]
+          },
+          "discountedPricePerQuantity": [
+            {
+              "quantity": 1,
+              "discountedPrice": {
+                "value": {
+                  "type": "centPrecision",
+                  "currencyCode": "USD",
+                  "centAmount": 2699,
+                  "fractionDigits": 2
+                },
+                "includedDiscounts": [
+                  {
+                    "discount": {
+                      "typeId": "cart-discount",
+                      "id": "7742059e-e03e-4ef1-9148-d1d85246deff"
+                    },
+                    "discountedAmount": {
+                      "type": "centPrecision",
+                      "currencyCode": "USD",
+                      "centAmount": 300,
+                      "fractionDigits": 2
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "distributionChannel": {
+            "typeId": "channel",
+            "id": "04b3d1df-ef8a-4e56-abbf-2eb87d6d85a6"
+          },
+          "taxRate": {
+            "name": "standard",
+            "amount": 0.1,
+            "includedInPrice": false,
+            "country": "US",
+            "id": "z821AAA9",
+            "subRates": []
+          },
+          "perMethodTaxRate": [],
+          "addedAt": "2022-10-19T19:39:57.009Z",
+          "lastModifiedAt": "2022-10-19T19:39:57.009Z",
+          "state": [
+            {
+              "quantity": 1,
+              "state": {
+                "typeId": "state",
+                "id": "0bf0a49d-ef00-4576-8e0c-9e26486adce2"
+              }
+            }
+          ],
+          "priceMode": "Platform",
+          "lineItemMode": "Standard",
+          "priceRoundingMode": "HalfEven",
+          "totalPrice": {
+            "type": "centPrecision",
+            "currencyCode": "USD",
+            "centAmount": 2699,
+            "fractionDigits": 2
+          },
+          "taxedPrice": {
+            "totalNet": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 2699,
+              "fractionDigits": 2
+            },
+            "totalGross": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 2969,
+              "fractionDigits": 2
+            },
+            "taxPortions": [],
+            "totalTax": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 270,
+              "fractionDigits": 2
+            }
+          },
+          "taxedPricePortions": []
+        }
+      ],
+      "cartState": "Active",
+      "totalPrice": {
+        "type": "centPrecision",
+        "currencyCode": "USD",
+        "centAmount": 2699,
+        "fractionDigits": 2
+      },
+      "taxedPrice": {
+        "totalNet": {
+          "type": "centPrecision",
+          "currencyCode": "USD",
+          "centAmount": 2699,
+          "fractionDigits": 2
+        },
+        "totalGross": {
+          "type": "centPrecision",
+          "currencyCode": "USD",
+          "centAmount": 2969,
+          "fractionDigits": 2
+        },
+        "taxPortions": [
+          {
+            "rate": 0.1,
+            "amount": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 270,
+              "fractionDigits": 2
+            },
+            "name": "standard"
+          }
+        ],
+        "totalTax": {
+          "type": "centPrecision",
+          "currencyCode": "USD",
+          "centAmount": 270,
+          "fractionDigits": 2
+        }
+      },
+      "country": "US",
+      "shippingMode": "Single",
+      "shippingAddress": {
+        "id": "1st-shipping-address",
+        "firstName": "KIRBY",
+        "lastName": "FIKE",
+        "streetName": "348 FOOTHILL DR 348 FOOTHILL DR",
+        "postalCode": "93015",
+        "city": "US",
+        "country": "US"
+      },
+      "shipping": [],
+      "customLineItems": [],
+      "discountCodes": [],
+      "directDiscounts": [],
+      "inventoryMode": "ReserveOnOrder",
+      "priceRoundingMode": "HalfEven",
+      "taxMode": "Platform",
+      "taxRoundingMode": "HalfEven",
+      "taxCalculationMode": "LineItemLevel",
+      "refusedGifts": [],
+      "origin": "Quote",
+      "billingAddress": {
+        "id": "1st-shipping-address",
+        "firstName": "KIRBY",
+        "lastName": "FIKE",
+        "streetName": "348 FOOTHILL DR 348 FOOTHILL DR",
+        "postalCode": "93015",
+        "city": "US",
+        "country": "US"
+      },
+      "itemShippingAddresses": [],
+      "store": {
+        "typeId": "store",
+        "key": "store_east_coast"
+      },
+      "businessUnit": {
+        "typeId": "business-unit",
+        "key": "business_unit_business_unit_adidas_div_east_coast"
+      },
+      "discountTypeCombination": {
+        "type": "Stacking"
+      },
+      "totalLineItemQuantity": 1
+    }
+  ]
+}

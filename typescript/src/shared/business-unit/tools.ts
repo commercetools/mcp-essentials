@@ -33,9 +33,8 @@ const tools: Record<string, Tool> = {
       'business-unit': {
         read: true,
       },
-
-      outputSchema: readBusinessUnitOutputSchema,
     },
+    outputSchema: readBusinessUnitOutputSchema,
   },
   create_business_unit: {
     method: 'create_business_unit',
@@ -51,9 +50,8 @@ const tools: Record<string, Tool> = {
       'business-unit': {
         create: true,
       },
-
-      outputSchema: createBusinessUnitOutputSchema,
     },
+    outputSchema: createBusinessUnitOutputSchema,
   },
   update_business_unit: {
     method: 'update_business_unit',
@@ -69,9 +67,8 @@ const tools: Record<string, Tool> = {
       'business-unit': {
         update: true,
       },
-
-      outputSchema: updateBusinessUnitOutputSchema,
     },
+    outputSchema: updateBusinessUnitOutputSchema,
   },
 };
 

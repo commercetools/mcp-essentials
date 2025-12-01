@@ -3,6 +3,7 @@ import {z} from 'zod';
 // Base Order schema
 export const orderSchema = z
   .object({
+    type: z.literal('Order'),
     id: z.string(),
     version: z.number(),
     createdAt: z.string(),
@@ -71,6 +72,6 @@ export const orderPagedSchema = z
   })
   .strict();
 
-export const readOrderOutputSchema = orderSchema || orderPagedSchema;
+export const readOrderOutputSchema = z.union([orderSchema, orderPagedSchema]);
 export const createOrderOutputSchema = orderSchema;
 export const updateOrderOutputSchema = orderSchema;

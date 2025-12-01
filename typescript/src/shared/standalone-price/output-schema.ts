@@ -37,7 +37,6 @@ export const standalonePricePagedSchema = z
   })
   .strict();
 
-export const readStandalonePriceOutputSchema =
-  standalonePriceSchema || standalonePricePagedSchema;
+export const readStandalonePriceOutputSchema = z.union([standalonePriceSchema, standalonePricePagedSchema]);
 export const createStandalonePriceOutputSchema = standalonePriceSchema;
 export const updateStandalonePriceOutputSchema = standalonePriceSchema;

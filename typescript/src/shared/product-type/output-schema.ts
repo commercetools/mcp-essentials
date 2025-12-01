@@ -27,7 +27,6 @@ export const productTypePagedSchema = z
   })
   .strict();
 
-export const readProductTypeOutputSchema =
-  productTypeSchema || productTypePagedSchema;
+export const readProductTypeOutputSchema = z.union([productTypeSchema, productTypePagedSchema]);
 export const createProductTypeOutputSchema = productTypeSchema;
 export const updateProductTypeOutputSchema = productTypeSchema;

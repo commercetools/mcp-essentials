@@ -1,0 +1,74 @@
+{
+  "limit": 3,
+  "offset": 0,
+  "count": 3,
+  "total": 22984,
+  "results": [
+    {
+      "id": "ff911c41-4784-4a09-829f-dc7acbc947a1",
+      "version": 4,
+      "versionModifiedAt": "2024-01-24T23:21:24.246Z",
+      "lastMessageSequenceNumber": 2,
+      "createdAt": "2022-09-19T19:55:31.969Z",
+      "lastModifiedAt": "2024-01-24T23:21:24.246Z",
+      "lastModifiedBy": {
+        "clientId": "fnpedlR_fvQNBbvM4XvBvNcO",
+        "isPlatformClient": false
+      },
+      "createdBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "cf7f6e32-2446-46a3-b05d-c705bb2c0d0e"
+        }
+      },
+      "sku": "123",
+      "supplyChannel": {
+        "typeId": "channel",
+        "id": "e1d8d389-3c47-4334-80d8-90b2e9e28ef3"
+      },
+      "quantityOnStock": 472,
+      "availableQuantity": 472
+    },
+    {
+      "id": "5b25f16c-2e48-486e-a609-38f1aa582383",
+      "version": 2,
+      "versionModifiedAt": "2023-09-13T15:45:19.658Z",
+      "lastMessageSequenceNumber": 1,
+      "createdAt": "2022-09-22T21:33:36.748Z",
+      "lastModifiedAt": "2022-09-22T21:33:36.748Z",
+      "lastModifiedBy": {
+        "clientId": "fnpedlR_fvQNBbvM4XvBvNcO",
+        "isPlatformClient": false
+      },
+      "createdBy": {
+        "clientId": "fnpedlR_fvQNBbvM4XvBvNcO",
+        "isPlatformClient": false
+      },
+      "sku": "B08JVMGZ8Y-1",
+      "quantityOnStock": 101,
+      "availableQuantity": 101,
+      "restockableInDays": 7
+    },
+    {
+      "id": "26b9eb82-81ab-426d-93d8-ce4a1e7d70c4",
+      "version": 2,
+      "versionModifiedAt": "2023-09-13T15:45:19.658Z",
+      "lastMessageSequenceNumber": 1,
+      "createdAt": "2022-09-22T21:33:36.905Z",
+      "lastModifiedAt": "2022-09-22T21:33:36.905Z",
+      "lastModifiedBy": {
+        "clientId": "fnpedlR_fvQNBbvM4XvBvNcO",
+        "isPlatformClient": false
+      },
+      "createdBy": {
+        "clientId": "fnpedlR_fvQNBbvM4XvBvNcO",
+        "isPlatformClient": false
+      },
+      "sku": "B0B7BTJJTS-1",
+      "quantityOnStock": 101,
+      "availableQuantity": 101,
+      "restockableInDays": 7
+    }
+  ]
+}

@@ -1,0 +1,130 @@
+{
+  "limit": 3,
+  "offset": 0,
+  "count": 3,
+  "total": 8,
+  "results": [
+    {
+      "id": "4830b60b-765a-47c9-a423-12ae87090175",
+      "version": 3,
+      "versionModifiedAt": "2024-04-25T20:39:10.613Z",
+      "lastMessageSequenceNumber": 2,
+      "createdAt": "2024-04-25T20:02:34.045Z",
+      "lastModifiedAt": "2024-04-25T20:39:10.613Z",
+      "lastModifiedBy": {
+        "clientId": "ax-1-bpgYf5y4k1p3xflnbEn",
+        "isPlatformClient": false
+      },
+      "createdBy": {
+        "clientId": "ax-1-bpgYf5y4k1p3xflnbEn",
+        "isPlatformClient": false
+      },
+      "key": "123456",
+      "interfaceId": "789011",
+      "amountPlanned": {
+        "type": "centPrecision",
+        "currencyCode": "MXN",
+        "centAmount": 256728384,
+        "fractionDigits": 2
+      },
+      "paymentMethodInfo": {
+        "paymentInterface": "pago-anticipado-contado",
+        "method": "contado",
+        "name": {
+          "en": "Contado"
+        }
+      },
+      "paymentStatus": {},
+      "transactions": [
+        {
+          "id": "7f9e4d07-1e08-4d93-ada4-7f6aea37e572",
+          "timestamp": "2015-10-20T08:54:24.000Z",
+          "type": "Charge",
+          "amount": {
+            "type": "centPrecision",
+            "currencyCode": "MXN",
+            "centAmount": 233389440,
+            "fractionDigits": 2
+          },
+          "state": "Pending"
+        },
+        {
+          "id": "06f1889a-bc24-4ab4-a312-6f384b75526c",
+          "type": "Authorization",
+          "amount": {
+            "type": "centPrecision",
+            "currencyCode": "MXN",
+            "centAmount": 23338944,
+            "fractionDigits": 2
+          },
+          "state": "Initial"
+        }
+      ],
+      "interfaceInteractions": []
+    },
+    {
+      "id": "26a762af-9025-4e62-9935-d493f840df78",
+      "version": 1,
+      "versionModifiedAt": "2024-04-25T21:14:27.246Z",
+      "lastMessageSequenceNumber": 1,
+      "createdAt": "2024-04-25T21:14:27.246Z",
+      "lastModifiedAt": "2024-04-25T21:14:27.246Z",
+      "lastModifiedBy": {
+        "clientId": "ax-1-bpgYf5y4k1p3xflnbEn",
+        "isPlatformClient": false
+      },
+      "createdBy": {
+        "clientId": "ax-1-bpgYf5y4k1p3xflnbEn",
+        "isPlatformClient": false
+      },
+      "amountPlanned": {
+        "type": "centPrecision",
+        "currencyCode": "MXN",
+        "centAmount": 0,
+        "fractionDigits": 2
+      },
+      "paymentMethodInfo": {
+        "paymentInterface": "STRIPE",
+        "method": "PAGO_CONTADO",
+        "name": {
+          "en": "Pago Contado"
+        }
+      },
+      "paymentStatus": {},
+      "transactions": [],
+      "interfaceInteractions": []
+    },
+    {
+      "id": "a60f0bfc-ad3a-4715-b3bc-fd75f4e667ef",
+      "version": 1,
+      "versionModifiedAt": "2024-04-25T21:15:29.984Z",
+      "lastMessageSequenceNumber": 1,
+      "createdAt": "2024-04-25T21:15:29.984Z",
+      "lastModifiedAt": "2024-04-25T21:15:29.984Z",
+      "lastModifiedBy": {
+        "clientId": "ax-1-bpgYf5y4k1p3xflnbEn",
+        "isPlatformClient": false
+      },
+      "createdBy": {
+        "clientId": "ax-1-bpgYf5y4k1p3xflnbEn",
+        "isPlatformClient": false
+      },
+      "amountPlanned": {
+        "type": "centPrecision",
+        "currencyCode": "MXN",
+        "centAmount": 0,
+        "fractionDigits": 2
+      },
+      "paymentMethodInfo": {
+        "paymentInterface": "ERP",
+        "method": "PAGO_CONTADO",
+        "name": {
+          "en": "Pago Contado"
+        }
+      },
+      "paymentStatus": {},
+      "transactions": [],
+      "interfaceInteractions": []
+    }
+  ]
+}

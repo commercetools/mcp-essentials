@@ -1,0 +1,148 @@
+{
+  "limit": 3,
+  "offset": 0,
+  "count": 3,
+  "total": 20,
+  "results": [
+    {
+      "id": "42c2810a-51fb-4e1f-8a50-c81594ef50b2",
+      "version": 7,
+      "versionModifiedAt": "2023-09-13T15:45:18.175Z",
+      "createdAt": "2022-10-03T17:24:42.061Z",
+      "lastModifiedAt": "2022-10-24T17:16:15.652Z",
+      "lastModifiedBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "dedf67a6-f66d-4baf-81b7-ea6ba36e748f"
+        }
+      },
+      "createdBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "dedf67a6-f66d-4baf-81b7-ea6ba36e748f"
+        }
+      },
+      "value": {
+        "type": "relative",
+        "permyriad": 500
+      },
+      "cartPredicate": "1 = 1",
+      "target": {
+        "type": "lineItems",
+        "predicate": "1 = 1"
+      },
+      "name": {
+        "en-US": "behnam-test"
+      },
+      "description": {
+        "en-US": ""
+      },
+      "stackingMode": "Stacking",
+      "isActive": true,
+      "requiresDiscountCode": true,
+      "sortOrder": "0.1",
+      "references": [],
+      "stores": [],
+      "key": "behnam-test"
+    },
+    {
+      "id": "7742059e-e03e-4ef1-9148-d1d85246deff",
+      "version": 8,
+      "versionModifiedAt": "2023-09-13T15:45:18.176Z",
+      "createdAt": "2022-10-24T15:59:45.355Z",
+      "lastModifiedAt": "2022-10-31T13:28:19.503Z",
+      "lastModifiedBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "dedf67a6-f66d-4baf-81b7-ea6ba36e748f"
+        }
+      },
+      "createdBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "dedf67a6-f66d-4baf-81b7-ea6ba36e748f"
+        }
+      },
+      "value": {
+        "type": "relative",
+        "permyriad": 1000
+      },
+      "cartPredicate": "1 = 1",
+      "target": {
+        "type": "lineItems",
+        "predicate": "1 = 1"
+      },
+      "name": {
+        "en-US": "quote test"
+      },
+      "description": {
+        "en-US": ""
+      },
+      "stackingMode": "Stacking",
+      "isActive": false,
+      "requiresDiscountCode": false,
+      "sortOrder": "0.2",
+      "references": [],
+      "stores": [],
+      "key": "quote-10"
+    },
+    {
+      "id": "3b303c63-57ee-418d-b527-939bbd91b06c",
+      "version": 13,
+      "versionModifiedAt": "2023-09-13T15:45:18.175Z",
+      "createdAt": "2022-10-25T21:39:02.214Z",
+      "lastModifiedAt": "2023-07-21T08:33:34.126Z",
+      "lastModifiedBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "2efd184e-b6cf-412a-b0ca-396771d7cb5e"
+        }
+      },
+      "createdBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "2b06b734-5b66-47fa-b3b2-67318555b9a9"
+        }
+      },
+      "value": {
+        "type": "relative",
+        "permyriad": 5000
+      },
+      "cartPredicate": "1 = 1",
+      "target": {
+        "type": "multiBuyLineItems",
+        "predicate": "categories.id = (\"bcd77063-7387-4ccc-8264-abce96226a32\")",
+        "triggerQuantity": 2,
+        "discountedQuantity": 1,
+        "maxOccurrence": 1,
+        "selectionMode": "Cheapest"
+      },
+      "name": {
+        "en-US": "Buy 1, Get 1 50%",
+        "af": ""
+      },
+      "description": {
+        "en-US": "To redeem the offer: Add two qualifying items to cart. The cost of your lowest priced item will be discounted. ",
+        "af": ""
+      },
+      "stackingMode": "Stacking",
+      "isActive": true,
+      "requiresDiscountCode": true,
+      "sortOrder": "0.15",
+      "references": [
+        {
+          "typeId": "category",
+          "id": "bcd77063-7387-4ccc-8264-abce96226a32"
+        }
+      ],
+      "stores": [],
+      "key": "buy-one-get-one-50"
+    }
+  ]
+}

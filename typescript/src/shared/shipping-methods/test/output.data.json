@@ -1,0 +1,223 @@
+{
+  "limit": 3,
+  "offset": 0,
+  "count": 3,
+  "total": 4,
+  "results": [
+    {
+      "id": "cbfb398d-5778-46d7-9d1f-89602e896271",
+      "version": 30,
+      "versionModifiedAt": "2024-04-11T21:12:27.763Z",
+      "createdAt": "2022-09-14T19:50:38.452Z",
+      "lastModifiedAt": "2024-04-11T21:12:27.763Z",
+      "lastModifiedBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "f372e4e3-4a11-469d-807a-d3622d00da99"
+        }
+      },
+      "createdBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "cf7f6e32-2446-46a3-b05d-c705bb2c0d0e"
+        }
+      },
+      "name": "Standard Shipping",
+      "localizedName": {
+        "en-US": "Standard Shipping",
+        "es-MX": "Envio Estandar"
+      },
+      "taxCategory": {
+        "typeId": "tax-category",
+        "id": "1aba7f86-aa97-4649-8cac-fcde18798699"
+      },
+      "zoneRates": [
+        {
+          "zone": {
+            "typeId": "zone",
+            "id": "48fa59c2-8a86-4fe1-a830-171807b160ec"
+          },
+          "shippingRates": [
+            {
+              "price": {
+                "type": "centPrecision",
+                "currencyCode": "USD",
+                "centAmount": 0,
+                "fractionDigits": 2
+              },
+              "tiers": []
+            }
+          ]
+        },
+        {
+          "zone": {
+            "typeId": "zone",
+            "id": "c9228005-324c-49c6-bb3b-fd48764940f0"
+          },
+          "shippingRates": [
+            {
+              "price": {
+                "type": "centPrecision",
+                "currencyCode": "MXN",
+                "centAmount": 150000,
+                "fractionDigits": 2
+              },
+              "freeAbove": {
+                "type": "centPrecision",
+                "currencyCode": "MXN",
+                "centAmount": 150000000,
+                "fractionDigits": 2
+              },
+              "tiers": []
+            }
+          ]
+        }
+      ],
+      "active": true,
+      "isDefault": true,
+      "key": "standard",
+      "references": []
+    },
+    {
+      "id": "fceb039b-0a9f-4fba-a724-68414bbd3810",
+      "version": 38,
+      "versionModifiedAt": "2024-06-28T15:55:37.902Z",
+      "createdAt": "2023-02-22T17:22:55.186Z",
+      "lastModifiedAt": "2024-06-28T15:55:37.902Z",
+      "lastModifiedBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "f372e4e3-4a11-469d-807a-d3622d00da99"
+        }
+      },
+      "createdBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "f1c38524-1874-4a36-8cc4-b0ed33dcf3e4"
+        }
+      },
+      "name": "FedEx Freight",
+      "localizedName": {
+        "en-US": "FedEx Freight",
+        "es-MX": "Envió Premium"
+      },
+      "taxCategory": {
+        "typeId": "tax-category",
+        "id": "1aba7f86-aa97-4649-8cac-fcde18798699"
+      },
+      "zoneRates": [
+        {
+          "zone": {
+            "typeId": "zone",
+            "id": "c9228005-324c-49c6-bb3b-fd48764940f0"
+          },
+          "shippingRates": [
+            {
+              "price": {
+                "type": "centPrecision",
+                "currencyCode": "MXN",
+                "centAmount": 200000,
+                "fractionDigits": 2
+              },
+              "freeAbove": {
+                "type": "centPrecision",
+                "currencyCode": "MXN",
+                "centAmount": 200000000000,
+                "fractionDigits": 2
+              },
+              "tiers": []
+            }
+          ]
+        },
+        {
+          "zone": {
+            "typeId": "zone",
+            "id": "48fa59c2-8a86-4fe1-a830-171807b160ec"
+          },
+          "shippingRates": [
+            {
+              "price": {
+                "type": "centPrecision",
+                "currencyCode": "USD",
+                "centAmount": 10000,
+                "fractionDigits": 2
+              },
+              "freeAbove": {
+                "type": "centPrecision",
+                "currencyCode": "USD",
+                "centAmount": 500000,
+                "fractionDigits": 2
+              },
+              "tiers": []
+            }
+          ]
+        }
+      ],
+      "active": true,
+      "isDefault": false,
+      "predicate": "1 = 1",
+      "references": []
+    },
+    {
+      "id": "6ac66a48-23ab-43f3-a35c-0d98257b5c89",
+      "version": 1,
+      "versionModifiedAt": "2024-05-09T19:26:02.082Z",
+      "createdAt": "2024-05-09T19:26:02.082Z",
+      "lastModifiedAt": "2024-05-09T19:26:02.082Z",
+      "lastModifiedBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "f372e4e3-4a11-469d-807a-d3622d00da99"
+        }
+      },
+      "createdBy": {
+        "isPlatformClient": true,
+        "user": {
+          "typeId": "user",
+          "id": "f372e4e3-4a11-469d-807a-d3622d00da99"
+        }
+      },
+      "name": "Custom Method",
+      "localizedName": {
+        "en-US": "Custom Method"
+      },
+      "taxCategory": {
+        "typeId": "tax-category",
+        "id": "1aba7f86-aa97-4649-8cac-fcde18798699"
+      },
+      "zoneRates": [
+        {
+          "zone": {
+            "typeId": "zone",
+            "id": "48fa59c2-8a86-4fe1-a830-171807b160ec"
+          },
+          "shippingRates": [
+            {
+              "price": {
+                "type": "centPrecision",
+                "currencyCode": "USD",
+                "centAmount": 1500,
+                "fractionDigits": 2
+              },
+              "tiers": []
+            }
+          ]
+        }
+      ],
+      "active": true,
+      "isDefault": false,
+      "predicate": "customer.id=\"ba4807dd-1a7a-4900-bb39-6c9301e326ce\"",
+      "references": [
+        {
+          "typeId": "customer",
+          "id": "ba4807dd-1a7a-4900-bb39-6c9301e326ce"
+        }
+      ]
+    }
+  ]
+}

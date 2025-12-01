@@ -12,8 +12,6 @@ export const subscriptionsSchema = z
     destination: z.any(),
     key: z.string().optional(),
     messages: z.array(z.any()),
-    changes: z.array(z.any()),
-    events: z.array(z.any()),
     format: z.any(),
     status: z.any(),
   })
@@ -30,7 +28,6 @@ export const subscriptionsPagedSchema = z
   })
   .strict();
 
-export const readSubscriptionOutputSchema =
-  subscriptionsSchema || subscriptionsPagedSchema;
+export const readSubscriptionOutputSchema = z.union([subscriptionsSchema, subscriptionsPagedSchema]);
 export const createSubscriptionOutputSchema = subscriptionsSchema;
 export const updateSubscriptionOutputSchema = subscriptionsSchema;

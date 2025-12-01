@@ -1,0 +1,72 @@
+{
+  "limit": 3,
+  "offset": 0,
+  "count": 1,
+  "total": 1,
+  "results": [
+    {
+      "id": "445de124-990b-4a1a-9c28-c889277b60aa",
+      "version": 5,
+      "versionModifiedAt": "2025-04-25T13:38:24.613Z",
+      "lastMessageSequenceNumber": 2,
+      "createdAt": "2025-04-25T13:37:36.825Z",
+      "lastModifiedAt": "2025-04-25T13:38:24.613Z",
+      "lastModifiedBy": {
+        "clientId": "pyWxXbSIBd1w8cs0VH0RVAcv",
+        "isPlatformClient": false
+      },
+      "createdBy": {
+        "clientId": "pyWxXbSIBd1w8cs0VH0RVAcv",
+        "isPlatformClient": false
+      },
+      "name": {
+        "en-US": "test2"
+      },
+      "description": {
+        "en-US": "asd"
+      },
+      "customer": {
+        "typeId": "customer",
+        "id": "00b6aced-c6e7-4b6f-9d0c-9bc8b7577205"
+      },
+      "lineItems": [
+        {
+          "id": "cc566502-32d9-4fc5-b8c3-cf83db54af9f",
+          "productId": "e98b617d-3ddc-4bac-8cdf-82e8490c5a33",
+          "name": {
+            "en-US": "Canon PIXMA G6050 3-in-1 Refillable MegaTank Printer"
+          },
+          "productType": {
+            "typeId": "product-type",
+            "id": "7c8a90ff-4d2d-457e-afcf-0d6330276d0c"
+          },
+          "published": true,
+          "variantId": 1,
+          "quantity": 1,
+          "addedAt": "2025-04-25T13:37:37.592Z"
+        },
+        {
+          "id": "6e1994dc-ffa8-4182-9aed-2455a3e53576",
+          "productId": "9b9ff61d-71b8-4663-94b1-f6c56bf9cc6e",
+          "name": {
+            "en-US": "Tylenol Specialty"
+          },
+          "productType": {
+            "typeId": "product-type",
+            "id": "7c8a90ff-4d2d-457e-afcf-0d6330276d0c"
+          },
+          "published": true,
+          "variantId": 1,
+          "quantity": 1,
+          "addedAt": "2025-04-25T13:38:24.604Z"
+        }
+      ],
+      "textLineItems": [],
+      "deleteDaysAfterLastModification": 360,
+      "store": {
+        "typeId": "store",
+        "key": "store_test"
+      }
+    }
+  ]
+}

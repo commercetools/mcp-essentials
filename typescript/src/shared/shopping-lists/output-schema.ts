@@ -35,7 +35,6 @@ export const shoppingListsPagedSchema = z
   })
   .strict();
 
-export const readShoppingListOutputSchema =
-  shoppingListsSchema || shoppingListsPagedSchema;
+export const readShoppingListOutputSchema = z.union([shoppingListsSchema, shoppingListsPagedSchema]);
 export const createShoppingListOutputSchema = shoppingListsSchema;
 export const updateShoppingListOutputSchema = shoppingListsSchema;

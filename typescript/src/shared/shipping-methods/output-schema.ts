@@ -34,7 +34,6 @@ export const shippingMethodsPagedSchema = z
   })
   .strict();
 
-export const readShippingMethodsOutputSchema =
-  shippingMethodsSchema || shippingMethodsPagedSchema;
+export const readShippingMethodsOutputSchema = z.union([shippingMethodsSchema, shippingMethodsPagedSchema]);
 export const createShippingMethodsOutputSchema = shippingMethodsSchema;
 export const updateShippingMethodsOutputSchema = shippingMethodsSchema;

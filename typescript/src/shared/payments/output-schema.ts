@@ -33,6 +33,6 @@ export const paymentsPagedSchema = z
   })
   .strict();
 
-export const readPaymentsOutputSchema = paymentsSchema || paymentsPagedSchema;
+export const readPaymentsOutputSchema = z.union([paymentsSchema, paymentsPagedSchema]);
 export const createPaymentsOutputSchema = paymentsSchema;
 export const updatePaymentsOutputSchema = paymentsSchema;

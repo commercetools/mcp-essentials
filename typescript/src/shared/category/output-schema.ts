@@ -36,6 +36,6 @@ export const categoryPagedSchema = z
   })
   .strict();
 
-export const readCategoryOutputSchema = categorySchema || categoryPagedSchema;
+export const readCategoryOutputSchema = z.union([categorySchema, categoryPagedSchema]);
 export const createCategoryOutputSchema = categorySchema;
 export const updateCategoryOutputSchema = categorySchema;

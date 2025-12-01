@@ -3,6 +3,7 @@ import {z} from 'zod';
 // Base Cart schema
 export const cartSchema = z
   .object({
+    type: z.literal('Cart'),
     id: z.string(),
     version: z.number(),
     createdAt: z.string(),
@@ -137,7 +138,7 @@ export const cartPagedSchema = z
   })
   .strict();
 
-export const readCartOutputSchema = cartSchema || cartPagedSchema;
+export const readCartOutputSchema = z.union([cartSchema, cartPagedSchema]);
 export const createCartOutputSchema = cartSchema;
 export const replicateCartOutputSchema = cartSchema;
 export const updateCartOutputSchema = cartSchema;
