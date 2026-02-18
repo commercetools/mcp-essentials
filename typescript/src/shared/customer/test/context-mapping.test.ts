@@ -48,17 +48,25 @@ describe('contextToCustomerFunctionMapping', () => {
     });
   });
 
-  it('should return empty object when no context is provided', () => {
+  it('should return admin functions as fallback when no context is provided', () => {
     const mapping = contextToCustomerFunctionMapping();
-    expect(mapping).toEqual({});
+    expect(mapping).toEqual({
+      read_customer: admin.readCustomer,
+      create_customer: admin.createCustomerAsAdmin,
+      update_customer: admin.updateCustomerAsAdmin,
+    });
   });
 
-  it('should return empty object when only projectKey is provided', () => {
+  it('should return admin functions as fallback when only projectKey is provided', () => {
     const context: CommercetoolsFuncContext = {
       projectKey: 'test-project',
     };
 
     const mapping = contextToCustomerFunctionMapping(context);
-    expect(mapping).toEqual({});
+    expect(mapping).toEqual({
+      read_customer: admin.readCustomer,
+      create_customer: admin.createCustomerAsAdmin,
+      update_customer: admin.updateCustomerAsAdmin,
+    });
   });
 });

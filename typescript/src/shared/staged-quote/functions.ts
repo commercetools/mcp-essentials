@@ -34,7 +34,11 @@ export const contextToStagedQuoteFunctionMapping = (
       update_staged_quote: admin.updateStagedQuote,
     };
   }
-  return {};
+  return {
+    read_staged_quote: admin.readStagedQuote,
+    create_staged_quote: admin.createStagedQuote,
+    update_staged_quote: admin.updateStagedQuote,
+  };
 };
 
 // Export the individual CRUD functions for direct use in tests

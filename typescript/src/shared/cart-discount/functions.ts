@@ -34,7 +34,11 @@ export const contextToCartDiscountFunctionMapping = (
       update_cart_discount: admin.updateCartDiscount,
     };
   }
-  return {};
+  return {
+    read_cart_discount: admin.readCartDiscount,
+    create_cart_discount: admin.createCartDiscount,
+    update_cart_discount: admin.updateCartDiscount,
+  };
 };
 
 // Export the individual CRUD functions for direct use

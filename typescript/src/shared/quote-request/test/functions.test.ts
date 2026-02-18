@@ -71,18 +71,22 @@ describe('Quote Request Functions Context Routing', () => {
       expect(functions.update_quote_request).toBe(admin.updateQuoteRequest);
     });
 
-    it('should return empty object when no context is provided', () => {
+    it('should return admin functions as fallback when no context is provided', () => {
       const functions = contextToQuoteRequestFunctionMapping();
 
-      expect(functions).toEqual({});
+      expect(functions.read_quote_request).toBe(admin.readQuoteRequest);
+      expect(functions.create_quote_request).toBe(admin.createQuoteRequest);
+      expect(functions.update_quote_request).toBe(admin.updateQuoteRequest);
     });
 
-    it('should return empty object when context is empty', () => {
+    it('should return admin functions as fallback when context is empty', () => {
       const context = {};
 
       const functions = contextToQuoteRequestFunctionMapping(context);
 
-      expect(functions).toEqual({});
+      expect(functions.read_quote_request).toBe(admin.readQuoteRequest);
+      expect(functions.create_quote_request).toBe(admin.createQuoteRequest);
+      expect(functions.update_quote_request).toBe(admin.updateQuoteRequest);
     });
 
     it('should prioritize associate functions over customer functions when both customerId and businessUnitKey are present', () => {

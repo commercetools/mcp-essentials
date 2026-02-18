@@ -26,7 +26,11 @@ export const contextToReviewFunctionMapping = (
     };
   }
 
-  return {};
+  return {
+    read_review: admin.readReview,
+    create_review: admin.createReview,
+    update_review: admin.updateReview,
+  };
 };
 
 /**

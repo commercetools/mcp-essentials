@@ -27,8 +27,11 @@ export const contextToProductSelectionFunctionMapping = (
     };
   }
 
-  // If no valid context is provided, return empty object
-  return {};
+  return {
+    read_product_selection: admin.readProductSelection,
+    create_product_selection: admin.createProductSelection,
+    update_product_selection: admin.updateProductSelection,
+  };
 };
 
 // For backwards compatibility

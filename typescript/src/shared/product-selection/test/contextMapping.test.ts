@@ -17,17 +17,25 @@ describe('contextToProductSelectionFunctionMapping', () => {
     });
   });
 
-  it('should return empty object when no context is provided', () => {
+  it('should return admin functions as fallback when no context is provided', () => {
     const result = contextToProductSelectionFunctionMapping();
-    expect(result).toEqual({});
+    expect(result).toEqual({
+      read_product_selection: admin.readProductSelection,
+      create_product_selection: admin.createProductSelection,
+      update_product_selection: admin.updateProductSelection,
+    });
   });
 
-  it('should return empty object when context does not have isAdmin set to true', () => {
+  it('should return admin functions as fallback when context does not have isAdmin set to true', () => {
     const context = {
       customerId: 'test-customer',
     };
 
     const result = contextToProductSelectionFunctionMapping(context);
-    expect(result).toEqual({});
+    expect(result).toEqual({
+      read_product_selection: admin.readProductSelection,
+      create_product_selection: admin.createProductSelection,
+      update_product_selection: admin.updateProductSelection,
+    });
   });
 });

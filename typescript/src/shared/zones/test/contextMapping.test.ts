@@ -13,14 +13,22 @@ describe('Zone Context Mapping', () => {
     });
   });
 
-  test('should return empty object when no context is provided', () => {
+  test('should return admin functions as fallback when no context is provided', () => {
     const mapping = contextToZoneFunctionMapping();
-    expect(mapping).toEqual({});
+    expect(mapping).toEqual({
+      read_zone: admin.readZone,
+      create_zone: admin.createZone,
+      update_zone: admin.updateZone,
+    });
   });
 
-  test('should return empty object when context has no relevant properties', () => {
+  test('should return admin functions as fallback when context has no relevant properties', () => {
     const context = {};
     const mapping = contextToZoneFunctionMapping(context);
-    expect(mapping).toEqual({});
+    expect(mapping).toEqual({
+      read_zone: admin.readZone,
+      create_zone: admin.createZone,
+      update_zone: admin.updateZone,
+    });
   });
 });

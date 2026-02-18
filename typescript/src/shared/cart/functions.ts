@@ -56,7 +56,12 @@ export const contextToCartFunctionMapping = (
       replicate_cart: admin.replicateCart,
     };
   }
-  return {};
+  return {
+    read_cart: admin.readCart,
+    create_cart: admin.createCart,
+    update_cart: admin.updateCart,
+    replicate_cart: admin.replicateCart,
+  };
 };
 
 // Export the individual CRUD functions for direct use in tests

@@ -28,17 +28,25 @@ describe('Extension Functions', () => {
       });
     });
 
-    it('should return empty object when no context is provided', () => {
+    it('should return admin functions as fallback when no context is provided', () => {
       const mapping = contextToExtensionFunctionMapping();
 
-      expect(mapping).toEqual({});
+      expect(mapping).toEqual({
+        read_extension: admin.readExtension,
+        create_extension: admin.createExtension,
+        update_extension: admin.updateExtension,
+      });
     });
 
-    it('should return empty object when context does not include isAdmin', () => {
+    it('should return admin functions as fallback when context does not include isAdmin', () => {
       const context = {};
       const mapping = contextToExtensionFunctionMapping(context);
 
-      expect(mapping).toEqual({});
+      expect(mapping).toEqual({
+        read_extension: admin.readExtension,
+        create_extension: admin.createExtension,
+        update_extension: admin.updateExtension,
+      });
     });
   });
 
