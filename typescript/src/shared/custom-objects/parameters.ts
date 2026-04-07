@@ -53,6 +53,12 @@ export const readCustomObjectParameters = z.object({
     .describe(
       'An array of reference paths to expand. Example: ["value.order"]'
     ),
+  fields: z
+    .array(z.string())
+    .optional()
+    .describe(
+      'Top-level field names to include in each result. Reduces response size. If omitted, all fields are returned. Example: ["id", "version", "key"]'
+    ),
 });
 
 // Parameters for creating a custom object

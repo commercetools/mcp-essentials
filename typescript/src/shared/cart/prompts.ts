@@ -1,24 +1,36 @@
 export const readCartPrompt = `
 This tool will fetch information about a commercetools cart.
 
-It can be used in three ways:
+It can be used in these ways:
 1. To fetch a single cart by its ID
 2. To fetch a single cart by its key
-3. To fetch a single cart by customer ID
-4. To query multiple carts based on criteria
+3. To fetch carts by customer ID
+4. To fetch carts by anonymous ID (for unauthenticated/guest sessions)
+5. To query multiple carts based on criteria
 
 It takes these parameters:
 - id (string, optional): The ID of the cart to fetch
 - key (string, optional): The key of the cart to fetch
-- customerId (string, optional): The customer ID to fetch the cart for
+- customerId (string, optional): The customer ID to fetch carts for
+- anonymousId (string, optional): The anonymous ID to fetch carts for (for guest/unauthenticated sessions)
 - where (string array, optional): Query predicates for filtering carts. Example: ["customerId=\\"1001\\""]
 - limit (int, optional): The number of carts to return (default: 10, range: 1-500)
 - offset (int, optional): The number of items to skip before starting to collect the result set
 - sort (string array, optional): Sort criteria for the results. Example: ["createdAt desc"]
 - expand (string array, optional): An array of field paths to expand. Example: ["customer", "lineItems[*].variant"]
 - storeKey (string, optional): Key of the store to read carts from
+- fields (string array, optional): Top-level field names to include in each result. Reduces response size. If omitted, all fields are returned.
 
-At least one of id, key, customerId, or where must be provided.
+At least one of id, key, customerId, anonymousId, or where must be provided.
+
+Recommended fields for summary views: ["id", "version", "cartState", "lineItems", "totalPrice", "store", "customerId", "anonymousId", "lastModifiedAt"]
+
+Where predicate examples for investigation patterns:
+- lineItems(variant(sku="SKU-123")) — find carts containing a specific SKU
+- lineItems(productId="product-id") — find carts containing a specific product
+- cartState="Active" — active carts only
+- store(key="store-key") — filter by store/hub
+- Combine multiple predicates with AND logic: ["cartState=\\"Active\\"", "store(key=\\"my-store\\")"]
 `;
 
 export const createCartPrompt = `
@@ -134,4 +146,9 @@ Example actions from commercetools API include:
 - setShippingRateInput: Set the shipping rate input of the cart
 
 Each action type requires specific fields according to the commercetools API.
+
+To remove a ghost/invisible line item:
+1. First read the cart with expand: ["lineItems[*].variant"] to see all line items
+2. Find the lineItemId of the item to remove
+3. Use action: {"action": "removeLineItem", "lineItemId": "the-line-item-id"}
 `;

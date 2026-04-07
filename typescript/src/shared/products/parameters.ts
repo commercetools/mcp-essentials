@@ -37,6 +37,12 @@ export const listProductsParameters = z.object({
     .describe(
       'An array of field paths to expand. Example: ["masterData.current.categories[*]", "masterData.current.masterVariant.attributes[*]"]'
     ),
+  fields: z
+    .array(z.string())
+    .optional()
+    .describe(
+      'Top-level field names to include in each result. Reduces response size. If omitted, all fields are returned. Example: ["id", "version", "key", "masterData"]'
+    ),
 });
 
 const productVariantDraft = z.object({

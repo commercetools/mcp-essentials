@@ -8,7 +8,10 @@ It takes these optional arguments:
 - offset (int, optional): The number of items to skip before starting to collect the result set.
 - sort (string array, optional): Sort criteria for the results. Example: ["name asc", "createdAt desc"]
 - where (string array, optional): Query predicates specified as strings. Example: ["name = \\"Standard product type\\""]
-- expand (string array, optional): An array of field paths to expand. Example: ["attributes[*].type"]`;
+- expand (string array, optional): An array of field paths to expand. Example: ["attributes[*].type"]
+
+Tip: Use the "fields" parameter to reduce response size. Only request fields relevant to the task.
+Recommended fields for summary: ["id", "version", "key", "name", "description", "attributes"]`;
 
 export const createProductTypePrompt = `
 This tool will create a new Product Type in commercetools.

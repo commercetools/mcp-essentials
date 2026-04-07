@@ -26,7 +26,11 @@ paymentMethods.read({
 paymentMethods.read({
   limit: 10,
   where: ["name.en='Credit Card'"]
-})`;
+})
+
+Tip: Use the "fields" parameter to reduce response size. Only request fields relevant to the task.
+Recommended fields for summary: ["id", "version", "key", "name", "description", "paymentInterface"]
+`;
 
 export const createPaymentMethodPrompt = `Create a new payment method in commercetools.
 

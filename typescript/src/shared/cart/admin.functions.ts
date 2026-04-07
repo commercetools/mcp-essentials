@@ -63,6 +63,20 @@ export const readCart = async (
       );
     }
 
+    // Case 2c2: Read cart by anonymous ID
+    if (params.anonymousId) {
+      return await queryCarts(
+        apiRoot,
+        context.projectKey,
+        [`anonymousId="${params.anonymousId}"`],
+        params.limit,
+        params.offset,
+        params.sort,
+        params.expand,
+        params.storeKey
+      );
+    }
+
     // Case 2d: Query carts with provided where conditions
     if (params.where) {
       return await queryCarts(
@@ -78,7 +92,7 @@ export const readCart = async (
     }
 
     throw new Error(
-      'Invalid parameters: At least one of id, key, customerId, or where must be provided'
+      'Invalid parameters: At least one of id, key, customerId, anonymousId, or where must be provided'
     );
   } catch (error: any) {
     throw new SDKError('Failed to read cart', error);

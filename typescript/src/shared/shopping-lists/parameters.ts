@@ -52,6 +52,12 @@ export const readShoppingListParameters = z.object({
     .string()
     .optional()
     .describe('Key of the store to read the shopping list from'),
+  fields: z
+    .array(z.string())
+    .optional()
+    .describe(
+      'Top-level field names to include in each result. Reduces response size. If omitted, all fields are returned. Example: ["id", "version", "name", "lineItems"]'
+    ),
 });
 
 // Parameters for creating a shopping list
