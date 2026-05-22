@@ -1,0 +1,67 @@
+version: 2
+
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 5
+    labels:
+      - dependencies
+      - javascript
+    groups:
+      non-major:
+        update-types:
+          - minor
+          - patch
+      types:
+        patterns:
+          - "@types/*"
+
+  - package-ecosystem: npm
+    directory: /typescript/examples/ai-sdk
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 3
+    labels:
+      - dependencies
+      - javascript
+      - examples
+    groups:
+      non-major:
+        update-types:
+          - minor
+          - patch
+
+  - package-ecosystem: npm
+    directory: /typescript/examples/langchain
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 3
+    labels:
+      - dependencies
+      - javascript
+      - examples
+    groups:
+      non-major:
+        update-types:
+          - minor
+          - patch
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 3
+    labels:
+      - dependencies
+      - github-actions
+    groups:
+      actions:
+        update-types:
+          - minor
+          - patch
