@@ -7,11 +7,11 @@
     "changeset:version": "changeset version"
   },
   "dependencies": {
-    "@changesets/changelog-github": "0.5.1",
-    "@changesets/cli": "^2.29.4",
+    "@changesets/changelog-github": "0.7.0",
+    "@changesets/cli": "^2.31.0",
     "@commercetools/agent-essentials": "workspace:*",
-    "@commercetools/platform-sdk": "^8.13.0",
-    "@commercetools/ts-client": "^4.2.0",
+    "@commercetools/platform-sdk": "^8.25.0",
+    "@commercetools/ts-client": "^4.9.3",
     "@types/pluralize": "^0.0.33"
   },
   "packageManager": "pnpm@9.11.0"
