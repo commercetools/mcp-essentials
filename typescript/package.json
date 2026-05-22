@@ -51,7 +51,7 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@eslint/compat": "^1.2.4",
+    "@eslint/compat": "^2.1.0",
     "@types/express": "^5.0.6",
     "@types/jest": "^29.5.14",
     "@types/node": "^22.10.5",
