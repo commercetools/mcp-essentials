@@ -30,6 +30,10 @@ updates:
       - javascript
       - examples
     groups:
+      vercel-ai-sdk:
+        patterns:
+          - "ai"
+          - "@ai-sdk/*"
       non-major:
         update-types:
           - minor
@@ -46,6 +50,10 @@ updates:
       - javascript
       - examples
     groups:
+      langchain:
+        patterns:
+          - "langchain"
+          - "@langchain/*"
       non-major:
         update-types:
           - minor
