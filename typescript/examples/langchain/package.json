@@ -9,7 +9,7 @@
   "license": "MIT",
   "dependencies": {
     "@langchain/core": "^0.3.6",
-    "@langchain/openai": "^0.3.5",
+    "@langchain/openai": "^1.4.7",
     "@commercetools/agent-essentials": "latest",
     "dotenv": "^16.4.5",
     "langchain": "^0.3.2"
