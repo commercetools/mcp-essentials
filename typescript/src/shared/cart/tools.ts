@@ -20,12 +20,7 @@ const tools: Record<string, Tool> = {
     method: 'read_cart',
     name: 'Read Cart',
     description: readCartPrompt,
-    parameters: readCartParameters as unknown as z.ZodObject<
-      any,
-      any,
-      any,
-      any
-    >,
+    parameters: readCartParameters as unknown as z.ZodObject<any, any>,
     actions: {
       cart: {
         read: true,
@@ -36,12 +31,7 @@ const tools: Record<string, Tool> = {
     method: 'create_cart',
     name: 'Create Cart',
     description: createCartPrompt,
-    parameters: createCartParameters as unknown as z.ZodObject<
-      any,
-      any,
-      any,
-      any
-    >,
+    parameters: createCartParameters as unknown as z.ZodObject<any, any>,
     actions: {
       cart: {
         create: true,
@@ -52,12 +42,7 @@ const tools: Record<string, Tool> = {
     method: 'replicate_cart',
     name: 'Replicate Cart',
     description: replicateCartPrompt,
-    parameters: replicateCartParameters as unknown as z.ZodObject<
-      any,
-      any,
-      any,
-      any
-    >,
+    parameters: replicateCartParameters as unknown as z.ZodObject<any, any>,
     actions: {
       cart: {
         create: true,
@@ -68,12 +53,7 @@ const tools: Record<string, Tool> = {
     method: 'update_cart',
     name: 'Update Cart',
     description: updateCartPrompt,
-    parameters: updateCartParameters as unknown as z.ZodObject<
-      any,
-      any,
-      any,
-      any
-    >,
+    parameters: updateCartParameters as unknown as z.ZodObject<any, any>,
     actions: {
       cart: {
         update: true,

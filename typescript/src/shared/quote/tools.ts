@@ -14,12 +14,7 @@ const tools: Record<string, Tool> = {
     method: 'read_quote',
     name: 'Read Quote',
     description: readQuotePrompt,
-    parameters: readQuoteParameters as unknown as z.ZodObject<
-      any,
-      any,
-      any,
-      any
-    >,
+    parameters: readQuoteParameters as unknown as z.ZodObject<any, any>,
     actions: {
       quote: {
         read: true,
@@ -30,12 +25,7 @@ const tools: Record<string, Tool> = {
     method: 'create_quote',
     name: 'Create Quote',
     description: createQuotePrompt,
-    parameters: createQuoteParameters as unknown as z.ZodObject<
-      any,
-      any,
-      any,
-      any
-    >,
+    parameters: createQuoteParameters as unknown as z.ZodObject<any, any>,
     actions: {
       quote: {
         create: true,
@@ -46,12 +36,7 @@ const tools: Record<string, Tool> = {
     method: 'update_quote',
     name: 'Update Quote',
     description: updateQuotePrompt,
-    parameters: updateQuoteParameters as unknown as z.ZodObject<
-      any,
-      any,
-      any,
-      any
-    >,
+    parameters: updateQuoteParameters as unknown as z.ZodObject<any, any>,
     actions: {
       quote: {
         update: true,

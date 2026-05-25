@@ -42,7 +42,7 @@ export type Tool = {
   method: string;
   name: string;
   description: string;
-  parameters: z.ZodObject<any, any, any, any>;
+  parameters: z.ZodObject<any, any>;
   execute?: <T = any, R = string>(args: T, api?: ApiRoot) => Promise<R>;
   actions: {
     [key: string]: {

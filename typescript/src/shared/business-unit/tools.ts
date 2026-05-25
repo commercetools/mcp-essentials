@@ -18,12 +18,7 @@ const tools: Record<string, Tool> = {
     method: 'read_business_unit',
     name: 'Read Business Unit',
     description: readBusinessUnitPrompt,
-    parameters: readBusinessUnitParameters as unknown as z.ZodObject<
-      any,
-      any,
-      any,
-      any
-    >,
+    parameters: readBusinessUnitParameters as unknown as z.ZodObject<any, any>,
     actions: {
       'business-unit': {
         read: true,
@@ -35,8 +30,6 @@ const tools: Record<string, Tool> = {
     name: 'Create Business Unit',
     description: createBusinessUnitPrompt,
     parameters: createBusinessUnitParameters as unknown as z.ZodObject<
-      any,
-      any,
       any,
       any
     >,
@@ -51,8 +44,6 @@ const tools: Record<string, Tool> = {
     name: 'Update Business Unit',
     description: updateBusinessUnitPrompt,
     parameters: updateBusinessUnitParameters as unknown as z.ZodObject<
-      any,
-      any,
       any,
       any
     >,

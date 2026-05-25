@@ -18,12 +18,7 @@ const tools: Record<string, Tool> = {
     method: 'read_customer_group',
     name: 'Read Customer Group',
     description: READ_CUSTOMER_GROUP_PROMPT,
-    parameters: readCustomerGroupParameters as unknown as z.ZodObject<
-      any,
-      any,
-      any,
-      any
-    >,
+    parameters: readCustomerGroupParameters as unknown as z.ZodObject<any, any>,
     actions: {
       'customer-group': {
         read: true,
@@ -35,8 +30,6 @@ const tools: Record<string, Tool> = {
     name: 'Create Customer Group',
     description: CREATE_CUSTOMER_GROUP_PROMPT,
     parameters: createCustomerGroupParametersSchema as unknown as z.ZodObject<
-      any,
-      any,
       any,
       any
     >,
@@ -51,8 +44,6 @@ const tools: Record<string, Tool> = {
     name: 'Update Customer Group',
     description: UPDATE_CUSTOMER_GROUP_PROMPT,
     parameters: updateCustomerGroupParameters as unknown as z.ZodObject<
-      any,
-      any,
       any,
       any
     >,

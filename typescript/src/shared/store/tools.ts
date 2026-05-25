@@ -14,12 +14,7 @@ const tools: Record<string, Tool> = {
     method: 'read_store',
     name: 'Read Store',
     description: readStorePrompt,
-    parameters: readStoreParameters as unknown as z.ZodObject<
-      any,
-      any,
-      any,
-      any
-    >,
+    parameters: readStoreParameters as unknown as z.ZodObject<any, any>,
     actions: {
       store: {
         read: true,
@@ -30,12 +25,7 @@ const tools: Record<string, Tool> = {
     method: 'create_store',
     name: 'Create Store',
     description: createStorePrompt,
-    parameters: createStoreParameters as unknown as z.ZodObject<
-      any,
-      any,
-      any,
-      any
-    >,
+    parameters: createStoreParameters as unknown as z.ZodObject<any, any>,
     actions: {
       store: {
         create: true,
@@ -46,12 +36,7 @@ const tools: Record<string, Tool> = {
     method: 'update_store',
     name: 'Update Store',
     description: updateStorePrompt,
-    parameters: updateStoreParameters as unknown as z.ZodObject<
-      any,
-      any,
-      any,
-      any
-    >,
+    parameters: updateStoreParameters as unknown as z.ZodObject<any, any>,
     actions: {
       store: {
         update: true,

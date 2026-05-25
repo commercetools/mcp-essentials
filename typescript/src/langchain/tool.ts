@@ -9,7 +9,7 @@ export default function CommercetoolsTool(
   commercetoolsAPI: CommercetoolsAPI,
   method: string,
   description: string,
-  schema: z.ZodObject<any, any, any, any, {[x: string]: any}>,
+  schema: z.ZodObject<any, any>,
   toolOutputFormat?: 'json' | 'tabular'
 ): DynamicStructuredTool {
   return new DynamicStructuredTool({
