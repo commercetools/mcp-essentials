@@ -25,12 +25,7 @@ const tools: Record<string, Tool> = {
     method: 'create_order',
     name: 'Create Order',
     description: createOrderPrompt,
-    parameters: createOrderParameters as unknown as z.ZodObject<
-      any,
-      any,
-      any,
-      any
-    >,
+    parameters: createOrderParameters as unknown as z.ZodObject<any, any>,
     actions: {
       order: {
         create: true,

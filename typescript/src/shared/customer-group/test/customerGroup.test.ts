@@ -488,10 +488,7 @@ describe('CustomerGroup Functions', () => {
         });
         expect(result.success).toBe(false);
         if (!result.success) {
-          // Check for the specific refine error message
-          const formErrors = result.error.formErrors.fieldErrors;
-          // Zod nests refine errors under _errors array for the object itself
-          expect(result.error.errors[0].message).toBe(
+          expect(result.error.issues[0].message).toBe(
             'Either id or key must be provided'
           );
         }
@@ -530,8 +527,7 @@ describe('CustomerGroup Functions', () => {
           });
           expect(result.success).toBe(false);
           if (!result.success) {
-            const formErrors = result.error.formErrors.fieldErrors;
-            expect(result.error.errors[0].message).toBe(
+            expect(result.error.issues[0].message).toBe(
               'Either id or key must be provided'
             );
           }

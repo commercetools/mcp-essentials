@@ -13,7 +13,7 @@ import {AuthConfig} from '../types/auth';
 interface ToolDefinition {
   method: string;
   description: string;
-  parameters: z.ZodObject<any, any, any, any>;
+  parameters: z.ZodObject<any, any>;
   name: string;
   actions: any;
 }
