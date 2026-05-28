@@ -26,7 +26,11 @@ export const contextToInventoryFunctionMapping = (
     };
   }
 
-  return {};
+  return {
+    read_inventory: admin.readInventory,
+    create_inventory: admin.createInventory,
+    update_inventory: admin.updateInventory,
+  };
 };
 
 /**

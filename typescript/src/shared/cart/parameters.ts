@@ -8,6 +8,10 @@ export const readCartParameters = z.object({
     .string()
     .optional()
     .describe('The customer ID to fetch the cart for'),
+  anonymousId: z
+    .string()
+    .optional()
+    .describe('The anonymous ID to fetch carts for'),
   where: z
     .array(z.string())
     .optional()
@@ -45,6 +49,12 @@ export const readCartParameters = z.object({
     .string()
     .optional()
     .describe('Key of the store to read the cart from'),
+  fields: z
+    .array(z.string())
+    .optional()
+    .describe(
+      'Top-level field names to include in each result. Reduces response size. If omitted, all fields are returned. Example: ["id", "version", "totalPrice", "lineItems"]'
+    ),
 });
 
 // Parameters for creating a cart

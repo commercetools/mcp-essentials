@@ -20,5 +20,9 @@ export const contextToPaymentMethodFunctionMapping = (
     };
   }
 
-  return {};
+  return {
+    read_payment_methods: admin.readPaymentMethod,
+    create_payment_methods: admin.createPaymentMethod,
+    update_payment_methods: admin.updatePaymentMethod,
+  };
 };

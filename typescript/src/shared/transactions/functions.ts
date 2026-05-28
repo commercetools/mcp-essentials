@@ -27,7 +27,10 @@ export const contextToTransactionFunctionMapping = (
     };
   }
 
-  return {};
+  return {
+    read_transaction: admin.readTransaction,
+    create_transaction: admin.createTransaction,
+  };
 };
 
 /**

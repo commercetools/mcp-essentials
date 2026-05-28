@@ -13,20 +13,32 @@ describe('Review Context Mapping', () => {
     });
   });
 
-  test('should return empty object when no context is provided', () => {
+  test('should return admin functions as fallback when no context is provided', () => {
     const mapping = contextToReviewFunctionMapping();
-    expect(mapping).toEqual({});
+    expect(mapping).toEqual({
+      read_review: admin.readReview,
+      create_review: admin.createReview,
+      update_review: admin.updateReview,
+    });
   });
 
-  test('should return empty object when isAdmin is false', () => {
+  test('should return admin functions as fallback when isAdmin is false', () => {
     const context = {isAdmin: false};
     const mapping = contextToReviewFunctionMapping(context);
-    expect(mapping).toEqual({});
+    expect(mapping).toEqual({
+      read_review: admin.readReview,
+      create_review: admin.createReview,
+      update_review: admin.updateReview,
+    });
   });
 
-  test('should return empty object when context does not include isAdmin', () => {
+  test('should return admin functions as fallback when context does not include isAdmin', () => {
     const context = {customerId: '123'};
     const mapping = contextToReviewFunctionMapping(context);
-    expect(mapping).toEqual({});
+    expect(mapping).toEqual({
+      read_review: admin.readReview,
+      create_review: admin.createReview,
+      update_review: admin.updateReview,
+    });
   });
 });

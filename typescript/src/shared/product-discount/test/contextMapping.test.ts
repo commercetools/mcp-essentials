@@ -13,20 +13,32 @@ describe('Product Discount Context Mapping', () => {
     });
   });
 
-  test('should return empty object when no context is provided', () => {
+  test('should return admin functions as fallback when no context is provided', () => {
     const mapping = contextToProductDiscountFunctionMapping();
-    expect(mapping).toEqual({});
+    expect(mapping).toEqual({
+      read_product_discount: admin.readProductDiscount,
+      create_product_discount: admin.createProductDiscount,
+      update_product_discount: admin.updateProductDiscount,
+    });
   });
 
-  test('should return empty object when isAdmin is false', () => {
+  test('should return admin functions as fallback when isAdmin is false', () => {
     const context = {isAdmin: false};
     const mapping = contextToProductDiscountFunctionMapping(context);
-    expect(mapping).toEqual({});
+    expect(mapping).toEqual({
+      read_product_discount: admin.readProductDiscount,
+      create_product_discount: admin.createProductDiscount,
+      update_product_discount: admin.updateProductDiscount,
+    });
   });
 
-  test('should return empty object when context does not include isAdmin', () => {
+  test('should return admin functions as fallback when context does not include isAdmin', () => {
     const context = {customerId: '123'};
     const mapping = contextToProductDiscountFunctionMapping(context);
-    expect(mapping).toEqual({});
+    expect(mapping).toEqual({
+      read_product_discount: admin.readProductDiscount,
+      create_product_discount: admin.createProductDiscount,
+      update_product_discount: admin.updateProductDiscount,
+    });
   });
 });

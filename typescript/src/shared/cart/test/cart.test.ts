@@ -131,6 +131,32 @@ describe('Cart Functions', () => {
       expect(baseFunctions.queryCarts).toHaveBeenCalled();
     });
 
+    it('should read carts by anonymousId (no storeKey)', async () => {
+      const params = {anonymousId: 'anon-123'} as z.infer<
+        typeof readCartParameters
+      >;
+
+      const mockResult = {
+        results: [{id: 'cart-id', anonymousId: 'anon-123'}],
+        total: 1,
+      };
+      (baseFunctions.queryCarts as jest.Mock).mockResolvedValueOnce(mockResult);
+
+      const result = await readCart(mockApiRoot as any, context, params);
+
+      expect(result).toEqual(mockResult);
+      expect(baseFunctions.queryCarts).toHaveBeenCalledWith(
+        mockApiRoot,
+        'test-project',
+        ['anonymousId="anon-123"'],
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        undefined
+      );
+    });
+
     it('should read carts with where query (no storeKey)', async () => {
       const params = {where: ['customerId="customer-id"']} as z.infer<
         typeof readCartParameters

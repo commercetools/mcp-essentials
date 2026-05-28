@@ -186,16 +186,32 @@ describe('contextToStandalonePriceFunctionMapping', () => {
     );
   });
 
-  it('should return an empty object if no context is provided', () => {
+  it('should return admin functions as fallback if no context is provided', () => {
     const functionMapping = contextToStandalonePriceFunctionMapping();
 
-    expect(functionMapping).toEqual({});
+    expect(functionMapping.read_standalone_price).toBe(
+      admin.readStandalonePrice
+    );
+    expect(functionMapping.create_standalone_price).toBe(
+      admin.createStandalonePrice
+    );
+    expect(functionMapping.update_standalone_price).toBe(
+      admin.updateStandalonePrice
+    );
   });
 
-  it('should return an empty object if isAdmin is not true', () => {
+  it('should return admin functions as fallback if isAdmin is not true', () => {
     const context = {customerId: 'someCustomerId'};
     const functionMapping = contextToStandalonePriceFunctionMapping(context);
 
-    expect(functionMapping).toEqual({});
+    expect(functionMapping.read_standalone_price).toBe(
+      admin.readStandalonePrice
+    );
+    expect(functionMapping.create_standalone_price).toBe(
+      admin.createStandalonePrice
+    );
+    expect(functionMapping.update_standalone_price).toBe(
+      admin.updateStandalonePrice
+    );
   });
 });

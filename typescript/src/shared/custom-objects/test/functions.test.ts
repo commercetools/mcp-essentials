@@ -11,24 +11,30 @@ describe('Custom Objects Functions', () => {
       expect(mapping).toHaveProperty('update_custom_object');
     });
 
-    it('should return empty object when isAdmin is false', () => {
+    it('should return admin functions as fallback when isAdmin is false', () => {
       const context = {isAdmin: false};
       const mapping = contextToCustomObjectFunctionMapping(context);
 
-      expect(mapping).toEqual({});
+      expect(mapping).toHaveProperty('read_custom_object');
+      expect(mapping).toHaveProperty('create_custom_object');
+      expect(mapping).toHaveProperty('update_custom_object');
     });
 
-    it('should return empty object when context is undefined', () => {
+    it('should return admin functions as fallback when context is undefined', () => {
       const mapping = contextToCustomObjectFunctionMapping();
 
-      expect(mapping).toEqual({});
+      expect(mapping).toHaveProperty('read_custom_object');
+      expect(mapping).toHaveProperty('create_custom_object');
+      expect(mapping).toHaveProperty('update_custom_object');
     });
 
-    it('should return empty object when context does not have isAdmin', () => {
+    it('should return admin functions as fallback when context does not have isAdmin', () => {
       const context = {};
       const mapping = contextToCustomObjectFunctionMapping(context);
 
-      expect(mapping).toEqual({});
+      expect(mapping).toHaveProperty('read_custom_object');
+      expect(mapping).toHaveProperty('create_custom_object');
+      expect(mapping).toHaveProperty('update_custom_object');
     });
   });
 });

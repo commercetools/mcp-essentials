@@ -16,6 +16,9 @@ It takes these parameters:
 - expand (string array, optional): An array of field paths to expand. Example: ["customerGroup", "channel"]
 
 If both id and key are not provided, it will fetch a list of standalone prices using query parameters.
+
+Tip: Use the "fields" parameter to reduce response size. Only request fields relevant to the task.
+Recommended fields for summary: ["id", "version", "key", "sku", "value", "country", "channel", "validFrom", "validUntil"]
 `;
 
 export const createStandalonePricePrompt = `

@@ -38,6 +38,9 @@ product-tailoring.read({
   limit: 10,
   where: ["product(id=\\"product-123\\")"]
 })
+
+Tip: Use the "fields" parameter to reduce response size. Only request fields relevant to the task.
+Recommended fields for summary: ["id", "version", "key", "store", "product", "published"]
 `;
 
 export const createProductTailoringPrompt = `

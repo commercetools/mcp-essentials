@@ -47,17 +47,21 @@ describe('ShippingMethod Functions', () => {
       expect(mapping).toHaveProperty('update_shipping_methods');
     });
 
-    it('should return empty object when isAdmin is false and no customerId', () => {
+    it('should return admin functions as fallback when isAdmin is false and no customerId', () => {
       const customerContext = {isAdmin: false};
       const mapping = contextToShippingMethodFunctionMapping(customerContext);
 
-      expect(mapping).toEqual({});
+      expect(mapping).toHaveProperty('read_shipping_methods');
+      expect(mapping).toHaveProperty('create_shipping_methods');
+      expect(mapping).toHaveProperty('update_shipping_methods');
     });
 
-    it('should return empty object when context is undefined', () => {
+    it('should return admin functions as fallback when context is undefined', () => {
       const mapping = contextToShippingMethodFunctionMapping();
 
-      expect(mapping).toEqual({});
+      expect(mapping).toHaveProperty('read_shipping_methods');
+      expect(mapping).toHaveProperty('create_shipping_methods');
+      expect(mapping).toHaveProperty('update_shipping_methods');
     });
   });
 

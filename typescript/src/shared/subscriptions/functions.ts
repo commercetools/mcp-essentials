@@ -26,7 +26,11 @@ export const contextToSubscriptionFunctionMapping = (
     };
   }
 
-  return {};
+  return {
+    read_subscription: admin.readSubscription,
+    create_subscription: admin.createSubscription,
+    update_subscription: admin.updateSubscription,
+  };
 };
 
 /**

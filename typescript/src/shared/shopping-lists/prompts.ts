@@ -37,6 +37,9 @@ shoppingList.read({
   id: "shopping-list-123",
   storeKey: "my-store"
 })
+
+Tip: Use the "fields" parameter to reduce response size. Only request fields relevant to the task.
+Recommended fields for summary: ["id", "version", "key", "name", "lineItems", "store", "customer", "lastModifiedAt"]
 `;
 
 export const createShoppingListPrompt = `

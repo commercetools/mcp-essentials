@@ -27,7 +27,11 @@ export const contextToTaxCategoryFunctionMapping = (
     };
   }
 
-  return {};
+  return {
+    read_tax_category: admin.readTaxCategory,
+    create_tax_category: admin.createTaxCategory,
+    update_tax_category: admin.updateTaxCategory,
+  };
 };
 
 /**

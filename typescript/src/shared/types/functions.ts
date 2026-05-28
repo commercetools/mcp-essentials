@@ -26,7 +26,11 @@ export const contextToTypeFunctionMapping = (
     };
   }
 
-  return {};
+  return {
+    read_type: admin.readType,
+    create_type: admin.createType,
+    update_type: admin.updateType,
+  };
 };
 
 /**

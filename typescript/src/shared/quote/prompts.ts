@@ -19,6 +19,9 @@ It takes these parameters:
 - associateId (string, optional): ID of the associate acting on behalf of the business unit
 
 At least one of id, key, or where must be provided.
+
+Tip: Use the "fields" parameter to reduce response size. Only request fields relevant to the task.
+Recommended fields for summary: ["id", "version", "key", "quoteState", "customer", "stagedQuote", "validTo"]
 `;
 
 export const createQuotePrompt = `

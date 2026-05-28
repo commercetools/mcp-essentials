@@ -19,5 +19,8 @@ export const contextToBulkFunctionMapping = (
       bulk_update: bulkUpdate,
     };
   }
-  return {};
+  return {
+    bulk_create: bulkCreate,
+    bulk_update: bulkUpdate,
+  };
 };

@@ -16,6 +16,9 @@ It takes these parameters:
 - expand (string array, optional): An array of field paths to expand. Example: ["custom.type"]
 
 If both id and key are not provided, it will fetch a list of channels using query parameters.
+
+Tip: Use the "fields" parameter to reduce response size. Only request fields relevant to the task.
+Recommended fields for summary: ["id", "version", "key", "name", "roles"]
 `;
 
 export const createChannelPrompt = `

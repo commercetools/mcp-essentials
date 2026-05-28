@@ -22,5 +22,9 @@ export function contextToPaymentFunctionMapping(
     };
   }
 
-  return {};
+  return {
+    read_payments: readPayment,
+    create_payments: createPayment,
+    update_payments: updatePayment,
+  };
 }

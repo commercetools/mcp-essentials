@@ -26,7 +26,11 @@ export const contextToCustomObjectFunctionMapping = (
     };
   }
 
-  return {};
+  return {
+    read_custom_object: admin.readCustomObject,
+    create_custom_object: admin.createCustomObject,
+    update_custom_object: admin.updateCustomObject,
+  };
 };
 
 /**

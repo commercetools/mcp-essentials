@@ -6,6 +6,13 @@ type Permission = {[actions: string]: boolean};
 
 const adminScope = ['manage_project', 'manage_api_clients', 'view_api_clients'];
 
+// Commercetools bundles some resources under a single scope.
+// e.g. `view_orders` / `manage_orders` also covers carts and zones.
+// https://docs.commercetools.com/api/scopes
+const scopeResourceAliases: Record<string, string[]> = {
+  order: ['cart', 'zone'],
+};
+
 function normalize(str: string): string {
   return pluralize.plural(str).toLowerCase();
 }
@@ -56,11 +63,20 @@ export function scopesToActions(
 
     if (!resourceKey) return acc;
 
-    acc[resourceKey] = acc[resourceKey] || {};
-    permissions.forEach((permission) => {
-      if (permission in actions[resourceKey]) {
-        acc[resourceKey][permission] = actions[resourceKey][permission];
-      }
+    // Apply permissions to the matched resource and any aliased resources
+    const resourceKeys = [
+      resourceKey,
+      ...(scopeResourceAliases[resourceKey] || []),
+    ];
+
+    resourceKeys.forEach((key) => {
+      if (!(key in actions)) return;
+      acc[key] = acc[key] || {};
+      permissions.forEach((permission) => {
+        if (permission in actions[key]) {
+          acc[key][permission] = actions[key][permission];
+        }
+      });
     });
 
     return acc;

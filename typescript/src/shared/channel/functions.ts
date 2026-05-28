@@ -20,7 +20,11 @@ export const contextToChannelFunctionMapping = (
     };
   }
 
-  return {};
+  return {
+    read_channel: admin.readChannel,
+    create_channel: admin.createChannel,
+    update_channel: admin.updateChannel,
+  };
 };
 
 // Re-exports for backward compatibility

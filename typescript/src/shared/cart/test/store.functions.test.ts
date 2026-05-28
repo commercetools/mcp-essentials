@@ -101,6 +101,26 @@ describe('Store Cart Functions', () => {
       expect(result).toEqual(mockCarts);
     });
 
+    it('should query carts by anonymousId successfully', async () => {
+      const mockCarts = {results: [], total: 0};
+      (baseFunctions.queryCarts as jest.Mock).mockResolvedValue(mockCarts);
+
+      const params = {anonymousId: 'anon-456'};
+      const result = await readCart(mockApiRoot, mockContext, params);
+
+      expect(baseFunctions.queryCarts).toHaveBeenCalledWith(
+        mockApiRoot,
+        'test-project',
+        ['anonymousId="anon-456"'],
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        'test-store'
+      );
+      expect(result).toEqual(mockCarts);
+    });
+
     it('should query carts with where conditions successfully', async () => {
       const mockCarts = {results: [], total: 0};
       (baseFunctions.queryCarts as jest.Mock).mockResolvedValue(mockCarts);

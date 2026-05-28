@@ -17,6 +17,9 @@ It takes these parameters:
 - storeKey (string, optional): Key of the store to read orders from
 
 Either id, orderNumber, or where must be provided.
+
+Tip: Use the "fields" parameter to reduce response size. Only request fields relevant to the task.
+Recommended fields for summary: ["id", "version", "orderNumber", "orderState", "totalPrice", "lineItems", "customerId", "createdAt", "lastModifiedAt", "store"]
 `;
 
 export const createOrderPrompt = `

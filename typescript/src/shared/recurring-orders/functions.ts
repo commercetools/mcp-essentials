@@ -32,7 +32,11 @@ export const contextToRecurringOrderFunctionMapping = (
     };
   }
 
-  return {};
+  return {
+    read_recurring_orders: admin.readRecurringOrder,
+    create_recurring_orders: admin.createRecurringOrder,
+    update_recurring_orders: admin.updateRecurringOrder,
+  };
 };
 
 /**

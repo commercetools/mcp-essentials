@@ -30,6 +30,9 @@ customObjects.read({
   container: "myContainer",
   where: ["key=\\"specific-key\\""]
 })
+
+Tip: Use the "fields" parameter to reduce response size. Only request fields relevant to the task.
+Recommended fields for summary: ["id", "version", "container", "key", "value"]
 `;
 
 export const createCustomObjectPrompt = `

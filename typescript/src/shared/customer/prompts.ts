@@ -41,6 +41,9 @@ It takes these optional arguments:
 - limit (integer, optional): A limit on the number of objects to be returned. Limit can range between 1 and 500, and the default is 10.
 - offset (integer, optional): The number of items to skip before starting to collect the result set.
 - expand (array of strings, optional): Fields to expand. Example: ["customerGroup"]
+
+Tip: Use the "fields" parameter to reduce response size. Only request fields relevant to the task.
+Recommended fields for summary: ["id", "version", "email", "firstName", "lastName", "customerGroup", "createdAt", "stores"]
 `;
 
 export const updateCustomerPrompt = `
