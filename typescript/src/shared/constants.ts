@@ -1,1 +1,1 @@
-export const DYNAMIC_TOOL_LOADING_THRESHOLD = 30;
+export const DYNAMIC_TOOL_LOADING_THRESHOLD = Infinity;

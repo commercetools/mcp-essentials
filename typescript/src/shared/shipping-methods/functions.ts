@@ -24,9 +24,13 @@ export const contextToShippingMethodFunctionMapping = (
       create_shipping_methods: admin.createShippingMethod,
       update_shipping_methods: admin.updateShippingMethod,
     };
-  } else {
-    return {};
   }
+
+  return {
+    read_shipping_methods: admin.readShippingMethod,
+    create_shipping_methods: admin.createShippingMethod,
+    update_shipping_methods: admin.updateShippingMethod,
+  };
 };
 
 /**

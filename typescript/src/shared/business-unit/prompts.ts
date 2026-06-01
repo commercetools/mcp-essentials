@@ -17,6 +17,9 @@ It takes these parameters:
 - storeKey (string, optional): Key of the store to read business units from
 
 At least one of id, key, or where must be provided, or the tool will return all business units.
+
+Tip: Use the "fields" parameter to reduce response size. Only request fields relevant to the task.
+Recommended fields for summary: ["id", "version", "key", "name", "status", "storeMode", "stores", "parentUnit"]
 `;
 
 export const createBusinessUnitPrompt = `

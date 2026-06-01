@@ -44,18 +44,24 @@ describe('Shopping List Functions', () => {
       expect(Object.keys(mapping)).toHaveLength(3);
     });
 
-    it('should return empty object when no context is provided', () => {
+    it('should return admin functions as fallback when no context is provided', () => {
       const mapping = contextToShoppingListFunctionMapping();
 
-      expect(mapping).toEqual({});
+      expect(mapping).toHaveProperty('read_shopping_list');
+      expect(mapping).toHaveProperty('create_shopping_list');
+      expect(mapping).toHaveProperty('update_shopping_list');
+      expect(Object.keys(mapping)).toHaveLength(3);
     });
 
-    it('should return empty object when no relevant context properties are present', () => {
+    it('should return admin functions as fallback when no relevant context properties are present', () => {
       const context: Context = {};
 
       const mapping = contextToShoppingListFunctionMapping(context);
 
-      expect(mapping).toEqual({});
+      expect(mapping).toHaveProperty('read_shopping_list');
+      expect(mapping).toHaveProperty('create_shopping_list');
+      expect(mapping).toHaveProperty('update_shopping_list');
+      expect(Object.keys(mapping)).toHaveLength(3);
     });
 
     it('should prioritize customer over store when customerId is present', () => {

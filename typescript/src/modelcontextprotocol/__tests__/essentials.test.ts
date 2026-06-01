@@ -141,10 +141,15 @@ describe('CommercetoolsAgentEssentials (ModelContextProtocol)', () => {
       },
       configuration: mockConfiguration,
     });
-    expect(McpServer).toHaveBeenCalledWith({
-      name: 'Commercetools',
-      version: '0.4.0',
-    });
+    expect(McpServer).toHaveBeenCalledWith(
+      {
+        name: 'Commercetools',
+        version: '0.4.0',
+      },
+      expect.objectContaining({
+        instructions: expect.stringContaining('commercetools API responses are verbose'),
+      })
+    );
   });
 
   it('should initialize CommercetoolsAPI', () => {
@@ -260,7 +265,41 @@ describe('CommercetoolsAgentEssentials (ModelContextProtocol)', () => {
 
     await new Promise(setImmediate);
     expect(isToolAllowed).toHaveBeenCalledTimes(mockSharedToolsData.length);
-    expect(mockToolMethod).not.toHaveBeenCalled();
+    // Should register the fallback commercetools_status tool
+    expect(mockToolMethod).toHaveBeenCalledTimes(1);
+    expect(mockToolMethod).toHaveBeenCalledWith(
+      'commercetools_status',
+      expect.any(String),
+      expect.any(Object),
+      expect.any(Function)
+    );
+  });
+
+  it('should return an informative message from the commercetools_status fallback tool', async () => {
+    (isToolAllowed as jest.Mock).mockReturnValue(false); // Disallow all tools
+    await CommercetoolsAgentEssentials.create({
+      authConfig: {
+        clientId: 'id',
+        clientSecret: 'secret',
+        authUrl: 'auth',
+        projectKey: 'key',
+        apiUrl: 'api',
+        type: 'client_credentials',
+      },
+      configuration: {enabledTools: []} as any,
+    });
+
+    await new Promise(setImmediate);
+
+    // Get the handler from the mock call
+    const toolCallArgs = mockToolMethod.mock.calls[0];
+    expect(toolCallArgs[0]).toBe('commercetools_status');
+    const handler = toolCallArgs[3];
+
+    const result = await handler({});
+    expect(result.content[0].text).toContain(
+      'No commercetools tools are currently available'
+    );
   });
 
   describe('::scopeToActions [filter configured actions based on token scopes]', () => {
@@ -352,6 +391,58 @@ describe('CommercetoolsAgentEssentials (ModelContextProtocol)', () => {
       expect(actions).toEqual({
         'business-unit': {read: true, create: true, update: false},
         cart: {read: true},
+      });
+    });
+
+    it('should grant cart and zone access from orders scope (CT bundled scope)', () => {
+      const actions = scopesToActions(['view_orders'], {
+        actions: {
+          order: {
+            read: true,
+            create: true,
+            update: true,
+          },
+          cart: {
+            read: true,
+            create: true,
+            update: true,
+          },
+          zone: {
+            read: true,
+          },
+        },
+      });
+
+      expect(actions).toEqual({
+        order: {read: true},
+        cart: {read: true},
+        zone: {read: true},
+      });
+    });
+
+    it('should grant full cart and zone access from manage_orders scope', () => {
+      const actions = scopesToActions(['manage_orders'], {
+        actions: {
+          order: {
+            read: true,
+            create: true,
+            update: true,
+          },
+          cart: {
+            read: true,
+            create: true,
+            update: true,
+          },
+          zone: {
+            read: true,
+          },
+        },
+      });
+
+      expect(actions).toEqual({
+        order: {read: true, create: true, update: true},
+        cart: {read: true, create: true, update: true},
+        zone: {read: true},
       });
     });
 
@@ -885,7 +976,7 @@ describe('CommercetoolsAgentEssentials (ModelContextProtocol)', () => {
     });
 
     describe('edge cases', () => {
-      it('should handle zero filtered tools', async () => {
+      it('should handle zero filtered tools by registering commercetools_status fallback', async () => {
         // Mock no tools to be allowed
         (isToolAllowed as jest.Mock).mockReturnValue(false);
 
@@ -908,8 +999,14 @@ describe('CommercetoolsAgentEssentials (ModelContextProtocol)', () => {
 
         await new Promise(setImmediate);
 
-        // Should not register any tools
-        expect(mockToolMethod).not.toHaveBeenCalled();
+        // Should register the fallback commercetools_status tool
+        expect(mockToolMethod).toHaveBeenCalledTimes(1);
+        expect(mockToolMethod).toHaveBeenCalledWith(
+          'commercetools_status',
+          expect.any(String),
+          expect.any(Object),
+          expect.any(Function)
+        );
       });
 
       it('should handle undefined dynamicToolLoadingThreshold in context', async () => {
@@ -952,6 +1049,55 @@ describe('CommercetoolsAgentEssentials (ModelContextProtocol)', () => {
         expect(mockToolMethod).toHaveBeenCalledTimes(2);
       });
 
+      it('should not activate dynamic loading by default (Infinity threshold)', async () => {
+        // With the default threshold set to Infinity, even many tools
+        // should be registered directly, never triggering the resource-based system
+        (isToolAllowed as jest.Mock).mockReturnValue(true); // Allow all tools
+
+        const configuration: Configuration = {
+          actions: {products: {read: true}},
+          context: {
+            // No dynamicToolLoadingThreshold set - should use Infinity default
+          },
+        };
+
+        await CommercetoolsAgentEssentials.create({
+          authConfig: {
+            clientId: 'id',
+            clientSecret: 'secret',
+            authUrl: 'auth',
+            projectKey: 'key',
+            apiUrl: 'api',
+            type: 'client_credentials',
+          },
+          configuration,
+        });
+
+        await new Promise(setImmediate);
+
+        // Should register tools directly (not via resource-based system)
+        expect(mockToolMethod).toHaveBeenCalledTimes(2);
+        expect(mockToolMethod).toHaveBeenCalledWith(
+          'mcpTool1',
+          expect.any(String),
+          expect.any(Object),
+          expect.any(Function)
+        );
+        expect(mockToolMethod).toHaveBeenCalledWith(
+          'mcpTool2',
+          expect.any(String),
+          expect.any(Object),
+          expect.any(Function)
+        );
+        // Should NOT have registered resource-based tools
+        expect(mockToolMethod).not.toHaveBeenCalledWith(
+          'list_available_tools',
+          expect.any(String),
+          expect.any(Object),
+          expect.any(Function)
+        );
+      });
+
       it('should handle null dynamicToolLoadingThreshold in context', async () => {
         // Mock 2 tools to be allowed (below default threshold)
         (isToolAllowed as jest.Mock).mockImplementation(
@@ -990,6 +1136,54 @@ describe('CommercetoolsAgentEssentials (ModelContextProtocol)', () => {
 
         // Should register all tools directly (using default threshold)
         expect(mockToolMethod).toHaveBeenCalledTimes(2);
+      });
+    });
+
+    describe('inject_tools duplicate guard', () => {
+      it('should not register the same tool twice when inject_tools is called with duplicate tools', async () => {
+        (isToolAllowed as jest.Mock).mockReturnValue(true); // Allow all tools
+
+        const dynamicToolLoadingThreshold = 1;
+        const configuration: Configuration = {
+          actions: {products: {read: true}},
+          context: {
+            dynamicToolLoadingThreshold,
+          },
+        };
+
+        await CommercetoolsAgentEssentials.create({
+          authConfig: {
+            clientId: 'id',
+            clientSecret: 'secret',
+            authUrl: 'auth',
+            projectKey: 'key',
+            apiUrl: 'api',
+            type: 'client_credentials',
+          },
+          configuration,
+        });
+
+        await new Promise(setImmediate);
+
+        // Find the inject_tools handler
+        const injectToolsCall = mockToolMethod.mock.calls.find(
+          (call: any[]) => call[0] === 'inject_tools'
+        );
+        expect(injectToolsCall).toBeDefined();
+        const injectHandler = injectToolsCall![3];
+
+        // Count registrations before injection
+        const callsBefore = mockToolMethod.mock.calls.length;
+
+        // Inject mcpTool1 first time
+        await injectHandler({toolMethods: ['mcpTool1']});
+        const callsAfterFirst = mockToolMethod.mock.calls.length;
+        expect(callsAfterFirst).toBe(callsBefore + 1); // 1 new tool registered
+
+        // Inject mcpTool1 again - should NOT register it a second time
+        await injectHandler({toolMethods: ['mcpTool1']});
+        const callsAfterSecond = mockToolMethod.mock.calls.length;
+        expect(callsAfterSecond).toBe(callsAfterFirst); // No new registrations
       });
     });
   });

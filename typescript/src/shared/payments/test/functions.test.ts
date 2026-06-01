@@ -13,14 +13,22 @@ describe('Payment Context Mapping', () => {
     });
   });
 
-  test('should return empty object when no context is provided', () => {
+  test('should return admin functions as fallback when no context is provided', () => {
     const mapping = contextToPaymentFunctionMapping();
-    expect(mapping).toEqual({});
+    expect(mapping).toEqual({
+      read_payments: admin.readPayment,
+      create_payments: admin.createPayment,
+      update_payments: admin.updatePayment,
+    });
   });
 
-  test('should return empty object when context does not include isAdmin', () => {
+  test('should return admin functions as fallback when context does not include isAdmin', () => {
     const context = {};
     const mapping = contextToPaymentFunctionMapping(context);
-    expect(mapping).toEqual({});
+    expect(mapping).toEqual({
+      read_payments: admin.readPayment,
+      create_payments: admin.createPayment,
+      update_payments: admin.updatePayment,
+    });
   });
 });

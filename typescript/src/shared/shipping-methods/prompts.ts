@@ -33,6 +33,9 @@ shippingMethod.read({
 shippingMethod.read({
   where: ["zoneRates(zone(id=\\"europe-zone-id\\"))"]
 })
+
+Tip: Use the "fields" parameter to reduce response size. Only request fields relevant to the task.
+Recommended fields for summary: ["id", "version", "key", "name", "isDefault", "taxCategory", "zoneRates"]
 `;
 
 export const createShippingMethodPrompt = `

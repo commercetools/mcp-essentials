@@ -30,18 +30,22 @@ describe('Payment Methods Functions', () => {
   });
 
   describe('contextToPaymentMethodFunctionMapping', () => {
-    it('should return empty object when no context is provided', () => {
+    it('should return admin functions as fallback when no context is provided', () => {
       const result = contextToPaymentMethodFunctionMapping();
-      expect(result).toEqual({});
+      expect(result).toHaveProperty('read_payment_methods');
+      expect(result).toHaveProperty('create_payment_methods');
+      expect(result).toHaveProperty('update_payment_methods');
     });
 
-    it('should return empty object when context is not admin', () => {
+    it('should return admin functions as fallback when context is not admin', () => {
       const context: Context = {
         customerId: 'customer-123',
       };
 
       const result = contextToPaymentMethodFunctionMapping(context);
-      expect(result).toEqual({});
+      expect(result).toHaveProperty('read_payment_methods');
+      expect(result).toHaveProperty('create_payment_methods');
+      expect(result).toHaveProperty('update_payment_methods');
     });
 
     it('should return admin functions when isAdmin is true', () => {
@@ -62,12 +66,12 @@ describe('Payment Methods Functions', () => {
       projectKey: projectKey,
     };
 
-    it('should return empty object when isAdmin is false', () => {
+    it('should return admin functions as fallback when isAdmin is false', () => {
       const contextWithoutAdmin: Context = {isAdmin: false};
 
       const functions =
         contextToPaymentMethodFunctionMapping(contextWithoutAdmin);
-      expect(Object.keys(functions)).toHaveLength(0);
+      expect(Object.keys(functions)).toHaveLength(3);
     });
 
     it('should read payment method for admin', async () => {

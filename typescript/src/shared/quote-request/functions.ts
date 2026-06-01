@@ -50,7 +50,11 @@ export const contextToQuoteRequestFunctionMapping = (
       update_quote_request: admin.updateQuoteRequest,
     };
   }
-  return {};
+  return {
+    read_quote_request: admin.readQuoteRequest,
+    create_quote_request: admin.createQuoteRequest,
+    update_quote_request: admin.updateQuoteRequest,
+  };
 };
 
 // Export the individual CRUD functions for direct use in tests

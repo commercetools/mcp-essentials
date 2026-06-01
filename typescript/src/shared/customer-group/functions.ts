@@ -24,7 +24,11 @@ export const contextToCustomerGroupFunctionMapping = (
     };
   }
 
-  return {};
+  return {
+    read_customer_group: admin.readCustomerGroup,
+    create_customer_group: admin.createCustomerGroup,
+    update_customer_group: admin.updateCustomerGroup,
+  };
 };
 
 // Legacy function exports to maintain backward compatibility

@@ -19,6 +19,9 @@ It takes these parameters:
 - storeKey (string, optional): Key of the store to read quote requests from
 
 At least one of id, key, customerId, or where must be provided for specific queries, or no parameters for all quote requests.
+
+Tip: Use the "fields" parameter to reduce response size. Only request fields relevant to the task.
+Recommended fields for summary: ["id", "version", "key", "quoteRequestState", "customer", "comment"]
 `;
 
 export const createQuoteRequestPrompt = `

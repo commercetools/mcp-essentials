@@ -7,6 +7,12 @@ export const readProjectParameters = z.object({
     .describe(
       'The key of the project to read. If not provided, the current project will be used.'
     ),
+  fields: z
+    .array(z.string())
+    .optional()
+    .describe(
+      'Top-level field names to include in each result. Reduces response size. If omitted, all fields are returned. Example: ["id", "version", "key"]'
+    ),
 });
 
 const messagesConfigurationDraftSchema = z.object({

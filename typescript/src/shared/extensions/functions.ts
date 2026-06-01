@@ -26,7 +26,11 @@ export const contextToExtensionFunctionMapping = (
     };
   }
 
-  return {};
+  return {
+    read_extension: admin.readExtension,
+    create_extension: admin.createExtension,
+    update_extension: admin.updateExtension,
+  };
 };
 
 /**

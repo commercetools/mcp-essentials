@@ -28,6 +28,9 @@ inventory.read({
   limit: 10,
   where: ["sku=\\"product-sku-123\\""]
 })
+
+Tip: Use the "fields" parameter to reduce response size. Only request fields relevant to the task.
+Recommended fields for summary: ["id", "version", "sku", "quantityOnStock", "availableQuantity", "supplyChannel", "restockableInDays"]
 `;
 
 export const createInventoryPrompt = `

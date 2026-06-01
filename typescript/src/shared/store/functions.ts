@@ -32,7 +32,11 @@ export const contextToStoreFunctionMapping = (
       update_store: admin.updateStore,
     };
   }
-  return {};
+  return {
+    read_store: admin.readStore,
+    create_store: admin.createStore,
+    update_store: admin.updateStore,
+  };
 };
 
 // Export the individual CRUD functions for direct use in tests

@@ -22,6 +22,9 @@ Common use cases:
 - Filter by status: {where: ["paymentStatus = \\"Paid\\""]},
 
     user: I need to {action} payment information. {context}
+
+Tip: Use the "fields" parameter to reduce response size. Only request fields relevant to the task.
+Recommended fields for summary: ["id", "version", "key", "amountPlanned", "paymentStatus", "paymentMethodInfo", "transactions"]
 `;
 
 export const createPaymentPrompt = `

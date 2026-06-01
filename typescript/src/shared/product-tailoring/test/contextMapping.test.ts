@@ -133,19 +133,25 @@ describe('Product Tailoring Context Mapping', () => {
   });
 
   describe('Default Context', () => {
-    it('should return empty object as default when no specific context is provided', () => {
+    it('should return admin functions as fallback when no specific context is provided', () => {
       const functions = contextToProductTailoringFunctionMapping();
 
-      expect(functions).toEqual({});
-      expect(functions).not.toHaveProperty('readProductTailoring');
+      expect(functions).toEqual({
+        readProductTailoring: adminFunctions.readProductTailoring,
+        createProductTailoring: adminFunctions.createProductTailoring,
+        updateProductTailoring: adminFunctions.updateProductTailoring,
+      });
     });
 
-    it('should return empty object as default when context is empty', () => {
+    it('should return admin functions as fallback when context is empty', () => {
       const context = {projectKey: 'test-project'};
       const functions = contextToProductTailoringFunctionMapping(context);
 
-      expect(functions).toEqual({});
-      expect(functions.readProductTailoring).toBeUndefined();
+      expect(functions).toEqual({
+        readProductTailoring: adminFunctions.readProductTailoring,
+        createProductTailoring: adminFunctions.createProductTailoring,
+        updateProductTailoring: adminFunctions.updateProductTailoring,
+      });
     });
   });
 

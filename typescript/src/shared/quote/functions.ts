@@ -41,5 +41,9 @@ export const contextToQuoteFunctionMapping = (
       update_quote: admin.updateQuote,
     };
   }
-  return {};
+  return {
+    read_quote: admin.readQuote,
+    create_quote: admin.createQuote,
+    update_quote: admin.updateQuote,
+  };
 };

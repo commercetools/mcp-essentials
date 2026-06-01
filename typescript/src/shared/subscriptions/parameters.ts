@@ -46,6 +46,12 @@ export const readSubscriptionParameters = z.object({
     .describe(
       'An array of reference paths to expand. Example: ["changes", "messages"]'
     ),
+  fields: z
+    .array(z.string())
+    .optional()
+    .describe(
+      'Top-level field names to include in each result. Reduces response size. If omitted, all fields are returned. Example: ["id", "version", "key"]'
+    ),
 });
 
 // Common schema for SQS destination

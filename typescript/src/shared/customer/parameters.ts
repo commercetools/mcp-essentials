@@ -129,6 +129,12 @@ export const readCustomerParameters = z.object({
     .array(z.string())
     .optional()
     .describe('Fields to expand. Example: ["customerGroup"]'),
+  fields: z
+    .array(z.string())
+    .optional()
+    .describe(
+      'Top-level field names to include in each result. Reduces response size. If omitted, all fields are returned. Example: ["id", "version", "email", "firstName", "lastName"]'
+    ),
 });
 
 export const updateCustomerParameters = z.object({

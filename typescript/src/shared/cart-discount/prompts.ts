@@ -13,6 +13,9 @@ It takes these optional arguments:
 
 If both id and key are omitted, this tool will return a list of cart discounts based on the other query parameters.
 If either id or key is provided, this tool will return a single cart discount.
+
+Tip: Use the "fields" parameter to reduce response size. Only request fields relevant to the task.
+Recommended fields for summary: ["id", "version", "key", "name", "isActive", "validFrom", "validUntil", "target", "value"]
 `;
 
 export const createCartDiscountPrompt = `

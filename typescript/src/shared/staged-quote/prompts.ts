@@ -25,6 +25,9 @@ This function allows you to:
 **Access Control:**
 - Store context: Can only access staged quotes within the specified store
 - Admin context: Can access all staged quotes across all stores
+
+Tip: Use the "fields" parameter to reduce response size. Only request fields relevant to the task.
+Recommended fields for summary: ["id", "version", "key", "stagedQuoteState", "customer", "quoteRequest", "quotationCart"]
 `;
 
 export const createStagedQuotePrompt = `

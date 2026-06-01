@@ -34,7 +34,11 @@ export const contextToCustomerFunctionMapping = (
       update_customer: admin.updateCustomerAsAdmin,
     };
   }
-  return {};
+  return {
+    read_customer: admin.readCustomer,
+    create_customer: admin.createCustomerAsAdmin,
+    update_customer: admin.updateCustomerAsAdmin,
+  };
 };
 
 // Re-export functions from admin for backward compatibility

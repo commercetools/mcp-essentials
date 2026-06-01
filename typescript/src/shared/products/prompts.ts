@@ -9,6 +9,9 @@ It takes these optional arguments:
 - expand (string array, optional): An array of field paths to expand. Example: ["masterData.current.categories[*]"]
 
 Use project settings to get the language code.
+
+Tip: Use the "fields" parameter to reduce response size. Only request fields relevant to the task.
+Recommended fields for summary: ["id", "key", "version", "masterData"]
 `;
 
 export const createProductPrompt = `

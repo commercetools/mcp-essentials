@@ -93,10 +93,13 @@ describe('Cart Function Context Mapping', () => {
       expect(functionMap.replicate_cart).toBe(store.replicateCart);
     });
 
-    it('returns admin functions when neither customerId nor storeKey is provided', () => {
+    it('returns admin functions as fallback when neither customerId nor storeKey is provided', () => {
       const functionMap = contextToCartFunctionMapping({});
 
-      expect(functionMap).toEqual({});
+      expect(functionMap.read_cart).toBe(admin.readCart);
+      expect(functionMap.create_cart).toBe(admin.createCart);
+      expect(functionMap.update_cart).toBe(admin.updateCart);
+      expect(functionMap.replicate_cart).toBe(admin.replicateCart);
     });
 
     it('prioritizes customerId over storeKey when both are provided', () => {

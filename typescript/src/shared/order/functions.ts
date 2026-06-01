@@ -48,7 +48,11 @@ export const contextToOrderFunctionMapping = (
       update_order: admin.updateOrder,
     };
   }
-  return {};
+  return {
+    read_order: admin.readOrder,
+    create_order: admin.createOrder,
+    update_order: admin.updateOrder,
+  };
 };
 
 // Export the individual CRUD functions for direct use in tests

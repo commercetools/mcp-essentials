@@ -28,6 +28,9 @@ zones.read({
   limit: 10,
   where: ["name=\\"Europe\\""]
 })
+
+Tip: Use the "fields" parameter to reduce response size. Only request fields relevant to the task.
+Recommended fields for summary: ["id", "version", "key", "name", "locations"]
 `;
 
 export const createZonePrompt = `

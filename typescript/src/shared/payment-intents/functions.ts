@@ -22,7 +22,9 @@ export const contextToPaymentIntentFunctionMapping = (
     };
   }
 
-  return {};
+  return {
+    update_payment_intents: admin.updatePaymentIntent,
+  };
 };
 
 /**

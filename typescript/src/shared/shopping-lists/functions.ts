@@ -43,7 +43,11 @@ export const contextToShoppingListFunctionMapping = (
     };
   }
 
-  return {};
+  return {
+    read_shopping_list: admin.readShoppingList,
+    create_shopping_list: admin.createShoppingList,
+    update_shopping_list: admin.updateShoppingList,
+  };
 };
 
 /**

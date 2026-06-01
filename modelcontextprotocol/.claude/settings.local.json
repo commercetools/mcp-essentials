@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls -la /Users/martin.hlavac@goflink.com/Personal/Workspace/mcp-essentials/typescript/src/shared/cart/ | grep -E \"\\\\.\\(ts|js\\)$\")",
+      "Bash(cd /Users/martin.hlavac@goflink.com/Personal/Workspace/mcp-essentials/typescript && npm run build 2>&1 | tail -20)",
+      "Bash(cd /Users/martin.hlavac@goflink.com/Personal/Workspace/mcp-essentials/typescript && npx jest --testPathPattern='cart/' 2>&1 | tail -40)",
+      "Bash(cd /Users/martin.hlavac@goflink.com/Personal/Workspace/mcp-essentials/typescript && npm run build 2>&1)",
+      "Bash(pnpm run:*)",
+      "Bash(grep -r \"filterFields\" /Users/martin.hlavac@goflink.com/Personal/Workspace/mcp-essentials --include=\"*.ts\" 2>/dev/null | head -20)",
+      "Bash(grep -r \"annotation\\\\|hint\\\\|metadata\" /Users/martin.hlavac@goflink.com/Personal/Workspace/mcp-essentials/typescript/src/modelcontextprotocol/*.ts)",
+      "Bash(grep -l \"fields\" /Users/martin.hlavac@goflink.com/Personal/Workspace/mcp-essentials/typescript/src/shared/*/parameters.ts)",
+      "Bash(cd /Users/martin.hlavac@goflink.com/Personal/Workspace/mcp-essentials/typescript && npm test 2>&1 | tail -30)",
+      "Bash(cd /Users/martin.hlavac@goflink.com/Personal/Workspace/mcp-essentials/typescript && npm test 2>&1 | tail -10)",
+      "Bash(find /Users/martin.hlavac@goflink.com/Personal/Workspace/mcp-essentials/typescript/src -name \"registry*\" -o -name \"tools-registry*\" -o -name \"*registry*\" | grep -E \"\\\\.ts$\")",
+      "Bash(cd /Users/martin.hlavac@goflink.com/Personal/Workspace/mcp-essentials && npm test -- --testPathPattern=\"index.test.ts\" --testNamePattern=\"should build configuration with only read operations for all.read\" 2>&1 | head -200)",
+      "Bash(pnpm test:*)",
+      "Bash(cd /Users/martin.hlavac@goflink.com/Personal/Workspace/mcp-essentials/typescript && npx jest --testPathPattern=\"essentials.test\" --no-coverage 2>&1 | tail -40)"
+    ]
+  }
+}

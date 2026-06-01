@@ -34,7 +34,11 @@ export const contextToBusinessUnitFunctionMapping = (
       update_business_unit: admin.updateBusinessUnit,
     };
   }
-  return {};
+  return {
+    read_business_unit: admin.readBusinessUnit,
+    create_business_unit: admin.createBusinessUnit,
+    update_business_unit: admin.updateBusinessUnit,
+  };
 };
 
 // Export the individual CRUD functions for direct use in tests

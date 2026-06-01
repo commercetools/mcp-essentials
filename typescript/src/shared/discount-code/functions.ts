@@ -26,7 +26,11 @@ export const contextToDiscountCodeFunctionMapping = (
     };
   }
 
-  return {};
+  return {
+    read_discount_code: admin.readDiscountCode,
+    create_discount_code: admin.createDiscountCode,
+    update_discount_code: admin.updateDiscountCode,
+  };
 };
 
 // Legacy function exports to maintain backward compatibility

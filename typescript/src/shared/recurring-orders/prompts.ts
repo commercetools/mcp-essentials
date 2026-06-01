@@ -28,6 +28,9 @@ recurringOrders.read({
   limit: 10,
   where: ["customerId=\\"customer-123\\""]
 })
+
+Tip: Use the "fields" parameter to reduce response size. Only request fields relevant to the task.
+Recommended fields for summary: ["id", "version", "key", "status", "schedule", "nextDeliveryAt"]
 `;
 
 export const createRecurringOrderPrompt = `

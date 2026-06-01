@@ -9,6 +9,9 @@ It takes these parameters:
 - sort (string array, optional): Sort criteria for the results. Example: ["name.en asc", "createdAt desc"]
 - where (string array, optional): Query predicates specified as strings. Example: ["code = \\"SAVE10\\""]
 - expand (string array, optional): An array of field paths to expand. Example: ["cartDiscounts[*]", "references[*]"]
+
+Tip: Use the "fields" parameter to reduce response size. Only request fields relevant to the task.
+Recommended fields for summary: ["id", "version", "code", "name", "isActive", "validFrom", "validUntil", "maxApplications", "cartDiscounts"]
 `;
 
 export const createDiscountCodePrompt = `

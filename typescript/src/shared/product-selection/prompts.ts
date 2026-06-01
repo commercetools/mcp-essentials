@@ -16,6 +16,9 @@ It can be used in two ways:
    - expand (string array, optional): References to expand in the returned objects
 
 Note: When querying (without id/key), the response will be a paged object containing 'results' array.
+
+Tip: Use the "fields" parameter to reduce response size. Only request fields relevant to the task.
+Recommended fields for summary: ["id", "version", "key", "name", "mode", "productCount"]
 `;
 
 export const createProductSelectionPrompt = `

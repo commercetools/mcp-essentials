@@ -90,6 +90,20 @@ export const readCart = async (
       );
     }
 
+    // Case 2c2: Read cart by anonymous ID
+    if (params.anonymousId) {
+      return await queryCarts(
+        apiRoot,
+        context.projectKey,
+        [`anonymousId="${params.anonymousId}"`],
+        params.limit,
+        params.offset,
+        params.sort,
+        params.expand,
+        context.storeKey
+      );
+    }
+
     // Case 2d: Query carts with provided where conditions
     if (params.where) {
       return await queryCarts(

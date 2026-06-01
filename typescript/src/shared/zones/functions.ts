@@ -26,7 +26,11 @@ export const contextToZoneFunctionMapping = (
     };
   }
 
-  return {};
+  return {
+    read_zone: admin.readZone,
+    create_zone: admin.createZone,
+    update_zone: admin.updateZone,
+  };
 };
 
 /**

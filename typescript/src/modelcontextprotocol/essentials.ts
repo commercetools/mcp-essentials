@@ -13,12 +13,14 @@ import {contextToToolsResourceBasedToolSystem} from '../shared/resource-based-to
 import {Tool} from '../types/tools';
 import {contextToBulkTools} from '../shared/bulk/tools';
 import {DYNAMIC_TOOL_LOADING_THRESHOLD} from '../shared/constants';
+import {filterFields} from '../shared/utils/filterFields';
 import {transformToolOutput} from './transform';
 
 class CommercetoolsAgentEssentials extends McpServer {
   private authConfig: AuthConfig;
   private configuration: Configuration = {};
   private commercetoolsAPI: CommercetoolsAPI;
+  private _injectedToolNames: Set<string> = new Set();
 
   private constructor({
     authConfig,
@@ -27,10 +29,21 @@ class CommercetoolsAgentEssentials extends McpServer {
     authConfig: AuthConfig;
     configuration: Configuration;
   }) {
-    super({
-      name: 'Commercetools',
-      version: '0.4.0',
-    });
+    super(
+      {
+        name: 'Commercetools',
+        version: '0.4.0',
+      },
+      {
+        instructions: `commercetools API responses are verbose and can use many tokens.
+To keep responses concise:
+- Always use the "fields" parameter on read/list tools to request only the fields you need. Example: fields: ["id", "version", "key", "createdAt"]
+- Use low limits (1-5) unless the user needs more results
+- Prefer fetching by ID or key over listing with filters
+- Avoid "expand" unless you specifically need nested object details — it multiplies response size
+- Use "where" predicates to narrow results server-side rather than fetching many and filtering client-side`,
+      }
+    );
 
     this.authConfig = authConfig;
     const configurationWithDefaults =
@@ -99,6 +112,10 @@ class CommercetoolsAgentEssentials extends McpServer {
         dynamicToolLoadingThreshold
       );
     }
+
+    if (filteredTools.length === 0) {
+      this.registerFallbackStatusTool();
+    }
   }
 
   private getFilteredTools() {
@@ -129,6 +146,26 @@ class CommercetoolsAgentEssentials extends McpServer {
     filteredTools.forEach((tool) => {
       this.registerSingleTool(tool);
     });
+  }
+
+  private registerFallbackStatusTool(): void {
+    this.tool(
+      'commercetools_status',
+      'Returns the current status of the commercetools MCP server connection and tool availability.',
+      {},
+
+      async () => {
+        const response = await Promise.resolve(
+          this.createToolResponse(
+            'No commercetools tools are currently available. ' +
+              'This usually means the configured OAuth scopes do not match any tool permissions, ' +
+              'or no tools have been enabled in the configuration. ' +
+              'Please check your OAuth scopes and tool configuration.'
+          )
+        );
+        return response;
+      }
+    );
   }
 
   private registerResourceBasedToolSystem(
@@ -172,10 +209,12 @@ class CommercetoolsAgentEssentials extends McpServer {
       tool.description,
       tool.parameters.shape,
       async (args: Record<string, unknown>) => {
+        const fields = args.fields as string[] | undefined;
         const result = await this.commercetoolsAPI.run(method, args, execute);
+        const filtered = fields ? filterFields(result, fields) : result;
         return this.createToolResponse(
           transformToolOutput({
-            data: result,
+            data: filtered,
             title: `${tool.method} result`,
             format: this.configuration.context?.toolOutputFormat,
           })
@@ -200,7 +239,10 @@ class CommercetoolsAgentEssentials extends McpServer {
         );
 
         toolsToInject.forEach((tool) => {
-          this.registerSingleTool(tool);
+          if (!this._injectedToolNames.has(tool.method)) {
+            this.registerSingleTool(tool);
+            this._injectedToolNames.add(tool.method);
+          }
         });
 
         const injectedTools = this.formatInjectedTools(toolsToInject);

@@ -11,24 +11,30 @@ describe('Types Functions', () => {
       expect(mapping).toHaveProperty('update_type');
     });
 
-    it('should return empty object when isAdmin is false', () => {
+    it('should return admin functions as fallback when isAdmin is false', () => {
       const context = {isAdmin: false};
       const mapping = contextToTypeFunctionMapping(context);
 
-      expect(mapping).toEqual({});
+      expect(mapping).toHaveProperty('read_type');
+      expect(mapping).toHaveProperty('create_type');
+      expect(mapping).toHaveProperty('update_type');
     });
 
-    it('should return empty object when context is undefined', () => {
+    it('should return admin functions as fallback when context is undefined', () => {
       const mapping = contextToTypeFunctionMapping();
 
-      expect(mapping).toEqual({});
+      expect(mapping).toHaveProperty('read_type');
+      expect(mapping).toHaveProperty('create_type');
+      expect(mapping).toHaveProperty('update_type');
     });
 
-    it('should return empty object when context does not have isAdmin', () => {
+    it('should return admin functions as fallback when context does not have isAdmin', () => {
       const context = {};
       const mapping = contextToTypeFunctionMapping(context);
 
-      expect(mapping).toEqual({});
+      expect(mapping).toHaveProperty('read_type');
+      expect(mapping).toHaveProperty('create_type');
+      expect(mapping).toHaveProperty('update_type');
     });
   });
 });

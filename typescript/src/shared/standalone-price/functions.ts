@@ -31,7 +31,11 @@ export const contextToStandalonePriceFunctionMapping = (
     };
   }
 
-  return {};
+  return {
+    read_standalone_price: admin.readStandalonePrice,
+    create_standalone_price: admin.createStandalonePrice,
+    update_standalone_price: admin.updateStandalonePrice,
+  };
 };
 
 // Re-exports for backward compatibility

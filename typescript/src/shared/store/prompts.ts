@@ -16,6 +16,9 @@ It takes these parameters:
 - expand (string array, optional): An array of field paths to expand. Example: ["distributionChannels[*]", "supplyChannels[*]"]
 
 At least one of id, key, or where should be provided to narrow down the results.
+
+Tip: Use the "fields" parameter to reduce response size. Only request fields relevant to the task.
+Recommended fields for summary: ["id", "version", "key", "name", "distributionChannels", "supplyChannels", "productSelections"]
 `;
 
 export const createStorePrompt = `

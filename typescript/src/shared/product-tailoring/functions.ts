@@ -51,6 +51,10 @@ export const contextToProductTailoringFunctionMapping = (
     };
   } else {
     // Default to admin functions for backward compatibility
-    return {};
+    return {
+      readProductTailoring: adminReadProductTailoring,
+      createProductTailoring: adminCreateProductTailoring,
+      updateProductTailoring: adminUpdateProductTailoring,
+    };
   }
 };

@@ -54,17 +54,21 @@ describe('RecurringOrder Functions', () => {
       expect(mapping).toHaveProperty('read_recurring_orders');
     });
 
-    it('should return empty object when isAdmin is false and no customerId', () => {
+    it('should return admin functions as fallback when isAdmin is false and no customerId', () => {
       const customerContext = {isAdmin: false};
       const mapping = contextToRecurringOrderFunctionMapping(customerContext);
 
-      expect(mapping).toEqual({});
+      expect(mapping).toHaveProperty('read_recurring_orders');
+      expect(mapping).toHaveProperty('create_recurring_orders');
+      expect(mapping).toHaveProperty('update_recurring_orders');
     });
 
-    it('should return empty object when context is undefined', () => {
+    it('should return admin functions as fallback when context is undefined', () => {
       const mapping = contextToRecurringOrderFunctionMapping();
 
-      expect(mapping).toEqual({});
+      expect(mapping).toHaveProperty('read_recurring_orders');
+      expect(mapping).toHaveProperty('create_recurring_orders');
+      expect(mapping).toHaveProperty('update_recurring_orders');
     });
   });
 

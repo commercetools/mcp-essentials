@@ -32,17 +32,25 @@ describe('Subscription Functions', () => {
       });
     });
 
-    it('should return empty object when no context is provided', () => {
+    it('should return admin functions as fallback when no context is provided', () => {
       const mapping = contextToSubscriptionFunctionMapping();
 
-      expect(mapping).toEqual({});
+      expect(mapping).toEqual({
+        read_subscription: admin.readSubscription,
+        create_subscription: admin.createSubscription,
+        update_subscription: admin.updateSubscription,
+      });
     });
 
-    it('should return empty object when context does not include isAdmin', () => {
+    it('should return admin functions as fallback when context does not include isAdmin', () => {
       const context = {};
       const mapping = contextToSubscriptionFunctionMapping(context);
 
-      expect(mapping).toEqual({});
+      expect(mapping).toEqual({
+        read_subscription: admin.readSubscription,
+        create_subscription: admin.createSubscription,
+        update_subscription: admin.updateSubscription,
+      });
     });
   });
 

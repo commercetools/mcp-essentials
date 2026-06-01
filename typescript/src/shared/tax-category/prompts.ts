@@ -26,6 +26,9 @@ taxCategory.read({
   limit: 5,
   sort: ["name asc"]
 })
+
+Tip: Use the "fields" parameter to reduce response size. Only request fields relevant to the task.
+Recommended fields for summary: ["id", "version", "key", "name", "rates"]
 `;
 
 export const createTaxCategoryPrompt = `
